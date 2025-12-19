@@ -164,12 +164,12 @@ class="hfeed site" id="page">
 					<div class="uael-nav-menu-icon">
 						<i aria-hidden="true" tabindex="0" class="fas fa-align-justify"></i>					</div>
 									</div>
-							<nav class="uael-nav-menu__layout-horizontal uael-nav-menu__submenu-arrow" data-toggle-icon="&lt;i aria-hidden=&quot;true&quot; tabindex=&quot;0&quot; class=&quot;fas fa-align-justify&quot;&gt;&lt;/i&gt;" data-close-icon="&lt;i aria-hidden=&quot;true&quot; tabindex=&quot;0&quot; class=&quot;far fa-window-close&quot;&gt;&lt;/i&gt;" data-full-width="yes"><ul id="menu-1-486fb39" class="uael-nav-menu"><li id="menu-item-58" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="/" class = "uael-menu-item">Strona Główna</a></li>
-<li id="menu-item-61" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="/#o-nas" class = "uael-menu-item">O Nas</a></li>
-<li id="menu-item-59" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="/tynki-ze-szlichta-pod-malowanie" class = "uael-menu-item">Tynki ze szlichtą pod malowanie</a></li>
-<li id="menu-item-60" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="/realizacje" class = "uael-menu-item">Realizacje</a></li>
-<li id="menu-item-701" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="/galeria" class = "uael-menu-item">Galeria</a></li>
-<li id="menu-item-62" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="/kontakt" class = "uael-menu-item">Kontakt</a></li>
+							<nav class="uael-nav-menu__layout-horizontal uael-nav-menu__submenu-arrow" data-toggle-icon="&lt;i aria-hidden=&quot;true&quot; tabindex=&quot;0&quot; class=&quot;fas fa-align-justify&quot;&gt;&lt;/i&gt;" data-close-icon="&lt;i aria-hidden=&quot;true&quot; tabindex=&quot;0&quot; class=&quot;far fa-window-close&quot;&gt;&lt;/i&gt;" data-full-width="yes"><ul id="menu-1-486fb39" class="uael-nav-menu"><li id="menu-item-58" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="" class = "uael-menu-item">Strona Główna</a></li>
+<li id="menu-item-61" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="#o-nas" class = "uael-menu-item">O Nas</a></li>
+<li id="menu-item-59" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="tynki-ze-szlichta-pod-malowanie" class = "uael-menu-item">Tynki ze szlichtą pod malowanie</a></li>
+<li id="menu-item-60" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="realizacje" class = "uael-menu-item">Realizacje</a></li>
+<li id="menu-item-701" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="galeria" class = "uael-menu-item">Galeria</a></li>
+<li id="menu-item-62" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="kontakt" class = "uael-menu-item">Kontakt</a></li>
 </ul></nav>
 					</div>
 					</div>
@@ -184,7 +184,8 @@ class="hfeed site" id="page">
 			<div class="elementor-widget-wrap elementor-element-populated">
 								<div class="elementor-element elementor-element-cfc937d elementor-widget elementor-widget-theme-site-logo elementor-widget-image" data-id="cfc937d" data-element_type="widget" data-widget_type="theme-site-logo.default">
 				<div class="elementor-widget-container">
-											<a href="https://wroclawtynki.pl">
+											<a href="">
+											<!-- <a href="https://wroclawtynki.pl"> -->
 			<img width="4667" height="967" src="https://wroclawtynki.pl/wp-content/uploads/2023/08/mtynk-logo-gladziolit.png" class="attachment-full size-full wp-image-54" alt="" srcset="https://wroclawtynki.pl/wp-content/uploads/2023/08/mtynk-logo-gladziolit.png 4667w, https://wroclawtynki.pl/wp-content/uploads/2023/08/mtynk-logo-gladziolit-300x62.png 300w, https://wroclawtynki.pl/wp-content/uploads/2023/08/mtynk-logo-gladziolit-1024x212.png 1024w, https://wroclawtynki.pl/wp-content/uploads/2023/08/mtynk-logo-gladziolit-768x159.png 768w, https://wroclawtynki.pl/wp-content/uploads/2023/08/mtynk-logo-gladziolit-1536x318.png 1536w, https://wroclawtynki.pl/wp-content/uploads/2023/08/mtynk-logo-gladziolit-2048x424.png 2048w" sizes="(max-width: 4667px) 100vw, 4667px" />				</a>
 											</div>
 				</div>
@@ -222,12 +223,12 @@ class="hfeed site" id="page">
 			<div class="uael-flyout-container">
 				<div id="uael-flyout-content-id-527e0e7" class="uael-side uael-flyout-left uael-flyout-open" data-layout="left" data-flyout-type="normal">
 					<div class="uael-flyout-content push">
-													<nav ><ul id="menu-1-527e0e7" class="uael-nav-menu"><li id="menu-item-58" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="/" class = "uael-menu-item">Strona Główna</a></li>
-<li id="menu-item-61" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="/#o-nas" class = "uael-menu-item">O Nas</a></li>
-<li id="menu-item-59" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="/tynki-ze-szlichta-pod-malowanie" class = "uael-menu-item">Tynki ze szlichtą pod malowanie</a></li>
-<li id="menu-item-60" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="/realizacje" class = "uael-menu-item">Realizacje</a></li>
-<li id="menu-item-701" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="/galeria" class = "uael-menu-item">Galeria</a></li>
-<li id="menu-item-62" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="/kontakt" class = "uael-menu-item">Kontakt</a></li>
+													<nav ><ul id="menu-1-527e0e7" class="uael-nav-menu"><li id="menu-item-58" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="" class = "uael-menu-item">Strona Główna</a></li>
+<li id="menu-item-61" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="#o-nas" class = "uael-menu-item">O Nas</a></li>
+<li id="menu-item-59" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="tynki-ze-szlichta-pod-malowanie" class = "uael-menu-item">Tynki ze szlichtą pod malowanie</a></li>
+<li id="menu-item-60" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="realizacje" class = "uael-menu-item">Realizacje</a></li>
+<li id="menu-item-701" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="galeria" class = "uael-menu-item">Galeria</a></li>
+<li id="menu-item-62" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="kontakt" class = "uael-menu-item">Kontakt</a></li>
 </ul></nav>
 													<div class="elementor-clickable uael-flyout-close" tabindex="0">
 							<i aria-hidden="true" tabindex="0" class="far fa-window-close"></i>						</div>
@@ -264,12 +265,12 @@ class="hfeed site" id="page">
 			<div class="uael-flyout-container">
 				<div id="uael-flyout-content-id-960b7b5" class="uael-side uael-flyout-left uael-flyout-open" data-layout="left" data-flyout-type="normal">
 					<div class="uael-flyout-content push">
-													<nav ><ul id="menu-1-960b7b5" class="uael-nav-menu"><li id="menu-item-58" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="/" class = "uael-menu-item">Strona Główna</a></li>
-<li id="menu-item-61" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="/#o-nas" class = "uael-menu-item">O Nas</a></li>
-<li id="menu-item-59" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="/tynki-ze-szlichta-pod-malowanie" class = "uael-menu-item">Tynki ze szlichtą pod malowanie</a></li>
-<li id="menu-item-60" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="/realizacje" class = "uael-menu-item">Realizacje</a></li>
-<li id="menu-item-701" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="/galeria" class = "uael-menu-item">Galeria</a></li>
-<li id="menu-item-62" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="/kontakt" class = "uael-menu-item">Kontakt</a></li>
+													<nav ><ul id="menu-1-960b7b5" class="uael-nav-menu"><li id="menu-item-58" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="" class = "uael-menu-item">Strona Główna</a></li>
+<li id="menu-item-61" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="#o-nas" class = "uael-menu-item">O Nas</a></li>
+<li id="menu-item-59" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="tynki-ze-szlichta-pod-malowanie" class = "uael-menu-item">Tynki ze szlichtą pod malowanie</a></li>
+<li id="menu-item-60" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="realizacje" class = "uael-menu-item">Realizacje</a></li>
+<li id="menu-item-701" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="galeria" class = "uael-menu-item">Galeria</a></li>
+<li id="menu-item-62" class="menu-item menu-item-type-custom menu-item-object-custom parent uael-creative-menu"><a href="kontakt" class = "uael-menu-item">Kontakt</a></li>
 </ul></nav>
 													<div class="elementor-clickable uael-flyout-close" tabindex="0">
 							<i aria-hidden="true" tabindex="0" class="far fa-window-close"></i>						</div>
@@ -285,7 +286,8 @@ class="hfeed site" id="page">
 			<div class="elementor-widget-wrap elementor-element-populated">
 								<div class="elementor-element elementor-element-f57ac81 elementor-widget elementor-widget-theme-site-logo elementor-widget-image" data-id="f57ac81" data-element_type="widget" data-widget_type="theme-site-logo.default">
 				<div class="elementor-widget-container">
-											<a href="https://wroclawtynki.pl">
+											<a href="">
+											<!-- <a href="https://wroclawtynki.pl"> -->
 			<img width="4667" height="967" src="https://wroclawtynki.pl/wp-content/uploads/2023/08/mtynk-logo-gladziolit.png" class="attachment-full size-full wp-image-54" alt="" srcset="https://wroclawtynki.pl/wp-content/uploads/2023/08/mtynk-logo-gladziolit.png 4667w, https://wroclawtynki.pl/wp-content/uploads/2023/08/mtynk-logo-gladziolit-300x62.png 300w, https://wroclawtynki.pl/wp-content/uploads/2023/08/mtynk-logo-gladziolit-1024x212.png 1024w, https://wroclawtynki.pl/wp-content/uploads/2023/08/mtynk-logo-gladziolit-768x159.png 768w, https://wroclawtynki.pl/wp-content/uploads/2023/08/mtynk-logo-gladziolit-1536x318.png 1536w, https://wroclawtynki.pl/wp-content/uploads/2023/08/mtynk-logo-gladziolit-2048x424.png 2048w" sizes="(max-width: 4667px) 100vw, 4667px" />				</a>
 											</div>
 				</div>
@@ -391,7 +393,7 @@ class="post-519 page type-page status-publish ast-article-single" id="post-519" 
 			<div class="elementor-widget-wrap elementor-element-populated">
 								<div class="elementor-element elementor-element-87a3e68 elementor-widget elementor-widget-image" data-id="87a3e68" data-element_type="widget" data-widget_type="image.default">
 				<div class="elementor-widget-container">
-																<a href="/">
+																<a href="">
 							<img width="300" height="81" src="https://wroclawtynki.pl/wp-content/uploads/2023/08/m-tynk_logo_greenw-300x81-1.png" class="attachment-full size-full wp-image-53" alt="" loading="lazy" />								</a>
 															</div>
 				</div>
@@ -415,7 +417,7 @@ class="post-519 page type-page status-publish ast-article-single" id="post-519" 
 				<div class="elementor-widget-container">
 			<link rel="stylesheet" href="https://wroclawtynki.pl/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css">		<ul class="elementor-icon-list-items">
 							<li class="elementor-icon-list-item">
-											<a href="/">
+											<a href="">
 
 											<span class="elementor-icon-list-text">Strona Główna</span>
 											</a>
@@ -439,7 +441,7 @@ class="post-519 page type-page status-publish ast-article-single" id="post-519" 
 											</a>
 									</li>
 								<li class="elementor-icon-list-item">
-											<a href="/polityka-prywatnosci">
+											<a href="polityka-prywatnosci">
 
 											<span class="elementor-icon-list-text">Polityka prywatności</span>
 											</a>
