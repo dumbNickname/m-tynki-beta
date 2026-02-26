@@ -5,6 +5,7 @@ import SeoHead from "~/components/SeoHead";
 import PageHeader from "~/components/PageHeader";
 import Gallery from "~/components/Gallery";
 import posts from "~/data/posts.json";
+import styles from "./post.module.css";
 
 export default function PostPage() {
   const params = useParams();
@@ -34,7 +35,7 @@ export default function PostPage() {
             <div class="container">
               <div innerHTML={p().description} />
 
-              <div class="work-details">
+              <div class={styles.workDetails}>
                 <h4>SZCZEGÓŁY PRZEPROWADZONYCH PRAC</h4>
                 <p>
                   <strong>Wykonawca:</strong> {p().executor}<br />

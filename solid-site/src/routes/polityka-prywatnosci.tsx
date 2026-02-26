@@ -1,6 +1,7 @@
 import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import PageHeader from "~/components/PageHeader";
+import styles from "./polityka-prywatnosci.module.css";
 
 export default function PolitykaPrywatnosci() {
   return (
@@ -17,7 +18,7 @@ export default function PolitykaPrywatnosci() {
       />
 
       <section class="section">
-        <div class="container content-text">
+        <div class={`container ${styles.contentText}`}>
           <p><strong>Informacje ogólne.</strong><br />
           1. Operatorem Serwisu jest Tynki gipsowe z gładziolitem pod malowanie – M – Tynk Obornicka 77D/4A, 51-114 Wrocław, zwana dalej ADMINISTRATOREM.<br />
           2. Serwis realizuje funkcje pozyskiwania informacji o użytkownikach i ich zachowaniu w następujący sposób:<br />

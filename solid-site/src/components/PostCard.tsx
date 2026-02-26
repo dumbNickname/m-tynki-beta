@@ -1,4 +1,5 @@
 import { A } from "@solidjs/router";
+import styles from "./PostCard.module.css";
 
 interface Post {
   slug: string;
@@ -19,18 +20,18 @@ export default function PostCard(props: PostCardProps) {
   const badgeLabel = () => props.categoryLabels[firstCategory()] || firstCategory();
 
   return (
-    <article class="post-card">
-      <A href={`/realizacje/${props.post.slug}`} class="post-card-thumbnail">
+    <article class={styles.card}>
+      <A href={`/realizacje/${props.post.slug}`} class={styles.thumbnail}>
         <img src={props.post.thumbnail} alt={props.post.title} loading="lazy" />
       </A>
-      <div class="post-card-badge">{badgeLabel()}</div>
-      <div class="post-card-body">
-        <h3 class="post-card-title">
+      <div class={styles.badge}>{badgeLabel()}</div>
+      <div class={styles.body}>
+        <h3 class={styles.title}>
           <A href={`/realizacje/${props.post.slug}`}>{props.post.title}</A>
         </h3>
-        <p class="post-card-excerpt">{props.post.excerpt}</p>
+        <p class={styles.excerpt}>{props.post.excerpt}</p>
       </div>
-      <div class="post-card-meta">
+      <div class={styles.meta}>
         <span>{props.post.date}</span>
         <span>Brak komentarzy</span>
       </div>

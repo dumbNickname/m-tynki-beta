@@ -2,6 +2,7 @@ import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import PageHeader from "~/components/PageHeader";
 import site from "~/data/site.json";
+import styles from "./tynki-ze-szlichta-pod-malowanie.module.css";
 
 export default function TynkiService() {
   return (
@@ -22,7 +23,7 @@ export default function TynkiService() {
         <div class="container grid-2">
           <div>
             <h2>TYNKI GIPSOWE ZE SZLICHTĄ GŁADZIOLITU WYGŁADZAJĄCEGO POD MALOWANIE</h2>
-            <div class="divider" />
+            <div class={styles.divider} />
             <p>
               Nasza Firma posiada w swojej ofercie coś, co wyróżnia ją na tle innych firm zajmujących się tynkowaniem. Oferowane przez nas Tynki Gipsowe są wykańczane Szlichtą z GŁADZIOLITEM Wygładzającym, która nadaje gładkość tynkowanej ścianie. Dzięki Gładziolitowi, ściany i sufity w pomieszczeniu są perfekcyjnie równe i można od razu po wyschnięciu przejść do malowania.
             </p>
@@ -54,12 +55,12 @@ export default function TynkiService() {
           </div>
           <div>
             <h2>CZYM JEST SZLICHTA Z GŁADZIOLITEM?</h2>
-            <div class="divider" />
+            <div class={styles.divider} />
             <p>
               Szlichta z Gładziolitem wygładzającym jest niczym innym jak ostatnią warstwą nakładanego tynku. Można powiedzieć, że jest to warstwa dodatkowa, która nadaje gładkości ścianie i pozwala od razu przejść do malowania bądź położenia płytek. Jest to coś, co wymaga dodatkowej pracy, ale daje piorunujący efekt końcowy.
             </p>
             <h2>GDZIE MOGĘ ZOBACZYĆ TYNK ZE SZLICHTĄ GŁADZIOLITU?</h2>
-            <div class="divider" />
+            <div class={styles.divider} />
             <p>
               Jeśli chcą Państwo zapoznać się z tym jak wygląda Tynk ze Szlichtą Gładziolitu – zapraszamy na naszą aktualną budowę. Zawsze zapraszamy inwestorów, aby zapoznali się z jakością wykonywanych przez nas tynków. Dlatego też, w każdej sytuacji, prosimy o kontakt telefoniczny w celu umówienia się na wizytę. Na takiej wizycie opowiemy też więcej o wykonywanych Tynkach Gipsowych ze Szlichtą Gładziolitu, a także pokażemy, jak wygląda tynk bez szlichty gładziolitu oraz ze szlichtą gładziolitem.
             </p>

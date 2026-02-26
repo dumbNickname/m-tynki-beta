@@ -7,6 +7,7 @@ import PageHeader from "~/components/PageHeader";
 import PostCard from "~/components/PostCard";
 import posts from "~/data/posts.json";
 import navigation from "~/data/navigation.json";
+import styles from "../realizacje/index.module.css";
 
 const categoryLabels: Record<string, string> = {};
 navigation.categories.forEach((c) => { categoryLabels[c.slug] = c.label; });
@@ -40,13 +41,13 @@ export default function CategoryPage() {
 
       <section class="section">
         <div class="container">
-          <nav class="category-nav">
+          <nav class={styles.categoryNav}>
             <For each={navigation.categories}>
               {(cat) => (
                 <A
                   href={`/category/${cat.slug}`}
-                  class="category-link"
-                  classList={{ active: cat.slug === params.slug }}
+                  class={styles.categoryLink}
+                  classList={{ [styles.categoryLinkActive]: cat.slug === params.slug }}
                 >
                   {cat.label}
                 </A>
@@ -59,7 +60,7 @@ export default function CategoryPage() {
       <section class="section">
         <div class="container">
           <Show when={filteredPosts().length > 0} fallback={<p>Brak realizacji w tej kategorii.</p>}>
-            <div class="posts-grid">
+            <div class={styles.postsGrid}>
               <For each={filteredPosts()}>
                 {(post) => <PostCard post={post} categoryLabels={categoryLabels} />}
               </For>

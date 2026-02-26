@@ -2,6 +2,7 @@ import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import PageHeader from "~/components/PageHeader";
 import site from "~/data/site.json";
+import styles from "./kontakt.module.css";
 
 export default function Kontakt() {
   return (
@@ -42,20 +43,20 @@ export default function Kontakt() {
 
       <section class="section">
         <div class="container">
-          <ul class="icon-list">
+          <ul class={styles.iconList}>
             <li>
-              <span class="icon-list-icon">📍</span>
+              <span class={styles.iconListIcon}>📍</span>
               <span>{site.address}</span>
             </li>
             <li>
               <a href={`tel:${site.phoneRaw}`}>
-                <span class="icon-list-icon">📞</span>
+                <span class={styles.iconListIcon}>📞</span>
                 <span>{site.phone}</span>
               </a>
             </li>
             <li>
               <a href={`mailto:${site.email}`}>
-                <span class="icon-list-icon">✉️</span>
+                <span class={styles.iconListIcon}>✉️</span>
                 <span>{site.email}</span>
               </a>
             </li>
@@ -63,7 +64,7 @@ export default function Kontakt() {
         </div>
       </section>
 
-      <section class="map-section">
+      <section class={styles.map}>
         <iframe
           loading="lazy"
           src="https://maps.google.com/maps?q=Tynki%20gipsowe%20z%20g%C5%82adziolitem%20pod%20malowanie%20-%20M-Tynk%2C%20Obornicka%2077D%2F4A%2C%2051-114%20Wroc%C5%82aw&t=m&z=17&output=embed&iwloc=near"

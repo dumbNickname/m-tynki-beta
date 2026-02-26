@@ -1,6 +1,7 @@
 import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import site from "~/data/site.json";
+import styles from "./index.module.css";
 
 export default function Home() {
   return (
@@ -11,10 +12,10 @@ export default function Home() {
         ogImage="/images/uploads/elementor/thumbs/tynk-ze-szlichta-wygladzajaca-2-1-qbc493vjwnj8vdtfz6et930fnfrti3rzhl17p4djqe.png"
       />
 
-      <section class="hero">
-        <div class="hero-bg" style={{ "background-image": "url('/images/uploads/2023/08/tynki-ze-szlichta-pod-malowanie.jpg')" }}>
-          <div class="hero-overlay" />
-          <div class="hero-content">
+      <section class={styles.hero}>
+        <div class={styles.heroBg} style={{ "background-image": "url('/images/uploads/2023/08/tynki-ze-szlichta-pod-malowanie.jpg')" }}>
+          <div class={styles.heroOverlay} />
+          <div class={styles.heroContent}>
             <h1>
               Tynki ze szlichtą<br />wygładzającą<br />pod malowanie
             </h1>
@@ -27,7 +28,7 @@ export default function Home() {
         <div class="container grid-2">
           <div>
             <h2>Tynki ze szlichtą wygładzającą pod malowanie</h2>
-            <p class="lead">Jesteśmy firmą budowlaną świadczącą swoje usługi od 1999r co jest gwarancją jakości usług.</p>
+            <p class={styles.lead}>Jesteśmy firmą budowlaną świadczącą swoje usługi od 1999r co jest gwarancją jakości usług.</p>
             <h2>Zaufaj profesjonalnym usługom tynkarskim</h2>
             <p>Skontaktuj się z nami i przekonaj się o naszym profesjonalizmie!</p>
           </div>
@@ -41,7 +42,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section class="section section-alt" id="o-nas">
+      <section class={`section ${styles.about}`} id="o-nas">
         <div class="container grid-2">
           <div class="text-center">
             <img src={site.mascot} alt="M-TYNK maskotka" width="300" height="300" loading="lazy" />
@@ -65,7 +66,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section class="section section-cta">
+      <section class={`section ${styles.cta}`}>
         <div class="container text-center">
           <h2>Skontaktuj się z nami</h2>
           <p>Zadzwoń i umów się na bezpłatną wycenę!</p>
