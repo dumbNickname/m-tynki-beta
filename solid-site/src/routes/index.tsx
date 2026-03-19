@@ -56,8 +56,11 @@ export default function Home() {
     <Layout>
       <SeoHead
         canonical="/"
-        description={site.description}
+        description="Tynki ze szlichtą wygładzającą pod malowanie Wrocław. Firma M-TYNK świadczy usługi tynkarskie od 1999 roku. Tynki gipsowe, cementowo-wapienne, zabudowy G-K, malowanie natryskowe."
         ogImage="/images/uploads/elementor/thumbs/tynk-ze-szlichta-wygladzajaca-2-1-qbc493vjwnj8vdtfz6et930fnfrti3rzhl17p4djqe.png"
+        datePublished="2023-08-23T12:08:08+00:00"
+        dateModified="2024-09-30T08:10:47+00:00"
+        breadcrumbs={[{ name: "HOME" }]}
       />
 
       <section class={styles.hero}>
@@ -132,7 +135,7 @@ export default function Home() {
             <For each={services}>
               {(svc) => (
                 <div class={styles.serviceCard}>
-                  <img src={svc.icon} alt="" width="60" height="60" loading="lazy" />
+                  <img src={svc.icon} alt={svc.title} width="60" height="60" loading="lazy" />
                   <h3>{svc.title}</h3>
                   <p>{svc.description}</p>
                 </div>

@@ -26,8 +26,14 @@ export default function CategoryPage() {
   return (
     <Layout>
       <SeoHead
-        title={categoryLabel()}
+        title={`${categoryLabel()} - Realizacje`}
         canonical={`/category/${params.slug}`}
+        description={`Realizacje w kategorii „${categoryLabel()}" — tynki gipsowe ze szlichtą wygładzającą pod malowanie. Firma M-TYNK Wrocław.`}
+        breadcrumbs={[
+          { name: "HOME", href: "/" },
+          { name: "Realizacje", href: "/realizacje" },
+          { name: categoryLabel() },
+        ]}
       />
 
       <PageHeader

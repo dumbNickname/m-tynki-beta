@@ -9,7 +9,12 @@ export default function PolitykaPrywatnosci() {
       <SeoHead
         title="Polityka prywatności"
         canonical="/polityka-prywatnosci"
-        description="Polityka prywatności serwisu M-TYNK Wrocław"
+        description="Polityka prywatności serwisu M-TYNK Wrocław. Informacje o plikach cookies, logach serwera i udostępnianiu danych."
+        dateModified="2023-08-25T13:09:32+00:00"
+        breadcrumbs={[
+          { name: "HOME", href: "/" },
+          { name: "Polityka prywatności" },
+        ]}
       />
 
       <PageHeader

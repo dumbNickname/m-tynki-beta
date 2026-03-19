@@ -8,10 +8,15 @@ export default function TynkiService() {
   return (
     <Layout>
       <SeoHead
-        title="Tynki ze Szlichtą pod Malowanie"
+        title="Tynki ze Szlichtą pod Malowanie Wrocław"
         canonical="/tynki-ze-szlichta-pod-malowanie"
-        description="Tynki Gipsowe ze Szlichtą Gładziolitu Wygładzającego pod Malowanie. Oferujemy tynki gipsowe wykańczane Szlichtą z Gładziolitem."
+        description="Tynki Gipsowe ze Szlichtą Gładziolitu Wygładzającego pod Malowanie Wrocław. Oferujemy tynki gipsowe wykańczane Szlichtą z Gładziolitem — ściany gotowe do malowania bez dodatkowej gładzi."
         ogImage="/images/uploads/2023/08/tynki-ze-szlichta-pod-malowanie.jpg"
+        dateModified="2023-09-04T09:44:26+00:00"
+        breadcrumbs={[
+          { name: "HOME", href: "/" },
+          { name: "Tynki ze szlichtą pod malowanie" },
+        ]}
       />
 
       <PageHeader

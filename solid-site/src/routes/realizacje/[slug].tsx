@@ -20,6 +20,14 @@ export default function PostPage() {
             canonical={`/realizacje/${p().slug}`}
             description={p().excerpt}
             ogImage={p().thumbnail}
+            ogType="article"
+            datePublished={`${p().date}T00:00:00+00:00`}
+            dateModified={`${p().date}T00:00:00+00:00`}
+            breadcrumbs={[
+              { name: "HOME", href: "/" },
+              { name: "Realizacje", href: "/realizacje" },
+              { name: p().title },
+            ]}
           />
 
           <PageHeader

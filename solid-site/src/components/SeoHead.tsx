@@ -1,16 +1,107 @@
 import { Title, Meta, Link } from "@solidjs/meta";
 import site from "~/data/site.json";
 
+interface BreadcrumbItem {
+  name: string;
+  href?: string;
+}
+
 interface SeoHeadProps {
   title?: string;
   description?: string;
   canonical?: string;
   ogImage?: string;
   ogType?: string;
+  datePublished?: string;
+  dateModified?: string;
+  breadcrumbs?: BreadcrumbItem[];
 }
 
 export default function SeoHead(props: SeoHeadProps) {
-  const pageTitle = () => props.title ? `${props.title} - ${site.title}` : site.title;
+  const pageTitle = () => props.title ? `${props.title} - ${site.name}` : site.title;
+
+  const jsonLd = () => {
+    const graph: object[] = [];
+
+    graph.push({
+      "@type": "Organization",
+      "@id": `${site.url}/#organization`,
+      name: site.title,
+      url: site.url,
+      logo: {
+        "@type": "ImageObject",
+        url: `${site.url}${site.logo}`,
+      },
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: site.phone,
+        contactType: "customer service",
+        areaServed: "PL",
+        availableLanguage: "Polish",
+      },
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Obornicka 77C/4A",
+        addressLocality: "Wrocław",
+        postalCode: "51-114",
+        addressCountry: "PL",
+      },
+      sameAs: [site.facebookUrl, site.instagramUrl],
+    });
+
+    graph.push({
+      "@type": "WebSite",
+      "@id": `${site.url}/#website`,
+      url: site.url,
+      name: site.title,
+      description: site.description,
+      publisher: { "@id": `${site.url}/#organization` },
+      inLanguage: "pl-PL",
+    });
+
+    const webPage: Record<string, unknown> = {
+      "@type": "WebPage",
+      "@id": props.canonical ? `${site.url}${props.canonical}` : site.url,
+      url: props.canonical ? `${site.url}${props.canonical}` : site.url,
+      name: pageTitle(),
+      isPartOf: { "@id": `${site.url}/#website` },
+      about: { "@id": `${site.url}/#organization` },
+      inLanguage: "pl-PL",
+    };
+
+    if (props.description) {
+      webPage.description = props.description;
+    }
+    if (props.datePublished) {
+      webPage.datePublished = props.datePublished;
+    }
+    if (props.dateModified) {
+      webPage.dateModified = props.dateModified;
+    }
+    if (props.ogImage) {
+      webPage.primaryImageOfPage = {
+        "@type": "ImageObject",
+        url: `${site.url}${props.ogImage}`,
+      };
+    }
+
+    graph.push(webPage);
+
+    if (props.breadcrumbs && props.breadcrumbs.length > 0) {
+      graph.push({
+        "@type": "BreadcrumbList",
+        "@id": `${props.canonical ? `${site.url}${props.canonical}` : site.url}#breadcrumb`,
+        itemListElement: props.breadcrumbs.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.name,
+          ...(item.href ? { item: `${site.url}${item.href}` } : {}),
+        })),
+      });
+    }
+
+    return JSON.stringify({ "@context": "https://schema.org", "@graph": graph });
+  };
 
   return (
     <>
@@ -31,6 +122,10 @@ export default function SeoHead(props: SeoHeadProps) {
         </>
       )}
       <Meta name="twitter:card" content="summary_large_image" />
+      {props.dateModified && <Meta property="article:modified_time" content={props.dateModified} />}
+      {props.canonical && <Link rel="alternate" hreflang="pl" href={`${site.url}${props.canonical}`} />}
+      {props.canonical && <Link rel="alternate" hreflang="x-default" href={`${site.url}${props.canonical}`} />}
+      <script type="application/ld+json" innerHTML={jsonLd()} />
     </>
   );
 }

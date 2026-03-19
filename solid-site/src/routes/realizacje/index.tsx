@@ -14,7 +14,16 @@ navigation.categories.forEach((c) => { categoryLabels[c.slug] = c.label; });
 export default function Realizacje() {
   return (
     <Layout>
-      <SeoHead title="Realizacje" canonical="/realizacje" />
+      <SeoHead
+        title="Realizacje"
+        canonical="/realizacje"
+        description="Realizacje firmy M-TYNK Wrocław. Zobacz nasze prace tynkarskie — tynki gipsowe ze szlichtą wygładzającą pod malowanie, zabudowy G-K, malowanie ścian."
+        dateModified="2024-09-30T08:10:47+00:00"
+        breadcrumbs={[
+          { name: "HOME", href: "/" },
+          { name: "Realizacje" },
+        ]}
+      />
 
       <PageHeader
         title="REALIZACJE"
