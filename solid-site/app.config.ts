@@ -1,10 +1,7 @@
 import { defineConfig } from "@solidjs/start/config";
 
-const basePath = process.env.BASE_PATH || "";
-
 export default defineConfig({
   server: {
-    baseURL: basePath,
     preset: "static",
     prerender: {
       routes: [
