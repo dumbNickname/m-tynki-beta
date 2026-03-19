@@ -2,6 +2,7 @@ import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import PageHeader from "~/components/PageHeader";
 import site from "~/data/site.json";
+import { asset } from "~/utils/basePath";
 import styles from "./kontakt.module.css";
 
 export default function Kontakt() {
@@ -35,12 +36,12 @@ export default function Kontakt() {
           </div>
           <div class="text-center">
             <a href={site.googleReviewUrl} target="_blank" rel="noopener noreferrer">
-              <img src="/images/ocena-google-300x300-1-150x150-1.png" alt="Ocena Google" width="150" height="150" loading="lazy" />
+              <img src={asset("/images/ocena-google-300x300-1-150x150-1.png")} alt="Ocena Google" width="150" height="150" loading="lazy" />
             </a>
           </div>
           <div class="text-center">
             <a href={site.googleReviewUrl} target="_blank" rel="noopener noreferrer">
-              <img src="/images/3f01b95197aa73a801f7357854c22483-150x150-1.png" alt="Opinie Google" width="150" height="150" loading="lazy" />
+              <img src={asset("/images/3f01b95197aa73a801f7357854c22483-150x150-1.png")} alt="Opinie Google" width="150" height="150" loading="lazy" />
             </a>
           </div>
         </div>

@@ -3,6 +3,7 @@ import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import Reviews from "~/components/Reviews";
 import site from "~/data/site.json";
+import { asset } from "~/utils/basePath";
 import styles from "./index.module.css";
 
 const services = [
@@ -64,7 +65,7 @@ export default function Home() {
       />
 
       <section class={styles.hero}>
-        <div class={styles.heroBg} style={{ "background-image": "url('/images/uploads/2023/08/tynki-ze-szlichta-pod-malowanie.jpg')" }}>
+        <div class={styles.heroBg} style={{ "background-image": `url('${asset("/images/uploads/2023/08/tynki-ze-szlichta-pod-malowanie.jpg")}')` }}>
           <div class={styles.heroOverlay} />
           <div class={styles.heroContent}>
             <h1>
@@ -85,7 +86,7 @@ export default function Home() {
           </div>
           <div class="text-center">
             <img
-              src="/images/uploads/elementor/thumbs/tynk-ze-szlichta-wygladzajaca-2-1-qbc493vjwnj8vdtfz6et930fnfrti3rzhl17p4djqe.png"
+              src={asset("/images/uploads/elementor/thumbs/tynk-ze-szlichta-wygladzajaca-2-1-qbc493vjwnj8vdtfz6et930fnfrti3rzhl17p4djqe.png")}
               alt="Tynk ze szlichtą wygładzającą"
               loading="lazy"
             />
@@ -96,7 +97,7 @@ export default function Home() {
       <section class={`section ${styles.about}`} id="o-nas">
         <div class="container grid-2">
           <div class="text-center">
-            <img src={site.mascot} alt="M-TYNK maskotka" width="300" height="300" loading="lazy" />
+            <img src={asset(site.mascot)} alt="M-TYNK maskotka" width="300" height="300" loading="lazy" />
           </div>
           <div>
             <h2>Działamy szybko i dokładnie!</h2>
@@ -120,7 +121,7 @@ export default function Home() {
       <section class={`section ${styles.featured}`}>
         <div class="container">
           <div class={styles.featuredCard}>
-            <img src="/images/uploads/2024/09/gladz.svg" alt="Gładź natryskowa" width="800" height="800" loading="lazy" />
+            <img src={asset("/images/uploads/2024/09/gladz.svg")} alt="Gładź natryskowa" width="800" height="800" loading="lazy" />
             <div>
               <h3>Gładź natryskowa</h3>
               <p>Gładź natryskowa to sprawdzona metoda wygładzania ścian, która gwarantuje idealnie równą powierzchnię. Zapewnia szybkie wykończenie i wysoką jakość efektu.</p>
@@ -135,7 +136,7 @@ export default function Home() {
             <For each={services}>
               {(svc) => (
                 <div class={styles.serviceCard}>
-                  <img src={svc.icon} alt={svc.title} width="60" height="60" loading="lazy" />
+                  <img src={asset(svc.icon)} alt={svc.title} width="60" height="60" loading="lazy" />
                   <h3>{svc.title}</h3>
                   <p>{svc.description}</p>
                 </div>
@@ -167,7 +168,7 @@ export default function Home() {
             </div>
           </div>
           <div class="text-center">
-            <img src="/images/uploads/2023/08/mtynk-tynki-pod-malowanie-1.png" alt="M-TYNK tynki pod malowanie" loading="lazy" />
+            <img src={asset("/images/uploads/2023/08/mtynk-tynki-pod-malowanie-1.png")} alt="M-TYNK tynki pod malowanie" loading="lazy" />
           </div>
         </div>
       </section>

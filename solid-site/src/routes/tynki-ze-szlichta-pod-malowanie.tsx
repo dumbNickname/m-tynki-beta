@@ -2,6 +2,7 @@ import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import PageHeader from "~/components/PageHeader";
 import site from "~/data/site.json";
+import { asset } from "~/utils/basePath";
 import styles from "./tynki-ze-szlichta-pod-malowanie.module.css";
 
 export default function TynkiService() {
@@ -41,7 +42,7 @@ export default function TynkiService() {
           </div>
           <div class="text-center">
             <img
-              src="/images/uploads/2023/08/tynki-ze-szlichta-pod-malowanie.jpg"
+              src={asset("/images/uploads/2023/08/tynki-ze-szlichta-pod-malowanie.jpg")}
               alt="Tynki ze szlichtą pod malowanie"
               loading="lazy"
             />
@@ -53,7 +54,7 @@ export default function TynkiService() {
         <div class="container grid-2">
           <div class="text-center">
             <img
-              src="/images/uploads/elementor/thumbs/tyni-pod-malowanie-qbdq91rev2rfmler3fd35z8elq8utmztpuh8j5jxts.jpg"
+              src={asset("/images/uploads/elementor/thumbs/tyni-pod-malowanie-qbdq91rev2rfmler3fd35z8elq8utmztpuh8j5jxts.jpg")}
               alt="Tynki pod malowanie"
               loading="lazy"
             />
