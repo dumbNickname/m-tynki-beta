@@ -49,6 +49,9 @@ jobs:
         run: pnpm build
         working-directory: solid-site
 
+      - name: Set base path for GitHub Pages
+        run: find solid-site/.output/public -name '*.html' -exec sed -i 's|<base href="/"|<base href="/m-tynki/"|g' {} +
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
