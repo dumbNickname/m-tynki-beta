@@ -243,6 +243,17 @@
   background: var(--color-white);
 }
 
+.aboutFullGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.aboutFullImage {
+  text-align: center;
+}
+
 .checkList {
   padding-left: 0;
   margin-bottom: 1.5rem;
@@ -347,6 +358,11 @@
     gap: 2rem;
   }
 
+  .aboutFullGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
   .servicesGrid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -376,22 +392,30 @@
 
   .introGrid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 0;
   }
 
   .introImage {
-    order: -1;
-    border-radius: 0;
-    margin: 0 calc(-1 * var(--section-padding-x));
-    width: calc(100% + 2 * var(--section-padding-x));
+    display: none;
   }
 
-  .introImage img {
+  .aboutFullGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .aboutFullImage {
+    order: -1;
+    margin: 0 calc(-1 * var(--section-padding-x));
+    width: calc(100% + 2 * var(--section-padding-x));
+    overflow: hidden;
+  }
+
+  .aboutFullImage img {
     width: 100%;
     aspect-ratio: 1;
     object-fit: cover;
     object-position: center;
-    border-radius: 0;
   }
 
   .servicesGrid {

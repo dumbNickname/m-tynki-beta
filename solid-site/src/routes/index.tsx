@@ -176,25 +176,27 @@ export default function Home() {
       </section>
 
       <section class={`section ${styles.aboutFull}`}>
-        <div class="container grid-2">
-          <div>
-            <span class={styles.sectionTag}>O firmie</span>
-            <h2>O Nas</h2>
-            <div class="divider" />
-            <p>Jesteśmy firmą z wieloletnim doświadczeniem, która od lat zajmuje się Tynkarstwem. Prawie od początku naszej działalności preferujemy metodę wykonywania Tynków wraz ze Szlichtą wygładzającą, która powoduje, że ściana jest przygotowana pod malowanie.</p>
-            <p>Dzięki Szlichcie uzyskujemy efekt gładkiej ściany, bez wybrzuszeń i nierówności.</p>
-            <p>Firma specjalizuje się w wykonaniu tynków maszynowych W branży tynków maszynowych działamy od 1999r. Posiadamy doświadczoną brygadę (wieloletnia praktyka w zawodzie) więc:</p>
-            <ul class={styles.checkList}>
-              <li>Tynki cechuje wysoka jakość, estetyka i kultura wykonania.</li>
-              <li>Zabezpieczamy stolarkę okienna,instalacje i inne wymagające tego rzeczy.</li>
-              <li>Zawsze stosujemy specjalistyczne grunty i preparaty, obrzutki, narożniki, siatki, jak i również listwy dylatacyjne do okien i drzwi.</li>
-              <li>Posiadamy sprzęt do pracy w systemie silosowym.</li>
-              <li>Doradzamy przy wyborze najlepszego materiału oraz technologi wykonania.</li>
-              <li>Dbamy o powierzone mienie.</li>
-            </ul>
-          </div>
-          <div class="text-center">
-            <img src="images/uploads/2023/08/mtynk-tynki-pod-malowanie-1.png" alt="M-TYNK tynki pod malowanie" loading="lazy" />
+        <div class="container">
+          <div class={styles.aboutFullGrid}>
+            <div>
+              <span class={styles.sectionTag}>O firmie</span>
+              <h2>O Nas</h2>
+              <div class="divider" />
+              <p>Jesteśmy firmą z wieloletnim doświadczeniem, która od lat zajmuje się Tynkarstwem. Prawie od początku naszej działalności preferujemy metodę wykonywania Tynków wraz ze Szlichtą wygładzającą, która powoduje, że ściana jest przygotowana pod malowanie.</p>
+              <p>Dzięki Szlichcie uzyskujemy efekt gładkiej ściany, bez wybrzuszeń i nierówności.</p>
+              <p>Firma specjalizuje się w wykonaniu tynków maszynowych W branży tynków maszynowych działamy od 1999r. Posiadamy doświadczoną brygadę (wieloletnia praktyka w zawodzie) więc:</p>
+              <ul class={styles.checkList}>
+                <li>Tynki cechuje wysoka jakość, estetyka i kultura wykonania.</li>
+                <li>Zabezpieczamy stolarkę okienna,instalacje i inne wymagające tego rzeczy.</li>
+                <li>Zawsze stosujemy specjalistyczne grunty i preparaty, obrzutki, narożniki, siatki, jak i również listwy dylatacyjne do okien i drzwi.</li>
+                <li>Posiadamy sprzęt do pracy w systemie silosowym.</li>
+                <li>Doradzamy przy wyborze najlepszego materiału oraz technologi wykonania.</li>
+                <li>Dbamy o powierzone mienie.</li>
+              </ul>
+            </div>
+            <div class={styles.aboutFullImage}>
+              <img src="images/uploads/2023/08/mtynk-tynki-pod-malowanie-1.png" alt="M-TYNK tynki pod malowanie" loading="lazy" />
+            </div>
           </div>
         </div>
       </section>
