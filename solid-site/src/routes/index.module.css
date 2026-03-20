@@ -272,7 +272,6 @@
 
 .timelineItem {
   position: relative;
-  overflow: hidden;
 }
 
 .timelineNumber {
@@ -337,9 +336,8 @@
   }
 
   .aboutGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: auto 1fr;
     gap: 2rem;
-    text-align: center;
   }
 
   .servicesGrid {
@@ -384,6 +382,25 @@
 
   .timeline {
     grid-template-columns: 1fr;
+  }
+
+  .aboutGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    text-align: left;
+  }
+
+  .aboutImage {
+    order: -1;
+    justify-content: center;
+  }
+
+  .aboutImage img {
+    width: 120px;
+    height: 120px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
   }
 
   .statsRow {
