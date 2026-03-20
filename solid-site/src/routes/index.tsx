@@ -58,7 +58,15 @@ export default function Home() {
       />
 
       <section class={styles.hero}>
-        <div class={styles.heroBg} style={{ "background-image": "url('images/uploads/2023/08/tynki-ze-szlichta-pod-malowanie.jpg')" }}>
+        <div class={styles.heroBg}>
+          <img
+            class={styles.heroImg}
+            src="images/hero-1125w.jpg"
+            srcset="images/hero-480w.jpg 480w, images/hero-768w.jpg 768w, images/hero-1125w.jpg 1125w"
+            sizes="100vw"
+            alt="Tynki ze szlichtą pod malowanie"
+            fetchpriority="high"
+          />
           <div class={styles.heroOverlay} />
           <div class={styles.heroContent}>
             <span class={styles.heroBadge}>Od 1999 roku</span>
@@ -67,14 +75,13 @@ export default function Home() {
             </h1>
             <p class={styles.heroSubtitle}>Profesjonalne usługi tynkarskie we Wrocławiu i okolicach</p>
             <div class={styles.heroActions}>
-              <a href="#dowiedz-sie-wiecej" class="btn btn-outline">Dowiedz się więcej</a>
-              <a href={`tel:${site.phoneRaw}`} class="btn btn-primary">Bezpłatna wycena</a>
+              <a href={`tel:${site.phoneRaw}`} class="btn btn-primary btn-lg">Bezpłatna wycena</a>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section" id="dowiedz-sie-wiecej">
+      <section class="section">
         <div class="container">
           <div class={styles.introGrid}>
             <div>
