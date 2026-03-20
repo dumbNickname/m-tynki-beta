@@ -3,7 +3,7 @@
   top: 0;
   z-index: 1000;
   background: var(--color-white);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 0 var(--color-border);
 }
 
 .desktop {
@@ -14,60 +14,101 @@
   display: none;
 }
 
-.inner {
+.topBar {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.topInner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 80px;
-  max-width: var(--container-max);
-  margin: 0 auto;
-  padding: 0 var(--section-padding-x);
+  height: 64px;
 }
 
 .logo img {
-  height: 50px;
+  height: 40px;
   width: auto;
 }
 
-.right {
+.topRight {
   display: flex;
   align-items: center;
-  gap: 1.5em;
+  gap: 1.25rem;
 }
 
-.nav ul {
-  display: flex;
+.phoneLink {
+  display: inline-flex;
   align-items: center;
-  gap: 1.5em;
-}
-
-.nav a {
+  gap: 0.5em;
   color: var(--color-dark);
   font-weight: 600;
   font-size: var(--fs-small);
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  padding: 0.4em 0;
-  position: relative;
+  transition: color var(--transition);
 }
 
-.nav a::after {
+.phoneLink svg {
+  color: var(--color-primary);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.phoneLink:hover {
+  color: var(--color-primary);
+}
+
+.navBar {
+  background: var(--color-white);
+}
+
+.navInner {
+  display: flex;
+  justify-content: center;
+}
+
+.navBar ul {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.navBar li a {
+  display: block;
+  color: var(--color-text);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.875rem 1.125rem;
+  position: relative;
+  transition: color var(--transition);
+}
+
+.navBar li a::after {
   content: "";
   position: absolute;
   bottom: 0;
-  left: 0;
+  left: 50%;
   width: 0;
   height: 2px;
   background: var(--color-primary);
-  transition: width var(--transition);
+  transition: width var(--transition), left var(--transition);
 }
 
-.nav a:hover::after {
+.navBar li a:hover::after,
+.navBar li a.active::after {
   width: 100%;
+  left: 0;
 }
 
-.nav a:hover {
+.navBar li a:hover {
   color: var(--color-primary);
+}
+
+.mobileInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
 }
 
 .menuToggle {
@@ -84,12 +125,13 @@
 .hamburger::before,
 .hamburger::after {
   display: block;
-  width: 24px;
+  width: 22px;
   height: 2px;
   background: var(--color-dark);
   transition: var(--transition);
   position: absolute;
-  left: 6px;
+  left: 7px;
+  border-radius: 1px;
 }
 
 .hamburger { top: 17px; }
@@ -100,13 +142,16 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5em;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
   background: var(--color-primary);
   color: var(--color-white);
-  border: 2px solid transparent;
+  transition: background var(--transition);
+}
+
+.phoneIcon:hover {
+  background: var(--color-primary-dark);
 }
 
 .phoneIcon svg {
@@ -116,11 +161,12 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 1040;
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--transition);
+  backdrop-filter: blur(4px);
 }
 
 .overlayOpen {
@@ -134,46 +180,78 @@
   right: -100%;
   width: 300px;
   height: 100vh;
+  height: 100dvh;
   background: var(--color-white);
-  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-elevated);
   z-index: 1050;
-  padding: 80px 2em 2em;
-  transition: right var(--transition);
+  padding: 2rem;
+  transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .flyoutOpen {
   right: 0;
 }
 
-.flyout ul {
-  display: flex;
-  flex-direction: column;
+.flyoutClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-light);
+  padding: 0.25rem;
+  transition: color var(--transition);
 }
 
-.flyout a {
-  display: block;
+.flyoutClose:hover {
   color: var(--color-dark);
-  font-weight: 600;
-  font-size: 1.1rem;
-  padding: 0.75em 0;
+}
+
+.flyoutBrand {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--color-border);
 }
 
-.flyout a:hover {
-  color: var(--color-primary);
+.flyoutBrand img {
+  height: 32px;
+  width: auto;
 }
 
-.flyoutClose {
-  position: absolute;
-  top: 1em;
-  right: 1em;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
+.flyout ul {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.flyout li a {
+  display: block;
   color: var(--color-dark);
-  line-height: 1;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-border);
+  transition: color var(--transition), padding-left var(--transition);
+}
+
+.flyout li a:hover {
+  color: var(--color-primary);
+  padding-left: 0.5rem;
+}
+
+.flyoutCta {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.flyoutCta a {
+  width: 100%;
+  text-align: center;
 }
 
 @media (max-width: 1024px) {
@@ -187,11 +265,11 @@
 }
 
 @media (max-width: 768px) {
-  .inner {
-    height: 64px;
+  .mobileInner {
+    height: 56px;
   }
 
   .logo img {
-    height: 38px;
+    height: 32px;
   }
 }

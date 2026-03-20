@@ -1,31 +1,33 @@
 .postsGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2em;
+  gap: 1.5rem;
 }
 
 .categoryNav {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75em;
+  gap: 0.5rem;
   justify-content: center;
 }
 
 .categoryLink {
   display: inline-block;
-  padding: 0.5em 1.4em;
-  border: 2px solid var(--color-primary);
+  padding: 0.5em 1.25em;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-pill);
   font-size: var(--fs-small);
-  font-weight: 600;
-  color: var(--color-primary);
-  transition: background var(--transition), color var(--transition);
+  font-weight: 500;
+  color: var(--color-text);
+  background: var(--color-white);
+  transition: all var(--transition);
 }
 
 .categoryLink:hover,
 .categoryLinkActive {
   background: var(--color-primary);
   color: var(--color-white);
+  border-color: var(--color-primary);
 }
 
 @media (max-width: 1024px) {

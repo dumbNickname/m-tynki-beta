@@ -25,60 +25,73 @@ export default function Kontakt() {
       />
 
       <section class="section">
-        <div class="container grid-3">
-          <div>
-            <h2>SKONTAKTUJ SIĘ Z NAMI!</h2>
-            <div class="divider" />
-            <p>
-              Jeśli chcesz się umówić na Tynkowanie, masz pytania odnośnie Szlichty Wygładzającej. Zachęcamy także do postawienia opinii po wykonanej pracy.
-            </p>
-          </div>
-          <div class="text-center">
-            <a href={site.googleReviewUrl} target="_blank" rel="noopener noreferrer">
-              <img src="images/ocena-google-300x300-1-150x150-1.png" alt="Ocena Google" width="150" height="150" loading="lazy" />
-            </a>
-          </div>
-          <div class="text-center">
-            <a href={site.googleReviewUrl} target="_blank" rel="noopener noreferrer">
-              <img src="images/3f01b95197aa73a801f7357854c22483-150x150-1.png" alt="Opinie Google" width="150" height="150" loading="lazy" />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
         <div class="container">
-          <ul class={styles.iconList}>
-            <li>
-              <span class={styles.iconListIcon}>📍</span>
-              <span>{site.address}</span>
-            </li>
-            <li>
-              <a href={`tel:${site.phoneRaw}`}>
-                <span class={styles.iconListIcon}>📞</span>
-                <span>{site.phone}</span>
+          <div class={styles.contactGrid}>
+            <div>
+              <h2>Skontaktuj się z nami</h2>
+              <p>Jeśli chcesz się umówić na Tynkowanie lub masz pytania odnośnie Szlichty Wygładzającej — zadzwoń lub napisz.</p>
+              <div class={styles.contactInfo}>
+                <div class={styles.contactItem}>
+                  <div class={styles.contactIcon}>📍</div>
+                  <div class={styles.contactText}>
+                    <span class={styles.contactLabel}>Adres</span>
+                    <span class={styles.contactValue}>{site.address}</span>
+                  </div>
+                </div>
+                <div class={styles.contactItem}>
+                  <div class={styles.contactIcon}>📞</div>
+                  <div class={styles.contactText}>
+                    <span class={styles.contactLabel}>Telefon</span>
+                    <span class={styles.contactValue}>
+                      <a href={`tel:${site.phoneRaw}`}>{site.phone}</a>
+                    </span>
+                  </div>
+                </div>
+                <div class={styles.contactItem}>
+                  <div class={styles.contactIcon}>✉️</div>
+                  <div class={styles.contactText}>
+                    <span class={styles.contactLabel}>E-mail</span>
+                    <span class={styles.contactValue}>
+                      <a href={`mailto:${site.email}`}>{site.email}</a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class={styles.reviewCards}>
+              <a href={site.googleReviewUrl} target="_blank" rel="noopener noreferrer" class={styles.reviewCard}>
+                <img src="images/ocena-google-300x300-1-150x150-1.png" alt="Ocena Google" width="80" height="80" loading="lazy" />
+                <div>
+                  <strong>Oceń nas na Google</strong>
+                  <p style={{ margin: "0.25rem 0 0", "font-size": "var(--fs-small)", color: "var(--color-text-light)" }}>Zachęcamy do postawienia opinii po wykonanej pracy</p>
+                </div>
               </a>
-            </li>
-            <li>
-              <a href={`mailto:${site.email}`}>
-                <span class={styles.iconListIcon}>✉️</span>
-                <span>{site.email}</span>
+              <a href={site.googleReviewUrl} target="_blank" rel="noopener noreferrer" class={styles.reviewCard}>
+                <img src="images/3f01b95197aa73a801f7357854c22483-150x150-1.png" alt="Opinie Google" width="80" height="80" loading="lazy" />
+                <div>
+                  <strong>Nasze opinie</strong>
+                  <p style={{ margin: "0.25rem 0 0", "font-size": "var(--fs-small)", color: "var(--color-text-light)" }}>Zobacz co mówią o nas klienci</p>
+                </div>
               </a>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class={styles.map}>
-        <iframe
-          loading="lazy"
-          src="https://maps.google.com/maps?q=Tynki%20gipsowe%20z%20g%C5%82adziolitem%20pod%20malowanie%20-%20M-Tynk%2C%20Obornicka%2077D%2F4A%2C%2051-114%20Wroc%C5%82aw&t=m&z=17&output=embed&iwloc=near"
-          title="Tynki gipsowe z gładziolitem pod malowanie - M-Tynk, Obornicka 77D/4A, 51-114 Wrocław"
-          aria-label="Tynki gipsowe z gładziolitem pod malowanie - M-Tynk, Obornicka 77D/4A, 51-114 Wrocław"
-          width="100%"
-          height="400"
-          style={{ border: "none" }}
-        />
+      <section class="section" style={{ "padding-top": "0" }}>
+        <div class="container">
+          <div class={styles.map}>
+            <iframe
+              loading="lazy"
+              src="https://maps.google.com/maps?q=Tynki%20gipsowe%20z%20g%C5%82adziolitem%20pod%20malowanie%20-%20M-Tynk%2C%20Obornicka%2077D%2F4A%2C%2051-114%20Wroc%C5%82aw&t=m&z=17&output=embed&iwloc=near"
+              title="Tynki gipsowe z gładziolitem pod malowanie - M-Tynk, Obornicka 77D/4A, 51-114 Wrocław"
+              aria-label="Tynki gipsowe z gładziolitem pod malowanie - M-Tynk, Obornicka 77D/4A, 51-114 Wrocław"
+              width="100%"
+              height="400"
+              style={{ border: "none" }}
+            />
+          </div>
+        </div>
       </section>
     </Layout>
   );

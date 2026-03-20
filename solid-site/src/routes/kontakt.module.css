@@ -1,40 +1,115 @@
-.iconList {
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.contactInfo {
   display: flex;
   flex-direction: column;
-  gap: 1.2em;
-  max-width: 500px;
-  margin: 0 auto;
+  gap: 0;
 }
 
-.iconList li {
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.contactItem:first-child {
+  padding-top: 0;
+}
+
+.contactItem:last-child {
+  border-bottom: none;
+}
+
+.contactIcon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
-  gap: 0.75em;
-  font-size: 1.05rem;
+  justify-content: center;
+  background: var(--color-primary-subtle);
+  border-radius: 12px;
+  font-size: 1.25rem;
 }
 
-.iconList li a {
+.contactText {
   display: flex;
-  align-items: center;
-  gap: 0.75em;
-  color: var(--color-text);
+  flex-direction: column;
+  gap: 0.125rem;
 }
 
-.iconList li a:hover {
+.contactLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-light);
+}
+
+.contactValue {
+  font-size: 1rem;
+  color: var(--color-dark);
+  font-weight: 500;
+}
+
+.contactValue a {
+  color: var(--color-dark);
+}
+
+.contactValue a:hover {
   color: var(--color-primary);
 }
 
-.iconListIcon {
-  flex-shrink: 0;
-  font-size: 1.3rem;
+.reviewCards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.reviewCard {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  background: var(--color-light-gray);
+  border-radius: var(--radius);
+  transition: transform var(--transition);
+}
+
+.reviewCard:hover {
+  transform: translateY(-2px);
+}
+
+.reviewCard img {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius);
+  object-fit: contain;
 }
 
 .map {
   width: 100%;
   line-height: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  margin-top: 0;
 }
 
 .map iframe {
   display: block;
   width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .contactGrid {
+    grid-template-columns: 1fr;
+  }
 }

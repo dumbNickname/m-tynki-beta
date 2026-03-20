@@ -1,4 +1,4 @@
-import { createSignal, For } from "solid-js";
+import { For } from "solid-js";
 import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import Reviews from "~/components/Reviews";
@@ -39,19 +39,13 @@ const services = [
 ];
 
 const steps = [
-  { title: "ETAP 1: Przygotowanie", content: "Pierwszym etapem zawsze jest odpowiednie zabezpieczenie okien, drzwi i elementów, które mogą zostać uszkodzone." },
-  { title: "ETAP 2: Narzut", content: "Nakładanie pierwszej warstwy tynku, warstwy właściwej na ścianę. Na tym etapie zużywamy najwięcej materiału." },
-  { title: "ETAP 3: Wygładzanie", content: "Wygładzanie powierzchni narzędziami tynkarskimi, uzupełnianie ubytków i nieprawidłowości. Każdy narzut jest przez nas wygładzany 3 rodzajami łat gładzących." },
-  { title: "ETAP DODATKOWY: Gładziolit", content: "Zastosowanie Gładziolitu Wygładzającego w celu uzyskania gładkiej powierzchni Tynku. Na tym etapie wygładzamy ścianę do tego stopnia, że po wyschnięciu, jest gotowa do malowania." },
+  { number: "01", title: "Przygotowanie", content: "Pierwszym etapem zawsze jest odpowiednie zabezpieczenie okien, drzwi i elementów, które mogą zostać uszkodzone." },
+  { number: "02", title: "Narzut", content: "Nakładanie pierwszej warstwy tynku, warstwy właściwej na ścianę. Na tym etapie zużywamy najwięcej materiału." },
+  { number: "03", title: "Wygładzanie", content: "Wygładzanie powierzchni narzędziami tynkarskimi, uzupełnianie ubytków i nieprawidłowości. Każdy narzut jest przez nas wygładzany 3 rodzajami łat gładzących." },
+  { number: "04", title: "Gładziolit", content: "Zastosowanie Gładziolitu Wygładzającego w celu uzyskania gładkiej powierzchni Tynku. Na tym etapie wygładzamy ścianę do tego stopnia, że po wyschnięciu, jest gotowa do malowania." },
 ];
 
 export default function Home() {
-  const [openStep, setOpenStep] = createSignal<number | null>(null);
-
-  function toggleStep(index: number) {
-    setOpenStep(openStep() === index ? null : index);
-  }
-
   return (
     <Layout>
       <SeoHead
@@ -67,51 +61,72 @@ export default function Home() {
         <div class={styles.heroBg} style={{ "background-image": "url('images/uploads/2023/08/tynki-ze-szlichta-pod-malowanie.jpg')" }}>
           <div class={styles.heroOverlay} />
           <div class={styles.heroContent}>
+            <span class={styles.heroBadge}>Od 1999 roku</span>
             <h1>
               Tynki ze szlichtą<br />wygładzającą<br />pod malowanie
             </h1>
-            <a href="#dowiedz-sie-wiecej" class="btn btn-outline">Dowiedz się więcej</a>
+            <p class={styles.heroSubtitle}>Profesjonalne usługi tynkarskie we Wrocławiu i okolicach</p>
+            <div class={styles.heroActions}>
+              <a href="#dowiedz-sie-wiecej" class="btn btn-outline">Dowiedz się więcej</a>
+              <a href={`tel:${site.phoneRaw}`} class="btn btn-primary">Bezpłatna wycena</a>
+            </div>
           </div>
         </div>
       </section>
 
       <section class="section" id="dowiedz-sie-wiecej">
-        <div class="container grid-2">
-          <div>
-            <h2>Tynki ze szlichtą wygładzającą pod malowanie</h2>
-            <p class={styles.lead}>Jesteśmy firmą budowlaną świadczącą swoje usługi od 1999r co jest gwarancją jakości usług.</p>
-            <h2>Zaufaj profesjonalnym usługom tynkarskim</h2>
-            <p>Skontaktuj się z nami i przekonaj się o naszym profesjonalizmie!</p>
-          </div>
-          <div class="text-center">
-            <img
-              src="images/uploads/elementor/thumbs/tynk-ze-szlichta-wygladzajaca-2-1-qbc493vjwnj8vdtfz6et930fnfrti3rzhl17p4djqe.png"
-              alt="Tynk ze szlichtą wygładzającą"
-              loading="lazy"
-            />
+        <div class="container">
+          <div class={styles.introGrid}>
+            <div>
+              <span class={styles.sectionTag}>Nasza specjalność</span>
+              <h2>Tynki ze szlichtą wygładzającą pod malowanie</h2>
+              <p class={styles.lead}>Jesteśmy firmą budowlaną świadczącą swoje usługi od 1999r co jest gwarancją jakości usług.</p>
+              <p>Skontaktuj się z nami i przekonaj się o naszym profesjonalizmie!</p>
+              <div class={styles.statsRow}>
+                <div class={styles.statItem}>
+                  <span class={styles.statNumber}>25+</span>
+                  <span class={styles.statLabel}>Lat doświadczenia</span>
+                </div>
+                <div class={styles.statItem}>
+                  <span class={styles.statNumber}>100%</span>
+                  <span class={styles.statLabel}>Zaangażowania</span>
+                </div>
+              </div>
+            </div>
+            <div class={styles.introImage}>
+              <img
+                src="images/uploads/elementor/thumbs/tynk-ze-szlichta-wygladzajaca-2-1-qbc493vjwnj8vdtfz6et930fnfrti3rzhl17p4djqe.png"
+                alt="Tynk ze szlichtą wygładzającą"
+                loading="lazy"
+              />
+            </div>
           </div>
         </div>
       </section>
 
       <section class={`section ${styles.about}`} id="o-nas">
-        <div class="container grid-2">
-          <div class="text-center">
-            <img src={site.mascot} alt="M-TYNK maskotka" width="300" height="300" loading="lazy" />
-          </div>
-          <div>
-            <h2>Działamy szybko i dokładnie!</h2>
-            <p>
-              Panuje przeświadczenie że wszystkie roboty budowlane trwają długo, są robione niedokładne, przez co trzeba przygotować się na dużą ilość poprawek. Jednak to nie tyczy się NAS! Działamy profesjonalnie, wiemy co nas irytuje w pracach budowlanych, dlatego pracujemy tak jakbyśmy sami chcieli zostać obsłużeni.
-            </p>
-            <p>
-              Liczy się dla nas satysfakcja i zadowolenie przebiegu współpracy z klientami, przez to zwracamy uwagę na najmniejsze szczegóły. Opowiadamy na wszystkie pytania, aby Nasi klienci byli świadomi interesujących ich kroków naszej pracy.
-            </p>
+        <div class="container">
+          <div class={styles.aboutGrid}>
+            <div class={styles.aboutImage}>
+              <img src={site.mascot} alt="M-TYNK maskotka" width="260" height="260" loading="lazy" />
+            </div>
+            <div>
+              <span class={styles.sectionTag}>Dlaczego my?</span>
+              <h2>Działamy szybko i dokładnie!</h2>
+              <p>
+                Panuje przeświadczenie że wszystkie roboty budowlane trwają długo, są robione niedokładne, przez co trzeba przygotować się na dużą ilość poprawek. Jednak to nie tyczy się NAS! Działamy profesjonalnie, wiemy co nas irytuje w pracach budowlanych, dlatego pracujemy tak jakbyśmy sami chcieli zostać obsłużeni.
+              </p>
+              <p>
+                Liczy się dla nas satysfakcja i zadowolenie przebiegu współpracy z klientami, przez to zwracamy uwagę na najmniejsze szczegóły. Opowiadamy na wszystkie pytania, aby Nasi klienci byli świadomi interesujących ich kroków naszej pracy.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       <section class="section">
         <div class="container text-center">
+          <span class={styles.sectionTag}>Zaufali nam</span>
           <h2>Opinie naszych klientów</h2>
           <Reviews />
         </div>
@@ -120,7 +135,9 @@ export default function Home() {
       <section class={`section ${styles.featured}`}>
         <div class="container">
           <div class={styles.featuredCard}>
-            <img src="images/uploads/2024/09/gladz.svg" alt="Gładź natryskowa" width="800" height="800" loading="lazy" />
+            <div class={styles.featuredIcon}>
+              <img src="images/uploads/2024/09/gladz.svg" alt="Gładź natryskowa" width="800" height="800" loading="lazy" />
+            </div>
             <div>
               <h3>Gładź natryskowa</h3>
               <p>Gładź natryskowa to sprawdzona metoda wygładzania ścian, która gwarantuje idealnie równą powierzchnię. Zapewnia szybkie wykończenie i wysoką jakość efektu.</p>
@@ -131,11 +148,17 @@ export default function Home() {
 
       <section class="section">
         <div class="container">
+          <div class="text-center">
+            <span class={styles.sectionTag}>Co oferujemy</span>
+            <h2>Nasze usługi</h2>
+          </div>
           <div class={styles.servicesGrid}>
             <For each={services}>
               {(svc) => (
                 <div class={styles.serviceCard}>
-                  <img src={svc.icon} alt={svc.title} width="60" height="60" loading="lazy" />
+                  <div class={styles.serviceIcon}>
+                    <img src={svc.icon} alt={svc.title} width="48" height="48" loading="lazy" />
+                  </div>
                   <h3>{svc.title}</h3>
                   <p>{svc.description}</p>
                 </div>
@@ -145,9 +168,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section class={`section ${styles.aboutFull}`} id="o-nas">
+      <section class={`section ${styles.aboutFull}`}>
         <div class="container grid-2">
           <div>
+            <span class={styles.sectionTag}>O firmie</span>
             <h2>O Nas</h2>
             <div class="divider" />
             <p>Jesteśmy firmą z wieloletnim doświadczeniem, która od lat zajmuje się Tynkarstwem. Prawie od początku naszej działalności preferujemy metodę wykonywania Tynków wraz ze Szlichtą wygładzającą, która powoduje, że ściana jest przygotowana pod malowanie.</p>
@@ -161,10 +185,6 @@ export default function Home() {
               <li>Doradzamy przy wyborze najlepszego materiału oraz technologi wykonania.</li>
               <li>Dbamy o powierzone mienie.</li>
             </ul>
-            <div class={styles.counter}>
-              <span class={styles.counterNumber}>100%</span>
-              <span class={styles.counterLabel}>Naszego zaangażowania</span>
-            </div>
           </div>
           <div class="text-center">
             <img src="images/uploads/2023/08/mtynk-tynki-pod-malowanie-1.png" alt="M-TYNK tynki pod malowanie" loading="lazy" />
@@ -172,25 +192,21 @@ export default function Home() {
         </div>
       </section>
 
-      <section class="section">
+      <section class={`section ${styles.process}`}>
         <div class="container">
-          <h2 class="text-center">Jak działamy?</h2>
-          <div class={styles.accordion}>
+          <div class="text-center">
+            <span class={styles.sectionTag}>Nasz proces</span>
+            <h2>Jak działamy?</h2>
+          </div>
+          <div class={styles.timeline}>
             <For each={steps}>
-              {(step, i) => (
-                <div class={styles.accordionItem}>
-                  <button
-                    class={`${styles.accordionTitle} ${openStep() === i() ? styles.accordionTitleActive : ""}`}
-                    onClick={() => toggleStep(i())}
-                  >
-                    <span class={styles.accordionIcon}>{openStep() === i() ? "▲" : "▶"}</span>
-                    {step.title}
-                  </button>
-                  {openStep() === i() && (
-                    <div class={styles.accordionContent}>
-                      <p>{step.content}</p>
-                    </div>
-                  )}
+              {(step) => (
+                <div class={styles.timelineItem}>
+                  <div class={styles.timelineNumber}>{step.number}</div>
+                  <div class={styles.timelineCard}>
+                    <h3>{step.title}</h3>
+                    <p>{step.content}</p>
+                  </div>
                 </div>
               )}
             </For>

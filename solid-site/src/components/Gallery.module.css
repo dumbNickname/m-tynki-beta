@@ -1,7 +1,7 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1em;
+  gap: 0.75rem;
 }
 
 .item {
@@ -18,11 +18,11 @@
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
-  transition: transform var(--transition);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .item:hover img {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 .overlay {
@@ -30,20 +30,22 @@
   inset: 0;
   background: rgba(0, 0, 0, 0);
   transition: background var(--transition);
+  pointer-events: none;
 }
 
 .item:hover .overlay {
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(87, 191, 107, 0.15);
 }
 
 .lightbox {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.92);
+  background: rgba(0, 0, 0, 0.94);
   z-index: 2000;
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: fadeIn 0.2s ease both;
 }
 
 .lightboxContent {
@@ -60,6 +62,7 @@
   max-height: 85vh;
   border-radius: var(--radius);
   object-fit: contain;
+  animation: scaleIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
 .close {
@@ -69,10 +72,10 @@
   background: none;
   border: none;
   color: var(--color-white);
-  font-size: 2rem;
+  font-size: 1.75rem;
   cursor: pointer;
   line-height: 1;
-  opacity: 0.8;
+  opacity: 0.7;
   transition: opacity var(--transition);
 }
 
@@ -82,37 +85,40 @@
 
 .prev,
 .next {
-  background: none;
+  background: rgba(255, 255, 255, 0.08);
   border: none;
   color: var(--color-white);
-  font-size: 3rem;
+  font-size: 2.5rem;
   cursor: pointer;
   opacity: 0.7;
-  transition: opacity var(--transition);
+  transition: all var(--transition);
   flex-shrink: 0;
-  padding: 0.2em;
+  padding: 0.5em 0.3em;
+  border-radius: var(--radius);
 }
 
 .prev:hover,
 .next:hover {
   opacity: 1;
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .prev:disabled,
 .next:disabled {
-  opacity: 0.2;
+  opacity: 0.15;
   cursor: default;
+  background: transparent;
 }
 
 @media (max-width: 1024px) {
   .grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 768px) {
   .grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .lightboxContent img {

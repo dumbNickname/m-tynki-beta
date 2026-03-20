@@ -1,7 +1,7 @@
 .card {
   background: var(--color-white);
   border-radius: var(--radius);
-  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
   overflow: hidden;
   transition: transform var(--transition), box-shadow var(--transition);
   display: flex;
@@ -9,7 +9,7 @@
 }
 
 .card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
   box-shadow: var(--shadow-card-hover);
 }
 
@@ -22,29 +22,29 @@
   width: 100%;
   aspect-ratio: 16 / 10;
   object-fit: cover;
-  transition: transform var(--transition);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card:hover .thumbnail img {
-  transform: scale(1.03);
+  transform: scale(1.06);
 }
 
 .badge {
   display: inline-block;
   background: var(--color-primary);
   color: var(--color-white);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 0.3em 0.8em;
+  letter-spacing: 0.06em;
+  padding: 0.35em 0.9em;
   border-radius: var(--radius-pill);
-  margin: 1em 1.5em 0;
+  margin: 1rem 1.25rem 0;
   align-self: flex-start;
 }
 
 .body {
-  padding: 1em 1.5em;
+  padding: 1rem 1.25rem;
   flex: 1;
 }
 
@@ -55,6 +55,7 @@
 
 .title a {
   color: var(--color-dark);
+  transition: color var(--transition);
 }
 
 .title a:hover {
@@ -64,14 +65,15 @@
 .excerpt {
   color: var(--color-text-light);
   font-size: var(--fs-small);
+  line-height: 1.6;
   margin-bottom: 0;
 }
 
 .meta {
   display: flex;
   justify-content: space-between;
-  padding: 1em 1.5em;
+  padding: 0.875rem 1.25rem;
   border-top: 1px solid var(--color-border);
-  font-size: var(--fs-small);
+  font-size: 0.8rem;
   color: var(--color-text-light);
 }

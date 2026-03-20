@@ -3,29 +3,57 @@ import reviews from "~/data/reviews.json";
 import site from "~/data/site.json";
 import styles from "./Reviews.module.css";
 
+function ReviewCard(props: { review: typeof reviews[0] }) {
+  return (
+    <div class={styles.card}>
+      <div class={styles.stars}>
+        <For each={Array(props.review.stars).fill(0)}>
+          {() => <span class={styles.star}>&#9733;</span>}
+        </For>
+      </div>
+      <p class={styles.text}>{props.review.text}</p>
+      <div class={styles.author}>
+        <div class={styles.avatar}>{props.review.name.charAt(0)}</div>
+        <div class={styles.info}>
+          <div class={styles.name}>{props.review.name}</div>
+          <div class={styles.date}>{props.review.date}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Reviews() {
+  const col1 = reviews.slice(0, 4);
+  const col2 = reviews.slice(4, 8);
+  const col3 = reviews.slice(0, 4).reverse();
+
   return (
     <div>
-      <div class={styles.grid}>
-        <For each={reviews.slice(0, 6)}>
-          {(review) => (
-            <div class={styles.card}>
-              <div class={styles.header}>
-                <div class={styles.avatar}>{review.name.charAt(0)}</div>
-                <div class={styles.info}>
-                  <div class={styles.name}>{review.name}</div>
-                  <div class={styles.date}>{review.date}</div>
-                </div>
-              </div>
-              <div class={styles.stars}>
-                <For each={Array(review.stars).fill(0)}>
-                  {() => <span class={styles.star}>&#9733;</span>}
-                </For>
-              </div>
-              <p class={styles.text}>{review.text}</p>
-            </div>
-          )}
-        </For>
+      <div class={styles.marqueeWrapper}>
+        <div class={styles.marqueeCol}>
+          <div class={`${styles.marqueeTrack} ${styles.marqueeUp}`}>
+            <For each={[...col1, ...col1]}>
+              {(review) => <ReviewCard review={review} />}
+            </For>
+          </div>
+        </div>
+        <div class={styles.marqueeCol}>
+          <div class={`${styles.marqueeTrack} ${styles.marqueeDown}`}>
+            <For each={[...col2, ...col2]}>
+              {(review) => <ReviewCard review={review} />}
+            </For>
+          </div>
+        </div>
+        <div class={`${styles.marqueeCol} ${styles.marqueeColThird}`}>
+          <div class={`${styles.marqueeTrack} ${styles.marqueeUp}`}>
+            <For each={[...col3, ...col3]}>
+              {(review) => <ReviewCard review={review} />}
+            </For>
+          </div>
+        </div>
+        <div class={styles.marqueeFadeTop} />
+        <div class={styles.marqueeFadeBottom} />
       </div>
       <div class={styles.googleBadge}>
         <img src="https://www.google.com/favicon.ico" alt="Google" />
