@@ -166,4 +166,8 @@
     grid-template-columns: 1fr;
     height: 480px;
   }
+
+  .marqueeColSecond {
+    display: none;
+  }
 }

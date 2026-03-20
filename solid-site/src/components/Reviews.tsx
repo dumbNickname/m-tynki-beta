@@ -38,7 +38,7 @@ export default function Reviews() {
             </For>
           </div>
         </div>
-        <div class={styles.marqueeCol}>
+        <div class={`${styles.marqueeCol} ${styles.marqueeColSecond}`}>
           <div class={`${styles.marqueeTrack} ${styles.marqueeDown}`}>
             <For each={[...col2, ...col2]}>
               {(review) => <ReviewCard review={review} />}
