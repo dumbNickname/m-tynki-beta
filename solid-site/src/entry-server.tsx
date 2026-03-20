@@ -8,6 +8,7 @@ export default createHandler(() => (
         <head>
           <meta charset="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
+          {import.meta.env.SERVER_BASE_URL && <meta name="robots" content="noindex, nofollow" />}
           <base href={`${import.meta.env.SERVER_BASE_URL}/`} />
           <link rel="icon" href="images/mtynk-ludzik-gladziolit-300x300-1-150x150.png" sizes="32x32" />
           <link rel="icon" href="images/mtynk-ludzik-gladziolit-300x300-1.png" sizes="192x192" />
