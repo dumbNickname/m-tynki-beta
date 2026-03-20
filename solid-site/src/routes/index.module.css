@@ -376,11 +376,22 @@
 
   .introGrid {
     grid-template-columns: 1fr;
-    gap: 0;
+    gap: 1.5rem;
   }
 
   .introImage {
-    display: none;
+    order: -1;
+    border-radius: 0;
+    margin: 0 calc(-1 * var(--section-padding-x));
+    width: calc(100% + 2 * var(--section-padding-x));
+  }
+
+  .introImage img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0;
   }
 
   .servicesGrid {
