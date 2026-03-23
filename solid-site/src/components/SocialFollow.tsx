@@ -1,4 +1,5 @@
 import site from "~/data/site.json";
+import NavLink from "./NavLink";
 import styles from "./SocialFollow.module.css";
 
 export default function SocialFollow() {
@@ -40,7 +41,7 @@ export default function SocialFollow() {
             <span class={styles.label}>Instagram</span>
             <span class={styles.subtitle}>Zobacz nasze zdjęcia</span>
           </a>
-          <a
+          <NavLink
             href="/galeria"
             class={`${styles.card} ${styles.gallery}`}
           >
@@ -53,7 +54,7 @@ export default function SocialFollow() {
             </div>
             <span class={styles.label}>Galeria</span>
             <span class={styles.subtitle}>Przeglądaj nasze realizacje</span>
-          </a>
+          </NavLink>
         </div>
       </div>
     </section>
