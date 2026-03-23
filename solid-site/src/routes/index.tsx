@@ -2,6 +2,7 @@ import { For } from "solid-js";
 import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import Reviews from "~/components/Reviews";
+import SocialFollow from "~/components/SocialFollow";
 import site from "~/data/site.json";
 import styles from "./index.module.css";
 
@@ -200,6 +201,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <SocialFollow />
 
       <section class={`section ${styles.process}`}>
         <div class="container">
