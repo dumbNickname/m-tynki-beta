@@ -7,6 +7,23 @@
   border-radius: 2px;
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "text1    img1"
+    "szlichta img2"
+    "gdzie    img2";
+  gap: 3rem 4rem;
+  align-items: start;
+}
+
+.text1    { grid-area: text1; }
+.img1     { grid-area: img1; }
+.szlichta { grid-area: szlichta; }
+.img2     { grid-area: img2; }
+.gdzie    { grid-area: gdzie; }
+
 .imageWrap {
   text-align: center;
 }
@@ -17,15 +34,24 @@
   height: auto;
 }
 
-@media (max-width: 1024px) {
-  .imageWrap {
-    max-width: 320px;
-    margin: 0 auto;
-  }
+.img2 {
+  align-self: center;
 }
 
 @media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "text1"
+      "img1"
+      "szlichta"
+      "img2"
+      "gdzie";
+    gap: 2rem;
+  }
+
   .imageWrap {
     max-width: 240px;
+    margin: 0 auto;
   }
 }

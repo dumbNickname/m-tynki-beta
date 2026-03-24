@@ -25,8 +25,8 @@ export default function TynkiService() {
       />
 
       <section class="section">
-        <div class="container grid-2">
-          <div>
+        <div class={`container ${styles.grid}`}>
+          <div class={styles.text1}>
             <h2>TYNKI GIPSOWE ZE SZLICHTĄ GŁADZIOLITU WYGŁADZAJĄCEGO POD MALOWANIE</h2>
             <div class={styles.divider} />
             <p>
@@ -39,33 +39,34 @@ export default function TynkiService() {
               Na terenie Wrocławia, gdzie znajduje się siedziba naszej firmy, a także w okolicach, jesteśmy jedyną firmą, która stawia na Tynk Gipsowy z Gładziolitem Wygładzającym. Możemy się pochwalić szeregiem opinii naszych klientów, którzy chwalą nasze przywiązanie do detali, pracowitość i przede wszystkim jakość wykonanych tynków.
             </p>
           </div>
-          <div class={styles.imageWrap}>
+
+          <div class={`${styles.imageWrap} ${styles.img1}`}>
             <img
               src="images/uploads/2023/08/tynki-ze-szlichta-pod-malowanie.jpg"
               srcset="images/thumbs/uploads/2023/08/tynki-ze-szlichta-pod-malowanie.jpg 400w, images/uploads/2023/08/tynki-ze-szlichta-pod-malowanie.jpg 1125w"
-              sizes="(max-width: 768px) 60vw, (max-width: 1024px) 45vw, 500px"
+              sizes="(max-width: 768px) 60vw, 500px"
               alt="Tynki ze szlichtą pod malowanie"
               loading="lazy"
             />
           </div>
-        </div>
-      </section>
 
-      <section class="section">
-        <div class="container grid-2">
-          <div class={styles.imageWrap}>
+          <div class={styles.szlichta}>
+            <h2>CZYM JEST SZLICHTA Z GŁADZIOLITEM?</h2>
+            <div class={styles.divider} />
+            <p>
+              Szlichta z Gładziolitem wygładzającym jest niczym innym jak ostatnią warstwą nakładanego tynku. Można powiedzieć, że jest to warstwa dodatkowa, która nadaje gładkości ścianie i pozwala od razu przejść do malowania bądź położenia płytek. Jest to coś, co wymaga dodatkowej pracy, ale daje piorunujący efekt końcowy.
+            </p>
+          </div>
+
+          <div class={`${styles.imageWrap} ${styles.img2}`}>
             <img
               src="images/uploads/elementor/thumbs/tyni-pod-malowanie-qbdq91rev2rfmler3fd35z8elq8utmztpuh8j5jxts.jpg"
               alt="Tynki pod malowanie"
               loading="lazy"
             />
           </div>
-          <div>
-            <h2>CZYM JEST SZLICHTA Z GŁADZIOLITEM?</h2>
-            <div class={styles.divider} />
-            <p>
-              Szlichta z Gładziolitem wygładzającym jest niczym innym jak ostatnią warstwą nakładanego tynku. Można powiedzieć, że jest to warstwa dodatkowa, która nadaje gładkości ścianie i pozwala od razu przejść do malowania bądź położenia płytek. Jest to coś, co wymaga dodatkowej pracy, ale daje piorunujący efekt końcowy.
-            </p>
+
+          <div class={styles.gdzie}>
             <h2>GDZIE MOGĘ ZOBACZYĆ TYNK ZE SZLICHTĄ GŁADZIOLITU?</h2>
             <div class={styles.divider} />
             <p>
