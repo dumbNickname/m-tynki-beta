@@ -1,4 +1,5 @@
 import { createSignal, For, Show } from "solid-js";
+import { toThumb } from "~/utils/images";
 import styles from "./Gallery.module.css";
 
 interface GalleryProps {
@@ -34,7 +35,7 @@ export default function Gallery(props: GalleryProps) {
         <For each={props.images}>
           {(src, i) => (
             <button class={styles.item} onClick={() => openLightbox(i())} type="button">
-              <img src={src} alt="" loading="lazy" />
+              <img src={toThumb(src)} alt="" loading="lazy" />
               <div class={styles.overlay} />
             </button>
           )}

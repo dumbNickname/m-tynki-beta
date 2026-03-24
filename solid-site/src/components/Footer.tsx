@@ -11,7 +11,7 @@ export default function Footer() {
         <div class={`container ${styles.grid}`}>
           <div class={styles.brand}>
             <NavLink href="/">
-              <img src={site.logoGreen} alt={site.name} width="300" height="81" />
+              <img src={site.logoGreen} alt={site.name} width="300" height="81" loading="lazy" />
             </NavLink>
             <p>
               Oferujemy Tynki Gipsowe z Gładziolitem Wygładzającym pod Malowanie. Nie potrzebujesz dodatkowej warstwy gładzi!
@@ -53,7 +53,7 @@ export default function Footer() {
             <div class={styles.col}>
               <h4>Oceń nas</h4>
               <a href={site.googleReviewUrl} target="_blank" rel="noopener noreferrer" class={styles.googleLink}>
-                <img src="images/ocena-google-300x300-1-150x150-1.png" alt="Oceń nas na Google" width="120" height="120" />
+                <img src="images/ocena-google-300x300-1-150x150-1.png" alt="Oceń nas na Google" width="120" height="120" loading="lazy" />
               </a>
             </div>
           </div>

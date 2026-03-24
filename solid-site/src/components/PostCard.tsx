@@ -1,4 +1,5 @@
 import NavLink from "./NavLink";
+import { toThumb } from "~/utils/images";
 import styles from "./PostCard.module.css";
 
 interface Post {
@@ -23,7 +24,7 @@ export default function PostCard(props: PostCardProps) {
   return (
     <article class={styles.card}>
       <NavLink href={`/realizacje/${props.post.slug}`} class={styles.thumbnail}>
-        <img src={props.post.thumbnail} alt={props.post.title} loading="lazy" />
+        <img src={toThumb(props.post.thumbnail)} alt={props.post.title} loading="lazy" />
       </NavLink>
       <div class={styles.badge}>{badgeLabel()}</div>
       <div class={styles.body}>
