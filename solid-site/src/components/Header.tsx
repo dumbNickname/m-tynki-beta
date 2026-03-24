@@ -14,7 +14,8 @@ export default function Header() {
         <div class={styles.topBar}>
           <div class={`container ${styles.topInner}`}>
             <NavLink href="/" class={styles.logo}>
-              <img src={site.logo} alt={site.name} width="240" height="50" />
+              <img class={styles.logoLight} src={site.logo} alt={site.name} width="240" height="50" />
+              <img class={styles.logoDark} src={site.logoDark} alt={site.name} width="240" height="50" />
             </NavLink>
             <div class={styles.topRight}>
               <a class={styles.phoneLink} href={`tel:${site.phoneRaw}`}>
@@ -53,7 +54,8 @@ export default function Header() {
             <span class={styles.hamburger} />
           </button>
           <NavLink href="/" class={styles.logo}>
-            <img src={site.logo} alt={site.name} width="180" height="37" />
+            <img class={styles.logoLight} src={site.logo} alt={site.name} width="180" height="37" />
+            <img class={styles.logoDark} src={site.logoDark} alt={site.name} width="180" height="37" />
           </NavLink>
           <div class={styles.mobileRight}>
             <ThemeToggle />
@@ -70,7 +72,8 @@ export default function Header() {
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
         <div class={styles.flyoutBrand}>
-          <img src={site.logo} alt={site.name} width="160" height="33" />
+          <img class={styles.logoLight} src={site.logo} alt={site.name} width="160" height="33" />
+          <img class={styles.logoDark} src={site.logoDark} alt={site.name} width="160" height="33" />
         </div>
         <ul>
           <For each={navigation.main}>

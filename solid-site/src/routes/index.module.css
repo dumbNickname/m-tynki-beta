@@ -150,12 +150,18 @@
   width: 220px;
   height: 220px;
   object-fit: contain;
-  border-radius: 50%;
-  transition: background var(--transition);
 }
 
-:global([data-theme="dark"]) .aboutImage img {
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.6) 60%, transparent 75%);
+.imgDark {
+  display: none;
+}
+
+:global([data-theme="dark"]) .imgLight {
+  display: none;
+}
+
+:global([data-theme="dark"]) .imgDark {
+  display: block;
 }
 
 .featured {

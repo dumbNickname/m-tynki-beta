@@ -121,7 +121,8 @@ export default function Home() {
         <div class="container">
           <div class={styles.aboutGrid}>
             <div class={styles.aboutImage}>
-              <img src={site.mascot} alt="M-TYNK maskotka" width="260" height="260" loading="lazy" />
+              <img class={styles.imgLight} src={site.mascot} alt="M-TYNK maskotka" width="260" height="260" loading="lazy" />
+              <img class={styles.imgDark} src={site.mascotDark} alt="M-TYNK maskotka" width="260" height="260" loading="lazy" />
             </div>
             <div>
               <span class={styles.sectionTag}>Dlaczego my?</span>
