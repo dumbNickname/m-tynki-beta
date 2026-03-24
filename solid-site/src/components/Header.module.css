@@ -28,13 +28,13 @@
 .logo img {
   height: 40px;
   width: auto;
-  padding: 0.25rem 0.5rem;
+  padding: 0.35rem 0.75rem;
   border-radius: 8px;
   transition: background var(--transition);
 }
 
 :global([data-theme="dark"]) .logo img {
-  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.12) 0%, transparent 80%);
+  background: rgba(255, 255, 255, 0.85);
 }
 
 .topRight {
@@ -239,7 +239,7 @@
 }
 
 :global([data-theme="dark"]) .flyoutBrand img {
-  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.12) 0%, transparent 80%);
+  background: rgba(255, 255, 255, 0.85);
 }
 
 .flyout ul {
