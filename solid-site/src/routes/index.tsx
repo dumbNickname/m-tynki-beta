@@ -8,6 +8,11 @@ import styles from "./index.module.css";
 
 const services = [
   {
+    icon: "images/uploads/2024/09/gladz.svg",
+    title: "Gładź natryskowa",
+    description: "Gładź natryskowa to sprawdzona metoda wygładzania ścian, która gwarantuje idealnie równą powierzchnię. Zapewnia szybkie wykończenie i wysoką jakość efektu.",
+  },
+  {
     icon: "images/uploads/2023/08/tynk-ze-szlichta-wygladzajaca-01-01.png",
     title: "Tynki Gipsowe",
     description: "Wykonane przez nas tynki gipsowe pozwalają na uzyskanie gładkiej, równej i dokładnie wykończonej powierzchni.",
@@ -139,20 +144,6 @@ export default function Home() {
           <span class={styles.sectionTag}>Zaufali nam</span>
           <h2>Opinie naszych klientów</h2>
           <Reviews />
-        </div>
-      </section>
-
-      <section class={`section ${styles.featured}`}>
-        <div class="container">
-          <div class={styles.featuredCard}>
-            <div class={styles.featuredIcon}>
-              <img src="images/uploads/2024/09/gladz.svg" alt="Gładź natryskowa" width="800" height="800" loading="lazy" />
-            </div>
-            <div>
-              <h3>Gładź natryskowa</h3>
-              <p>Gładź natryskowa to sprawdzona metoda wygładzania ścian, która gwarantuje idealnie równą powierzchnię. Zapewnia szybkie wykończenie i wysoką jakość efektu.</p>
-            </div>
-          </div>
         </div>
       </section>
 
