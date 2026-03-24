@@ -15,9 +15,10 @@ export default function Realizacje() {
   return (
     <Layout>
       <SeoHead
-        title="Realizacje"
+        title="Realizacje — Tynki ze Szlichtą pod Malowanie"
         canonical="/realizacje"
         description="Realizacje firmy M-TYNK Wrocław. Zobacz nasze prace tynkarskie — tynki gipsowe ze szlichtą wygładzającą pod malowanie, zabudowy G-K, malowanie ścian."
+        ogImage="images/uploads/elementor/thumbs/tynk-ze-szlichta-wygladzajaca-2-1-qbc493vjwnj8vdtfz6et930fnfrti3rzhl17p4djqe.png"
         dateModified="2024-09-30T08:10:47+00:00"
         breadcrumbs={[
           { name: "HOME", href: "/" },
@@ -26,7 +27,7 @@ export default function Realizacje() {
       />
 
       <PageHeader
-        title="REALIZACJE"
+        title="Realizacje"
         breadcrumbs={[{ label: "HOME", href: "/" }, { label: "Realizacje" }]}
       />
 

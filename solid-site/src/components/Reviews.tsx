@@ -56,7 +56,7 @@ export default function Reviews() {
         <div class={styles.marqueeFadeBottom} />
       </div>
       <div class={styles.googleBadge}>
-        <img src="https://www.google.com/favicon.ico" alt="Google" loading="lazy" />
+        <img src="images/google-favicon.ico" alt="Google" width="18" height="18" loading="lazy" />
         <a href={site.googleReviewUrl} target="_blank" rel="noopener noreferrer">
           Zobacz wszystkie opinie na Google
         </a>

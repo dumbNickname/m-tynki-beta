@@ -24,7 +24,7 @@ export default function SeoHead(props: SeoHeadProps) {
     const graph: object[] = [];
 
     graph.push({
-      "@type": "Organization",
+      "@type": ["Organization", "LocalBusiness"],
       "@id": `${site.url}/#organization`,
       name: site.title,
       url: site.url,
@@ -32,6 +32,10 @@ export default function SeoHead(props: SeoHeadProps) {
         "@type": "ImageObject",
         url: `${site.url}/${site.logo}`,
       },
+      image: `${site.url}/${site.logo}`,
+      telephone: site.phone,
+      email: site.email,
+      priceRange: "$$",
       contactPoint: {
         "@type": "ContactPoint",
         telephone: site.phone,
@@ -45,6 +49,11 @@ export default function SeoHead(props: SeoHeadProps) {
         addressLocality: "Wrocław",
         postalCode: "51-114",
         addressCountry: "PL",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 51.137,
+        longitude: 16.978,
       },
       sameAs: [site.facebookUrl, site.instagramUrl],
     });
@@ -60,12 +69,14 @@ export default function SeoHead(props: SeoHeadProps) {
     });
 
     const webPage: Record<string, unknown> = {
-      "@type": "WebPage",
+      "@type": props.ogType === "article" ? "Article" : "WebPage",
       "@id": props.canonical ? `${site.url}${props.canonical}` : site.url,
       url: props.canonical ? `${site.url}${props.canonical}` : site.url,
       name: pageTitle(),
       isPartOf: { "@id": `${site.url}/#website` },
-      about: { "@id": `${site.url}/#organization` },
+      ...(props.ogType === "article"
+        ? { author: { "@id": `${site.url}/#organization` }, publisher: { "@id": `${site.url}/#organization` } }
+        : { about: { "@id": `${site.url}/#organization` } }),
       inLanguage: "pl-PL",
     };
 

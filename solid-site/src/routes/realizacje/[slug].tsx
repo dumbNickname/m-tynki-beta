@@ -44,7 +44,7 @@ export default function PostPage() {
               <div innerHTML={p().description} />
 
               <div class={styles.workDetails}>
-                <h4>SZCZEGÓŁY PRZEPROWADZONYCH PRAC</h4>
+                <h2>Szczegóły przeprowadzonych prac</h2>
                 <p>
                   <strong>Wykonawca:</strong> {p().executor}<br />
                   <strong>Data:</strong> {p().date}<br />
@@ -54,7 +54,7 @@ export default function PostPage() {
                   </Show>
                 </p>
 
-                <h4>LOKALIZACJA</h4>
+                <h2>Lokalizacja</h2>
                 <p><strong>Lokalizacja – </strong> {p().location}</p>
               </div>
             </div>
@@ -62,7 +62,7 @@ export default function PostPage() {
 
           <section class="section">
             <div class="container">
-              <Gallery images={p().gallery} />
+              <Gallery images={p().gallery} altPrefix={p().title} />
             </div>
           </section>
         </Layout>

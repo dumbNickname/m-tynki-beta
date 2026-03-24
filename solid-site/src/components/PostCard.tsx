@@ -28,9 +28,9 @@ export default function PostCard(props: PostCardProps) {
       </NavLink>
       <div class={styles.badge}>{badgeLabel()}</div>
       <div class={styles.body}>
-        <h3 class={styles.title}>
+        <h2 class={styles.title}>
           <NavLink href={`/realizacje/${props.post.slug}`}>{props.post.title}</NavLink>
-        </h3>
+        </h2>
         <p class={styles.excerpt}>{props.post.excerpt}</p>
       </div>
       <div class={styles.meta}>

@@ -1,3 +1,7 @@
+.sectionTitle {
+  text-transform: uppercase;
+}
+
 .divider {
   border: none;
   height: 3px;
