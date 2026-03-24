@@ -16,8 +16,8 @@
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
     "text1    img1"
-    "szlichta img2"
-    "gdzie    img2";
+    "img2     szlichta"
+    "img2     gdzie";
   gap: 3rem 4rem;
   align-items: start;
 }
