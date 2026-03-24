@@ -28,11 +28,13 @@
 .logo img {
   height: 40px;
   width: auto;
-  transition: filter var(--transition);
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  transition: background var(--transition);
 }
 
 :global([data-theme="dark"]) .logo img {
-  filter: brightness(0) invert(1);
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.12) 0%, transparent 80%);
 }
 
 .topRight {
@@ -231,11 +233,13 @@
 .flyoutBrand img {
   height: 32px;
   width: auto;
-  transition: filter var(--transition);
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  transition: background var(--transition);
 }
 
 :global([data-theme="dark"]) .flyoutBrand img {
-  filter: brightness(0) invert(1);
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.12) 0%, transparent 80%);
 }
 
 .flyout ul {
