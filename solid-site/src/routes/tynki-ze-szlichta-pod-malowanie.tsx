@@ -39,9 +39,11 @@ export default function TynkiService() {
               Na terenie Wrocławia, gdzie znajduje się siedziba naszej firmy, a także w okolicach, jesteśmy jedyną firmą, która stawia na Tynk Gipsowy z Gładziolitem Wygładzającym. Możemy się pochwalić szeregiem opinii naszych klientów, którzy chwalą nasze przywiązanie do detali, pracowitość i przede wszystkim jakość wykonanych tynków.
             </p>
           </div>
-          <div class="text-center">
+          <div class={styles.imageWrap}>
             <img
               src="images/uploads/2023/08/tynki-ze-szlichta-pod-malowanie.jpg"
+              srcset="images/thumbs/uploads/2023/08/tynki-ze-szlichta-pod-malowanie.jpg 400w, images/uploads/2023/08/tynki-ze-szlichta-pod-malowanie.jpg 1125w"
+              sizes="(max-width: 768px) 60vw, (max-width: 1024px) 45vw, 500px"
               alt="Tynki ze szlichtą pod malowanie"
               loading="lazy"
             />
@@ -51,7 +53,7 @@ export default function TynkiService() {
 
       <section class="section">
         <div class="container grid-2">
-          <div class="text-center">
+          <div class={styles.imageWrap}>
             <img
               src="images/uploads/elementor/thumbs/tyni-pod-malowanie-qbdq91rev2rfmler3fd35z8elq8utmztpuh8j5jxts.jpg"
               alt="Tynki pod malowanie"
