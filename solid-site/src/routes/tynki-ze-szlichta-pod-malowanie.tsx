@@ -1,8 +1,41 @@
+import { For } from "solid-js";
 import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import PageHeader from "~/components/PageHeader";
 import site from "~/data/site.json";
 import styles from "./tynki-ze-szlichta-pod-malowanie.module.css";
+
+const benefits = [
+  { icon: "⏱️", title: "Oszczędność czasu", description: "Eliminacja etapu nakładania gładzi skraca czas wykończenia nawet o kilka dni." },
+  { icon: "✨", title: "Idealna gładkość", description: "Szlichta z gładziolitem zapewnia perfekcyjnie równą powierzchnię bez widocznych nierówności." },
+  { icon: "💰", title: "Oszczędność kosztów", description: "Brak potrzeby osobnej gładzi oznacza niższe koszty materiałów i robocizny." },
+  { icon: "🎨", title: "Gotowe pod malowanie", description: "Po wyschnięciu ściany są od razu gotowe do malowania — bez dodatkowego szlifowania." },
+  { icon: "🏗️", title: "Trwałość", description: "Tynk ze szlichtą tworzy jednolitą, mocną warstwę, odporną na pęknięcia i uszkodzenia mechaniczne." },
+  { icon: "🔧", title: "Uniwersalność", description: "Nadaje się do zastosowania na ścianach i sufitach, w budynkach mieszkalnych oraz użytkowych." },
+];
+
+const faqs = [
+  {
+    question: "Ile kosztuje tynk ze szlichtą wygładzającą?",
+    answer: "Koszt tynku ze szlichtą wygładzającą zależy od wielkości powierzchni, stanu podłoża oraz lokalizacji inwestycji. Zapraszamy do kontaktu telefonicznego w celu uzyskania bezpłatnej wyceny — każde zlecenie wyceniamy indywidualnie.",
+  },
+  {
+    question: "Jak długo schnie tynk ze szlichtą?",
+    answer: "Czas schnięcia zależy od grubości warstwy, temperatury i wilgotności w pomieszczeniu. Zazwyczaj tynk ze szlichtą jest gotowy do malowania po ok. 2–4 tygodniach. Dokładny czas podajemy przy każdej realizacji.",
+  },
+  {
+    question: "Czy tynk ze szlichtą nadaje się od razu pod malowanie?",
+    answer: "Tak — to główna zaleta naszej metody. Szlichta z gładziolitem wygładza powierzchnię tynku do takiego stopnia, że po wyschnięciu nie wymaga nakładania dodatkowej gładzi. Ściana jest gotowa bezpośrednio pod malowanie lub tapetowanie.",
+  },
+  {
+    question: "Na jakich powierzchniach można stosować tynk ze szlichtą?",
+    answer: "Tynk ze szlichtą wygładzającą można stosować na ścianach i sufitach z cegły, betonu, pustaków oraz bloków silikatowych. Sprawdza się zarówno w domach jednorodzinnych, mieszkaniach, jak i obiektach użytkowych.",
+  },
+  {
+    question: "Jaki jest czas realizacji tynkowania?",
+    answer: "Czas realizacji zależy od powierzchni do otynkowania. Dla domu jednorodzinnego o powierzchni ok. 500–800 m² prace trwają zazwyczaj od 7 do 25 dni roboczych. Dokładny termin ustalamy indywidualnie po zapoznaniu się z zakresem prac.",
+  },
+];
 
 export default function TynkiService() {
   return (
@@ -17,6 +50,7 @@ export default function TynkiService() {
           { name: "HOME", href: "/" },
           { name: "Tynki ze szlichtą pod malowanie" },
         ]}
+        faq={faqs}
       />
 
       <PageHeader
@@ -78,6 +112,53 @@ export default function TynkiService() {
               </a>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section class={`section ${styles.benefitsSection}`}>
+        <div class="container">
+          <div class="text-center">
+            <h2>Zalety tynku ze szlichtą wygładzającą</h2>
+          </div>
+          <div class={styles.benefitsGrid}>
+            <For each={benefits}>
+              {(b) => (
+                <div class={styles.benefitCard}>
+                  <span class={styles.benefitIcon}>{b.icon}</span>
+                  <h3>{b.title}</h3>
+                  <p>{b.description}</p>
+                </div>
+              )}
+            </For>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="text-center">
+            <h2>Najczęściej zadawane pytania</h2>
+          </div>
+          <div class={styles.faqList}>
+            <For each={faqs}>
+              {(faq) => (
+                <details class={styles.faqItem}>
+                  <summary class={styles.faqQuestion}>{faq.question}</summary>
+                  <p class={styles.faqAnswer}>{faq.answer}</p>
+                </details>
+              )}
+            </For>
+          </div>
+        </div>
+      </section>
+
+      <section class={`section ${styles.ctaSection}`}>
+        <div class="container text-center">
+          <h2>Zainteresowany? Skontaktuj się z nami!</h2>
+          <p>Zadzwoń i umów się na bezpłatną wycenę lub wizytę na aktualnej budowie.</p>
+          <a class="btn btn-primary btn-lg" href={`tel:${site.phoneRaw}`}>
+            {site.phone}
+          </a>
         </div>
       </section>
     </Layout>

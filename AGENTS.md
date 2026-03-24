@@ -22,6 +22,7 @@ All user-facing content is in **Polish (pl-PL)**.
 - **SEO:** @solidjs/meta (Title, Meta, Link tags)
 - **Build output:** Static site generation (SSG) via `preset: "static"` in `app.config.ts`
 - **Styling:** CSS Modules (`.module.css` co-located with components) + global.css for variables/reset/utilities
+- **Fonts:** Self-hosted Inter + Plus Jakarta Sans woff2 files in `public/fonts/` (latin + latin-ext subsets). No external Google Fonts dependency.
 - **Data:** JSON files in `src/data/` (no CMS, no API calls)
 - **TypeScript:** Strict mode enabled
 
@@ -112,7 +113,7 @@ Defined in `app.config.ts`:
 - CSS custom properties on `:root` for colors, fonts, spacing, shadows
 - Dark theme via `[data-theme="dark"]` selector in `global.css` overriding `:root` color variables
 - Responsive breakpoints: 1024px (tablet), 768px (mobile) — each module contains its own media queries
-- Fonts: Inter (body), Plus Jakarta Sans (headings) from Google Fonts
+- Fonts: Inter (body), Plus Jakarta Sans (headings) — self-hosted woff2 in `public/fonts/`
 - TypeScript declarations for CSS modules in `src/css.d.ts`
 
 ### Data Model

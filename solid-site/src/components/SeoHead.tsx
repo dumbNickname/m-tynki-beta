@@ -6,6 +6,11 @@ interface BreadcrumbItem {
   href?: string;
 }
 
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
 interface SeoHeadProps {
   title?: string;
   description?: string;
@@ -15,6 +20,7 @@ interface SeoHeadProps {
   datePublished?: string;
   dateModified?: string;
   breadcrumbs?: BreadcrumbItem[];
+  faq?: FaqItem[];
 }
 
 export default function SeoHead(props: SeoHeadProps) {
@@ -107,6 +113,21 @@ export default function SeoHead(props: SeoHeadProps) {
           position: index + 1,
           name: item.name,
           ...(item.href ? { item: `${site.url}${item.href}` } : {}),
+        })),
+      });
+    }
+
+    if (props.faq && props.faq.length > 0) {
+      graph.push({
+        "@type": "FAQPage",
+        "@id": `${props.canonical ? `${site.url}${props.canonical}` : site.url}#faq`,
+        mainEntity: props.faq.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.answer,
+          },
         })),
       });
     }

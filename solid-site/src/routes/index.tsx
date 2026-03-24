@@ -61,6 +61,7 @@ export default function Home() {
         datePublished="2023-08-23T12:08:08+00:00"
         dateModified="2024-09-30T08:10:47+00:00"
         breadcrumbs={[{ name: "HOME" }]}
+        faq={steps.map((s) => ({ question: `${s.title} — jak to robimy?`, answer: s.content }))}
       />
 
       <section class={styles.hero}>
@@ -94,7 +95,7 @@ export default function Home() {
               <span class={styles.sectionTag}>Nasza specjalność</span>
               <h2>Tynki ze szlichtą wygładzającą pod malowanie</h2>
               <p class={styles.lead}>Jesteśmy firmą budowlaną świadczącą swoje usługi od 1999r co jest gwarancją jakości usług.</p>
-              <p>Skontaktuj się z nami i przekonaj się o naszym profesjonalizmie!</p>
+              <p>Skontaktuj się z nami i przekonaj się o naszym profesjonalizmie! Zobacz nasze <a href="/realizacje">realizacje</a>.</p>
               <div class={styles.statsRow}>
                 <div class={styles.statItem}>
                   <span class={styles.statNumber}>25+</span>

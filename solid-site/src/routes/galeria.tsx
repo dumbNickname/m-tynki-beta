@@ -26,6 +26,7 @@ export default function Galeria() {
 
       <section class="section">
         <div class="container">
+          <p>Poniżej przedstawiamy galerię zdjęć z naszych realizacji tynków gipsowych ze szlichtą wygładzającą pod malowanie. Każde zdjęcie pokazuje efekt naszej pracy — idealnie gładkie ściany gotowe do malowania, bez konieczności nakładania dodatkowej gładzi.</p>
           <Gallery images={galleryImages} altPrefix="Tynki ze szlichtą pod malowanie M-TYNK Wrocław" />
         </div>
       </section>

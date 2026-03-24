@@ -33,6 +33,7 @@ export default function Realizacje() {
 
       <section class="section">
         <div class="container">
+          <p>Zapoznaj się z naszymi realizacjami tynków gipsowych ze szlichtą wygładzającą pod malowanie. Każdy projekt to przykład naszego doświadczenia i dbałości o najwyższą jakość wykończenia ścian we Wrocławiu i okolicach.</p>
           <nav class={styles.categoryNav}>
             <For each={navigation.categories}>
               {(cat) => (
