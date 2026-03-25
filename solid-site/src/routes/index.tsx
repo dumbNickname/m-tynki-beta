@@ -23,11 +23,6 @@ const services = [
     description: "Na tynki gipsowe nakładamy dodatkową warstwą wygładzającą, która pozwala na uzyskanie idealnie gładkiej ściany nadającej się bezpośrednio pod malowanie!",
   },
   {
-    icon: "images/uploads/2023/08/plastering.png",
-    title: "Tynki Cementowo-Wapienne",
-    description: "Tynki cementowo-wapienne są rodzajem tynków bardziej odpornych na korozję biologiczną, charakteryzuje się także dużą wytrzymałością na uszkodzenia.",
-  },
-  {
     icon: "images/uploads/2023/08/tynk-ze-szlichta-wygladzajaca-01-01.png",
     title: "Tynki Gipsowe utwardzane",
     description: "Tynki te są alternatywą dla tynków gipsowych i cementowo-wapiennych, ponieważ mają właściwości regulujące wilgotność oraz są bardziej twarde niż tradycyjne tynki gipsowe",
@@ -56,7 +51,7 @@ export default function Home() {
     <Layout>
       <SeoHead
         canonical="/"
-        description="Tynki ze szlichtą wygładzającą pod malowanie Wrocław. Firma M-TYNK świadczy usługi tynkarskie od 1999 roku. Tynki gipsowe, cementowo-wapienne, zabudowy G-K, malowanie natryskowe."
+        description="Tynki ze szlichtą wygładzającą pod malowanie Wrocław. Firma M-TYNK świadczy usługi tynkarskie od 1999 roku. Tynki gipsowe, zabudowy G-K, malowanie natryskowe."
         ogImage="images/uploads/elementor/thumbs/tynk-ze-szlichta-wygladzajaca-2-1-qbc493vjwnj8vdtfz6et930fnfrti3rzhl17p4djqe.png"
         datePublished="2023-08-23T12:08:08+00:00"
         dateModified="2024-09-30T08:10:47+00:00"
