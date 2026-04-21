@@ -51,7 +51,7 @@ jobs:
         run: pnpm build
         working-directory: solid-site
         env:
-          BASE_PATH: /m-tynki
+          BASE_PATH: /
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
