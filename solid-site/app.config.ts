@@ -1,6 +1,6 @@
 import { defineConfig } from "@solidjs/start/config";
 
-const basePath = process.env.BASE_PATH || "/";
+const basePath = process.env.BASE_PATH || "";
 
 export default defineConfig({
   vite: {
