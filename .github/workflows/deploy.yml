@@ -2,7 +2,6 @@
 name: Deploy static content to Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ["master"]
 
@@ -51,7 +50,7 @@ jobs:
         run: pnpm build
         working-directory: solid-site
         env:
-          BASE_PATH: /
+          BASE_PATH: ${{ github.repository == 'dumbNickname/m-tynki-beta' && '/m-tynki-beta' || '/' }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

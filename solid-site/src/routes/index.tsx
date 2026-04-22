@@ -3,6 +3,7 @@ import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import Reviews from "~/components/Reviews";
 import SocialFollow from "~/components/SocialFollow";
+import NavLink from "~/components/NavLink";
 import site from "~/data/site.json";
 import styles from "./index.module.css";
 
@@ -90,7 +91,7 @@ export default function Home() {
               <span class={styles.sectionTag}>Nasza specjalność</span>
               <h2>Tynki ze szlichtą wygładzającą pod malowanie</h2>
               <p class={styles.lead}>Jesteśmy firmą budowlaną świadczącą swoje usługi od 1999r co jest gwarancją jakości usług.</p>
-              <p>Skontaktuj się z nami i przekonaj się o naszym profesjonalizmie! Zobacz nasze <a href="/realizacje">realizacje</a>.</p>
+              <p>Skontaktuj się z nami i przekonaj się o naszym profesjonalizmie! Zobacz nasze <NavLink href="/realizacje">realizacje</NavLink>.</p>
               <div class={styles.statsRow}>
                 <div class={styles.statItem}>
                   <span class={styles.statNumber}>25+</span>

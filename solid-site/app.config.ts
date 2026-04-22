@@ -4,6 +4,7 @@ const basePath = process.env.BASE_PATH || "/";
 
 export default defineConfig({
   vite: {
+    base: basePath === "/" ? "/" : `${basePath}/`,
     build: {
       sourcemap: true,
     },
