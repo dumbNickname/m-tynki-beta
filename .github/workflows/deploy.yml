@@ -50,7 +50,11 @@ jobs:
         run: pnpm build
         working-directory: solid-site
         env:
-          BASE_PATH: ${{ github.repository == 'dumbNickname/m-tynki-beta' && '/m-tynki-beta' || '/' }}
+          BASE_PATH: ${{ github.repository == 'dumbNickname/m-tynki-beta' && '/m-tynki-beta' || '' }}
+
+      - name: Remove CNAME for beta
+        if: github.repository == 'dumbNickname/m-tynki-beta'
+        run: rm -f solid-site/.output/public/CNAME
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
