@@ -181,6 +181,40 @@ The original WordPress export. Kept for reference. See below for structure.
 
 ---
 
+## Git Remotes & Deployment Workflow
+
+This project has **two remote repositories**:
+
+| Remote   | URL                                                  | Purpose              |
+|----------|------------------------------------------------------|----------------------|
+| `beta`   | `https://github.com/dumbNickname/m-tynki-beta.git`  | Preview / staging    |
+| `origin` | `https://github.com/dumbNickname/m-tynki.git`       | Production           |
+
+**`beta` is the default push target** (`remote.pushDefault = beta`). This means:
+
+- `git push` → pushes to **beta** (preview site on GitHub Pages at `dumbNickname.github.io/m-tynki-beta`)
+- `git push origin` → pushes to **production** (served at `wroclawtynki.pl`)
+
+### Base Path Handling
+
+The GitHub Actions workflow (`.github/workflows/deploy.yml`) detects which repo it's running in:
+- **Beta repo** (`dumbNickname/m-tynki-beta`): builds with `BASE_PATH=/m-tynki-beta` so the site works under a subpath on GitHub Pages
+- **Production repo** (`dumbNickname/m-tynki`): builds with `BASE_PATH=/` for the custom domain
+
+The `BASE_PATH` env var flows into:
+- `app.config.ts` → Vite `base` and Vinxi `server.baseURL`
+- `entry-server.tsx` → `<base href>` tag (resolves all relative image/link paths) + `noindex` meta on beta
+- `NavLink` component → prepends base to internal `href`s
+
+### Typical Workflow
+
+1. Make changes on `master`
+2. `git push` — deploys to beta for preview
+3. Verify on beta GitHub Pages URL
+4. `git push origin` — deploys to production
+
+---
+
 ## Git Conventions
 
 - Commit messages in English
