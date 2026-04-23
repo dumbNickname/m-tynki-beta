@@ -7,7 +7,7 @@
   padding: var(--section-padding-y) 0;
 }
 
-.footer h4 {
+.footer .colHeading {
   color: var(--color-white);
   font-size: var(--fs-small);
   text-transform: uppercase;

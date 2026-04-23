@@ -27,7 +27,7 @@ export default function Footer() {
           </div>
           <div class={styles.linksGroup}>
             <div class={styles.col}>
-              <h4>Przydatne linki</h4>
+              <p class={styles.colHeading}>Przydatne linki</p>
               <ul>
                 <For each={navigation.footer}>
                   {(item) => (
@@ -39,7 +39,7 @@ export default function Footer() {
               </ul>
             </div>
             <div class={styles.col}>
-              <h4>Kontakt</h4>
+              <p class={styles.colHeading}>Kontakt</p>
               <ul>
                 <li>
                   <a href={`tel:${site.phoneRaw}`}>{site.phone}</a>
@@ -51,7 +51,7 @@ export default function Footer() {
               </ul>
             </div>
             <div class={styles.col}>
-              <h4>Oceń nas</h4>
+              <p class={styles.colHeading}>Oceń nas</p>
               <a href={site.googleReviewUrl} target="_blank" rel="noopener noreferrer" class={styles.googleLink}>
                 <img src="images/ocena-google-300x300-1-150x150-1.png" alt="Oceń nas na Google" width="120" height="120" loading="lazy" />
               </a>
