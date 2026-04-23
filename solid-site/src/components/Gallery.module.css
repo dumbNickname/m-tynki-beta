@@ -121,7 +121,36 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .lightboxContent {
+    max-width: 100vw;
+    gap: 0;
+  }
+
   .lightboxContent img {
     max-width: 95vw;
+  }
+
+  .prev,
+  .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.5);
+    font-size: 2rem;
+    padding: 0.6em 0.4em;
+  }
+
+  .prev {
+    left: 0.25rem;
+  }
+
+  .next {
+    right: 0.25rem;
+  }
+
+  .prev:hover,
+  .next:hover {
+    background: rgba(0, 0, 0, 0.7);
   }
 }
