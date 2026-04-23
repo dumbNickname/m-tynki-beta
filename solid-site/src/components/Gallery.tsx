@@ -1,4 +1,4 @@
-import { createSignal, For, Show } from "solid-js";
+import { createSignal, createEffect, For, Show } from "solid-js";
 import { toThumb } from "~/utils/images";
 import styles from "./Gallery.module.css";
 
@@ -14,15 +14,14 @@ function imageAlt(src: string, prefix: string, index: number): string {
 export default function Gallery(props: GalleryProps) {
   const prefix = () => props.altPrefix || "Realizacja M-TYNK";
   const [lightboxIndex, setLightboxIndex] = createSignal<number | null>(null);
+  let lightboxRef!: HTMLDivElement;
 
   function openLightbox(index: number) {
     setLightboxIndex(index);
-    document.body.style.overflow = "hidden";
   }
 
   function closeLightbox() {
     setLightboxIndex(null);
-    document.body.style.overflow = "";
   }
 
   function prev() {
@@ -34,6 +33,18 @@ export default function Gallery(props: GalleryProps) {
     const current = lightboxIndex();
     if (current !== null && current < props.images.length - 1) setLightboxIndex(current + 1);
   }
+
+  function handleKeydown(e: KeyboardEvent) {
+    if (e.key === "ArrowLeft") prev();
+    else if (e.key === "ArrowRight") next();
+    else if (e.key === "Escape") closeLightbox();
+  }
+
+  createEffect(() => {
+    const isOpen = lightboxIndex() !== null;
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    if (isOpen) lightboxRef?.focus();
+  });
 
   return (
     <>
@@ -49,7 +60,13 @@ export default function Gallery(props: GalleryProps) {
       </div>
 
       <Show when={lightboxIndex() !== null}>
-        <div class={styles.lightbox} onClick={closeLightbox}>
+        <div
+          ref={lightboxRef}
+          class={styles.lightbox}
+          onClick={closeLightbox}
+          onKeyDown={handleKeydown}
+          tabindex="-1"
+        >
           <div class={styles.lightboxContent} onClick={(e) => e.stopPropagation()}>
             <button class={styles.close} onClick={closeLightbox} aria-label="Zamknij">✕</button>
             <button class={styles.prev} onClick={prev} aria-label="Poprzednie" disabled={lightboxIndex() === 0}>‹</button>

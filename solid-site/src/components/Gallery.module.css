@@ -66,9 +66,9 @@
 }
 
 .close {
-  position: absolute;
-  top: -2.5em;
-  right: 0;
+  position: fixed;
+  top: 1rem;
+  right: 1.5rem;
   background: none;
   border: none;
   color: #ffffff;
