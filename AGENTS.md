@@ -141,7 +141,7 @@ Defined in `app.config.ts`:
 ### Important Notes for Agents
 
 1. Run `pnpm typecheck` after any TypeScript changes
-2. Run `pnpm build` to verify all routes prerender successfully
+2. Run `pnpm build` to verify all routes prerender successfully — this also auto-regenerates `sitemap.xml`, `robots.txt`, and `llms.txt` via `scripts/generate-seo.mjs` (no manual step needed)
 3. Images are served from `public/images/` — paths in JSON data start with `/images/`
 4. Legacy WordPress files live in `legacy-wordpress/` — reference only, do not edit
 5. The `entry-server.tsx` defines the HTML document shell (lang, favicons, fonts, theme init script)
