@@ -8,7 +8,7 @@
 }
 
 .footer .colHeading {
-  color: var(--color-white);
+  color: var(--color-footer-heading);
   font-size: var(--fs-small);
   text-transform: uppercase;
   letter-spacing: 0.06em;

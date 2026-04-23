@@ -71,6 +71,7 @@
   --color-white: #ffffff;
   --color-footer-bg: #111827;
   --color-footer-text: #9ca3af;
+  --color-footer-heading: #ffffff;
   --color-overlay: rgba(17, 24, 39, 0.6);
 
   --font-body: "Inter", sans-serif;
@@ -111,6 +112,7 @@
   --color-white: #141925;
   --color-footer-bg: #0c1017;
   --color-footer-text: #9ca3af;
+  --color-footer-heading: #e5e7eb;
   --color-overlay: rgba(0, 0, 0, 0.7);
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
   --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.25);

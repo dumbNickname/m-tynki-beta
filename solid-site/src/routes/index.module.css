@@ -239,6 +239,10 @@
   filter: brightness(0) invert(1);
 }
 
+:global([data-theme="dark"]) .serviceIcon {
+  background: var(--color-primary-dark);
+}
+
 .serviceCard h3 {
   font-size: var(--fs-h4);
   margin-bottom: 0.5rem;
