@@ -67,14 +67,14 @@ export default function Home() {
             src="images/hero-1125w.jpg"
             srcset="images/hero-480w.jpg 480w, images/hero-768w.jpg 768w, images/hero-1125w.jpg 1125w"
             sizes="100vw"
-            alt="Tynki ze szlichtą pod malowanie"
+            alt="Tynki gipsowe ze szlichtą pod malowanie"
             fetchpriority="high"
           />
           <div class={styles.heroOverlay} />
           <div class={styles.heroContent}>
             <span class={styles.heroBadge}>Od 1999 roku</span>
             <h1>
-              Tynki ze szlichtą<br />wygładzającą<br />pod malowanie
+              Tynki gipsowe<br />ze szlichtą wygładzającą<br />pod malowanie
             </h1>
             <p class={styles.heroSubtitle}>Profesjonalne usługi tynkarskie we Wrocławiu i okolicach</p>
             <div class={styles.heroActions}>
@@ -89,7 +89,7 @@ export default function Home() {
           <div class={styles.introGrid}>
             <div>
               <span class={styles.sectionTag}>Nasza specjalność</span>
-              <h2>Tynki ze szlichtą wygładzającą pod malowanie</h2>
+              <h2>Tynki gipsowe ze szlichtą wygładzającą pod malowanie</h2>
               <p class={styles.lead}>Jesteśmy firmą budowlaną świadczącą swoje usługi od 1999r co jest gwarancją jakości usług.</p>
               <p>Skontaktuj się z nami i przekonaj się o naszym profesjonalizmie! Zobacz nasze <NavLink href="/realizacje">realizacje</NavLink>.</p>
               <div class={styles.statsRow}>
