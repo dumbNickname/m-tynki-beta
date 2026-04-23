@@ -1,6 +1,7 @@
 import { Title, Meta, Link } from "@solidjs/meta";
 import site from "~/data/site.json";
 import navigation from "~/data/navigation.json";
+import reviews from "~/data/reviews.json";
 
 interface BreadcrumbItem {
   name: string;
@@ -63,6 +64,25 @@ export default function SeoHead(props: SeoHeadProps) {
         longitude: 16.978,
       },
       sameAs: [site.facebookUrl, site.instagramUrl],
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: (reviews.reduce((sum, r) => sum + r.stars, 0) / reviews.length).toFixed(1),
+        bestRating: "5",
+        worstRating: "1",
+        ratingCount: reviews.length,
+        reviewCount: reviews.length,
+      },
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Usługi tynkarskie",
+        itemListElement: [
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Tynki gipsowe ze szlichtą wygładzającą pod malowanie" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Gładź natryskowa" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Tynki gipsowe" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Zabudowy z płyt karton-gipsowych" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Natryskowe malowanie ścian" } },
+        ],
+      },
     });
 
     graph.push({
