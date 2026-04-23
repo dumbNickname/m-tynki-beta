@@ -139,7 +139,6 @@ export default function SeoHead(props: SeoHeadProps) {
     <>
       <Title>{pageTitle()}</Title>
       <Meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-      <Meta name="google-site-verification" content={site.googleSiteVerification} />
       {props.description && <Meta name="description" content={props.description} />}
       <Meta property="og:locale" content="pl_PL" />
       <Meta property="og:type" content={props.ogType || "website"} />
