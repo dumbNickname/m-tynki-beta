@@ -1,4 +1,4 @@
-import { createSignal, onMount } from "solid-js";
+import { createSignal, createEffect, onMount } from "solid-js";
 import styles from "./ThemeToggle.module.css";
 
 function getInitialTheme(): "light" | "dark" {
@@ -15,11 +15,13 @@ export default function ThemeToggle() {
     setTheme(getInitialTheme());
   });
 
+  createEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme());
+    localStorage.setItem("mtynk_theme", theme());
+  });
+
   const toggle = () => {
-    const next = theme() === "dark" ? "light" : "dark";
-    setTheme(next);
-    document.documentElement.setAttribute("data-theme", next);
-    localStorage.setItem("mtynk_theme", next);
+    setTheme((t) => (t === "dark" ? "light" : "dark"));
   };
 
   return (

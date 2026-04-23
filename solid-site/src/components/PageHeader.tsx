@@ -1,3 +1,4 @@
+import { For } from "solid-js";
 import NavLink from "./NavLink";
 import styles from "./PageHeader.module.css";
 
@@ -12,16 +13,18 @@ export default function PageHeader(props: PageHeaderProps) {
       <div class="container">
         {props.breadcrumbs && (
           <nav class={styles.breadcrumbs} aria-label="Ścieżka nawigacji">
-            {props.breadcrumbs.map((crumb, i) => (
-              <>
-                {i > 0 && <span class={styles.sep}> » </span>}
-                {crumb.href ? (
-                  <NavLink href={crumb.href}>{crumb.label}</NavLink>
-                ) : (
-                  <span aria-current="page">{crumb.label}</span>
-                )}
-              </>
-            ))}
+            <For each={props.breadcrumbs}>
+              {(crumb, i) => (
+                <>
+                  {i() > 0 && <span class={styles.sep}> » </span>}
+                  {crumb.href ? (
+                    <NavLink href={crumb.href}>{crumb.label}</NavLink>
+                  ) : (
+                    <span aria-current="page">{crumb.label}</span>
+                  )}
+                </>
+              )}
+            </For>
           </nav>
         )}
         <h1>{props.title}</h1>

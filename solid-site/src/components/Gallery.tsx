@@ -1,4 +1,4 @@
-import { createSignal, createEffect, For, Show } from "solid-js";
+import { createSignal, createEffect, onCleanup, For, Show } from "solid-js";
 import { toThumb } from "~/utils/images";
 import styles from "./Gallery.module.css";
 
@@ -44,6 +44,9 @@ export default function Gallery(props: GalleryProps) {
     const isOpen = lightboxIndex() !== null;
     document.body.style.overflow = isOpen ? "hidden" : "";
     if (isOpen) lightboxRef?.focus();
+    onCleanup(() => {
+      document.body.style.overflow = "";
+    });
   });
 
   return (

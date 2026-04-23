@@ -155,6 +155,7 @@ Defined in `app.config.ts`:
 13. **Image thumbnails**: Gallery grid and PostCard listings use 400px-wide JPEG thumbnails from `public/images/thumbs/`. Full-res images load only in the lightbox. Run `python3 scripts/generate-thumbs.py` after adding new images. The `toThumb()` utility in `src/utils/images.ts` converts image paths to their thumbnail equivalents.
 14. **Lazy loading**: All below-the-fold `<img>` tags use native `loading="lazy"`. Header logos and hero image are intentionally eager (above the fold, hero uses `fetchpriority="high"`).
 15. **No analytics/tracking**: The site has no Google Analytics, Facebook Pixel, or any third-party tracking scripts. The privacy policy (`polityka-prywatnosci.tsx`) reflects this — update it if analytics are added.
+16. **Full-reload navigation (intentional)**: The site intentionally uses full page reloads instead of SolidJS client-side routing. `entry-client.tsx` contains a global click handler that intercepts internal `<a>` clicks and forces `window.location.href` navigation, plus a `popstate` handler that reloads on back/forward. `NavLink` uses plain `<a>` tags (not `<A>` from `@solidjs/router`) for the same reason. This is by design for SSG — each page is a fully pre-rendered HTML document. Do NOT remove these handlers or convert NavLink to use the SolidJS router's `<A>` component.
 
 ---
 
