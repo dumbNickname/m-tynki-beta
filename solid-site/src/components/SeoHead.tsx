@@ -1,5 +1,6 @@
 import { Title, Meta, Link } from "@solidjs/meta";
 import site from "~/data/site.json";
+import navigation from "~/data/navigation.json";
 
 interface BreadcrumbItem {
   name: string;
@@ -72,6 +73,15 @@ export default function SeoHead(props: SeoHeadProps) {
       description: site.description,
       publisher: { "@id": `${site.url}/#organization` },
       inLanguage: "pl-PL",
+    });
+
+    graph.push({
+      "@type": "SiteNavigationElement",
+      "@id": `${site.url}/#navigation`,
+      name: navigation.main.map((item) => item.label),
+      url: navigation.main
+        .filter((item) => !item.href.includes("#"))
+        .map((item) => `${site.url}${item.href}`),
     });
 
     const webPage: Record<string, unknown> = {
