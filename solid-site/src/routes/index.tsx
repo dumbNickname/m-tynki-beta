@@ -52,7 +52,7 @@ export default function Home() {
     <Layout>
       <SeoHead
         canonical="/"
-        description="Tynki ze szlichtą wygładzającą pod malowanie Wrocław. Firma M-TYNK świadczy usługi tynkarskie od 1999 roku. Tynki gipsowe, zabudowy G-K, malowanie natryskowe."
+        description="Tynki Wrocław i okolice ✓ Tynki maszynowe ze szlichtą wygładzającą pod malowanie. Firma tynkarska M-TYNK — profesjonalne usługi tynkarskie od 1999 roku. Bezpłatna wycena!"
         ogImage="images/uploads/elementor/thumbs/tynk-ze-szlichta-wygladzajaca-2-1-qbc493vjwnj8vdtfz6et930fnfrti3rzhl17p4djqe.png"
         datePublished="2023-08-23T12:08:08+00:00"
         dateModified="2024-09-30T08:10:47+00:00"
@@ -74,7 +74,7 @@ export default function Home() {
           <div class={styles.heroContent}>
             <span class={styles.heroBadge}>Od 1999 roku</span>
             <h1>
-              Tynki gipsowe<br />ze szlichtą wygładzającą<br />pod malowanie
+               Tynki Wrocław i okolice<br />— tynki gipsowe ze szlichtą<br />wygładzającą pod malowanie
             </h1>
             <p class={styles.heroSubtitle}>Profesjonalne usługi tynkarskie we Wrocławiu i okolicach</p>
             <div class={styles.heroActions}>

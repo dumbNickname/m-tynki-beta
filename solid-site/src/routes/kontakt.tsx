@@ -83,9 +83,9 @@ export default function Kontakt() {
           <div class={styles.map}>
             <iframe
               loading="lazy"
-              src="https://maps.google.com/maps?q=Tynki%20gipsowe%20z%20g%C5%82adziolitem%20pod%20malowanie%20-%20M-Tynk%2C%20Obornicka%2077D%2F4A%2C%2051-114%20Wroc%C5%82aw&t=m&z=17&output=embed&iwloc=near"
-              title="Tynki gipsowe z gładziolitem pod malowanie - M-Tynk, Obornicka 77D/4A, 51-114 Wrocław"
-              aria-label="Tynki gipsowe z gładziolitem pod malowanie - M-Tynk, Obornicka 77D/4A, 51-114 Wrocław"
+              src="https://maps.google.com/maps?q=Tynki%20gipsowe%20z%20g%C5%82adziolitem%20pod%20malowanie%20-%20M-Tynk%2C%20Obornicka%2077C%2F4A%2C%2051-114%20Wroc%C5%82aw&t=m&z=17&output=embed&iwloc=near"
+              title="Tynki gipsowe z gładziolitem pod malowanie - M-Tynk, Obornicka 77C/4A, 51-114 Wrocław"
+              aria-label="Tynki gipsowe z gładziolitem pod malowanie - M-Tynk, Obornicka 77C/4A, 51-114 Wrocław"
               width="100%"
               height="400"
               style={{ border: "none" }}

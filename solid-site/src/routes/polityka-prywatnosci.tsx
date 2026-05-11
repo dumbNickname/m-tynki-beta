@@ -27,7 +27,7 @@ export default function PolitykaPrywatnosci() {
       <section class="section">
         <div class={`container ${styles.contentText}`}>
           <p><strong>Informacje ogólne.</strong><br />
-          1. Operatorem Serwisu jest Tynki gipsowe z gładziolitem pod malowanie – M – Tynk Obornicka 77D/4A, 51-114 Wrocław, zwana dalej ADMINISTRATOREM.<br />
+          1. Operatorem Serwisu jest Tynki gipsowe z gładziolitem pod malowanie – M – Tynk Obornicka 77C/4A, 51-114 Wrocław, zwana dalej ADMINISTRATOREM.<br />
           2. Serwis jest statyczną stroną internetową i nie posiada formularzy rejestracyjnych, logowania ani panelu użytkownika.<br />
           3. Administrator nie zbiera, nie przetwarza ani nie przekazuje danych osobowych Użytkowników za pośrednictwem Serwisu.</p>
 
