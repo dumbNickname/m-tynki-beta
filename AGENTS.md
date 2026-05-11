@@ -32,7 +32,7 @@ All user-facing content is in **Polish (pl-PL)**.
 cd solid-site
 pnpm install       # Install dependencies (run from repo root or solid-site/)
 pnpm dev           # Development server (vinxi dev)
-pnpm build         # Static site generation (vinxi build) → .output/public/
+pnpm build         # Static site generation (vinxi build) → .output/public/ (also inlines CSS)
 pnpm preview       # Preview built site (vinxi start)
 pnpm typecheck     # TypeScript check (tsc --noEmit)
 ```

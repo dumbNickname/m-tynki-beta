@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "dev": "vinxi dev",
-    "build": "node scripts/generate-seo.mjs && vinxi build",
+    "build": "node scripts/generate-seo.mjs && vinxi build && node scripts/inline-css.mjs",
     "preview": "vinxi start",
     "typecheck": "tsc --noEmit"
   },
