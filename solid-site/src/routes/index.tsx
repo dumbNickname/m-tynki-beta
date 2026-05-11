@@ -108,6 +108,8 @@ export default function Home() {
               <img
                 src="images/uploads/elementor/thumbs/tynk-ze-szlichta-wygladzajaca-2-1-qbc493vjwnj8vdtfz6et930fnfrti3rzhl17p4djqe.png"
                 alt="Tynk ze szlichtą wygładzającą"
+                width="374"
+                height="503"
                 loading="lazy"
               />
             </div>

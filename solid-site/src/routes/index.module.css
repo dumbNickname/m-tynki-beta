@@ -113,6 +113,8 @@
 .introImage img {
   border-radius: var(--radius-lg);
   width: 100%;
+  height: auto;
+  aspect-ratio: 374 / 503;
 }
 
 .lead {
