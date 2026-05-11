@@ -72,26 +72,6 @@ for (const htmlPath of htmlFiles) {
     modified = true;
   }
 
-  // 2. Strip CSS stylesheet entries from window.manifest to prevent client re-fetching
-  const manifestRegex = /(window\.manifest\s*=\s*)(\{.*?\})(<\/script>)/;
-  const manifestMatch = html.match(manifestRegex);
-  if (manifestMatch) {
-    try {
-      const manifest = JSON.parse(manifestMatch[2]);
-      for (const key of Object.keys(manifest)) {
-        if (manifest[key].assets) {
-          manifest[key].assets = manifest[key].assets.filter(
-            (asset) => !(asset.attrs && asset.attrs.rel === "stylesheet")
-          );
-        }
-      }
-      html = html.replace(manifestRegex, `${manifestMatch[1]}${JSON.stringify(manifest)}${manifestMatch[3]}`);
-      modified = true;
-    } catch {
-      // manifest parse failed, skip
-    }
-  }
-
   if (modified) {
     writeFileSync(htmlPath, html);
   }
