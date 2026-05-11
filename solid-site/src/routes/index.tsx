@@ -119,8 +119,14 @@ export default function Home() {
         <div class="container">
           <div class={styles.aboutGrid}>
             <div class={styles.aboutImage}>
-              <img class={styles.imgLight} src={site.mascot} alt="M-TYNK maskotka" width="260" height="260" loading="lazy" />
-              <img class={styles.imgDark} src={site.mascotDark} alt="M-TYNK maskotka" width="260" height="260" loading="lazy" />
+              <picture class={styles.imgLight}>
+                <source srcset={site.mascotWebp} type="image/webp" />
+                <img src={site.mascot} alt="M-TYNK maskotka" width="260" height="260" loading="lazy" />
+              </picture>
+              <picture class={styles.imgDark}>
+                <source srcset={site.mascotDarkWebp} type="image/webp" />
+                <img src={site.mascotDark} alt="M-TYNK maskotka" width="260" height="260" loading="lazy" />
+              </picture>
             </div>
             <div>
               <span class={styles.sectionTag}>Dlaczego my?</span>

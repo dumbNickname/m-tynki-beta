@@ -11,11 +11,15 @@
   "facebookUrl": "https://www.facebook.com/people/M-Tynk/100084565884606/?locale=pl_PL",
   "instagramUrl": "https://www.instagram.com/firmamtynk/?igshid=NzZIODbkYWE4Ng%3D%3D",
   "logo": "images/mtynk-logo-gladziolit-web.png",
+  "logoWebp": "images/mtynk-logo-gladziolit-web.webp",
   "logoDark": "images/mtynk-logo-gladziolit-dark-web.png",
+  "logoDarkWebp": "images/mtynk-logo-gladziolit-dark-web.webp",
   "logoGreen": "images/m-tynk_logo_greenw-300x81-1.png",
   "logoGreenDark": "images/m-tynk_logo_greenw-300x81-1-dark.png",
   "favicon": "images/mtynk-ludzik-gladziolit-300x300-1-150x150.png",
   "faviconLarge": "images/mtynk-ludzik-gladziolit-300x300-1.png",
   "mascot": "images/mtynk-ludzik-gladziolit-300x300-1.png",
-  "mascotDark": "images/mtynk-ludzik-gladziolit-300x300-1-dark.png"
+  "mascotWebp": "images/mtynk-ludzik-gladziolit-300x300-1.webp",
+  "mascotDark": "images/mtynk-ludzik-gladziolit-300x300-1-dark.png",
+  "mascotDarkWebp": "images/mtynk-ludzik-gladziolit-300x300-1-dark.webp"
 }
