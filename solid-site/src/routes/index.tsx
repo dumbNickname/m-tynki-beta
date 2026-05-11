@@ -172,11 +172,11 @@ export default function Home() {
           <div class={styles.aboutFullGrid}>
             <div>
               <span class={styles.sectionTag}>O firmie</span>
-              <h2>O Nas</h2>
+              <h2>O firmie tynkarskiej M-TYNK</h2>
               <div class="divider" />
-              <p>Jesteśmy firmą z wieloletnim doświadczeniem, która od lat zajmuje się Tynkarstwem. Prawie od początku naszej działalności preferujemy metodę wykonywania Tynków wraz ze Szlichtą wygładzającą, która powoduje, że ściana jest przygotowana pod malowanie.</p>
-              <p>Dzięki Szlichcie uzyskujemy efekt gładkiej ściany, bez wybrzuszeń i nierówności.</p>
-              <p>Firma specjalizuje się w wykonaniu tynków maszynowych W branży tynków maszynowych działamy od 1999r. Posiadamy doświadczoną brygadę (wieloletnia praktyka w zawodzie) więc:</p>
+              <p>Jesteśmy firmą tynkarską z wieloletnim doświadczeniem, która od lat zajmuje się tynkarstwem we Wrocławiu i okolicach. Prawie od początku naszej działalności preferujemy metodę wykonywania tynków wraz ze szlichtą wygładzającą, która powoduje, że ściana jest przygotowana pod malowanie.</p>
+              <p>Dzięki szlichcie uzyskujemy efekt gładkiej ściany, bez wybrzuszeń i nierówności.</p>
+              <p>Nasza firma tynkarska specjalizuje się w wykonaniu tynków maszynowych — w branży tynków maszynowych działamy od 1999r. Posiadamy doświadczoną brygadę (wieloletnia praktyka w zawodzie) więc:</p>
               <ul class={styles.checkList}>
                 <li>Tynki cechuje wysoka jakość, estetyka i kultura wykonania.</li>
                 <li>Zabezpieczamy stolarkę okienna,instalacje i inne wymagające tego rzeczy.</li>

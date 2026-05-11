@@ -63,6 +63,23 @@ export default function SeoHead(props: SeoHeadProps) {
         latitude: 51.137,
         longitude: 16.978,
       },
+      foundingDate: "1999",
+      openingHoursSpecification: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "08:00",
+        closes: "17:00",
+      },
+      areaServed: [
+        { "@type": "City", name: "Wrocław" },
+        { "@type": "AdministrativeArea", name: "Powiat wrocławski" },
+        { "@type": "Place", name: "Sobótka" },
+        { "@type": "Place", name: "Trzebnica" },
+        { "@type": "Place", name: "Oława" },
+        { "@type": "Place", name: "Domasław" },
+        { "@type": "Place", name: "Dobrzykowice" },
+        { "@type": "Place", name: "Lutynia" },
+      ],
       sameAs: [site.facebookUrl, site.instagramUrl],
       aggregateRating: {
         "@type": "AggregateRating",
@@ -176,6 +193,8 @@ export default function SeoHead(props: SeoHeadProps) {
       {props.description && <Meta property="og:description" content={props.description} />}
       <Meta property="og:site_name" content={site.title} />
       {props.ogImage && <Meta property="og:image" content={`${site.url}/${props.ogImage}`} />}
+      {props.ogImage && <Meta property="og:image:width" content="1200" />}
+      {props.ogImage && <Meta property="og:image:height" content="630" />}
       {props.canonical && (
         <>
           <Link rel="canonical" href={`${site.url}${props.canonical}`} />

@@ -65,6 +65,12 @@ export default function PostPage() {
               <Gallery images={p().gallery} altPrefix={p().title} />
             </div>
           </section>
+
+          <section class="section">
+            <div class="container text-center">
+              <p>Dowiedz się więcej o naszej metodzie — <a href="/tynki-ze-szlichta-pod-malowanie">tynki ze szlichtą wygładzającą pod malowanie</a>.</p>
+            </div>
+          </section>
         </Layout>
       )}
     </Show>

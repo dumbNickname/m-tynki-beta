@@ -2,8 +2,16 @@ import { For } from "solid-js";
 import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import PageHeader from "~/components/PageHeader";
+import PostCard from "~/components/PostCard";
 import site from "~/data/site.json";
+import posts from "~/data/posts.json";
+import navigation from "~/data/navigation.json";
 import styles from "./tynki-ze-szlichta-pod-malowanie.module.css";
+
+const featuredSlugs = ["tynki-ze-szlichta-pod-malowanie-wroclaw", "tynkowanie-scian-we-wroclawiu", "tynkowanie-w-domu-jednorodzinnym"];
+const featuredPosts = posts.filter((p) => featuredSlugs.includes(p.slug));
+const categoryLabels: Record<string, string> = {};
+navigation.categories.forEach((c) => { categoryLabels[c.slug] = c.label; });
 
 const benefits = [
   { icon: "⏱️", title: "Oszczędność czasu", description: "Eliminacja etapu nakładania gładzi skraca czas wykończenia nawet o kilka dni." },
@@ -148,6 +156,22 @@ export default function TynkiService() {
                 </details>
               )}
             </For>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="text-center">
+            <h2>Zobacz nasze realizacje tynków ze szlichtą</h2>
+          </div>
+          <div class="grid-3">
+            <For each={featuredPosts}>
+              {(post) => <PostCard post={post} categoryLabels={categoryLabels} />}
+            </For>
+          </div>
+          <div class="text-center" style={{ "margin-top": "2rem" }}>
+            <a class="btn btn-outline" href="/realizacje">Wszystkie realizacje</a>
           </div>
         </div>
       </section>
