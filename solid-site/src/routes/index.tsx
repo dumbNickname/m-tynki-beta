@@ -77,7 +77,7 @@ export default function Home() {
               <span class={styles.heroLocation}>Tynki Wrocław i okolice</span>
               <span class={styles.heroService}>Tynki gipsowe ze szlichtą wygładzającą pod malowanie</span>
             </h1>
-            <p class={styles.heroSubtitle}>Profesjonalne usługi tynkarskie we Wrocławiu i okolicach</p>
+            <p class={styles.heroSubtitle}>Ściany gotowe do malowania — bez dodatkowej gładzi. Bezpłatna wycena!</p>
             <div class={styles.heroActions}>
               <a href={`tel:${site.phoneRaw}`} class="btn btn-primary btn-lg">Bezpłatna wycena</a>
             </div>
