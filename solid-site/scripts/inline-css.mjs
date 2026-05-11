@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Post-build: inlines render-blocking <link rel="stylesheet"> tags as <style> blocks.
- * This eliminates extra network round-trips for CSS on the SSG site.
+ * Post-build: inlines render-blocking <link rel="stylesheet"> tags as <style> blocks
+ * and removes CSS entries from window.manifest to prevent client re-fetching.
  *
  * Run after `vinxi build`: node scripts/inline-css.mjs
  */
@@ -35,9 +35,12 @@ let totalInlined = 0;
 
 for (const htmlPath of htmlFiles) {
   let html = readFileSync(htmlPath, "utf-8");
+  let modified = false;
+
+  // 1. Inline <link rel="stylesheet"> tags
   const linkRegex = /<link[^>]*href="([^"]+\.css)"[^>]*rel="stylesheet"[^>]*\/?>/g;
-  let match;
   const replacements = [];
+  let match;
 
   while ((match = linkRegex.exec(html)) !== null) {
     const fullTag = match[0];
@@ -60,6 +63,30 @@ for (const htmlPath of htmlFiles) {
       html = html.replace(fullTag, `<style>${css}</style>`);
       totalInlined++;
     }
+    modified = true;
+  }
+
+  // 2. Strip CSS stylesheet entries from window.manifest to prevent client re-fetching
+  const manifestRegex = /(window\.manifest\s*=\s*)(\{.*?\})(<\/script>)/;
+  const manifestMatch = html.match(manifestRegex);
+  if (manifestMatch) {
+    try {
+      const manifest = JSON.parse(manifestMatch[2]);
+      for (const key of Object.keys(manifest)) {
+        if (manifest[key].assets) {
+          manifest[key].assets = manifest[key].assets.filter(
+            (asset) => !(asset.attrs && asset.attrs.rel === "stylesheet")
+          );
+        }
+      }
+      html = html.replace(manifestRegex, `${manifestMatch[1]}${JSON.stringify(manifest)}${manifestMatch[3]}`);
+      modified = true;
+    } catch {
+      // manifest parse failed, skip
+    }
+  }
+
+  if (modified) {
     writeFileSync(htmlPath, html);
   }
 }
