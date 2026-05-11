@@ -7,6 +7,7 @@ import site from "~/data/site.json";
 import posts from "~/data/posts.json";
 import navigation from "~/data/navigation.json";
 import styles from "./tynki-ze-szlichta-pod-malowanie.module.css";
+import realizacjeStyles from "./realizacje/index.module.css";
 
 const featuredSlugs = ["tynki-ze-szlichta-pod-malowanie-wroclaw", "tynkowanie-scian-we-wroclawiu", "tynkowanie-w-domu-jednorodzinnym"];
 const featuredPosts = posts.filter((p) => featuredSlugs.includes(p.slug));
@@ -173,7 +174,7 @@ export default function TynkiService() {
           <div class="text-center">
             <h2>Zobacz nasze realizacje tynków ze szlichtą</h2>
           </div>
-          <div class="grid-3">
+          <div class={realizacjeStyles.postsGrid}>
             <For each={featuredPosts}>
               {(post) => <PostCard post={post} categoryLabels={categoryLabels} />}
             </For>

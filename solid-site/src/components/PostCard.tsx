@@ -24,7 +24,13 @@ export default function PostCard(props: PostCardProps) {
   return (
     <article class={styles.card}>
       <NavLink href={`/realizacje/${props.post.slug}`} class={styles.thumbnail}>
-        <img src={toThumb(props.post.thumbnail)} alt={props.post.title} loading="lazy" />
+        <img
+          src={props.post.thumbnail}
+          srcset={`${toThumb(props.post.thumbnail)} 400w, ${props.post.thumbnail} 800w`}
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 45vw, 370px"
+          alt={props.post.title}
+          loading="lazy"
+        />
       </NavLink>
       <div class={styles.badge}>{badgeLabel()}</div>
       <div class={styles.body}>
