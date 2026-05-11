@@ -45,10 +45,9 @@
 - https://wroclawtynki.pl/realizacje/tynkowanie-scian-pod-malowanie
 - https://wroclawtynki.pl/realizacje/tynkowanie-scian-we-wroclawiu
 - https://wroclawtynki.pl/realizacje/tynkowanie-w-domu-jednorodzinnym
-- https://wroclawtynki.pl/category/wszystkie
-- https://wroclawtynki.pl/category/malowanie-scian
-- https://wroclawtynki.pl/category/tynk-ze-szlichta-wygladzajaca
-- https://wroclawtynki.pl/category/zabudowy-z-plyt-gk
+- https://wroclawtynki.pl/realizacje/kategoria/malowanie-scian
+- https://wroclawtynki.pl/realizacje/kategoria/tynk-ze-szlichta-wygladzajaca
+- https://wroclawtynki.pl/realizacje/kategoria/zabudowy-z-plyt-gk
 
 ## Media społecznościowe
 

@@ -7,7 +7,7 @@ import PostCard from "~/components/PostCard";
 import NavLink from "~/components/NavLink";
 import posts from "~/data/posts.json";
 import navigation from "~/data/navigation.json";
-import styles from "../realizacje/index.module.css";
+import styles from "../index.module.css";
 
 const categoryLabels: Record<string, string> = {};
 navigation.categories.forEach((c) => { categoryLabels[c.slug] = c.label; });
@@ -27,7 +27,7 @@ export default function CategoryPage() {
     <Layout>
       <SeoHead
         title={`${categoryLabel()} - Realizacje`}
-        canonical={`/category/${params.slug}`}
+        canonical={`/realizacje/kategoria/${params.slug}`}
         description={`Realizacje w kategorii „${categoryLabel()}" — tynki gipsowe ze szlichtą wygładzającą pod malowanie. Firma M-TYNK Wrocław.`}
         ogImage="images/uploads/elementor/thumbs/tynk-ze-szlichta-wygladzajaca-2-1-qbc493vjwnj8vdtfz6et930fnfrti3rzhl17p4djqe.png"
         breadcrumbs={[

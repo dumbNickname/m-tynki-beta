@@ -35,10 +35,12 @@ const postEntries = posts.map((p) => ({
   priority: "0.6",
 }));
 
-const categoryEntries = navigation.categories.map((c) => ({
-  loc: `/category/${c.slug}`,
-  priority: "0.5",
-}));
+const categoryEntries = navigation.categories
+  .filter((c) => c.slug !== "wszystkie")
+  .map((c) => ({
+    loc: c.href,
+    priority: "0.5",
+  }));
 
 const allEntries = [...pages, ...postEntries, ...categoryEntries];
 
