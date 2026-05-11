@@ -12,6 +12,7 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const outputDir = resolve(__dirname, "..", ".output", "public");
+const basePath = (process.env.BASE_PATH || "").replace(/^\/|\/$/g, "");
 
 function findHtmlFiles(dir) {
   const results = [];
@@ -37,18 +38,23 @@ for (const htmlPath of htmlFiles) {
   let html = readFileSync(htmlPath, "utf-8");
   let modified = false;
 
-  // 1. Inline <link rel="stylesheet"> tags
-  const linkRegex = /<link[^>]*href="([^"]+\.css)"[^>]*rel="stylesheet"[^>]*\/?>/g;
+  // 1. Inline <link rel="stylesheet"> tags (handles href before or after rel)
+  const linkRegex = /<link[^>]*href="([^"]+\.css)"[^>]*\/?>/g;
   const replacements = [];
   let match;
 
   while ((match = linkRegex.exec(html)) !== null) {
+    if (!match[0].includes('rel="stylesheet"')) continue;
     const fullTag = match[0];
     const href = match[1];
 
-    const cssPath = href.startsWith("/")
-      ? resolve(outputDir, href.slice(1))
-      : resolve(dirname(htmlPath), href);
+    let resolvedHref = href;
+    if (basePath && resolvedHref.startsWith(`/${basePath}/`)) {
+      resolvedHref = resolvedHref.slice(basePath.length + 1);
+    }
+    const cssPath = resolvedHref.startsWith("/")
+      ? resolve(outputDir, resolvedHref.slice(1))
+      : resolve(dirname(htmlPath), resolvedHref);
 
     try {
       const css = readFileSync(cssPath, "utf-8");
