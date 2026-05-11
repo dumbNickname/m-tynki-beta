@@ -72,9 +72,8 @@ console.log("robots.txt: generated");
 
 // --- llms.txt ---
 const servicesList = [
-  "Tynki gipsowe",
+  "Tynki maszynowe gipsowe",
   "Tynki gipsowe ze szlichtą wygładzającą pod malowanie",
-
   "Tynki gipsowe utwardzane",
   "Gładź natryskowa",
   "Zabudowy z płyt gipsowo-kartonowych (G-K)",
