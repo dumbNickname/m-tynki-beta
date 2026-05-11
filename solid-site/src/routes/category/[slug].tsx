@@ -27,7 +27,7 @@ export default function CategoryPage() {
     <Layout>
       <SeoHead
         title={`${categoryLabel()} - Realizacje`}
-        canonical={params.slug === "wszystkie" ? "/realizacje" : `/category/${params.slug}`}
+        canonical={`/category/${params.slug}`}
         description={`Realizacje w kategorii „${categoryLabel()}" — tynki gipsowe ze szlichtą wygładzającą pod malowanie. Firma M-TYNK Wrocław.`}
         ogImage="images/uploads/elementor/thumbs/tynk-ze-szlichta-wygladzajaca-2-1-qbc493vjwnj8vdtfz6et930fnfrti3rzhl17p4djqe.png"
         breadcrumbs={[
@@ -52,7 +52,7 @@ export default function CategoryPage() {
             <For each={navigation.categories}>
               {(cat) => (
                 <NavLink
-                  href={`/category/${cat.slug}`}
+                  href={cat.href}
                   class={`${styles.categoryLink} ${cat.slug === params.slug ? styles.categoryLinkActive : ""}`}
                 >
                   {cat.label}

@@ -25,7 +25,6 @@ export default defineConfig({
         "/realizacje/tynkowanie-scian-pod-malowanie",
         "/realizacje/tynkowanie-scian-we-wroclawiu",
         "/realizacje/tynkowanie-w-domu-jednorodzinnym",
-        "/category/wszystkie",
         "/category/malowanie-scian",
         "/category/tynk-ze-szlichta-wygladzajaca",
         "/category/zabudowy-z-plyt-gk",

@@ -15,9 +15,9 @@
     { "label": "Polityka prywatności", "href": "/polityka-prywatnosci" }
   ],
   "categories": [
-    { "label": "Wszystkie", "slug": "wszystkie" },
-    { "label": "Malowanie ścian", "slug": "malowanie-scian" },
-    { "label": "Tynk ze szlichtą wygładzającą", "slug": "tynk-ze-szlichta-wygladzajaca" },
-    { "label": "Zabudowy z płyt GK", "slug": "zabudowy-z-plyt-gk" }
+    { "label": "Wszystkie", "slug": "wszystkie", "href": "/realizacje" },
+    { "label": "Malowanie ścian", "slug": "malowanie-scian", "href": "/category/malowanie-scian" },
+    { "label": "Tynk ze szlichtą wygładzającą", "slug": "tynk-ze-szlichta-wygladzajaca", "href": "/category/tynk-ze-szlichta-wygladzajaca" },
+    { "label": "Zabudowy z płyt GK", "slug": "zabudowy-z-plyt-gk", "href": "/category/zabudowy-z-plyt-gk" }
   ]
 }

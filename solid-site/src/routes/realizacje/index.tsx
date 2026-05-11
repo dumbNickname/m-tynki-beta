@@ -37,7 +37,10 @@ export default function Realizacje() {
           <nav class={styles.categoryNav}>
             <For each={navigation.categories}>
               {(cat) => (
-                <NavLink href={`/category/${cat.slug}`} class={styles.categoryLink}>
+                <NavLink
+                  href={cat.href}
+                  class={styles.categoryLink}
+                >
                   {cat.label}
                 </NavLink>
               )}
