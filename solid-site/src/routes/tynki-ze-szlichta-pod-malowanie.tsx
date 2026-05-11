@@ -43,6 +43,14 @@ const faqs = [
     question: "Jaki jest czas realizacji tynkowania?",
     answer: "Czas realizacji zależy od powierzchni do otynkowania. Dla domu jednorodzinnego o powierzchni ok. 500–800 m² prace trwają zazwyczaj od 7 do 25 dni roboczych. Dokładny termin ustalamy indywidualnie po zapoznaniu się z zakresem prac.",
   },
+  {
+    question: "Ile kosztuje tynkowanie maszynowe we Wrocławiu?",
+    answer: "Cena tynków maszynowych zależy od wielu czynników: powierzchni do otynkowania, stanu ścian, rodzaju materiału oraz zakresu prac wykończeniowych. Ceny rynkowe zmieniają się dynamicznie, dlatego każde zlecenie wyceniamy indywidualnie. Zadzwoń po bezpłatną wycenę — podamy aktualną cenę dopasowaną do Twojej inwestycji.",
+  },
+  {
+    question: "Czy wycena tynków jest bezpłatna?",
+    answer: "Tak — wycena jest zawsze bezpłatna i niezobowiązująca. Po kontakcie telefonicznym ustalamy szczegóły inwestycji i przedstawiamy indywidualną ofertę. Obsługujemy Wrocław i okolice.",
+  },
 ];
 
 export default function TynkiService() {

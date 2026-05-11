@@ -74,7 +74,8 @@ export default function Home() {
           <div class={styles.heroContent}>
             <span class={styles.heroBadge}>Od 1999 roku</span>
             <h1>
-               Tynki Wrocław i okolice<br />— tynki gipsowe ze szlichtą<br />wygładzającą pod malowanie
+              <span class={styles.heroLocation}>Tynki Wrocław i okolice</span>
+              <span class={styles.heroService}>Tynki gipsowe ze szlichtą wygładzającą pod malowanie</span>
             </h1>
             <p class={styles.heroSubtitle}>Profesjonalne usługi tynkarskie we Wrocławiu i okolicach</p>
             <div class={styles.heroActions}>
@@ -140,7 +141,7 @@ export default function Home() {
       <section class="section">
         <div class="container text-center">
           <span class={styles.sectionTag}>Zaufali nam</span>
-          <h2>Opinie naszych klientów</h2>
+          <h2>Opinie klientów o firmie tynkarskiej M-TYNK</h2>
           <Reviews />
         </div>
       </section>
@@ -149,7 +150,7 @@ export default function Home() {
         <div class="container">
           <div class="text-center">
             <span class={styles.sectionTag}>Co oferujemy</span>
-            <h2>Nasze usługi</h2>
+            <h2>Nasze usługi tynkarskie Wrocław</h2>
           </div>
           <div class={styles.servicesGrid}>
             <For each={services}>
@@ -197,7 +198,7 @@ export default function Home() {
         <div class="container">
           <div class="text-center">
             <span class={styles.sectionTag}>Nasz proces</span>
-            <h2>Jak działamy?</h2>
+            <h2>Jak wykonujemy tynki maszynowe?</h2>
           </div>
           <div class={styles.timeline}>
             <For each={steps}>

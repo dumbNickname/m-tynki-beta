@@ -202,6 +202,8 @@ export default function SeoHead(props: SeoHeadProps) {
         </>
       )}
       <Meta name="twitter:card" content="summary_large_image" />
+      <Meta name="twitter:title" content={pageTitle()} />
+      {props.description && <Meta name="twitter:description" content={props.description} />}
       {props.dateModified && <Meta property="article:modified_time" content={props.dateModified} />}
       {props.canonical && <Link rel="alternate" hreflang="pl" href={`${site.url}${props.canonical}`} />}
       {props.canonical && <Link rel="alternate" hreflang="x-default" href={`${site.url}${props.canonical}`} />}
