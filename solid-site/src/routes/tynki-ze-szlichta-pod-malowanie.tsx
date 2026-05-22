@@ -3,6 +3,7 @@ import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import PageHeader from "~/components/PageHeader";
 import PostCard from "~/components/PostCard";
+import NavLink from "~/components/NavLink";
 import site from "~/data/site.json";
 import posts from "~/data/posts.json";
 import navigation from "~/data/navigation.json";
@@ -143,9 +144,9 @@ export default function TynkiService() {
               <p><strong>Obsługiwane lokalizacje:</strong> Wrocław, powiat wrocławski, Trzebnica, Oława, Sobótka, Długołęka, Miękinia, Domasław, Dobrzykowice, Lutynia.</p>
             </div>
             <div class={styles.localLinks}>
-              <a href="/uslugi/tynki-maszynowe-wroclaw">Tynki maszynowe Wrocław</a>
-              <a href="/uslugi/tynki-gipsowe-wroclaw">Tynki gipsowe Wrocław</a>
-              <a href="/uslugi/firma-tynkarska-wroclaw">Firma tynkarska Wrocław</a>
+              <NavLink href="/uslugi/tynki-maszynowe-wroclaw">Tynki maszynowe Wrocław</NavLink>
+              <NavLink href="/uslugi/tynki-gipsowe-wroclaw">Tynki gipsowe Wrocław</NavLink>
+              <NavLink href="/uslugi/firma-tynkarska-wroclaw">Firma tynkarska Wrocław</NavLink>
             </div>
           </div>
         </div>
@@ -199,7 +200,7 @@ export default function TynkiService() {
             </For>
           </div>
           <div class="text-center" style={{ "margin-top": "2rem" }}>
-            <a class="btn btn-outline" href="/realizacje">Wszystkie realizacje</a>
+            <NavLink class="btn btn-outline" href="/realizacje">Wszystkie realizacje</NavLink>
           </div>
         </div>
       </section>

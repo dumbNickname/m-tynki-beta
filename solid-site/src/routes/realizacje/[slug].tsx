@@ -4,6 +4,7 @@ import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import PageHeader from "~/components/PageHeader";
 import Gallery from "~/components/Gallery";
+import NavLink from "~/components/NavLink";
 import posts from "~/data/posts.json";
 import styles from "./post.module.css";
 
@@ -68,7 +69,7 @@ export default function PostPage() {
 
           <section class="section">
             <div class="container text-center">
-              <p>Dowiedz się więcej o naszej metodzie — <a href="/tynki-ze-szlichta-pod-malowanie">tynki ze szlichtą wygładzającą pod malowanie</a>.</p>
+              <p>Dowiedz się więcej o naszej metodzie — <NavLink href="/tynki-ze-szlichta-pod-malowanie">tynki ze szlichtą wygładzającą pod malowanie</NavLink>.</p>
             </div>
           </section>
         </Layout>
