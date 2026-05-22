@@ -52,8 +52,9 @@ export default function Home() {
     <Layout>
       <SeoHead
         canonical="/"
-        description="Tynki Wrocław i okolice ✓ Tynki maszynowe ze szlichtą wygładzającą pod malowanie. Firma tynkarska M-TYNK — profesjonalne usługi tynkarskie od 1999 roku. Bezpłatna wycena!"
+        description="Tynki maszynowe Wrocław i okolice ✓ Tynki gipsowe ze szlichtą pod malowanie. Firma tynkarska M-TYNK — usługi tynkarskie od 1999 roku. Bezpłatna wycena!"
         ogImage="images/uploads/elementor/thumbs/tynk-ze-szlichta-wygladzajaca-2-1-qbc493vjwnj8vdtfz6et930fnfrti3rzhl17p4djqe.png"
+        includeAggregateRating
         datePublished="2023-08-23T12:08:08+00:00"
         dateModified="2024-09-30T08:10:47+00:00"
         breadcrumbs={[{ name: "HOME" }]}
@@ -74,7 +75,7 @@ export default function Home() {
           <div class={styles.heroContent}>
             <span class={styles.heroBadge}>Od 1999 roku</span>
             <h1>
-              <span class={styles.heroLocation}>Tynki Wrocław i okolice</span>
+              <span class={styles.heroLocation}>Tynki maszynowe Wrocław i okolice</span>
               <span class={styles.heroService}>Tynki gipsowe ze szlichtą wygładzającą pod malowanie</span>
             </h1>
             <p class={styles.heroSubtitle}>Ściany gotowe do malowania — bez dodatkowej gładzi</p>
@@ -92,7 +93,7 @@ export default function Home() {
               <span class={styles.sectionTag}>Nasza specjalność</span>
               <h2>Tynki gipsowe ze szlichtą wygładzającą pod malowanie</h2>
               <p class={styles.lead}>Jesteśmy firmą budowlaną świadczącą swoje usługi od 1999r co jest gwarancją jakości usług.</p>
-              <p>Skontaktuj się z nami i przekonaj się o naszym profesjonalizmie! Zobacz nasze <NavLink href="/realizacje">realizacje</NavLink> lub dowiedz się więcej o <NavLink href="/tynki-ze-szlichta-pod-malowanie">tynkach gipsowych ze szlichtą pod malowanie</NavLink>.</p>
+              <p>Skontaktuj się z nami i przekonaj się o naszym profesjonalizmie! Zobacz nasze <NavLink href="/realizacje">realizacje</NavLink> lub dowiedz się więcej o <NavLink href="/tynki-ze-szlichta-pod-malowanie">tynkach gipsowych ze szlichtą pod malowanie</NavLink>, <NavLink href="/uslugi/tynki-maszynowe-wroclaw">tynkach maszynowych we Wrocławiu</NavLink> i ofercie <NavLink href="/uslugi/firma-tynkarska-wroclaw">firmy tynkarskiej M-TYNK</NavLink>.</p>
               <div class={styles.statsRow}>
                 <div class={styles.statItem}>
                   <span class={styles.statNumber}>25+</span>
@@ -158,7 +159,7 @@ export default function Home() {
         <div class="container">
           <div class="text-center">
             <span class={styles.sectionTag}>Co oferujemy</span>
-            <h2>Nasze usługi tynkarskie Wrocław</h2>
+              <h2>Nasze usługi tynkarskie we Wrocławiu</h2>
           </div>
           <div class={styles.servicesGrid}>
             <For each={services}>
@@ -227,7 +228,8 @@ export default function Home() {
       <section class={`section ${styles.cta}`}>
         <div class="container text-center">
           <h2>Skontaktuj się z nami</h2>
-          <p>Zadzwoń i umów się na bezpłatną wycenę!</p>
+          <p>Zadzwoń i umów się na bezpłatną wycenę! Obsługujemy Wrocław, powiat wrocławski, Trzebnicę, Oławę, Sobótkę, Długołękę, Miękinię, Domasław, Dobrzykowice i Lutynię.</p>
+          <p><strong>Adres:</strong> {site.address} · <strong>E-mail:</strong> <a href={`mailto:${site.email}`}>{site.email}</a></p>
           <a class="btn btn-primary btn-lg" href={`tel:${site.phoneRaw}`}>
             {site.phone}
           </a>

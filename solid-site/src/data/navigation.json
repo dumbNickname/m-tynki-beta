@@ -3,6 +3,7 @@
     { "label": "Strona Główna", "href": "/" },
     { "label": "O Nas", "href": "/#o-nas" },
     { "label": "Tynki ze szlichtą pod malowanie", "href": "/tynki-ze-szlichta-pod-malowanie" },
+    { "label": "Tynki maszynowe", "href": "/uslugi/tynki-maszynowe-wroclaw" },
     { "label": "Realizacje", "href": "/realizacje" },
     { "label": "Galeria", "href": "/galeria" },
     { "label": "Kontakt", "href": "/kontakt" }
@@ -10,6 +11,9 @@
   "footer": [
     { "label": "Strona Główna", "href": "/" },
     { "label": "Tynki ze Szlichtą pod Malowanie", "href": "/tynki-ze-szlichta-pod-malowanie" },
+    { "label": "Tynki maszynowe Wrocław", "href": "/uslugi/tynki-maszynowe-wroclaw" },
+    { "label": "Tynki gipsowe Wrocław", "href": "/uslugi/tynki-gipsowe-wroclaw" },
+    { "label": "Firma tynkarska Wrocław", "href": "/uslugi/firma-tynkarska-wroclaw" },
     { "label": "O nas", "href": "/#o-nas" },
     { "label": "Kontakt", "href": "/kontakt" },
     { "label": "Polityka prywatności", "href": "/polityka-prywatnosci" }

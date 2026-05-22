@@ -58,9 +58,9 @@ export default function TynkiService() {
   return (
     <Layout>
       <SeoHead
-        title="Tynki ze Szlichtą pod Malowanie Wrocław"
+        title="Tynki maszynowe ze szlichtą pod malowanie Wrocław"
         canonical="/tynki-ze-szlichta-pod-malowanie"
-        description="Tynki gipsowe ze szlichtą gładziolitu pod malowanie Wrocław. Ściany gotowe do malowania bez dodatkowej gładzi — oszczędność czasu i pieniędzy."
+        description="Tynki maszynowe i gipsowe ze szlichtą gładziolitu pod malowanie Wrocław. Ściany gotowe do malowania bez dodatkowej gładzi."
         ogImage="images/uploads/2023/08/tynki-ze-szlichta-pod-malowanie.jpg"
         dateModified="2023-09-04T09:44:26+00:00"
         breadcrumbs={[
@@ -71,14 +71,14 @@ export default function TynkiService() {
       />
 
       <PageHeader
-        title="Tynki ze Szlichtą pod Malowanie"
+        title="Tynki maszynowe ze szlichtą pod malowanie"
         breadcrumbs={[{ label: "HOME", href: "/" }, { label: "Tynki ze szlichtą pod malowanie" }]}
       />
 
       <section class="section">
         <div class={`container ${styles.grid}`}>
           <div class={styles.text1}>
-            <h2 class={styles.sectionTitle}>Tynki gipsowe ze szlichtą gładziolitu wygładzającego pod malowanie</h2>
+            <h2 class={styles.sectionTitle}>Tynki maszynowe gipsowe ze szlichtą gładziolitu wygładzającego pod malowanie we Wrocławiu</h2>
             <div class={styles.divider} />
             <p>
               Nasza Firma posiada w swojej ofercie coś, co wyróżnia ją na tle innych firm zajmujących się tynkowaniem. Oferowane przez nas Tynki Gipsowe są wykańczane Szlichtą z GŁADZIOLITEM Wygładzającym, która nadaje gładkość tynkowanej ścianie. Dzięki Gładziolitowi, ściany i sufity w pomieszczeniu są perfekcyjnie równe i można od razu po wyschnięciu przejść do malowania.
@@ -87,7 +87,7 @@ export default function TynkiService() {
               Tynk ze Gładziolitem Wygładzającym powoduje brak konieczności wykonywania dodatkowej gładzi na powierzchni tynku. Brak konieczności stosowania gładzi prowadzi do oszczędności czasu i pieniędzy.
             </p>
             <p>
-              Na terenie Wrocławia, gdzie znajduje się siedziba naszej firmy, a także w okolicach, jesteśmy jedyną firmą, która stawia na Tynk Gipsowy z Gładziolitem Wygładzającym. Możemy się pochwalić szeregiem opinii naszych klientów, którzy chwalą nasze przywiązanie do detali, pracowitość i przede wszystkim jakość wykonanych tynków.
+              Na terenie Wrocławia, gdzie znajduje się siedziba naszej firmy, a także w okolicach, wykonujemy tynki maszynowe gipsowe z Gładziolitem Wygładzającym. Możemy się pochwalić szeregiem opinii naszych klientów, którzy chwalą nasze przywiązanie do detali, pracowitość i przede wszystkim jakość wykonanych tynków.
             </p>
           </div>
 
@@ -127,6 +127,25 @@ export default function TynkiService() {
               <a class="btn btn-primary" href={`tel:${site.phoneRaw}`}>
                 Umów się na wizytę!
               </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class={`section ${styles.localSection}`}>
+        <div class="container">
+          <div class={styles.localCard}>
+            <div>
+              <h2>Firma tynkarska Wrocław — dane kontaktowe i obszar działania</h2>
+              <p>Wykonujemy tynki maszynowe, tynki gipsowe ze szlichtą oraz przygotowanie ścian pod malowanie we Wrocławiu i okolicach.</p>
+              <p><strong>Adres:</strong> {site.address}</p>
+              <p><strong>Telefon:</strong> <a href={`tel:${site.phoneRaw}`}>{site.phone}</a> · <strong>E-mail:</strong> <a href={`mailto:${site.email}`}>{site.email}</a></p>
+              <p><strong>Obsługiwane lokalizacje:</strong> Wrocław, powiat wrocławski, Trzebnica, Oława, Sobótka, Długołęka, Miękinia, Domasław, Dobrzykowice, Lutynia.</p>
+            </div>
+            <div class={styles.localLinks}>
+              <a href="/uslugi/tynki-maszynowe-wroclaw">Tynki maszynowe Wrocław</a>
+              <a href="/uslugi/tynki-gipsowe-wroclaw">Tynki gipsowe Wrocław</a>
+              <a href="/uslugi/firma-tynkarska-wroclaw">Firma tynkarska Wrocław</a>
             </div>
           </div>
         </div>

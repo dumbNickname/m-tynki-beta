@@ -16,6 +16,11 @@ const read = (rel) => JSON.parse(readFileSync(resolve(root, rel), "utf-8"));
 const site = read("src/data/site.json");
 const posts = read("src/data/posts.json");
 const navigation = read("src/data/navigation.json");
+const servicePages = [
+  "tynki-maszynowe-wroclaw",
+  "tynki-gipsowe-wroclaw",
+  "firma-tynkarska-wroclaw",
+];
 
 const SITE_URL = site.url;
 const TODAY = new Date().toISOString().slice(0, 10);
@@ -28,6 +33,11 @@ const pages = [
   { loc: "/tynki-ze-szlichta-pod-malowanie", priority: "0.9" },
   { loc: "/polityka-prywatnosci", priority: "0.3" },
 ];
+
+const serviceEntries = servicePages.map((slug) => ({
+  loc: `/uslugi/${slug}`,
+  priority: "0.85",
+}));
 
 const postEntries = posts.map((p) => ({
   loc: `/realizacje/${p.slug}`,
@@ -42,7 +52,7 @@ const categoryEntries = navigation.categories
     priority: "0.5",
   }));
 
-const allEntries = [...pages, ...postEntries, ...categoryEntries];
+const allEntries = [...pages, ...serviceEntries, ...postEntries, ...categoryEntries];
 
 // --- sitemap.xml ---
 const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>

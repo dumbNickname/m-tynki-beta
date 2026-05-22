@@ -42,6 +42,34 @@
   align-self: center;
 }
 
+.localSection {
+  background: var(--color-white);
+}
+
+.localCard {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 2rem;
+  padding: 2rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.localLinks {
+  display: grid;
+  gap: 0.75rem;
+  align-content: center;
+}
+
+.localLinks a {
+  display: block;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-weight: 600;
+}
+
 .benefitsSection {
   background: var(--color-light-gray);
 }
@@ -188,7 +216,8 @@
     margin: 0 auto;
   }
 
-  .benefitsGrid {
+  .benefitsGrid,
+  .localCard {
     grid-template-columns: 1fr;
   }
 

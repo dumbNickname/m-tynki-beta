@@ -1,0 +1,123 @@
+.hero {
+  background: linear-gradient(135deg, var(--color-light-gray) 0%, var(--color-white) 100%);
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+}
+
+.lead {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text-light);
+}
+
+.card {
+  padding: 2rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-white);
+  box-shadow: var(--shadow-card);
+}
+
+.card p {
+  margin-bottom: 0.75rem;
+}
+
+.list {
+  display: grid;
+  gap: 1rem;
+  padding-left: 0;
+  margin: 2rem 0 0;
+}
+
+.list li {
+  position: relative;
+  padding-left: 1.75rem;
+  line-height: 1.7;
+}
+
+.list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+.serviceLinks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.serviceLink {
+  display: block;
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-white);
+  font-weight: 600;
+}
+
+.faqList {
+  max-width: 800px;
+  margin: 2rem auto 0;
+}
+
+.faqItem {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.faqQuestion {
+  padding: 1.25rem 1.5rem;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.faqAnswer {
+  padding: 0 1.5rem 1.25rem;
+  color: var(--color-text-light);
+  margin: 0;
+}
+
+.cta {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: var(--color-white);
+}
+
+.cta h2 {
+  color: var(--color-white);
+}
+
+.cta p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 768px) {
+  .heroGrid,
+  .serviceLinks {
+    grid-template-columns: 1fr;
+  }
+}

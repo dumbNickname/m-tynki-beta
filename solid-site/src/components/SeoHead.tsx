@@ -23,6 +23,7 @@ interface SeoHeadProps {
   dateModified?: string;
   breadcrumbs?: BreadcrumbItem[];
   faq?: FaqItem[];
+  includeAggregateRating?: boolean;
 }
 
 export default function SeoHead(props: SeoHeadProps) {
@@ -76,19 +77,23 @@ export default function SeoHead(props: SeoHeadProps) {
         { "@type": "Place", name: "Sobótka" },
         { "@type": "Place", name: "Trzebnica" },
         { "@type": "Place", name: "Oława" },
+        { "@type": "Place", name: "Długołęka" },
+        { "@type": "Place", name: "Miękinia" },
         { "@type": "Place", name: "Domasław" },
         { "@type": "Place", name: "Dobrzykowice" },
         { "@type": "Place", name: "Lutynia" },
       ],
       sameAs: [site.facebookUrl, site.instagramUrl],
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: (reviews.reduce((sum, r) => sum + r.stars, 0) / reviews.length).toFixed(1),
-        bestRating: "5",
-        worstRating: "1",
-        ratingCount: reviews.length,
-        reviewCount: reviews.length,
-      },
+      ...(props.includeAggregateRating ? {
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: (reviews.reduce((sum, r) => sum + r.stars, 0) / reviews.length).toFixed(1),
+          bestRating: "5",
+          worstRating: "1",
+          ratingCount: reviews.length,
+          reviewCount: reviews.length,
+        },
+      } : {}),
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "Usługi tynkarskie",
