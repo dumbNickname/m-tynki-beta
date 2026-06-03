@@ -14,14 +14,14 @@ export default function PolitykaPrywatnosci() {
         ogImage={site.logo}
         dateModified="2023-08-25T13:09:32+00:00"
         breadcrumbs={[
-          { name: "HOME", href: "/" },
+          { name: "Strona Główna", href: "/" },
           { name: "Polityka prywatności" },
         ]}
       />
 
       <PageHeader
         title="Polityka prywatności"
-        breadcrumbs={[{ label: "HOME", href: "/" }, { label: "Polityka prywatności" }]}
+        breadcrumbs={[{ label: "Strona Główna", href: "/" }, { label: "Polityka prywatności" }]}
       />
 
       <section class="section">

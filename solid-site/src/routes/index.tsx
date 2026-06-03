@@ -52,12 +52,6 @@ export default function Home() {
     <Layout>
       <SeoHead
         canonical="/"
-        description="Tynki maszynowe Wrocław i okolice ✓ Tynki gipsowe ze szlichtą pod malowanie. Firma tynkarska M-TYNK — usługi tynkarskie od 1999 roku. Bezpłatna wycena!"
-        ogImage="images/uploads/elementor/thumbs/tynk-ze-szlichta-wygladzajaca-2-1-qbc493vjwnj8vdtfz6et930fnfrti3rzhl17p4djqe.png"
-        includeAggregateRating
-        datePublished="2023-08-23T12:08:08+00:00"
-        dateModified="2024-09-30T08:10:47+00:00"
-        breadcrumbs={[{ name: "HOME" }]}
         faq={steps.map((s) => ({ question: `${s.title} — jak to robimy?`, answer: s.content }))}
       />
 

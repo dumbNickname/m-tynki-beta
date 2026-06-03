@@ -23,7 +23,7 @@ export default function ServiceLocationPage() {
             ogImage="images/uploads/2023/08/tynki-ze-szlichta-pod-malowanie.jpg"
             dateModified="2026-05-22T00:00:00+00:00"
             breadcrumbs={[
-              { name: "HOME", href: "/" },
+              { name: "Strona Główna", href: "/" },
               { name: "Usługi", href: "/tynki-ze-szlichta-pod-malowanie" },
               { name: p().h1 },
             ]}
@@ -33,7 +33,7 @@ export default function ServiceLocationPage() {
           <PageHeader
             title={p().h1}
             breadcrumbs={[
-              { label: "HOME", href: "/" },
+              { label: "Strona Główna", href: "/" },
               { label: "Usługi", href: "/tynki-ze-szlichta-pod-malowanie" },
               { label: p().h1 },
             ]}

@@ -14,14 +14,14 @@ export default function Galeria() {
         ogImage="images/uploads/2023/09/img-20230904-wa0001.jpg"
         dateModified="2023-09-04T13:54:30+00:00"
         breadcrumbs={[
-          { name: "HOME", href: "/" },
+          { name: "Strona Główna", href: "/" },
           { name: "Galeria" },
         ]}
       />
 
       <PageHeader
         title="Galeria"
-        breadcrumbs={[{ label: "HOME", href: "/" }, { label: "Galeria" }]}
+        breadcrumbs={[{ label: "Strona Główna", href: "/" }, { label: "Galeria" }]}
       />
 
       <section class="section">

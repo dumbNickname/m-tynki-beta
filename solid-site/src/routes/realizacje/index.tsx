@@ -21,14 +21,14 @@ export default function Realizacje() {
         ogImage="images/uploads/elementor/thumbs/tynk-ze-szlichta-wygladzajaca-2-1-qbc493vjwnj8vdtfz6et930fnfrti3rzhl17p4djqe.png"
         dateModified="2024-09-30T08:10:47+00:00"
         breadcrumbs={[
-          { name: "HOME", href: "/" },
+          { name: "Strona Główna", href: "/" },
           { name: "Realizacje" },
         ]}
       />
 
       <PageHeader
         title="Realizacje"
-        breadcrumbs={[{ label: "HOME", href: "/" }, { label: "Realizacje" }]}
+        breadcrumbs={[{ label: "Strona Główna", href: "/" }, { label: "Realizacje" }]}
       />
 
       <section class="section">

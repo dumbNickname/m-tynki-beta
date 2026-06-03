@@ -10,18 +10,19 @@ export default function Kontakt() {
       <SeoHead
         title="Kontakt — Tynki Gipsowe ze Szlichtą Wrocław"
         canonical="/kontakt"
+        pageType="ContactPage"
         description={`Skontaktuj się z firmą M-TYNK Wrocław. Adres: ${site.address}. Telefon: ${site.phone}. E-mail: ${site.email}. Tynki gipsowe ze szlichtą pod malowanie.`}
         ogImage="images/ocena-google-300x300-1-150x150-1.png"
         dateModified="2024-06-19T10:29:05+00:00"
         breadcrumbs={[
-          { name: "HOME", href: "/" },
+          { name: "Strona Główna", href: "/" },
           { name: "Kontakt" },
         ]}
       />
 
       <PageHeader
         title="Kontakt"
-        breadcrumbs={[{ label: "HOME", href: "/" }, { label: "Kontakt" }]}
+        breadcrumbs={[{ label: "Strona Główna", href: "/" }, { label: "Kontakt" }]}
       />
 
       <section class="section">

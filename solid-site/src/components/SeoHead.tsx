@@ -1,6 +1,5 @@
 import { Title, Meta, Link } from "@solidjs/meta";
 import site from "~/data/site.json";
-import navigation from "~/data/navigation.json";
 import reviews from "~/data/reviews.json";
 import { withTrailingSlash } from "~/utils/url";
 
@@ -20,11 +19,11 @@ interface SeoHeadProps {
   canonical?: string;
   ogImage?: string;
   ogType?: string;
+  pageType?: "ContactPage" | "AboutPage" | "ImageGallery";
   datePublished?: string;
   dateModified?: string;
   breadcrumbs?: BreadcrumbItem[];
   faq?: FaqItem[];
-  includeAggregateRating?: boolean;
 }
 
 export default function SeoHead(props: SeoHeadProps) {
@@ -35,9 +34,10 @@ export default function SeoHead(props: SeoHeadProps) {
     const graph: object[] = [];
 
     graph.push({
-      "@type": ["Organization", "LocalBusiness"],
+      "@type": ["Organization", "HomeAndConstructionBusiness"],
       "@id": `${site.url}/#organization`,
-      name: site.title,
+      name: site.name,
+      alternateName: site.title,
       url: site.url,
       logo: {
         "@type": "ImageObject",
@@ -63,9 +63,10 @@ export default function SeoHead(props: SeoHeadProps) {
       },
       geo: {
         "@type": "GeoCoordinates",
-        latitude: 51.137,
-        longitude: 16.978,
+        latitude: 51.1403259,
+        longitude: 17.0283809,
       },
+      hasMap: "https://www.google.com/maps/place/?q=place_id:ChIJreagzIzpD0cRAlXgmSCeWFg",
       foundingDate: "1999",
       openingHoursSpecification: {
         "@type": "OpeningHoursSpecification",
@@ -76,26 +77,42 @@ export default function SeoHead(props: SeoHeadProps) {
       areaServed: [
         { "@type": "City", name: "Wrocław" },
         { "@type": "AdministrativeArea", name: "Powiat wrocławski" },
-        { "@type": "Place", name: "Sobótka" },
-        { "@type": "Place", name: "Trzebnica" },
-        { "@type": "Place", name: "Oława" },
-        { "@type": "Place", name: "Długołęka" },
-        { "@type": "Place", name: "Miękinia" },
-        { "@type": "Place", name: "Domasław" },
-        { "@type": "Place", name: "Dobrzykowice" },
-        { "@type": "Place", name: "Lutynia" },
+        { "@type": "City", name: "Sobótka" },
+        { "@type": "City", name: "Trzebnica" },
+        { "@type": "City", name: "Oława" },
+        { "@type": "City", name: "Długołęka" },
+        { "@type": "City", name: "Miękinia" },
+        { "@type": "City", name: "Domasław" },
+        { "@type": "City", name: "Dobrzykowice" },
+        { "@type": "City", name: "Lutynia" },
       ],
-      sameAs: [site.facebookUrl, site.instagramUrl],
-      ...(props.includeAggregateRating ? {
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: (reviews.reduce((sum, r) => sum + r.stars, 0) / reviews.length).toFixed(1),
+      sameAs: [
+        site.facebookUrl,
+        site.instagramUrl,
+        "https://www.google.com/maps/place/?q=place_id:ChIJreagzIzpD0cRAlXgmSCeWFg",
+        "https://maps.google.com/?cid=6365008272716023554",
+        site.googleReviewUrl,
+      ],
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: (reviews.reduce((sum, r) => sum + r.stars, 0) / reviews.length).toFixed(1),
+        bestRating: "5",
+        worstRating: "1",
+        ratingCount: reviews.length,
+        reviewCount: reviews.length,
+      },
+      review: reviews.map((r) => ({
+        "@type": "Review",
+        author: { "@type": "Person", name: r.name },
+        datePublished: r.date,
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: r.stars,
           bestRating: "5",
           worstRating: "1",
-          ratingCount: reviews.length,
-          reviewCount: reviews.length,
         },
-      } : {}),
+        reviewBody: r.text,
+      })),
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "Usługi tynkarskie",
@@ -119,17 +136,9 @@ export default function SeoHead(props: SeoHeadProps) {
       inLanguage: "pl-PL",
     });
 
-    graph.push({
-      "@type": "SiteNavigationElement",
-      "@id": `${site.url}/#navigation`,
-      name: navigation.main.map((item) => item.label),
-      url: navigation.main
-        .filter((item) => !item.href.includes("#"))
-        .map((item) => `${site.url}${item.href}`),
-    });
-
+    const baseWebPageType = props.ogType === "article" ? "Article" : "WebPage";
     const webPage: Record<string, unknown> = {
-      "@type": props.ogType === "article" ? "Article" : "WebPage",
+      "@type": props.pageType ? [baseWebPageType, props.pageType] : baseWebPageType,
       "@id": canonicalPath() ? `${site.url}${canonicalPath()}` : site.url,
       url: canonicalPath() ? `${site.url}${canonicalPath()}` : site.url,
       name: pageTitle(),

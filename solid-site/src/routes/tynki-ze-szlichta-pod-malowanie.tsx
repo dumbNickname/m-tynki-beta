@@ -65,7 +65,7 @@ export default function TynkiService() {
         ogImage="images/uploads/2023/08/tynki-ze-szlichta-pod-malowanie.jpg"
         dateModified="2023-09-04T09:44:26+00:00"
         breadcrumbs={[
-          { name: "HOME", href: "/" },
+          { name: "Strona Główna", href: "/" },
           { name: "Tynki ze szlichtą pod malowanie" },
         ]}
         faq={faqs}
@@ -73,7 +73,7 @@ export default function TynkiService() {
 
       <PageHeader
         title="Tynki maszynowe ze szlichtą pod malowanie"
-        breadcrumbs={[{ label: "HOME", href: "/" }, { label: "Tynki ze szlichtą pod malowanie" }]}
+        breadcrumbs={[{ label: "Strona Główna", href: "/" }, { label: "Tynki ze szlichtą pod malowanie" }]}
       />
 
       <section class="section">

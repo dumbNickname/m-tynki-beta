@@ -25,7 +25,7 @@ export default function PostPage() {
             datePublished={`${p().date}T00:00:00+00:00`}
             dateModified={`${p().date}T00:00:00+00:00`}
             breadcrumbs={[
-              { name: "HOME", href: "/" },
+              { name: "Strona Główna", href: "/" },
               { name: "Realizacje", href: "/realizacje" },
               { name: p().title },
             ]}
@@ -34,7 +34,7 @@ export default function PostPage() {
           <PageHeader
             title={p().title}
             breadcrumbs={[
-              { label: "HOME", href: "/" },
+              { label: "Strona Główna", href: "/" },
               { label: "Realizacje", href: "/realizacje" },
               { label: p().title },
             ]}
