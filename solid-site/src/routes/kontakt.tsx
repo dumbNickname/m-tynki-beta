@@ -81,6 +81,39 @@ export default function Kontakt() {
 
       <section class="section" style={{ "padding-top": "0" }}>
         <div class="container">
+          <div class={styles.areaServed}>
+            <h2>Obszar działania we Wrocławiu</h2>
+            <p>Tynkujemy w całym Wrocławiu i okolicach. Realizacje wykonujemy we wszystkich dzielnicach miasta oraz w popularnych osiedlach.</p>
+            <h3>Dzielnice Wrocławia</h3>
+            <ul class={styles.areaList}>
+              <li>Krzyki</li>
+              <li>Fabryczna</li>
+              <li>Psie Pole</li>
+              <li>Stare Miasto</li>
+              <li>Śródmieście</li>
+            </ul>
+            <h3>Popularne osiedla i okolice</h3>
+            <ul class={styles.areaList}>
+              <li>Sępolno</li>
+              <li>Biskupin</li>
+              <li>Karłowice</li>
+              <li>Różanka</li>
+              <li>Maślice</li>
+              <li>Kozanów</li>
+              <li>Gądów Mały</li>
+              <li>Muchobór Wielki</li>
+              <li>Oporów</li>
+              <li>Klecina</li>
+              <li>Jagodno</li>
+              <li>Brochów</li>
+            </ul>
+            <p>Działamy również poza granicami miasta: Sobótka, Trzebnica, Oława, Długołęka, Miękinia, Domasław, Dobrzykowice, Lutynia i okoliczne miejscowości powiatu wrocławskiego.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" style={{ "padding-top": "0" }}>
+        <div class="container">
           <div class={styles.map}>
             <iframe
               loading="lazy"

@@ -85,8 +85,38 @@ writeFileSync(resolve(root, "public/sitemap.xml"), sitemapXml);
 console.log(`sitemap.xml: ${allEntries.length} URLs`);
 
 // --- robots.txt ---
+// AI crawler policy: implicit allow-all is fine for an SMB seeking AI-search
+// visibility, but documenting the policy with explicit Allow rules prevents
+// future maintainers from reflexively blocking these crawlers. If at some
+// point you want to block training-only use while keeping search visibility,
+// flip the rule for that specific crawler from `Allow: /` to `Disallow: /`.
 const robotsTxt = `User-agent: *
 Disallow:
+
+# AI / LLM crawlers — explicit allow (currently the desired policy)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
 
 Sitemap: ${SITE_URL}/sitemap.xml
 `;

@@ -77,6 +77,26 @@ export default function SeoHead(props: SeoHeadProps) {
       areaServed: [
         { "@type": "City", name: "Wrocław" },
         { "@type": "AdministrativeArea", name: "Powiat wrocławski" },
+        // Wrocław administrative districts (dzielnice)
+        { "@type": "AdministrativeArea", name: "Krzyki" },
+        { "@type": "AdministrativeArea", name: "Fabryczna" },
+        { "@type": "AdministrativeArea", name: "Psie Pole" },
+        { "@type": "AdministrativeArea", name: "Stare Miasto" },
+        { "@type": "AdministrativeArea", name: "Śródmieście" },
+        // Popular Wrocław neighborhoods (osiedla)
+        { "@type": "Place", name: "Sępolno" },
+        { "@type": "Place", name: "Biskupin" },
+        { "@type": "Place", name: "Karłowice" },
+        { "@type": "Place", name: "Różanka" },
+        { "@type": "Place", name: "Maślice" },
+        { "@type": "Place", name: "Kozanów" },
+        { "@type": "Place", name: "Gądów Mały" },
+        { "@type": "Place", name: "Muchobór Wielki" },
+        { "@type": "Place", name: "Oporów" },
+        { "@type": "Place", name: "Klecina" },
+        { "@type": "Place", name: "Jagodno" },
+        { "@type": "Place", name: "Brochów" },
+        // Surrounding towns
         { "@type": "City", name: "Sobótka" },
         { "@type": "City", name: "Trzebnica" },
         { "@type": "City", name: "Oława" },

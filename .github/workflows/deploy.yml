@@ -67,3 +67,28 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      # Notify IndexNow (Bing, Yandex, Naver, Seznam) of changed URLs.
+      # Production only — beta carries noindex and shouldn't be advertised.
+      # Key file at public/<KEY>.txt is committed to the repo so the host
+      # at https://wroclawtynki.pl/<KEY>.txt serves it for verification.
+      - name: Notify IndexNow
+        if: github.repository == 'dumbNickname/m-tynki' && success()
+        run: |
+          set -euo pipefail
+          KEY="eecbb864c73e9364035d0dfb10ad23cc"
+          HOST="wroclawtynki.pl"
+          SITEMAP="solid-site/.output/public/sitemap.xml"
+          # Extract <loc> URLs from sitemap.xml into a JSON array.
+          urls=$(grep -oP '(?<=<loc>)[^<]+' "$SITEMAP" | jq -R . | jq -s .)
+          payload=$(jq -n \
+            --arg host "$HOST" \
+            --arg key "$KEY" \
+            --arg keyLoc "https://$HOST/$KEY.txt" \
+            --argjson urlList "$urls" \
+            '{host:$host, key:$key, keyLocation:$keyLoc, urlList:$urlList}')
+          echo "Submitting $(echo "$urls" | jq length) URLs to IndexNow…"
+          curl -sS -X POST https://api.indexnow.org/indexnow \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d "$payload" \
+            -w "HTTP %{http_code}\n"
