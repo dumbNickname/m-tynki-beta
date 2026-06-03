@@ -25,6 +25,18 @@ const servicePages = [
 const SITE_URL = site.url;
 const TODAY = new Date().toISOString().slice(0, 10);
 
+// Mirror of solid-site/src/utils/url.ts withTrailingSlash() — kept as a
+// duplicate because this is a Node ESM build script and importing the .ts
+// utility through tsx is overkill. If the rule changes, update both.
+const withTrailingSlash = (path) => {
+  if (!path) return path;
+  if (path.startsWith("http://") || path.startsWith("https://")) return path;
+  if (path.startsWith("mailto:") || path.startsWith("tel:")) return path;
+  if (path.includes("#") || path.includes("?")) return path;
+  if (path === "/" || path.endsWith("/")) return path;
+  return path + "/";
+};
+
 const pages = [
   { loc: "/", priority: "1.0" },
   { loc: "/kontakt", priority: "0.8" },
@@ -60,7 +72,7 @@ const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
 ${allEntries
   .map(
     (e) => `  <url>
-    <loc>${SITE_URL}${e.loc}</loc>
+    <loc>${SITE_URL}${withTrailingSlash(e.loc)}</loc>
     <lastmod>${e.lastmod || TODAY}</lastmod>
     <priority>${e.priority}</priority>
   </url>`
@@ -121,7 +133,7 @@ ${postsSummary}
 
 ## Linki
 
-${allEntries.map((e) => `- ${SITE_URL}${e.loc}`).join("\n")}
+${allEntries.map((e) => `- ${SITE_URL}${withTrailingSlash(e.loc)}`).join("\n")}
 
 ## Media społecznościowe
 

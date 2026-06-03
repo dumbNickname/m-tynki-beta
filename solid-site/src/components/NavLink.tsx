@@ -1,4 +1,5 @@
 import { JSX } from "solid-js";
+import { withTrailingSlash } from "~/utils/url";
 
 const base = import.meta.env.SERVER_BASE_URL || "";
 
@@ -11,7 +12,7 @@ export default function NavLink(props: NavLinkProps) {
     const h = props.href;
     if (h.startsWith("http") || h.startsWith("mailto:") || h.startsWith("tel:")) return h;
     if (h.startsWith("#")) return h;
-    return base + h;
+    return base + withTrailingSlash(h);
   };
 
   return (

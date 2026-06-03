@@ -2,6 +2,7 @@ import { Title, Meta, Link } from "@solidjs/meta";
 import site from "~/data/site.json";
 import navigation from "~/data/navigation.json";
 import reviews from "~/data/reviews.json";
+import { withTrailingSlash } from "~/utils/url";
 
 interface BreadcrumbItem {
   name: string;
@@ -28,6 +29,7 @@ interface SeoHeadProps {
 
 export default function SeoHead(props: SeoHeadProps) {
   const pageTitle = () => props.title ? `${props.title} - ${site.name}` : site.title;
+  const canonicalPath = () => props.canonical ? withTrailingSlash(props.canonical) : undefined;
 
   const jsonLd = () => {
     const graph: object[] = [];
@@ -128,8 +130,8 @@ export default function SeoHead(props: SeoHeadProps) {
 
     const webPage: Record<string, unknown> = {
       "@type": props.ogType === "article" ? "Article" : "WebPage",
-      "@id": props.canonical ? `${site.url}${props.canonical}` : site.url,
-      url: props.canonical ? `${site.url}${props.canonical}` : site.url,
+      "@id": canonicalPath() ? `${site.url}${canonicalPath()}` : site.url,
+      url: canonicalPath() ? `${site.url}${canonicalPath()}` : site.url,
       name: pageTitle(),
       isPartOf: { "@id": `${site.url}/#website` },
       ...(props.ogType === "article"
@@ -159,7 +161,7 @@ export default function SeoHead(props: SeoHeadProps) {
     if (props.breadcrumbs && props.breadcrumbs.length > 0) {
       graph.push({
         "@type": "BreadcrumbList",
-        "@id": `${props.canonical ? `${site.url}${props.canonical}` : site.url}#breadcrumb`,
+        "@id": `${canonicalPath() ? `${site.url}${canonicalPath()}` : site.url}#breadcrumb`,
         itemListElement: props.breadcrumbs.map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -172,7 +174,7 @@ export default function SeoHead(props: SeoHeadProps) {
     if (props.faq && props.faq.length > 0) {
       graph.push({
         "@type": "FAQPage",
-        "@id": `${props.canonical ? `${site.url}${props.canonical}` : site.url}#faq`,
+        "@id": `${canonicalPath() ? `${site.url}${canonicalPath()}` : site.url}#faq`,
         mainEntity: props.faq.map((item) => ({
           "@type": "Question",
           name: item.question,
@@ -200,18 +202,18 @@ export default function SeoHead(props: SeoHeadProps) {
       {props.ogImage && <Meta property="og:image" content={`${site.url}/${props.ogImage}`} />}
       {props.ogImage && <Meta property="og:image:width" content="1200" />}
       {props.ogImage && <Meta property="og:image:height" content="630" />}
-      {props.canonical && (
+      {canonicalPath() && (
         <>
-          <Link rel="canonical" href={`${site.url}${props.canonical}`} />
-          <Meta property="og:url" content={`${site.url}${props.canonical}`} />
+          <Link rel="canonical" href={`${site.url}${canonicalPath()}`} />
+          <Meta property="og:url" content={`${site.url}${canonicalPath()}`} />
         </>
       )}
       <Meta name="twitter:card" content="summary_large_image" />
       <Meta name="twitter:title" content={pageTitle()} />
       {props.description && <Meta name="twitter:description" content={props.description} />}
       {props.dateModified && <Meta property="article:modified_time" content={props.dateModified} />}
-      {props.canonical && <Link rel="alternate" hreflang="pl" href={`${site.url}${props.canonical}`} />}
-      {props.canonical && <Link rel="alternate" hreflang="x-default" href={`${site.url}${props.canonical}`} />}
+      {canonicalPath() && <Link rel="alternate" hreflang="pl" href={`${site.url}${canonicalPath()}`} />}
+      {canonicalPath() && <Link rel="alternate" hreflang="x-default" href={`${site.url}${canonicalPath()}`} />}
       <script type="application/ld+json" innerHTML={jsonLd()} />
     </>
   );
