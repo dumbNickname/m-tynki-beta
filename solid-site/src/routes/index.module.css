@@ -305,18 +305,14 @@
 .serviceCardFeatured .serviceIcon {
   width: 72px;
   height: 72px;
-  background: var(--color-primary-subtle);
-  border: 1px solid rgba(var(--color-primary-rgb), 0.25);
+  background: var(--color-primary);
+  border: 0;
   margin-bottom: 0;
 }
 
 .serviceCardFeatured .serviceIcon img {
   width: 40px;
   height: 40px;
-  filter: none;
-}
-
-[data-theme="dark"] .serviceCardFeatured .serviceIcon img {
   filter: brightness(0) invert(1);
 }
 
