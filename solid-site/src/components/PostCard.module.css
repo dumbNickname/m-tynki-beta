@@ -3,14 +3,13 @@
   border-radius: var(--radius);
   border: 1px solid var(--color-border);
   overflow: hidden;
-  transition: transform var(--transition), box-shadow var(--transition);
+  transition: border-color var(--transition);
   display: flex;
   flex-direction: column;
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-card-hover);
+  border-color: var(--color-primary);
 }
 
 .thumbnail {
@@ -22,11 +21,11 @@
   width: 100%;
   aspect-ratio: 16 / 10;
   object-fit: cover;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card:hover .thumbnail img {
-  transform: scale(1.06);
+  transform: scale(1.04);
 }
 
 .badge {

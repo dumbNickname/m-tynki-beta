@@ -1,5 +1,5 @@
 .sectionTitle {
-  text-transform: uppercase;
+  letter-spacing: -0.025em;
 }
 
 .divider {
@@ -87,12 +87,12 @@
   border-radius: var(--radius);
   border: 1px solid var(--color-border);
   text-align: center;
-  transition: transform var(--transition), box-shadow var(--transition);
+  transition: border-color var(--transition), background-color var(--transition);
 }
 
 .benefitCard:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-card);
+  border-color: var(--color-primary);
+  background: var(--color-primary-subtle);
 }
 
 .benefitIcon {
@@ -170,27 +170,42 @@
 }
 
 .ctaSection {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  position: relative;
+  background: var(--color-primary-dark);
+  background-image:
+    radial-gradient(60% 100% at 85% 0%, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 60%),
+    radial-gradient(70% 120% at 10% 100%, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0) 65%);
   color: var(--color-white);
+  overflow: hidden;
 }
 
 .ctaSection h2 {
-  color: var(--color-white);
+  color: #ffffff;
+  letter-spacing: -0.025em;
 }
 
 .ctaSection p {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.88);
   margin-bottom: 2rem;
 }
 
-.ctaSection .btn-primary {
+.ctaSection :global(.btn-primary) {
   background: var(--color-white);
   color: var(--color-primary-dark);
+  box-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.25);
 }
 
-.ctaSection .btn-primary:hover {
-  background: rgba(255, 255, 255, 0.9);
+.ctaSection :global(.btn-primary:hover) {
+  background: rgba(255, 255, 255, 0.95);
   color: var(--color-primary-dark);
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.30);
+}
+
+[data-theme="dark"] .ctaSection {
+  background: #1f3d28;
+  background-image:
+    radial-gradient(60% 100% at 85% 0%, rgba(var(--color-primary-rgb), 0.22) 0%, rgba(0, 0, 0, 0) 60%),
+    radial-gradient(70% 120% at 10% 100%, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 65%);
 }
 
 @media (max-width: 1024px) {

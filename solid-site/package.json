@@ -3,9 +3,10 @@
   "type": "module",
   "scripts": {
     "dev": "vinxi dev",
-    "build": "node scripts/generate-seo.mjs && vinxi build && node scripts/inline-css.mjs",
+    "build": "node scripts/check-internal-links.mjs && node scripts/generate-seo.mjs && vinxi build && node scripts/inline-css.mjs && node scripts/copy-404.mjs",
     "preview": "vinxi start",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "check:links": "node scripts/check-internal-links.mjs"
   },
   "dependencies": {
     "@solidjs/meta": "^0.29.4",

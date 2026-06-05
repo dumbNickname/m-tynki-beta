@@ -31,6 +31,7 @@ export default defineConfig({
         "/realizacje/kategoria/malowanie-scian",
         "/realizacje/kategoria/tynk-ze-szlichta-wygladzajaca",
         "/realizacje/kategoria/zabudowy-z-plyt-gk",
+        "/404",
       ],
     },
   },

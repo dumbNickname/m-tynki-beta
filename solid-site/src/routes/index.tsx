@@ -9,6 +9,12 @@ import styles from "./index.module.css";
 
 const services = [
   {
+    icon: "images/uploads/2023/08/szlichta-wygladzajaca-01.png",
+    title: "Tynki Gipsowe ze szlichtą wygładzającą",
+    description: "Nasza specjalność. Na tynki gipsowe nakładamy dodatkową warstwą wygładzającą, która pozwala na uzyskanie idealnie gładkiej ściany nadającej się bezpośrednio pod malowanie — bez dodatkowej warstwy gładzi.",
+    featured: true,
+  },
+  {
     icon: "images/uploads/2024/09/gladz.svg",
     title: "Gładź natryskowa",
     description: "Gładź natryskowa to sprawdzona metoda wygładzania ścian, która gwarantuje idealnie równą powierzchnię. Zapewnia szybkie wykończenie i wysoką jakość efektu.",
@@ -17,11 +23,6 @@ const services = [
     icon: "images/uploads/2023/08/tynk-ze-szlichta-wygladzajaca-01-01.png",
     title: "Tynki Gipsowe",
     description: "Wykonane przez nas tynki gipsowe pozwalają na uzyskanie gładkiej, równej i dokładnie wykończonej powierzchni.",
-  },
-  {
-    icon: "images/uploads/2023/08/szlichta-wygladzajaca-01.png",
-    title: "Tynki Gipsowe ze szlichtą wygładzającą",
-    description: "Na tynki gipsowe nakładamy dodatkową warstwą wygładzającą, która pozwala na uzyskanie idealnie gładkiej ściany nadającej się bezpośrednio pod malowanie!",
   },
   {
     icon: "images/uploads/2023/08/tynk-ze-szlichta-wygladzajaca-01-01.png",
@@ -158,7 +159,7 @@ export default function Home() {
           <div class={styles.servicesGrid}>
             <For each={services}>
               {(svc) => (
-                <div class={styles.serviceCard}>
+                <div class={`${styles.serviceCard} ${svc.featured ? styles.serviceCardFeatured : ""}`}>
                   <div class={styles.serviceIcon}>
                     <img src={svc.icon} alt={svc.title} width="48" height="48" loading="lazy" />
                   </div>

@@ -1,0 +1,116 @@
+.notFound {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+}
+
+.inner {
+  max-width: 720px;
+  text-align: left;
+}
+
+.code {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--color-primary);
+  background: var(--color-primary-subtle);
+  border: 1px solid rgba(var(--color-primary-rgb), 0.25);
+  padding: 0.4em 1em;
+  border-radius: var(--radius-pill);
+  margin-bottom: 1.25rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.inner h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.lead {
+  font-size: 1.0625rem;
+  color: var(--color-text-light);
+  line-height: 1.7;
+  max-width: 56ch;
+  margin-bottom: 2.25rem;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.callLink {
+  color: var(--color-dark);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 2px;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.callLink:hover {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.suggested {
+  border-top: 1px solid var(--color-border);
+  padding-top: 2rem;
+}
+
+.suggestedHeading {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text-light);
+  margin-bottom: 1rem;
+}
+
+.suggested ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.25rem 2rem;
+}
+
+.suggested li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.suggested li a {
+  color: var(--color-dark);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color var(--transition);
+}
+
+.suggested li a:hover {
+  color: var(--color-primary);
+}
+
+.suggested li span {
+  font-size: 0.82rem;
+  color: var(--color-text-light);
+}
+
+@media (max-width: 768px) {
+  .suggested ul {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    gap: 1rem;
+  }
+}

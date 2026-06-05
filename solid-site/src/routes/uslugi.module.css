@@ -1,5 +1,5 @@
 .hero {
-  background: linear-gradient(135deg, var(--color-light-gray) 0%, var(--color-white) 100%);
+  background: var(--color-light-gray);
 }
 
 .heroGrid {
@@ -54,11 +54,15 @@
   content: "";
   position: absolute;
   left: 0;
-  top: 0.65em;
-  width: 8px;
-  height: 8px;
+  top: 0.35em;
+  width: 1.15rem;
+  height: 1.15rem;
   border-radius: 50%;
-  background: var(--color-primary);
+  background-color: var(--color-primary-subtle);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%234ca85f' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><polyline points='3.5 8.5 6.5 11.5 12.5 5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 70% 70%;
 }
 
 .serviceLinks {
@@ -103,16 +107,29 @@
 }
 
 .cta {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  position: relative;
+  background: var(--color-primary-dark);
+  background-image:
+    radial-gradient(60% 100% at 85% 0%, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 60%),
+    radial-gradient(70% 120% at 10% 100%, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0) 65%);
   color: var(--color-white);
+  overflow: hidden;
 }
 
 .cta h2 {
-  color: var(--color-white);
+  color: #ffffff;
+  letter-spacing: -0.025em;
 }
 
 .cta p {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.88);
+}
+
+[data-theme="dark"] .cta {
+  background: #1f3d28;
+  background-image:
+    radial-gradient(60% 100% at 85% 0%, rgba(var(--color-primary-rgb), 0.22) 0%, rgba(0, 0, 0, 0) 60%),
+    radial-gradient(70% 120% at 10% 100%, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 65%);
 }
 
 @media (max-width: 768px) {
