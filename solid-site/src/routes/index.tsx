@@ -163,8 +163,11 @@ export default function Home() {
                   <div class={styles.serviceIcon}>
                     <img src={svc.icon} alt={svc.title} width="48" height="48" loading="lazy" />
                   </div>
-                  <h3>{svc.title}</h3>
-                  <p>{svc.description}</p>
+                  <div class={svc.featured ? styles.featuredBody : ""}>
+                    {svc.featured && <span class={styles.featuredEyebrow}>Nasza specjalność</span>}
+                    <h3>{svc.title}</h3>
+                    <p>{svc.description}</p>
+                  </div>
                 </div>
               )}
             </For>
