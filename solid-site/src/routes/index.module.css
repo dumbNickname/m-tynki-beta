@@ -380,6 +380,21 @@
   color: rgba(255, 255, 255, 0.88);
 }
 
+.cta p a {
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(255, 255, 255, 0.5);
+  transition: text-decoration-color var(--transition);
+}
+
+.cta p a:hover {
+  color: #ffffff;
+  text-decoration-color: #ffffff;
+}
+
 .cta a[href^="tel:"] {
   font-variant-numeric: tabular-nums;
 }
