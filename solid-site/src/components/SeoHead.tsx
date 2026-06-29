@@ -13,6 +13,11 @@ interface FaqItem {
   answer: string;
 }
 
+interface ServiceInfo {
+  name: string;
+  serviceType?: string;
+}
+
 interface SeoHeadProps {
   title?: string;
   description?: string;
@@ -24,6 +29,7 @@ interface SeoHeadProps {
   dateModified?: string;
   breadcrumbs?: BreadcrumbItem[];
   faq?: FaqItem[];
+  service?: ServiceInfo;
 }
 
 export default function SeoHead(props: SeoHeadProps) {
@@ -212,6 +218,22 @@ export default function SeoHead(props: SeoHeadProps) {
             text: item.answer,
           },
         })),
+      });
+    }
+
+    if (props.service) {
+      graph.push({
+        "@type": "Service",
+        "@id": `${canonicalPath() ? `${site.url}${canonicalPath()}` : site.url}#service`,
+        name: props.service.name,
+        serviceType: props.service.serviceType || props.service.name,
+        ...(props.description ? { description: props.description } : {}),
+        provider: { "@id": `${site.url}/#organization` },
+        areaServed: [
+          { "@type": "City", name: "Wrocław" },
+          { "@type": "AdministrativeArea", name: "Powiat wrocławski" },
+        ],
+        ...(canonicalPath() ? { url: `${site.url}${canonicalPath()}` } : {}),
       });
     }
 

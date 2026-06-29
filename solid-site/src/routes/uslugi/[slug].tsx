@@ -21,10 +21,9 @@ export default function ServiceLocationPage() {
             canonical={`/uslugi/${p().slug}`}
             description={p().description}
             ogImage="images/uploads/2023/08/tynki-ze-szlichta-pod-malowanie.jpg"
-            dateModified="2026-05-22T00:00:00+00:00"
+            service={{ name: p().h1 }}
             breadcrumbs={[
               { name: "Strona Główna", href: "/" },
-              { name: "Usługi", href: "/tynki-ze-szlichta-pod-malowanie" },
               { name: p().h1 },
             ]}
             faq={p().faq}
@@ -34,7 +33,6 @@ export default function ServiceLocationPage() {
             title={p().h1}
             breadcrumbs={[
               { label: "Strona Główna", href: "/" },
-              { label: "Usługi", href: "/tynki-ze-szlichta-pod-malowanie" },
               { label: p().h1 },
             ]}
           />
@@ -67,6 +65,21 @@ export default function ServiceLocationPage() {
                   {(item) => <NavLink class={styles.serviceLink} href={`/uslugi/${item.slug}`}>{item.title}</NavLink>}
                 </For>
                 <NavLink class={styles.serviceLink} href="/tynki-ze-szlichta-pod-malowanie">Tynki ze szlichtą pod malowanie</NavLink>
+              </div>
+            </div>
+          </section>
+
+          <section class={`section ${styles.contentSection}`}>
+            <div class="container">
+              <div class={styles.prose}>
+                <For each={p().sections}>
+                  {(s) => (
+                    <>
+                      <h2>{s.heading}</h2>
+                      <For each={s.paragraphs}>{(para) => <p>{para}</p>}</For>
+                    </>
+                  )}
+                </For>
               </div>
             </div>
           </section>

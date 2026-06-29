@@ -65,6 +65,28 @@
   background-size: 70% 70%;
 }
 
+.contentSection {
+  background: var(--color-light-gray);
+}
+
+.prose {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.prose h2 {
+  margin-top: 2.5rem;
+}
+
+.prose h2:first-child {
+  margin-top: 0;
+}
+
+.prose p {
+  line-height: 1.8;
+  color: var(--color-text);
+}
+
 .serviceLinks {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
