@@ -228,6 +228,18 @@
   background: var(--color-primary-subtle);
 }
 
+.serviceMore {
+  display: inline-block;
+  margin-top: 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.serviceMore::after {
+  content: " →";
+}
+
 .serviceCardFeatured {
   grid-column: span 6;
   display: grid;

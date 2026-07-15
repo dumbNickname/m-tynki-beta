@@ -12,22 +12,26 @@ const services = [
     icon: "images/uploads/2023/08/szlichta-wygladzajaca-01.png",
     title: "Tynki Gipsowe ze szlichtą wygładzającą",
     description: "Nasza specjalność. Na tynki gipsowe nakładamy dodatkową warstwą wygładzającą, która pozwala na uzyskanie idealnie gładkiej ściany nadającej się bezpośrednio pod malowanie — bez dodatkowej warstwy gładzi.",
+    href: "/tynki-ze-szlichta-pod-malowanie",
     featured: true,
   },
   {
     icon: "images/uploads/2024/09/gladz.svg",
     title: "Gładź natryskowa",
     description: "Gładź natryskowa to sprawdzona metoda wygładzania ścian, która gwarantuje idealnie równą powierzchnię. Zapewnia szybkie wykończenie i wysoką jakość efektu.",
+    href: "/uslugi/gladz-natryskowa-wroclaw",
   },
   {
     icon: "images/uploads/2023/08/tynk-ze-szlichta-wygladzajaca-01-01.png",
     title: "Tynki Gipsowe",
     description: "Wykonane przez nas tynki gipsowe pozwalają na uzyskanie gładkiej, równej i dokładnie wykończonej powierzchni.",
+    href: "/uslugi/tynki-gipsowe-wroclaw",
   },
   {
     icon: "images/uploads/2023/08/tynk-ze-szlichta-wygladzajaca-01-01.png",
-    title: "Tynki Gipsowe utwardzane",
-    description: "Tynki te są alternatywą dla tynków gipsowych i cementowo-wapiennych, ponieważ mają właściwości regulujące wilgotność oraz są bardziej twarde niż tradycyjne tynki gipsowe",
+    title: "Tynki maszynowe",
+    description: "Tynki gipsowe nakładane maszynowo agregatem tynkarskim — szybko i równo na dużych powierzchniach, z ręcznym wykończeniem szlichtą pod malowanie.",
+    href: "/uslugi/tynki-maszynowe-wroclaw",
   },
   {
     icon: "images/uploads/2023/08/Bez-nazwy-2.png",
@@ -38,6 +42,7 @@ const services = [
     icon: "images/uploads/2023/08/tynk-pod-malowanie-01.png",
     title: "Natryskowe Malowanie Ścian",
     description: "Pomieszczenia malujemy na biało i w kolorze, używamy do tego farb akrylowych, lateksowych, winylowych i ceramicznych.",
+    href: "/uslugi/malowanie-scian-wroclaw",
   },
 ];
 
@@ -158,18 +163,30 @@ export default function Home() {
           </div>
           <div class={styles.servicesGrid}>
             <For each={services}>
-              {(svc) => (
-                <div class={`${styles.serviceCard} ${svc.featured ? styles.serviceCardFeatured : ""}`}>
-                  <div class={styles.serviceIcon}>
-                    <img src={svc.icon} alt={svc.title} width="48" height="48" loading="lazy" />
+              {(svc) => {
+                const inner = (
+                  <>
+                    <div class={styles.serviceIcon}>
+                      <img src={svc.icon} alt={svc.title} width="48" height="48" loading="lazy" />
+                    </div>
+                    <div class={svc.featured ? styles.featuredBody : ""}>
+                      {svc.featured && <span class={styles.featuredEyebrow}>Nasza specjalność</span>}
+                      <h3>{svc.title}</h3>
+                      <p>{svc.description}</p>
+                      {svc.href && <span class={styles.serviceMore}>Dowiedz się więcej</span>}
+                    </div>
+                  </>
+                );
+                return svc.href ? (
+                  <NavLink class={`${styles.serviceCard} ${svc.featured ? styles.serviceCardFeatured : ""}`} href={svc.href}>
+                    {inner}
+                  </NavLink>
+                ) : (
+                  <div class={`${styles.serviceCard} ${svc.featured ? styles.serviceCardFeatured : ""}`}>
+                    {inner}
                   </div>
-                  <div class={svc.featured ? styles.featuredBody : ""}>
-                    {svc.featured && <span class={styles.featuredEyebrow}>Nasza specjalność</span>}
-                    <h3>{svc.title}</h3>
-                    <p>{svc.description}</p>
-                  </div>
-                </div>
-              )}
+                );
+              }}
             </For>
             <a class={`${styles.serviceCard} ${styles.serviceCardCta}`} href={`tel:${site.phoneRaw}`}>
               <div class={styles.ctaIcon} aria-hidden="true">

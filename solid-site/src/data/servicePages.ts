@@ -12,6 +12,8 @@ export interface ServicePage {
   points: string[];
   sections: ServiceSection[];
   faq: { question: string; answer: string }[];
+  cardTitle: string;
+  cardSummary: string;
 }
 
 export const servicePages: ServicePage[] = [
@@ -20,6 +22,8 @@ export const servicePages: ServicePage[] = [
     title: "Tynki maszynowe Wrocław",
     h1: "Tynki maszynowe Wrocław",
     description: "Tynki maszynowe Wrocław i okolice. M-TYNK wykonuje tynki gipsowe maszynowe ze szlichtą pod malowanie od 1999 roku. Bezpłatna wycena.",
+    cardTitle: "Tynki maszynowe",
+    cardSummary: "Tynki gipsowe nakładane agregatem — szybko, równo i z ręcznym wykończeniem szlichtą pod malowanie.",
     intro: "Wykonujemy tynki maszynowe we Wrocławiu i okolicach dla domów jednorodzinnych, mieszkań oraz obiektów użytkowych. Specjalizujemy się w tynkach gipsowych wykańczanych szlichtą wygładzającą, dzięki czemu ściany po wyschnięciu są przygotowane bezpośrednio pod malowanie.",
     points: [
       "tynki maszynowe gipsowe z wykończeniem pod malowanie",
@@ -47,6 +51,14 @@ export const servicePages: ServicePage[] = [
         paragraphs: [
           "Pracujemy głównie we Wrocławiu i powiecie wrocławskim — w nowych domach jednorodzinnych, mieszkaniach oraz lokalach usługowych. Realizowaliśmy tynki między innymi w Sobótce, Domasławiu, Trzebnicy, Dobrzykowicach i Lutyni, a zakres dojazdu ustalamy indywidualnie po poznaniu lokalizacji inwestycji.",
           "Przed rozpoczęciem prac zabezpieczamy okna, drzwi, instalacje i posadzki, a po zakończeniu zostawiamy ściany przygotowane do dalszego wykończenia. Wycena tynków maszynowych jest bezpłatna i przygotowywana na podstawie powierzchni, stanu budowy i lokalizacji.",
+        ],
+      },
+      {
+        heading: "Jak przebiega tynkowanie maszynowe krok po kroku?",
+        paragraphs: [
+          "Realizację zaczynamy od oceny podłoża i zabezpieczenia budowy: okleiamy okna i drzwi, osłaniamy posadzki oraz instalacje. Następnie ustawiamy narożniki i listwy, przygotowujemy agregat i dobieramy konsystencję zaprawy do konkretnego pomieszczenia. Warstwę właściwą nakładamy maszynowo, ściągamy ją łatą h do równego, a po wstępnym związaniu przystępujemy do wygładzania.",
+          "Kluczowy dla efektu końcowego jest etap wygładzania. Każdy narzut przecieramy trzema rodzajami łat gładzących, uzupełniamy drobne ubytki, a na końcu nakładamy szlichtę gładziolitu. Dzięki temu ściana po wyschnięciu jest gładka i równa — bez fal, zacieków i widocznych łączeń — i nadaje się bezpośrednio pod malowanie, bez osobnej warstwy gładzi.",
+          "Cały proces prowadzimy tak, aby ograniczyć liczbę poprawek po naszym wyjściu z budowy. Zwracamy uwagę na naroża, ościeża okien i miejsca przy instalacjach, bo to tam najczęściej widać różnicę między tynkiem wykonanym pospiesznie a dopracowanym ręcznie.",
         ],
       },
     ],
@@ -82,6 +94,8 @@ export const servicePages: ServicePage[] = [
     title: "Tynki gipsowe Wrocław",
     h1: "Tynki gipsowe Wrocław",
     description: "Tynki gipsowe Wrocław ze szlichtą wygładzającą pod malowanie. Równe ściany, estetyczne wykończenie i bezpłatna wycena M-TYNK.",
+    cardTitle: "Tynki gipsowe",
+    cardSummary: "Gładkie, równe ściany i sufity do wnętrz mieszkalnych — wykończone szlichtą, gotowe pod malowanie.",
     intro: "Tynki gipsowe to dobre rozwiązanie do wnętrz, w których liczy się równa, estetyczna i gładka powierzchnia. M-TYNK wykonuje tynki gipsowe we Wrocławiu w technologii maszynowej, a następnie wykańcza je szlichtą wygładzającą.",
     points: [
       "gładka powierzchnia ścian i sufitów",
@@ -140,6 +154,8 @@ export const servicePages: ServicePage[] = [
     title: "Firma tynkarska Wrocław",
     h1: "Firma tynkarska Wrocław",
     description: "Firma tynkarska Wrocław M-TYNK. Tynki maszynowe, tynki gipsowe ze szlichtą, gładź natryskowa i wykończenie ścian pod malowanie.",
+    cardTitle: "Firma tynkarska M-TYNK",
+    cardSummary: "Doświadczona ekipa tynkarska z Wrocławia działająca od 1999 roku — od tynku aż po malowanie.",
     intro: "M-TYNK to firma tynkarska z Wrocławia działająca od 1999 roku. Pomagamy inwestorom uzyskać równe, estetyczne ściany przygotowane pod malowanie, dbając o dokładność, zabezpieczenie budowy i jasną komunikację przed rozpoczęciem prac.",
     points: [
       "specjalizacja w tynkach gipsowych ze szlichtą wygładzającą",
@@ -191,6 +207,189 @@ export const servicePages: ServicePage[] = [
       {
         question: "Jak umówić bezpłatną wycenę?",
         answer: "Wystarczy zadzwonić i podać lokalizację inwestycji, przybliżoną powierzchnię oraz etap budowy. Na tej podstawie przygotowujemy indywidualną, bezpłatną wycenę.",
+      },
+    ],
+  },
+  {
+    slug: "tynkowanie-wroclaw",
+    title: "Tynkowanie Wrocław",
+    h1: "Tynkowanie Wrocław",
+    description: "Tynkowanie Wrocław i okolice — tynki gipsowe maszynowe ze szlichtą wygładzającą pod malowanie. Firma M-TYNK, bezpłatna wycena.",
+    cardTitle: "Tynkowanie ścian",
+    cardSummary: "Kompleksowe tynkowanie ścian i sufitów we Wrocławiu — od surowego muru po powierzchnię gotową pod malowanie.",
+    intro:
+      "Zajmujemy się tynkowaniem ścian i sufitów we Wrocławiu i okolicach. Tynkujemy nowe domy jednorodzinne, mieszkania i lokale usługowe, a naszą specjalnością jest tynkowanie ze szlichtą wygładzającą, dzięki której ściany po wyschnięciu są przygotowane bezpośrednio pod malowanie.",
+    points: [
+      "tynkowanie ścian i sufitów w domach, mieszkaniach i lokalach",
+      "tynki gipsowe wykańczane szlichtą wygładzającą pod malowanie",
+      "zabezpieczenie okien, drzwi, instalacji i posadzek",
+      "obsługa Wrocławia oraz miejscowości w powiecie wrocławskim",
+    ],
+    sections: [
+      {
+        heading: "Na czym polega tynkowanie ścian?",
+        paragraphs: [
+          "Tynkowanie to nałożenie na surową ścianę warstwy zaprawy, która wyrównuje podłoże, kryje nierówności muru i tworzy powierzchnię gotową do dalszego wykończenia. Dobrze wykonany tynk decyduje o tym, jak wyglądają ściany po malowaniu — wszelkie fale, pęknięcia czy zacieki najłatwiej wyeliminować właśnie na tym etapie, a nie później grubymi warstwami gładzi czy farby.",
+          "W naszych realizacjach tynkujemy najczęściej maszynowo, agregatem tynkarskim, a następnie wygładzamy powierzchnię ręcznie. Na koniec nakładamy szlichtę gładziolitu, dzięki której ściana jest gładka i równa. Taka metoda łączy wydajność pracy maszynowej z dokładnym, ręcznym wykończeniem detali.",
+        ],
+      },
+      {
+        heading: "Tynkowanie ze szlichtą — ściany gotowe pod malowanie",
+        paragraphs: [
+          "Zamiast standardowego schematu „tynk plus osobna warstwa gładzi” stosujemy tynkowanie wykańczane szlichtą wygładzającą. Po wyschnięciu ściana jest na tyle gładka, że w wielu przypadkach można ją malować bez dodatkowej, kosztownej warstwy gładzi. Ogranicza to liczbę etapów wykończenia i skraca czas oczekiwania na malowanie.",
+          "To rozwiązanie sprawdza się szczególnie w domach jednorodzinnych i mieszkaniach, gdzie zależy nam na równych ścianach i estetycznym efekcie. O tym, czy w danym pomieszczeniu wystarczy tynk ze szlichtą, decydujemy po obejrzeniu podłoża i ustaleniu oczekiwań inwestora.",
+        ],
+      },
+      {
+        heading: "Tynkowanie we Wrocławiu i powiecie wrocławskim",
+        paragraphs: [
+          "Tynkujemy głównie we Wrocławiu i okolicznych miejscowościach — realizowaliśmy prace m.in. w Sobótce, Domasławiu, Trzebnicy, Dobrzykowicach i Lutyni. Zakres dojazdu ustalamy indywidualnie, w zależności od lokalizacji i wielkości inwestycji.",
+          "Przed rozpoczęciem tynkowania zabezpieczamy budowę, a po zakończeniu prac zostawiamy ściany gotowe do dalszego wykończenia. Wycena tynkowania jest bezpłatna i przygotowywana na podstawie powierzchni, stanu budowy oraz lokalizacji.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Czym różni się tynkowanie ze szlichtą od zwykłego tynkowania?",
+        answer: "Po zwykłym tynkowaniu zwykle trzeba nałożyć osobną warstwę gładzi przed malowaniem. W naszej metodzie tynk wykańczamy szlichtą wygładzającą, dzięki czemu ściana jest gładka i w wielu przypadkach gotowa pod malowanie bez dodatkowej gładzi.",
+      },
+      {
+        question: "Ile trwa tynkowanie domu jednorodzinnego?",
+        answer: "Czas zależy od powierzchni, liczby pomieszczeń, stanu podłoża i warunków na budowie. Realny harmonogram szacujemy dla konkretnej inwestycji podczas bezpłatnej wyceny.",
+      },
+      {
+        question: "Kiedy można malować ściany po tynkowaniu?",
+        answer: "Dopiero po pełnym wyschnięciu tynku. Czas schnięcia zależy od grubości warstwy, temperatury i wentylacji — orientacyjnie przyjmuje się około jednego dnia na każdy milimetr grubości tynku.",
+      },
+      {
+        question: "Czy zabezpieczacie okna i podłogi przed tynkowaniem?",
+        answer: "Tak. Przed rozpoczęciem prac zabezpieczamy okna, drzwi, instalacje i posadzki, aby ograniczyć ryzyko zabrudzeń i uszkodzeń podczas tynkowania.",
+      },
+      {
+        question: "Gdzie wykonujecie tynkowanie?",
+        answer: "Pracujemy przede wszystkim we Wrocławiu i powiecie wrocławskim, a zakres dojazdu do dalszych miejscowości ustalamy indywidualnie.",
+      },
+    ],
+  },
+  {
+    slug: "gladz-natryskowa-wroclaw",
+    title: "Gładź natryskowa Wrocław",
+    h1: "Gładź natryskowa Wrocław",
+    description: "Gładź natryskowa Wrocław — szybkie i równe wygładzanie ścian natryskowo. Firma M-TYNK, gładzie pod malowanie, bezpłatna wycena.",
+    cardTitle: "Gładź natryskowa",
+    cardSummary: "Natryskowe wygładzanie ścian i sufitów — równa powierzchnia pod malowanie, szybciej niż metodą ręczną.",
+    intro:
+      "Wykonujemy gładź natryskową we Wrocławiu i okolicach. To sprawdzona metoda wygładzania ścian i sufitów, w której masę gładzi nanosi się agregatem, a następnie wygładza ręcznie. Pozwala uzyskać równą powierzchnię gotową pod malowanie, szybciej niż przy tradycyjnym nakładaniu gładzi pacą.",
+    points: [
+      "natryskowe wygładzanie ścian i sufitów",
+      "równa powierzchnia przygotowana pod malowanie",
+      "szybsze wykończenie dużych powierzchni niż metodą ręczną",
+      "obsługa Wrocławia oraz powiatu wrocławskiego",
+    ],
+    sections: [
+      {
+        heading: "Na czym polega gładź natryskowa?",
+        paragraphs: [
+          "Gładź natryskowa to metoda wykończenia ścian, w której gotową masę nakłada się na powierzchnię za pomocą agregatu, a następnie rozprowadza i wygładza ręcznie. Natrysk pozwala równomiernie pokryć duże powierzchnie w krótkim czasie, a ręczne wygładzenie nadaje im ostateczną gładkość.",
+          "Efektem jest równa, gładka ściana lub sufit przygotowany pod malowanie. Metoda natryskowa sprawdza się szczególnie tam, gdzie liczy się tempo prac i powtarzalna jakość na dużym metrażu, na przykład w nowych domach i mieszkaniach na etapie wykończenia.",
+        ],
+      },
+      {
+        heading: "Gładź natryskowa a gładź nakładana ręcznie",
+        paragraphs: [
+          "Przy większych powierzchniach gładź natryskowa jest zwykle szybsza od nakładania ręcznego, a jednocześnie daje bardziej jednolitą warstwę, bo masa jest nanoszona równomiernie. Metoda ręczna pozostaje rozsądnym rozwiązaniem przy małych powierzchniach, poprawkach i detalach, gdzie uruchamianie agregatu nie ma uzasadnienia.",
+          "W praktyce często łączymy obie metody: większość ścian i sufitów wygładzamy natryskowo, a naroża, ościeża i miejsca przy instalacjach dopracowujemy ręcznie. O doborze metody decydujemy po obejrzeniu zakresu prac i stanu podłoża.",
+        ],
+      },
+      {
+        heading: "Gładź natryskowa we Wrocławiu",
+        paragraphs: [
+          "Gładź natryskową wykonujemy we Wrocławiu i okolicach, najczęściej jako element wykończenia ścian pod malowanie. Przed rozpoczęciem prac oceniamy stan podłoża i dobieramy sposób jego przygotowania, aby warstwa gładzi dobrze się związała i równomiernie wyschła.",
+          "Wycenę gładzi natryskowej przygotowujemy bezpłatnie na podstawie powierzchni, stanu ścian i lokalizacji. Warto pamiętać, że w naszej metodzie tynkowania ze szlichtą wygładzającą wiele ścian jest gotowych pod malowanie bez osobnej warstwy gładzi — podczas wyceny doradzamy, które rozwiązanie będzie korzystniejsze dla konkretnej inwestycji.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Czym różni się gładź natryskowa od gładzi ręcznej?",
+        answer: "Gładź natryskową nanosi się agregatem, a potem wygładza ręcznie, dzięki czemu duże powierzchnie wykańcza się szybciej i bardziej równomiernie. Gładź ręczna lepiej sprawdza się przy małych powierzchniach i poprawkach.",
+      },
+      {
+        question: "Czy po gładzi natryskowej można od razu malować?",
+        answer: "Malowanie wykonuje się po pełnym wyschnięciu gładzi i ewentualnym drobnym szlifowaniu. Czas schnięcia zależy od grubości warstwy, temperatury i wentylacji pomieszczeń.",
+      },
+      {
+        question: "Czy zawsze potrzebna jest gładź, jeśli mam tynk ze szlichtą?",
+        answer: "Nie zawsze. Nasze tynki gipsowe wykańczane szlichtą wygładzającą w wielu przypadkach są gotowe pod malowanie bez osobnej warstwy gładzi. Podczas wyceny doradzamy, czy w danym pomieszczeniu gładź natryskowa jest potrzebna.",
+      },
+      {
+        question: "Na jakich powierzchniach stosuje się gładź natryskową?",
+        answer: "Gładź natryskową stosuje się na ścianach i sufitach we wnętrzach, wszędzie tam, gdzie zależy nam na równej, gładkiej powierzchni przygotowanej pod malowanie.",
+      },
+      {
+        question: "Jak zamówić wycenę gładzi natryskowej?",
+        answer: "Wystarczy zadzwonić i podać lokalizację, przybliżoną powierzchnię oraz etap prac. Wycena jest bezpłatna i przygotowywana indywidualnie.",
+      },
+    ],
+  },
+  {
+    slug: "malowanie-scian-wroclaw",
+    title: "Malowanie ścian Wrocław",
+    h1: "Malowanie ścian Wrocław",
+    description: "Malowanie ścian Wrocław — natryskowe malowanie wnętrz na biało i w kolorze. Firma M-TYNK, malowanie po tynkach, bezpłatna wycena.",
+    cardTitle: "Malowanie natryskowe ścian",
+    cardSummary: "Natryskowe malowanie wnętrz na biało i w kolorze — równe pokrycie, szybciej niż wałkiem.",
+    intro:
+      "Malujemy ściany i sufity we Wrocławiu i okolicach, najczęściej metodą natryskową. Malowanie natryskowe pozwala uzyskać równe, jednolite pokrycie na dużych powierzchniach, a dzięki temu, że wykonujemy również tynki i gładzie, możemy zająć się wykończeniem wnętrza kompleksowo — od tynku aż po gotową, pomalowaną ścianę.",
+    points: [
+      "natryskowe malowanie ścian i sufitów na biało i w kolorze",
+      "farby akrylowe, lateksowe, winylowe i ceramiczne",
+      "malowanie jako uzupełnienie tynków i gładzi w jednej ekipie",
+      "obsługa Wrocławia oraz powiatu wrocławskiego",
+    ],
+    sections: [
+      {
+        heading: "Na czym polega malowanie natryskowe?",
+        paragraphs: [
+          "Malowanie natryskowe polega na nanoszeniu farby na ściany i sufity za pomocą agregatu malarskiego zamiast wałka czy pędzla. Farba jest rozpylana równomiernie, dzięki czemu powłoka jest jednolita, bez smug i widocznych łączeń, a duże powierzchnie da się pomalować znacznie szybciej niż metodą tradycyjną.",
+          "Przed malowaniem zabezpieczamy powierzchnie, które nie mają być malowane, oraz sprawdzamy stan podłoża. Równe, dobrze przygotowane ściany — na przykład wykończone naszą metodą tynku ze szlichtą — pozwalają uzyskać najlepszy efekt malowania natryskowego.",
+        ],
+      },
+      {
+        heading: "Jakich farb używamy?",
+        paragraphs: [
+          "Do malowania używamy farb akrylowych, lateksowych, winylowych i ceramicznych — dobór zależy od pomieszczenia, oczekiwanej odporności powłoki i efektu, jaki chce uzyskać inwestor. Malujemy zarówno na biało, jak i w kolorze.",
+          "Podczas wyceny doradzamy, jaki rodzaj farby sprawdzi się w danym wnętrzu — inne wymagania ma salon czy sypialnia, a inne pomieszczenia bardziej narażone na zabrudzenia i wilgoć. Zwracamy uwagę na to, aby farba dobrze współgrała z rodzajem podłoża i sposobem jego wykończenia.",
+        ],
+      },
+      {
+        heading: "Malowanie po tynkach — wykończenie w jednej ekipie",
+        paragraphs: [
+          "Ponieważ wykonujemy tynki, gładzie i zabudowy G-K, malowanie możemy potraktować jako ostatni etap kompleksowego wykończenia wnętrza. Dzięki temu inwestor nie musi koordynować kilku ekip — tę samą powierzchnię, którą otynkowaliśmy i wygładziliśmy, możemy również pomalować.",
+          "Takie podejście ułatwia utrzymanie jakości: znamy stan ścian, wiemy jak zostały przygotowane i jaką farbę na nich zastosować. Malowanie natryskowe wykonujemy we Wrocławiu i okolicach, a wycenę przygotowujemy bezpłatnie na podstawie powierzchni, stanu ścian i lokalizacji.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Czy malowanie natryskowe jest lepsze od malowania wałkiem?",
+        answer: "Przy dużych powierzchniach natrysk jest zwykle szybszy i daje bardziej równomierne pokrycie. Przy małych powierzchniach i detalach malowanie wałkiem lub pędzlem bywa wygodniejsze — metodę dobieramy do konkretnej pracy.",
+      },
+      {
+        question: "Czy malujecie zarówno na biało, jak i w kolorze?",
+        answer: "Tak. Malujemy na biało oraz w kolorze, używając farb akrylowych, lateksowych, winylowych i ceramicznych, dobieranych do rodzaju pomieszczenia.",
+      },
+      {
+        question: "Czy trzeba przygotować ściany przed malowaniem?",
+        answer: "Tak, dobry efekt malowania zależy od równego i czystego podłoża. Jeśli wcześniej wykonujemy u inwestora tynki lub gładzie, ściany są już przygotowane pod malowanie.",
+      },
+      {
+        question: "Czy malujecie tylko po własnych tynkach?",
+        answer: "Nie tylko. Malowanie możemy wykonać zarówno jako uzupełnienie naszych tynków i gładzi, jak i na wcześniej przygotowanych ścianach — po ocenie ich stanu podczas wyceny.",
+      },
+      {
+        question: "Jak zamówić wycenę malowania?",
+        answer: "Wystarczy zadzwonić i podać lokalizację, przybliżoną powierzchnię oraz zakres prac. Wycena malowania jest bezpłatna i przygotowywana indywidualnie.",
       },
     ],
   },

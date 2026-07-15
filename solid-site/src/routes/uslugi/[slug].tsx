@@ -61,10 +61,10 @@ export default function ServiceLocationPage() {
                 <For each={p().points}>{(point) => <li>{point}</li>}</For>
               </ul>
               <div class={styles.serviceLinks}>
-                <For each={servicePages.filter((item) => item.slug !== p().slug)}>
-                  {(item) => <NavLink class={styles.serviceLink} href={`/uslugi/${item.slug}`}>{item.title}</NavLink>}
-                </For>
                 <NavLink class={styles.serviceLink} href="/tynki-ze-szlichta-pod-malowanie">Tynki ze szlichtą pod malowanie</NavLink>
+                <For each={servicePages.filter((item) => item.slug !== p().slug)}>
+                  {(item) => <NavLink class={styles.serviceLink} href={`/uslugi/${item.slug}`}>{item.cardTitle}</NavLink>}
+                </For>
               </div>
             </div>
           </section>

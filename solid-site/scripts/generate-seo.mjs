@@ -19,6 +19,9 @@ const navigation = read("src/data/navigation.json");
 const servicePages = [
   "tynki-maszynowe-wroclaw",
   "tynki-gipsowe-wroclaw",
+  "tynkowanie-wroclaw",
+  "gladz-natryskowa-wroclaw",
+  "malowanie-scian-wroclaw",
   "firma-tynkarska-wroclaw",
 ];
 
@@ -43,6 +46,7 @@ const pages = [
   { loc: "/realizacje", priority: "0.8" },
   { loc: "/galeria", priority: "0.7" },
   { loc: "/tynki-ze-szlichta-pod-malowanie", priority: "0.9" },
+  { loc: "/uslugi", priority: "0.8" },
   { loc: "/polityka-prywatnosci", priority: "0.3" },
 ];
 
