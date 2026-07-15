@@ -39,7 +39,7 @@ export default function ServicesIndex() {
               <h2>Tynki ze szlichtą pod malowanie</h2>
               <p>Tynki gipsowe wykańczane szlichtą gładziolitu — ściany gotowe pod malowanie bez dodatkowej gładzi.</p>
             </NavLink>
-            <For each={servicePages}>
+            <For each={servicePages.filter((page) => page.slug !== "firma-tynkarska-wroclaw")}>
               {(page) => (
                 <NavLink class={styles.serviceTile} href={`/uslugi/${page.slug}`}>
                   <h2>{page.cardTitle}</h2>
@@ -48,6 +48,19 @@ export default function ServicesIndex() {
               )}
             </For>
           </div>
+        </div>
+      </section>
+
+      <section class={`section ${styles.contentSection}`}>
+        <div class="container">
+          <NavLink class={styles.aboutTile} href="/uslugi/firma-tynkarska-wroclaw">
+            <div>
+              <span class={styles.serviceTileTag}>O firmie</span>
+              <h2>Firma tynkarska M-TYNK Wrocław</h2>
+              <p>Doświadczona ekipa tynkarska z Wrocławia działająca od 1999 roku — poznaj naszą firmę, sposób pracy i obszar działania.</p>
+            </div>
+            <span class={styles.serviceMore}>Poznaj firmę</span>
+          </NavLink>
         </div>
       </section>
 
