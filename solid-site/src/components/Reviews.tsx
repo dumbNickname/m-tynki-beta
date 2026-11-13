@@ -1,4 +1,4 @@
-import { createSignal, For } from "solid-js";
+import { createSignal, For, onCleanup, onMount } from "solid-js";
 import reviews from "~/data/reviews.json";
 import site from "~/data/site.json";
 import { opinieLabel } from "~/utils/plural";
@@ -56,35 +56,38 @@ export default function Reviews() {
     rail.scrollBy({ left: dir * by, behavior: smooth ? "smooth" : "auto" });
   };
 
-  // Prerendered in the playing layout (so most visitors see no jump on hydration); CSS
-  // only animates it without reduced motion. Paused, each column is a scrollable list.
-  // `userStarted` lets someone with reduced motion still opt in via the button.
-  const [playing, setPlaying] = createSignal(true);
-  const [userStarted, setUserStarted] = createSignal(false);
-  onMount(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const sync = () => {
-      if (reduce.matches) {
-        setPlaying(false);
-        setUserStarted(false);
-      }
-    };
-    sync();
-    reduce.addEventListener("change", sync);
-    onCleanup(() => reduce.removeEventListener("change", sync));
-  });
+  // Autoplay: one card every few seconds, looping. It stops for good on the
+  // first interaction with the rail, pauses on hover / off screen / hidden tab,
+  // and never starts under prefers-reduced-motion.
+  const [canAutoplay, setCanAutoplay] = createSignal(false);
+  const [playing, setPlaying] = createSignal(false);
+  let hovered = false;
+  let visible = false;
+  let timer = 0;
 
-  const togglePlaying = () => {
-    const next = !playing();
-    setPlaying(next);
-    setUserStarted(next);
+  const tick = () => {
+    if (!playing() || hovered || !visible || document.hidden) return;
+    if (rail.scrollLeft + rail.clientWidth > rail.scrollWidth - 8) {
+      rail.scrollTo({ left: 0, behavior: "smooth" });
+    } else {
+      step(1);
+    }
   };
+  const stop = () => setPlaying(false);
 
-  const columns = [
-    { items: col1, class: styles.marqueeUp },
-    { items: col2, class: styles.marqueeDown, colClass: styles.marqueeColSecond },
-    { items: col3, class: styles.marqueeUp, colClass: styles.marqueeColThird },
-  ];
+  onMount(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (rail.scrollWidth <= rail.clientWidth + 8) return;
+    setCanAutoplay(true);
+    setPlaying(true);
+    timer = window.setInterval(tick, 5000);
+    const io = new IntersectionObserver(([e]) => (visible = e.isIntersecting), { threshold: 0.5 });
+    io.observe(rail);
+    onCleanup(() => {
+      clearInterval(timer);
+      io.disconnect();
+    });
+  });
 
   return (
     <div>
@@ -100,17 +103,46 @@ export default function Reviews() {
           </span>
         </span>
       </a>
-      <div class={styles.railWrap}>
-        <div class={styles.rail} ref={rail} onScroll={update} tabindex="0" role="region" aria-label="Opinie klientów">
+      <div
+        class={styles.railWrap}
+        onMouseEnter={() => (hovered = true)}
+        onMouseLeave={() => (hovered = false)}
+      >
+        <div class={styles.rail} ref={rail} onScroll={update}
+          onPointerDown={stop}
+          onWheel={stop}
+          onKeyDown={stop}
+          onFocusIn={stop}
+          tabindex="0" role="region" aria-label="Opinie klientów">
           <For each={reviews}>{(review) => <ReviewCard review={review} />}</For>
         </div>
         <div class={styles.railNav}>
-          <button type="button" class={styles.railBtn} onClick={() => step(-1)} disabled={atStart()} aria-label="Poprzednie opinie">
+          <button type="button" class={styles.railBtn} onClick={() => {
+            stop();
+            step(-1);
+          }} disabled={atStart()} aria-label="Poprzednie opinie">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 6 9 12 15 18" /></svg>
           </button>
-          <button type="button" class={styles.railBtn} onClick={() => step(1)} disabled={atEnd()} aria-label="Następne opinie">
+          <button type="button" class={styles.railBtn} onClick={() => {
+            stop();
+            step(1);
+          }} disabled={atEnd()} aria-label="Następne opinie">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18" /></svg>
           </button>
+          {canAutoplay() && (
+            <button
+              type="button"
+              class={styles.railBtn}
+              onClick={() => setPlaying(!playing())}
+              aria-label={playing() ? "Zatrzymaj przewijanie opinii" : "Wznów przewijanie opinii"}
+            >
+              {playing() ? (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" /><rect x="14" y="5" width="4" height="14" rx="1" /></svg>
+              ) : (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z" /></svg>
+              )}
+            </button>
+          )}
         </div>
       </div>
       <p class={styles.disclaimer}>
