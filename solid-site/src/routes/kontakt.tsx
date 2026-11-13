@@ -5,6 +5,18 @@ import site from "~/data/site.json";
 import { opinieLabel } from "~/utils/plural";
 import styles from "./kontakt.module.css";
 
+const PHONE = "M5 4h3.5l1.5 4.5-2 1.5a11 11 0 0 0 6 6l1.5-2 4.5 1.5V19a1.5 1.5 0 0 1-1.6 1.5C10.6 20 4 13.4 3.5 5.6A1.5 1.5 0 0 1 5 4z";
+const MAIL = "M3.5 6h17v12h-17z M4 7l8 6 8-6";
+const PIN = "M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z M12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z";
+
+function Icon(props: { d: string }) {
+  return (
+    <svg class={styles.icon} viewBox="0 0 24 24" aria-hidden="true">
+      <path d={props.d} />
+    </svg>
+  );
+}
+
 export default function Kontakt() {
   return (
     <Layout>
@@ -31,30 +43,29 @@ export default function Kontakt() {
             <div>
               <h2>Skontaktuj się z nami</h2>
               <p>Jeśli chcesz się umówić na tynkowanie lub masz pytania odnośnie szlichty wygładzającej — zadzwoń lub napisz.</p>
+              <a class={styles.callCard} href={`tel:${site.phoneRaw}`}>
+                <span class={styles.callLabel}>Zadzwoń — bezpłatna wycena</span>
+                <span class={styles.callNumber}>
+                  <Icon d={PHONE} />
+                  {site.phone}
+                </span>
+                <span class={styles.callHint}>Chętnie umówimy też wizytę na aktualnej budowie.</span>
+              </a>
               <div class={styles.contactInfo}>
                 <div class={styles.contactItem}>
-                  <div class={styles.contactIcon}>📍</div>
-                  <div class={styles.contactText}>
-                    <span class={styles.contactLabel}>Adres</span>
-                    <span class={styles.contactValue}>{site.address}</span>
-                  </div>
-                </div>
-                <div class={styles.contactItem}>
-                  <div class={styles.contactIcon}>📞</div>
-                  <div class={styles.contactText}>
-                    <span class={styles.contactLabel}>Telefon</span>
-                    <span class={styles.contactValue}>
-                      <a href={`tel:${site.phoneRaw}`}>{site.phone}</a>
-                    </span>
-                  </div>
-                </div>
-                <div class={styles.contactItem}>
-                  <div class={styles.contactIcon}>✉️</div>
+                  <span class={styles.contactIcon}><Icon d={MAIL} /></span>
                   <div class={styles.contactText}>
                     <span class={styles.contactLabel}>E-mail</span>
                     <span class={styles.contactValue}>
                       <a href={`mailto:${site.email}`}>{site.email}</a>
                     </span>
+                  </div>
+                </div>
+                <div class={styles.contactItem}>
+                  <span class={styles.contactIcon}><Icon d={PIN} /></span>
+                  <div class={styles.contactText}>
+                    <span class={styles.contactLabel}>Adres</span>
+                    <span class={styles.contactValue}>{site.address}</span>
                   </div>
                 </div>
               </div>
@@ -79,8 +90,8 @@ export default function Kontakt() {
         </div>
       </section>
 
-      <section class="section" style={{ "padding-top": "0" }}>
-        <div class="container">
+      <section class={`section ${styles.areaSection}`}>
+        <div class={`container ${styles.areaGrid}`}>
           <div class={styles.areaServed}>
             <h2>Obszar działania we Wrocławiu</h2>
             <p>Tynkujemy w całym Wrocławiu i okolicach. Realizacje wykonujemy we wszystkich dzielnicach miasta oraz w popularnych osiedlach.</p>
@@ -109,11 +120,6 @@ export default function Kontakt() {
             </ul>
             <p>Działamy również poza granicami miasta: Sobótka, Trzebnica, Oława, Długołęka, Miękinia, Domasław, Dobrzykowice, Lutynia i okoliczne miejscowości powiatu wrocławskiego.</p>
           </div>
-        </div>
-      </section>
-
-      <section class="section" style={{ "padding-top": "0" }}>
-        <div class="container">
           <div class={styles.map}>
             <iframe
               loading="lazy"
@@ -121,7 +127,7 @@ export default function Kontakt() {
               title="Tynki gipsowe z gładziolitem pod malowanie - M-Tynk, Obornicka 77C/4A, 51-114 Wrocław"
               aria-label="Tynki gipsowe z gładziolitem pod malowanie - M-Tynk, Obornicka 77C/4A, 51-114 Wrocław"
               width="100%"
-              height="400"
+              height="480"
               style={{ border: "none" }}
             />
           </div>
