@@ -1,66 +1,277 @@
-.narrow {
-  max-width: 800px;
+/* Owner cut-out standing on the bottom edge of the page header. */
+.owner {
+  display: block;
+  height: clamp(240px, 26vw, 360px);
+  width: auto;
+  filter: drop-shadow(0 18px 24px rgba(40, 32, 20, 0.18));
 }
 
-.sectionTag {
-  display: inline-block;
+/* ---------- Career: passport + timeline ---------- */
+
+.careerGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 4.5rem;
+  align-items: start;
+}
+
+.passportCol {
+  position: sticky;
+  top: calc(72px + 2rem);
+}
+
+.careerTitle {
+  margin-bottom: 2.25rem;
+  letter-spacing: -0.025em;
+}
+
+/* A worker's passport page: cream paper with a faint guilloche print. */
+.passport {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  background:
+    repeating-radial-gradient(circle at 85% 110%, rgba(46, 107, 59, 0.07) 0 1px, transparent 1px 9px),
+    repeating-linear-gradient(115deg, rgba(120, 96, 60, 0.05) 0 1px, transparent 1px 7px),
+    #f6f0e3;
+  color: #2b2a27;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.6) inset,
+    0 28px 50px -30px rgba(40, 32, 20, 0.55),
+    0 2px 6px rgba(40, 32, 20, 0.08);
+  transform: rotate(-1.2deg);
+}
+
+.passport::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 18px;
+  border-left: 1px dashed rgba(120, 96, 60, 0.25);
+  pointer-events: none;
+}
+
+.passportHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.9rem 1.25rem 0.9rem 2.25rem;
+  background: #1f3d28;
+  color: #e2cf94;
   font-size: 0.78rem;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--color-primary);
-  margin-bottom: 0.75rem;
 }
 
-.lead {
-  font-size: 1.15rem;
-  line-height: 1.7;
-  color: var(--color-dark);
+.passportNo {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.12em;
+  opacity: 0.8;
 }
+
+.passportFields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem 1rem;
+  margin: 0;
+  padding: 1.1rem 1.25rem 0.4rem 2.25rem;
+}
+
+.passportFields div:first-child {
+  grid-column: 1 / -1;
+}
+
+.passportFields dt {
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8a7f6c;
+}
+
+.passportFields dd {
+  margin: 0.1rem 0 0;
+  font-weight: 700;
+  font-size: 0.98rem;
+  border-bottom: 1px solid rgba(120, 96, 60, 0.2);
+  padding-bottom: 0.25rem;
+}
+
+.stampGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.9rem 1rem;
+  padding: 1.25rem 1.25rem 1.5rem 2.25rem;
+}
+
+/* ---------- Rubber stamps ---------- */
+
+.stamp {
+  --ink: #3a4a9a;
+  display: inline-grid;
+  justify-items: center;
+  align-content: center;
+  gap: 0.05rem;
+  padding: 0.45rem 0.85rem;
+  border: 2.5px solid var(--ink);
+  border-radius: 9px;
+  box-shadow: inset 0 0 0 2px #f6f0e3, inset 0 0 0 3.5px var(--ink);
+  color: var(--ink);
+  text-transform: uppercase;
+  line-height: 1.1;
+  white-space: nowrap;
+  transform: rotate(var(--tilt, 0deg));
+  opacity: 0.86;
+  mix-blend-mode: multiply;
+  /* Uneven ink: a speckle mask so the stamp doesn't look like a UI badge. */
+  -webkit-mask-image: repeating-radial-gradient(circle at 37% 41%, #000 0 1.6px, rgba(0, 0, 0, 0.72) 1.6px 2.4px);
+  mask-image: repeating-radial-gradient(circle at 37% 41%, #000 0 1.6px, rgba(0, 0, 0, 0.72) 1.6px 2.4px);
+}
+
+.stampTop {
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.stampPlace {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.stampFoot {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  font-variant-numeric: tabular-nums;
+}
+
+.ink_pl { --ink: #3a4a9a; }
+.ink_lt { --ink: #1d6b45; }
+.ink_de { --ink: #2b2f36; }
+.ink_ch { --ink: #b3122a; }
+.ink_mtynk { --ink: #2e6b3b; }
+
+.ink_ch,
+.ink_mtynk {
+  width: 120px;
+  height: 120px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.ink_ch .stampPlace {
+  font-size: 0.86rem;
+}
+
+.ink_mtynk .stampPlace {
+  font-size: 1.05rem;
+}
+
+/* Before a stage is reached, its stamp is missing from the page. */
+.live .stamp:not(.stamped) {
+  opacity: 0;
+  transform: rotate(var(--tilt, 0deg)) scale(1.7);
+}
+
+.live .stamp.stamped {
+  animation: stampDown 0.5s cubic-bezier(0.3, 0, 0.2, 1) both;
+}
+
+@keyframes stampDown {
+  0% {
+    opacity: 0;
+    transform: rotate(calc(var(--tilt, 0deg) + 10deg)) scale(1.7);
+  }
+  55% {
+    opacity: 0.95;
+    transform: rotate(var(--tilt, 0deg)) scale(0.93);
+  }
+  100% {
+    opacity: 0.86;
+    transform: rotate(var(--tilt, 0deg)) scale(1);
+  }
+}
+
+/* ---------- Timeline ---------- */
 
 .timeline {
   position: relative;
   list-style: none;
-  margin: 3rem 0 0;
+  margin: 0;
   padding: 0;
 }
 
-.timeline::before {
+.timeline::before,
+.timeline::after {
   content: "";
   position: absolute;
-  left: 7px;
-  top: 8px;
-  bottom: 8px;
+  left: 19px;
+  top: 20px;
+  bottom: 20px;
   width: 2px;
-  background: linear-gradient(
-    to bottom,
-    var(--color-primary) 0%,
-    var(--color-primary) calc(100% - 60px),
-    transparent 100%
-  );
-  opacity: 0.25;
+  border-radius: 2px;
+}
+
+.timeline::before {
+  background: var(--color-border);
+}
+
+.timeline::after {
+  background: var(--color-primary);
+  transform-origin: top;
+  transform: scaleY(var(--fill, 1));
 }
 
 /* Spacing via padding, not margin — keeps the rail continuous */
 .timelineItem {
   position: relative;
-  padding: 0 0 2.5rem 2.75rem;
+  padding: 0 0 2.75rem 4rem;
 }
 
 .timelineItem:last-child {
   padding-bottom: 0;
 }
 
-.timelineDot {
+.marker {
   position: absolute;
   left: 0;
-  top: 4px;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--color-white);
-  border: 3px solid var(--color-primary);
+  top: 0;
   z-index: 1;
+  display: flex;
+  transition: transform 0.4s cubic-bezier(0.3, 1.4, 0.5, 1), filter 0.4s ease, opacity 0.4s ease;
+}
+
+.flag {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px var(--color-white), 0 0 0 4px var(--color-border), 0 6px 14px -6px rgba(0, 0, 0, 0.35);
+}
+
+/* Two countries in one stage: the second flag tucks in behind the first. */
+.flag + .flag {
+  position: absolute;
+  left: 22px;
+  top: 22px;
+  width: 24px;
+  height: 24px;
+  box-shadow: 0 0 0 2px var(--color-white), 0 3px 8px -3px rgba(0, 0, 0, 0.4);
+}
+
+.live .timelineItem:not(.passed) .marker {
+  filter: grayscale(1);
+  opacity: 0.45;
+}
+
+.live .active .marker {
+  transform: scale(1.15);
 }
 
 .timelineLabel {
@@ -72,7 +283,7 @@
   background: var(--color-primary-subtle);
   padding: 0.2rem 0.65rem;
   border-radius: var(--radius-pill);
-  margin-bottom: 0.5rem;
+  margin: 0.45rem 0 0.5rem;
   font-variant-numeric: tabular-nums;
 }
 
@@ -89,8 +300,21 @@
   margin-bottom: 0;
 }
 
+.inlineStamps {
+  display: none;
+}
+
+/* ---------- Why + quote ---------- */
+
 .why {
   background: var(--color-light-gray);
+}
+
+.whyGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+  gap: 4rem;
+  align-items: center;
 }
 
 .why p {
@@ -102,25 +326,53 @@
 }
 
 .quote {
-  margin: 2rem 0;
-  padding: 1.25rem 1.5rem;
-  border-left: 4px solid var(--color-primary);
-  background: var(--color-white);
-  border-radius: var(--radius);
+  position: relative;
+  margin: 0;
+  padding: 4.25rem 2.25rem 2.25rem;
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(90% 110% at 100% 0%, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 60%),
+    #2e6b3b;
+  color: #ffffff;
+  box-shadow: 0 24px 40px -26px rgba(31, 61, 40, 0.9);
+  transform: rotate(1.2deg);
+}
+
+.quote::before {
+  content: "„";
+  position: absolute;
+  top: -2.6rem;
+  left: 1.75rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 7rem;
+  line-height: 1;
+  color: #e2cf94;
 }
 
 .quote p {
-  font-size: 1.35rem;
-  font-weight: 600;
-  color: var(--color-dark);
-  margin: 0 0 0.25rem;
-  letter-spacing: -0.015em;
+  margin: 0 0 1rem;
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.4vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #ffffff;
 }
 
 .quote cite {
   font-style: normal;
   font-size: var(--fs-small);
-  color: var(--color-text-light);
+  color: rgba(255, 255, 255, 0.82);
+}
+
+:global([data-theme="dark"]) .quote {
+  background:
+    radial-gradient(90% 110% at 100% 0%, rgba(108, 196, 125, 0.18) 0%, rgba(108, 196, 125, 0) 60%),
+    #1f3d28;
+}
+
+:global([data-theme="dark"]) .passport {
+  filter: brightness(0.9);
 }
 
 .ctaRow {
@@ -135,12 +387,64 @@
   font-weight: 600;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .marker {
+    transition: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .careerGrid,
+  .whyGrid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .passportCol {
+    display: none;
+  }
+
+  /* On one column the stamps land right inside each stage. */
+  .inlineStamps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
+    margin-top: 1.1rem;
+  }
+
+  .inlineStamps .stamp {
+    box-shadow: inset 0 0 0 2px var(--color-white), inset 0 0 0 3.5px var(--ink);
+    mix-blend-mode: normal;
+  }
+
+  .quote {
+    transform: none;
+    max-width: 520px;
+  }
+
+  :global([data-theme="dark"]) .inlineStamps .ink_pl { --ink: #9aa8ec; }
+  :global([data-theme="dark"]) .inlineStamps .ink_lt { --ink: #6cc49a; }
+  :global([data-theme="dark"]) .inlineStamps .ink_de { --ink: #d3d7dd; }
+  :global([data-theme="dark"]) .inlineStamps .ink_ch { --ink: #f07a8a; }
+  :global([data-theme="dark"]) .inlineStamps .ink_mtynk { --ink: #6cc47d; }
+}
+
 @media (max-width: 768px) {
-  .lead {
-    font-size: 1.05rem;
+  .owner {
+    height: 240px;
   }
 
   .timelineItem {
-    padding-left: 2.25rem;
+    padding-left: 3.4rem;
+  }
+
+  .flag {
+    width: 34px;
+    height: 34px;
+  }
+
+  .timeline::before,
+  .timeline::after {
+    left: 16px;
   }
 }
