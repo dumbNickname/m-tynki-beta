@@ -272,6 +272,40 @@ strong {
   font-size: 1rem;
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Scroll reveal without JS: only where scroll-driven animations exist and the
+   user has not asked for reduced motion. Everywhere else content is static and
+   fully visible, so crawlers and no-JS visitors always get the finished page. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: revealUp linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 70%;
+    }
+  }
+}
+
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: none; }
+}
+
 @media (max-width: 1024px) {
   :root {
     --fs-h1: 2.25rem;

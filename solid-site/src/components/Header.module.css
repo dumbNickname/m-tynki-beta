@@ -14,15 +14,16 @@
   display: none;
 }
 
-.topBar {
-  border-bottom: 1px solid var(--color-border);
-}
-
 .topInner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
+  gap: 1.5rem;
+  height: 72px;
+}
+
+.logo {
+  flex-shrink: 0;
 }
 
 .logo img {
@@ -69,47 +70,31 @@
 }
 
 .navBar {
-  background: var(--color-white);
-}
-
-.navInner {
+  flex: 1;
   display: flex;
   justify-content: center;
+  min-width: 0;
 }
 
 .navBar ul {
   display: flex;
   align-items: center;
-  gap: 0;
+  gap: 0.125rem;
 }
 
 .navBar li a {
   display: block;
   color: var(--color-text);
   font-weight: 500;
-  font-size: 0.8125rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 0.875rem 1.125rem;
-  position: relative;
-  transition: color var(--transition);
+  font-size: 0.9375rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  transition: color var(--transition), background-color var(--transition);
 }
 
-.navBar li a::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: var(--color-primary);
-  transition: width var(--transition), left var(--transition);
-}
-
-.navBar li a:hover::after,
-.navBar li a.active::after {
-  width: 100%;
-  left: 0;
+.navBar li a:hover {
+  background: var(--color-primary-subtle);
 }
 
 .navBar li a:hover {
@@ -305,6 +290,16 @@
 .flyoutCta a {
   width: 100%;
   text-align: center;
+}
+
+@media (max-width: 1300px) {
+  .phoneText {
+    display: none;
+  }
+
+  .logo img {
+    height: 34px;
+  }
 }
 
 @media (max-width: 1024px) {
