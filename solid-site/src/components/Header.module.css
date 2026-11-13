@@ -49,24 +49,17 @@
   gap: 1.25rem;
 }
 
-.phoneLink {
+.callBtn {
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
-  color: var(--color-dark);
-  font-weight: 600;
-  font-size: var(--fs-small);
-  transition: color var(--transition);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
-.phoneLink svg {
-  color: var(--color-primary);
+.callBtn svg {
   display: inline-block;
   flex-shrink: 0;
-}
-
-.phoneLink:hover {
-  color: var(--color-primary);
 }
 
 .navBar {
@@ -328,17 +321,19 @@
   background: linear-gradient(135deg, #f09433 0%, #dc2743 50%, #bc1888 100%);
 }
 
-@media (max-width: 1300px) {
-  .phoneText {
-    display: none;
-  }
-
+@media (max-width: 1360px) {
   .logo img {
     height: 34px;
   }
+
+  .navBar li a {
+    padding: 0.5rem 0.6rem;
+  }
 }
 
-@media (max-width: 1024px) {
+/* Switch to the compact header well before the desktop bar runs out of room:
+   system fonts differ in width per OS (Segoe vs SF vs Liberation). */
+@media (max-width: 1180px) {
   .desktop {
     display: none;
   }
