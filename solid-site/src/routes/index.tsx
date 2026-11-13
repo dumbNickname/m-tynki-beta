@@ -82,6 +82,7 @@ export default function Home() {
       <section class={styles.hero}>
         <img
           class={styles.heroImg}
+          data-parallax
           src="images/hero-1125w.jpg"
           srcset="images/hero-480w.jpg 480w, images/hero-768w.jpg 768w, images/hero-1125w.jpg 1125w"
           sizes="100vw"
@@ -127,16 +128,20 @@ export default function Home() {
               <p>Skontaktuj się z nami i przekonaj się o naszym profesjonalizmie! Zobacz nasze <NavLink href="/realizacje">realizacje</NavLink> lub dowiedz się więcej o <NavLink href="/tynki-ze-szlichta-pod-malowanie">tynkach gipsowych ze szlichtą pod malowanie</NavLink>.</p>
               <div class={styles.statsRow}>
                 <div class={styles.statItem}>
-                  <span class={styles.statNumber}>25+</span>
+                  <span class={styles.statNumber}><span data-count>25</span>+</span>
                   <span class={styles.statLabel}>Lat doświadczenia</span>
                 </div>
+                <div class={styles.statItem}>
+                  <span class={styles.statNumber}><span data-count>4</span></span>
+                  <span class={styles.statLabel}>Kraje, w których tynkowaliśmy</span>
+                </div>
                 <a class={styles.statItem} href={site.googleReviewsListUrl} target="_blank" rel="noopener noreferrer">
-                  <span class={styles.statNumber}>{site.googleRating}<svg class={styles.statStar} viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z" /></svg></span>
+                  <span class={styles.statNumber}><span data-count>{site.googleRating}</span><svg class={styles.statStar} viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z" /></svg></span>
                   <span class={styles.statLabel}>{site.googleReviewCount} {opinieLabel(site.googleReviewCount)} w Google</span>
                 </a>
               </div>
             </div>
-            <div class={`${styles.introImage} reveal`}>
+            <div class={`${styles.introImage} reveal-wipe`}>
               <img
                 src="images/uploads/elementor/thumbs/tynk-ze-szlichta-wygladzajaca-2-1-qbc493vjwnj8vdtfz6et930fnfrti3rzhl17p4djqe.jpg"
                 alt="Tynk ze szlichtą wygładzającą"
@@ -179,7 +184,7 @@ export default function Home() {
             <For each={latestPosts}>
               {(post) => (
                 <article class={`${styles.work} reveal`}>
-                  <div class={styles.workImg}>
+                  <div class={`${styles.workImg} reveal-wipe`}>
                     <img
                       src={toMedium(post.thumbnail)}
                       srcset={`${toThumb(post.thumbnail)} 400w, ${toMedium(post.thumbnail)} 800w`}
@@ -199,14 +204,14 @@ export default function Home() {
         </div>
       </section>
 
-      <SocialFollow />
-
       <section class={`section ${styles.reviews}`}>
         <div class="container text-center">
           <h2>Opinie o naszych tynkach we Wrocławiu i okolicach</h2>
           <Reviews />
         </div>
       </section>
+
+      <SocialFollow />
 
       <section class={`section ${styles.services}`}>
         <div class="container">
@@ -249,7 +254,7 @@ export default function Home() {
           <ol class={styles.timeline}>
             <For each={steps}>
               {(step, i) => (
-                <li class={styles.timelineItem}>
+                <li class={`${styles.timelineItem} reveal`}>
                   <span class={styles.timelineDot} aria-hidden="true">{i() + 1}</span>
                   <div>
                     <h3>{step.title}</h3>

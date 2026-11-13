@@ -18,6 +18,7 @@
   object-fit: cover;
   object-position: 60% 35%;
   z-index: -2;
+  translate: 0 var(--parallax, 0px);
 }
 
 .heroShade {
@@ -185,15 +186,15 @@
 }
 
 .textLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4em;
   font-weight: 600;
   color: var(--color-primary);
 }
 
+/* Inline (not flex), so a wrapped link keeps its arrow next to the last word. */
 .textLink::after {
   content: "→";
+  display: inline-block;
+  margin-left: 0.4em;
   transition: transform var(--transition);
 }
 
@@ -254,14 +255,16 @@
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
+  position: relative;
+  align-self: flex-start;
 }
 
 .statStar {
-  display: inline-block;
+  position: absolute;
+  top: -0.08em;
+  right: -0.72em;
   width: 0.62em;
   height: 0.62em;
-  margin-left: 0.12em;
-  vertical-align: 0.32em;
   fill: #f5b301;
 }
 
@@ -308,7 +311,7 @@ a.statItem:hover .statLabel {
   aspect-ratio: 4 / 3;
   border-radius: var(--radius);
   overflow: hidden;
-  background: var(--color-light-gray);
+  background: #e9e4dc;
   margin-bottom: 1rem;
 }
 
@@ -352,7 +355,7 @@ a.statItem:hover .statLabel {
 /* ---------- Reviews ---------- */
 
 .reviews {
-  background: var(--color-white);
+  background: var(--color-light-gray);
 }
 
 /* ---------- Services ---------- */
@@ -848,7 +851,7 @@ a.statItem:hover .statLabel {
   }
 
   .heroShade {
-    background: linear-gradient(0deg, rgba(12, 16, 13, 0.92) 0%, rgba(12, 16, 13, 0.7) 55%, rgba(12, 16, 13, 0.35) 100%);
+    background: linear-gradient(0deg, rgba(12, 16, 13, 0.94) 0%, rgba(12, 16, 13, 0.82) 55%, rgba(12, 16, 13, 0.4) 100%);
   }
 
   .heroInner {
@@ -935,7 +938,11 @@ a.statItem:hover .statLabel {
   }
 
   .statsRow {
-    gap: 2rem;
+    gap: 1.25rem;
+  }
+
+  .statItem {
+    flex: 1;
   }
 
   .statNumber {

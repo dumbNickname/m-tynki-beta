@@ -28,26 +28,26 @@ export default function SocialFollow() {
   return (
     <section class={`section ${styles.section}`}>
       <div class="container">
-        <div class={styles.heading}>
+        <div class={`${styles.heading} reveal`}>
           <h2>Śledź nas</h2>
           <p>Nowe zdjęcia z budów wrzucamy na bieżąco na Facebooka i Instagrama — zobacz, jak pracujemy na co dzień.</p>
         </div>
         <div class={styles.cards}>
-          <a href={site.facebookUrl} target="_blank" rel="nofollow noopener noreferrer" class={`${styles.card} ${styles.facebook}`}>
+          <a href={site.facebookUrl} target="_blank" rel="nofollow noopener noreferrer" class={`reveal ${styles.card} ${styles.facebook}`}>
             <span class={styles.icon}><FacebookIcon /></span>
             <span class={styles.text}>
               <span class={styles.label}>Facebook</span>
               <span class={styles.subtitle}>Polub nasz profil</span>
             </span>
           </a>
-          <a href={site.instagramUrl} target="_blank" rel="nofollow noopener noreferrer" class={`${styles.card} ${styles.instagram}`}>
+          <a href={site.instagramUrl} target="_blank" rel="nofollow noopener noreferrer" class={`reveal ${styles.card} ${styles.instagram}`}>
             <span class={styles.icon}><InstagramIcon /></span>
             <span class={styles.text}>
               <span class={styles.label}>Instagram</span>
               <span class={styles.subtitle}>@firmamtynk · zdjęcia z budów</span>
             </span>
           </a>
-          <NavLink href="/galeria" class={`${styles.card} ${styles.gallery}`}>
+          <NavLink href="/galeria" class={`reveal ${styles.card} ${styles.gallery}`}>
             <span class={styles.icon}><GalleryIcon /></span>
             <span class={styles.text}>
               <span class={styles.label}>Galeria</span>

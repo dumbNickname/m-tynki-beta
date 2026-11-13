@@ -91,7 +91,7 @@ export default function PlasterCompare() {
         />
       </div>
       <figcaption class={styles.caption}>
-        Wizualizacja poglądowa: ta sama ściana w świetle padającym z boku. Szlichta wyraźnie wygładza tynk, ale pod mocne światło boczne doradzamy gładź.
+        Wizualizacja poglądowa: duże zbliżenie ściany w świetle padającym z boku. Faktura zwykłego tynku jest drobna, ale wyczuwalna pod ręką i widoczna po pomalowaniu. Pod mocne światło boczne doradzamy gładź.
       </figcaption>
     </figure>
   );

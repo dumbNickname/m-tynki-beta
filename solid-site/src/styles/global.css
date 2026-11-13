@@ -288,22 +288,32 @@ strong {
   to { opacity: 1; }
 }
 
-/* Scroll reveal without JS: only where scroll-driven animations exist and the
-   user has not asked for reduced motion. Everywhere else content is static and
-   fully visible, so crawlers and no-JS visitors always get the finished page. */
-@media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .reveal {
-      animation: revealUp linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 70%;
-    }
-  }
+/* Scroll reveals (src/utils/motion.ts). Hidden states only exist under
+   html.motion, which JS sets after marking on-screen items as revealed, so
+   crawlers, no-JS and reduced-motion visitors always get the finished page. */
+html.motion .reveal {
+  transition:
+    opacity 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay, 0ms),
+    transform 0.65s cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay, 0ms);
 }
 
-@keyframes revealUp {
-  from { opacity: 0; transform: translateY(28px); }
-  to { opacity: 1; transform: none; }
+html.motion .reveal:not(.is-in) {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+/* Image reveal drawn like a trowel stroke: a left-to-right wipe while the
+   photo settles from a slight zoom. The wrapper's background stays visible. */
+html.motion .reveal-wipe img {
+  clip-path: inset(0 0 0 0);
+  transition:
+    clip-path 0.6s cubic-bezier(0.7, 0, 0.2, 1) var(--reveal-delay, 0ms),
+    transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay, 0ms);
+}
+
+html.motion .reveal-wipe:not(.is-in) img {
+  clip-path: inset(0 100% 0 0);
+  transform: scale(1.12);
 }
 
 @media (max-width: 1024px) {

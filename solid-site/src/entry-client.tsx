@@ -1,7 +1,9 @@
 // @refresh reload
 import { mount, StartClient } from "@solidjs/start/client";
+import { initMotion } from "./utils/motion";
 
 mount(() => <StartClient />, document.getElementById("app")!);
+initMotion();
 
 const base = (import.meta.env.SERVER_BASE_URL || "") as string;
 
