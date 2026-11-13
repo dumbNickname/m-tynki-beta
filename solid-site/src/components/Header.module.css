@@ -292,6 +292,42 @@
   text-align: center;
 }
 
+.flyoutSocial {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.flyoutSocial a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  border-radius: var(--radius-pill);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.flyoutSocial a:hover {
+  color: #ffffff;
+  filter: brightness(1.08);
+}
+
+.flyoutSocial svg {
+  width: 20px;
+  height: 20px;
+}
+
+.socialFb {
+  background: #1877f2;
+}
+
+.socialIg {
+  background: linear-gradient(135deg, #f09433 0%, #dc2743 50%, #bc1888 100%);
+}
+
 @media (max-width: 1300px) {
   .phoneText {
     display: none;

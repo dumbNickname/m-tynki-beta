@@ -5,6 +5,7 @@ import Reviews from "~/components/Reviews";
 import NavLink from "~/components/NavLink";
 import PlasterCompare from "~/components/PlasterCompare";
 import MascotBadge from "~/components/MascotBadge";
+import SocialFollow from "~/components/SocialFollow";
 import site from "~/data/site.json";
 import posts from "~/data/posts.json";
 import { opinieLabel } from "~/utils/plural";
@@ -198,6 +199,8 @@ export default function Home() {
         </div>
       </section>
 
+      <SocialFollow />
+
       <section class={`section ${styles.reviews}`}>
         <div class="container text-center">
           <h2>Opinie o naszych tynkach we Wrocławiu i okolicach</h2>
@@ -205,7 +208,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section class="section">
+      <section class={`section ${styles.services}`}>
         <div class="container">
           <h2 class={styles.servicesTitle}>Co robimy na budowie</h2>
           <NavLink href={featured.href} class={`${styles.featured} reveal`}>
@@ -259,7 +262,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section class="section" id="o-nas">
+      <section class={`section ${styles.about}`} id="o-nas">
         <div class="container">
           <div class={styles.aboutFullGrid}>
             <div class="reveal">

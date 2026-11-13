@@ -1,6 +1,7 @@
 import { createSignal, For, onCleanup, onMount } from "solid-js";
 import navigation from "~/data/navigation.json";
 import site from "~/data/site.json";
+import { FacebookIcon, InstagramIcon } from "./SocialFollow";
 import NavLink from "./NavLink";
 import ThemeToggle from "./ThemeToggle";
 import styles from "./Header.module.css";
@@ -147,6 +148,14 @@ export default function Header() {
           <a class="btn btn-primary" href={`tel:${site.phoneRaw}`}>
             {site.phone}
           </a>
+          <div class={styles.flyoutSocial}>
+            <a class={styles.socialFb} href={site.facebookUrl} target="_blank" rel="nofollow noopener noreferrer">
+              <FacebookIcon /> Facebook
+            </a>
+            <a class={styles.socialIg} href={site.instagramUrl} target="_blank" rel="nofollow noopener noreferrer">
+              <InstagramIcon /> Instagram
+            </a>
+          </div>
         </div>
       </dialog>
     </header>

@@ -352,10 +352,14 @@ a.statItem:hover .statLabel {
 /* ---------- Reviews ---------- */
 
 .reviews {
-  background: var(--color-light-gray);
+  background: var(--color-white);
 }
 
 /* ---------- Services ---------- */
+
+.services {
+  background: var(--color-light-gray);
+}
 
 .servicesTitle {
   margin-bottom: 1.75rem;
@@ -515,7 +519,7 @@ a.statItem:hover .statLabel {
 /* ---------- Process ---------- */
 
 .process {
-  background: var(--color-light-gray);
+  background: var(--color-white);
 }
 
 .timeline {
@@ -576,7 +580,7 @@ a.statItem:hover .statLabel {
   font-weight: 700;
   font-size: 0.9375rem;
   font-variant-numeric: tabular-nums;
-  box-shadow: 0 0 0 6px var(--color-light-gray);
+  box-shadow: 0 0 0 6px var(--color-white);
 }
 
 .timelineItem h3 {
@@ -620,8 +624,8 @@ a.statItem:hover .statLabel {
 }
 
 @keyframes dotFill {
-  from { background: var(--color-white); color: var(--color-text-light); box-shadow: 0 0 0 6px var(--color-light-gray), inset 0 0 0 2px var(--color-border); }
-  to { background: var(--color-primary); color: #ffffff; box-shadow: 0 0 0 6px var(--color-light-gray), inset 0 0 0 2px var(--color-primary); }
+  from { background: var(--color-white); color: var(--color-text-light); box-shadow: 0 0 0 6px var(--color-white), inset 0 0 0 2px var(--color-border); }
+  to { background: var(--color-primary); color: #ffffff; box-shadow: 0 0 0 6px var(--color-white), inset 0 0 0 2px var(--color-primary); }
 }
 
 @keyframes stepIn {
@@ -630,6 +634,10 @@ a.statItem:hover .statLabel {
 }
 
 /* ---------- About ---------- */
+
+.about {
+  background: var(--color-light-gray);
+}
 
 .aboutFullGrid {
   display: grid;
@@ -721,7 +729,7 @@ a.statItem:hover .statLabel {
   margin-top: 4.5rem;
   padding: 2.75rem 3rem;
   border-radius: var(--radius-lg);
-  background: var(--color-light-gray);
+  background: var(--color-white);
 }
 
 .approachMascot {

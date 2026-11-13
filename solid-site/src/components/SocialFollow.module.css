@@ -3,50 +3,75 @@
 }
 
 .heading {
-  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 3rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.heading h2 {
+  margin: 0;
+}
+
+.heading p {
+  max-width: 34em;
+  margin: 0;
+  color: var(--color-text);
 }
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  max-width: 960px;
-  margin: 0 auto;
+  grid-template-columns: 1.25fr 1.25fr 1fr;
+  gap: 1.25rem;
 }
 
 .card {
+  position: relative;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  padding: 2.5rem 2rem;
+  gap: 1.25rem;
+  min-height: 132px;
+  padding: 1.75rem 3.5rem 1.75rem 1.75rem;
   border-radius: var(--radius-lg);
   color: #ffffff;
   text-decoration: none;
-  transition: transform var(--transition), box-shadow var(--transition);
-  position: relative;
   overflow: hidden;
+  isolation: isolate;
+  transition: transform var(--transition), box-shadow var(--transition);
 }
 
 .card::before {
   content: "";
   position: absolute;
   inset: 0;
-  opacity: 0;
-  background: rgba(255, 255, 255, 0.1);
-  transition: opacity var(--transition);
+  z-index: -1;
+  background: radial-gradient(80% 120% at 100% 0%, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 60%);
+}
+
+.card::after {
+  content: "→";
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  font-size: 1.5rem;
+  transform: translateY(-50%);
+  transition: transform var(--transition);
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
   color: #ffffff;
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px -14px rgba(0, 0, 0, 0.45);
 }
 
-.card:hover::before {
-  opacity: 1;
+.card:hover::after {
+  transform: translate(5px, -50%);
 }
 
+/* Brand colours are hardcoded so white text stays readable in both themes
+   (theme tokens invert in dark mode). */
 .facebook {
   background: linear-gradient(135deg, #1877f2 0%, #0d65d9 100%);
 }
@@ -55,45 +80,67 @@
   background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
 }
 
-/* Cards are always saturated, in both themes — hardcoded so white text stays readable
-   (theme tokens invert in dark mode). */
 .gallery {
   background: linear-gradient(135deg, #397d47 0%, #2e6b3b 100%);
 }
 
 .icon {
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.16);
 }
 
 .icon svg {
-  width: 48px;
-  height: 48px;
+  width: 34px;
+  height: 34px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
 }
 
 .label {
   font-family: var(--font-heading);
-  font-size: var(--fs-h3);
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
 .subtitle {
-  font-size: var(--fs-small);
-  opacity: 0.85;
-  text-align: center;
-  line-height: 1.5;
+  font-size: 0.9375rem;
+  opacity: 0.9;
+  line-height: 1.4;
+}
+
+@media (max-width: 1024px) {
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .gallery {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 768px) {
   .cards {
     grid-template-columns: 1fr;
-    max-width: 400px;
   }
 
   .card {
-    padding: 2rem 1.5rem;
+    min-height: 104px;
+    padding: 1.25rem 3rem 1.25rem 1.25rem;
+  }
+
+  .icon {
+    width: 56px;
+    height: 56px;
   }
 }
