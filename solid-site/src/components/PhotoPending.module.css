@@ -32,6 +32,7 @@
   place-items: end center;
   aspect-ratio: 3 / 4;
   overflow: hidden;
+  container-type: inline-size;
   border-radius: 3px;
   background:
     radial-gradient(90% 70% at 50% 30%, #eef0ec 0%, #dfe3dd 100%);
@@ -39,10 +40,58 @@
   outline-offset: -8px;
 }
 
-.silhouette {
+.mascot {
   display: block;
-  width: 82%;
-  fill: #c3cbc2;
+  width: 104%;
+  margin-bottom: -4%;
+  overflow: visible;
+  stroke: #5b5650;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.skin { fill: #f6d5b1; }
+.cap, .shirt { fill: #3cad64; }
+.bib { fill: #fefefe; }
+.white { fill: #fff; }
+.pupil { fill: #323335; stroke: none; }
+.mouth { fill: #323335; }
+.tongue { fill: #e0736b; stroke: none; }
+.button { fill: #c9ccc8; stroke-width: 1; }
+.line { fill: none; }
+.wink { fill: none; stroke-width: 2.4; }
+
+.peek {
+  transform-box: view-box;
+  transform-origin: 60px 150px;
+  transform: rotate(-6deg);
+}
+
+.eye {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Every few seconds the open eye blinks too. */
+  .eye {
+    animation: blink 5.5s infinite;
+  }
+
+  .peek {
+    animation: bob 5.5s ease-in-out infinite;
+  }
+}
+
+@keyframes blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+
+@keyframes bob {
+  0%, 100% { transform: rotate(-6deg); }
+  50% { transform: rotate(-3deg) translateY(-2px); }
 }
 
 .corner {
@@ -61,16 +110,16 @@
 
 .stamp {
   position: absolute;
-  top: 50%;
+  top: 17%;
   left: 50%;
   padding: 0.35rem 0.7rem;
   border: 2px solid #2e6b3b;
   border-radius: 6px;
   background: rgba(251, 248, 241, 0.85);
   color: #2e6b3b;
-  font-size: 0.72rem;
+  font-size: clamp(0.6rem, 4.4cqi, 0.78rem);
   font-weight: 800;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   white-space: nowrap;
   transform: translate(-50%, -50%) rotate(-8deg);
