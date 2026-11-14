@@ -135,7 +135,7 @@ export default function Home() {
                   <span class={styles.statNumber}><span data-count>4</span></span>
                   <span class={styles.statLabel}>Kraje, w których tynkowaliśmy</span>
                 </div>
-                <a class={styles.statItem} href={site.googleReviewsListUrl} target="_blank" rel="noopener noreferrer">
+                <a class={styles.statItem} href={site.googleReviewsListUrl} target="_blank" rel="noopener noreferrer" aria-label={`${site.googleRating} na 5 — ${site.googleReviewCount} ${opinieLabel(site.googleReviewCount)} w Google`}>
                   <span class={styles.statNumber}><span data-count>{site.googleRating}</span><svg class={styles.statStar} viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z" /></svg></span>
                   <span class={styles.statLabel}>{site.googleReviewCount} {opinieLabel(site.googleReviewCount)} w Google</span>
                 </a>

@@ -316,6 +316,15 @@ html.motion .reveal-wipe:not(.is-in) img {
   transform: scale(1.12);
 }
 
+@media print {
+  html.motion .reveal,
+  html.motion .reveal-wipe img {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+}
+
 @media (max-width: 1024px) {
   :root {
     --fs-h1: 2.25rem;

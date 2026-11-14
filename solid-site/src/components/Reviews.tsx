@@ -76,6 +76,13 @@ export default function Reviews() {
   const stop = () => setPlaying(false);
 
   onMount(() => {
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(rail);
+    onCleanup(() => ro.disconnect());
+  });
+
+  onMount(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (rail.scrollWidth <= rail.clientWidth + 8) return;
     setCanAutoplay(true);

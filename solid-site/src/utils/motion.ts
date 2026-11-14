@@ -30,7 +30,7 @@ export function initMotion() {
         reveal(e.target as HTMLElement);
       }
     },
-    { rootMargin: "0px 0px -4% 0px" },
+    { rootMargin: "0px" },
   );
 
   for (const el of items) {
@@ -48,6 +48,12 @@ function countUp(el: HTMLElement) {
   const target = Number(final.replace(",", "."));
   if (!Number.isFinite(target)) return;
   const decimals = final.includes(",") ? final.split(",")[1].length : 0;
+  // Screen readers get the final value, not the ticking numbers.
+  const sr = document.createElement("span");
+  sr.className = "sr-only";
+  sr.textContent = final;
+  el.after(sr);
+  el.setAttribute("aria-hidden", "true");
   const dur = 1200;
   const start = performance.now();
   const tick = (now: number) => {

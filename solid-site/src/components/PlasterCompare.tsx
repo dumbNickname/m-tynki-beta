@@ -63,30 +63,43 @@ export default function PlasterCompare() {
         <div class={styles.light} aria-hidden="true" />
         <span class={`${styles.label} ${styles.labelLeft}`}>Zwykły tynk</span>
         <span class={`${styles.label} ${styles.labelRight}`}>Tynk ze szlichtą</span>
-        <div class={styles.divider} aria-hidden="true">
-          <span class={styles.handle}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="9 6 3 12 9 18" />
-              <polyline points="15 6 21 12 15 18" />
-            </svg>
-          </span>
+        <div class={`${styles.track} ${styles.dividerTrack}`} aria-hidden="true">
+          <div class={styles.divider}>
+            <span class={styles.handle}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 6 3 12 9 18" />
+                <polyline points="15 6 21 12 15 18" />
+              </svg>
+            </span>
+          </div>
         </div>
-        <picture class={styles.mascot} aria-hidden="true">
-          <source srcset={site.mascotFigureWebp} type="image/webp" />
-          <img src={site.mascotFigure} alt="" width="600" height="600" loading="lazy" decoding="async" />
-        </picture>
+        <div class={`${styles.track} ${styles.mascotTrack}`} aria-hidden="true">
+          <picture class={styles.mascot}>
+            <source srcset={site.mascotFigureWebp} type="image/webp" />
+            <img src={site.mascotFigure} alt="" width="600" height="600" loading="lazy" decoding="async" />
+          </picture>
+        </div>
         <input
           class={styles.range}
           type="range"
           min="4"
           max="96"
-          step="0.5"
+          step="1"
           value={pos()}
           aria-label="Przesuń, aby porównać zwykły tynk z tynkiem ze szlichtą"
+          aria-valuetext={`${Math.round(100 - pos())}% tynku ze szlichtą`}
           onInput={(e) => {
             touched = true;
             setSweeping(false);
             setPos(Number(e.currentTarget.value));
+          }}
+          onKeyDown={(e) => {
+            if (e.key !== "PageUp" && e.key !== "PageDown") return;
+            e.preventDefault();
+            touched = true;
+            setSweeping(false);
+            const next = Math.round(pos()) + (e.key === "PageUp" ? 10 : -10);
+            setPos(Math.min(96, Math.max(4, next)));
           }}
         />
       </div>
