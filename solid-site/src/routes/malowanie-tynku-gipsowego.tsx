@@ -1,4 +1,5 @@
 import { createSignal, For } from "solid-js";
+import { keepCodes } from "~/utils/nowrap";
 import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import PageHeader from "~/components/PageHeader";
@@ -62,7 +63,7 @@ const comparison = [
   { label: "Kiedy wybrać", standard: "oświetlenie wzdłuż ścian, farby z połyskiem, ciemne kolory, najwyższy standard", szlichta: "typowe pokoje, korytarze i sypialnie malowane jasną, matową farbą" },
 ];
 
-function Photo(props: { src: string; alt: string; caption: string; width: number; height: number; wide?: boolean }) {
+function Photo(props: { src: string; alt: string; caption: string; width: number; height: number; wide?: boolean; position?: string }) {
   return (
     <figure class={`${flagship.photo} ${props.wide ? flagship.photoWide : ""}`}>
       <div class={`${flagship.photoFrame} reveal-wipe`}>
@@ -75,6 +76,7 @@ function Photo(props: { src: string; alt: string; caption: string; width: number
           alt={props.alt}
           loading="lazy"
           decoding="async"
+          style={props.position ? { "object-position": props.position } : undefined}
         />
       </div>
       <figcaption>{props.caption}</figcaption>
@@ -182,15 +184,16 @@ export default function MalowanieTynkuGipsowego() {
               <li><strong>Wilgotnościomierz.</strong> Najdokładniejsza metoda. Dopuszczalną wilgotność tynku przed malowaniem podaje karta techniczna konkretnego produktu — warto ją sprawdzić, zanim kupisz farbę.</li>
             </ul>
           </div>
-          <aside class={flagship.aside}>
+          <div class={flagship.aside}>
             <Photo
               src="images/uploads/2026/04/swiezy-tynk-gipsowy-schniecie-scian.jpg"
+              position="center top"
               width={1200}
               height={1600}
               alt="Świeży tynk gipsowy w trakcie schnięcia — jaśniejsze i ciemniejsze partie ściany i sufitu w pustym pomieszczeniu"
               caption="Tynk w trakcie schnięcia: ciemniejsze partie to miejsca, w których jest jeszcze wilgoć. Malujemy dopiero, gdy kolor wyrówna się na całej powierzchni."
             />
-          </aside>
+          </div>
         </div>
         <div class={`container ${flagship.split} ${flagship.splitFlip} ${styles.splitNext}`}>
           <div class={flagship.prose}>
@@ -216,7 +219,7 @@ export default function MalowanieTynkuGipsowego() {
               Na dużych, pustych powierzchniach — w nowym domu przed montażem podłóg i mebli — szybciej i równiej wychodzi <NavLink href="/tynki-ze-szlichta-pod-malowanie#gladz-natryskowa">malowanie natryskowe</NavLink>.
             </p>
           </div>
-          <aside class={flagship.aside}>
+          <div class={flagship.aside}>
             <Photo
               src="images/uploads/2026/04/salon-po-tynkowaniu-i-malowaniu-sufit-gk.jpg"
               width={1600}
@@ -225,7 +228,7 @@ export default function MalowanieTynkuGipsowego() {
               alt="Salon w nowym domu z gładkimi, pomalowanymi na biało ścianami i podwieszanym sufitem z płyt GK"
               caption="Ściany po malowaniu na biało i podwieszany fragment sufitu z płyt GK. Planujesz oświetlenie liniowe przy suficie lub wzdłuż ścian? Powiedz nam przed wyceną — w takich miejscach doradzamy gładź."
             />
-          </aside>
+          </div>
         </div>
       </section>
 
@@ -234,7 +237,7 @@ export default function MalowanieTynkuGipsowego() {
           <div class={flagship.prose}>
             <h2>Odbiór tynku przed malowaniem — lista kontrolna</h2>
             <p>
-              Tynk najlepiej odebrać <strong>zanim</strong> wejdzie malarz — poprawki przed malowaniem są proste, po malowaniu już nie. Punktem odniesienia jest norma <strong>PN-B-10110 „Tynki gipsowe wykonywane mechanicznie”</strong>, chyba że w umowie ustalono inaczej. Polskie Normy są dobrowolne, ale w praktyce właśnie według nich odbiera się tynki. Tak sprawdzają nas inwestorzy (i tak sami sprawdzamy swoją pracę):
+              Tynk najlepiej odebrać <strong>zanim</strong> wejdzie malarz — poprawki przed malowaniem są proste, po malowaniu już nie. Punktem odniesienia jest norma <strong><span class="nowrap">PN-B-10110</span> „Tynki gipsowe wykonywane mechanicznie”</strong>, chyba że w umowie ustalono inaczej. Polskie Normy są dobrowolne, ale w praktyce właśnie według nich odbiera się tynki. Tak sprawdzają nas inwestorzy (i tak sami sprawdzamy swoją pracę):
             </p>
           </div>
           <p class={styles.checkProgress} aria-live="polite">
@@ -258,7 +261,7 @@ export default function MalowanieTynkuGipsowego() {
                     </svg>
                   </button>
                   <h3>{item.title}</h3>
-                  <p>{item.text}</p>
+                  <p>{keepCodes(item.text)}</p>
                   <span class={styles.okStamp} aria-hidden="true">OK</span>
                 </li>
               )}
@@ -340,7 +343,7 @@ export default function MalowanieTynkuGipsowego() {
         <div class="container text-center">
           <h2>Budujesz pod Wrocławiem? Porozmawiajmy o tynkach</h2>
           <p>
-            {site.googleRating}★ w {site.googleReviewCount} {opinieLabel(site.googleReviewCount)} Google. Zadzwoń po bezpłatną wycenę — powiedz nam o planowanym oświetleniu, a doradzimy, gdzie wystarczy szlichta, a gdzie warto dodać gładź. Możesz też obejrzeć naszą aktualną budowę.
+            {site.googleRating}★ · {site.googleReviewCount} {opinieLabel(site.googleReviewCount)} w Google. Zadzwoń po bezpłatną wycenę — powiedz nam o planowanym oświetleniu, a doradzimy, gdzie wystarczy szlichta, a gdzie warto dodać gładź. Możesz też obejrzeć naszą aktualną budowę.
           </p>
           <a class="btn btn-primary btn-lg" href={`tel:${site.phoneRaw}`}>
             {site.phone}

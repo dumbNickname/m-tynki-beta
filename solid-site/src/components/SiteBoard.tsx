@@ -2,6 +2,8 @@ import { Show } from "solid-js";
 import NavLink from "./NavLink";
 import { toMedium, toThumb } from "~/utils/images";
 import { formatDatePl } from "~/utils/date";
+import { formatArea } from "~/utils/area";
+import { zdjeciaLabel } from "~/utils/plural";
 import styles from "./SiteBoard.module.css";
 
 interface Post {
@@ -34,7 +36,7 @@ export default function SiteBoard(props: { post: Post; kind: string; flip?: bool
           fetchpriority={props.priority ? "high" : undefined}
         />
         <Show when={props.post.gallery.length > 1}>
-          <span class={styles.count}>{props.post.gallery.length} zdjęć</span>
+          <span class={styles.count}>{props.post.gallery.length} {zdjeciaLabel(props.post.gallery.length)}</span>
         </Show>
       </div>
       <div class={styles.side}>
@@ -60,7 +62,7 @@ export default function SiteBoard(props: { post: Post; kind: string; flip?: bool
             <Show when={props.post.area}>
               <div>
                 <dt>Powierzchnia</dt>
-                <dd>{props.post.area}</dd>
+                <dd>{formatArea(props.post.area)}</dd>
               </div>
             </Show>
             <Show when={props.post.duration}>

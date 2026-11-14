@@ -5,7 +5,8 @@ export default function ScrollToTop() {
   const [visible, setVisible] = createSignal(false);
 
   const handleScroll = () => {
-    setVisible(window.scrollY > 300);
+    // Only once the visitor is well down the page, so it rarely covers content near the top.
+    setVisible(window.scrollY > window.innerHeight * 1.5);
   };
 
   onMount(() => {

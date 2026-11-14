@@ -1,4 +1,4 @@
-import { For } from "solid-js";
+import { createSignal, For } from "solid-js";
 import styles from "./WallSection.module.css";
 
 // Exploded cross-section of a wall ready for painting. The layers slide apart
@@ -33,12 +33,23 @@ const layers = [
 ];
 
 export default function WallSection() {
+  // Touch screens have no hover: a tap on a layer (or its description) lights
+  // up the pair instead, and a tap on the diagram brings the description into view.
+  const [active, setActive] = createSignal(0);
+  let list!: HTMLOListElement;
+  const tap = (n: number, fromDiagram: boolean) => {
+    if (!window.matchMedia("(hover: none)").matches) return;
+    setActive(active() === n ? 0 : n);
+    if (fromDiagram && active()) {
+      list.querySelector(`[data-l="${n}"]`)?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    }
+  };
   return (
-    <figure class={styles.wrap}>
+    <figure class={styles.wrap} data-active={active() || undefined}>
       <div class={`${styles.diagram} reveal`} aria-hidden="true">
         <For each={layers}>
           {(_, i) => (
-            <div class={styles.band} data-l={i() + 1}>
+            <div class={styles.band} data-l={i() + 1} onClick={() => tap(i() + 1, true)}>
               <span class={styles.badge}>{i() + 1}</span>
             </div>
           )}
@@ -46,10 +57,10 @@ export default function WallSection() {
         <span class={styles.room}>pokój</span>
       </div>
 
-      <ol class={styles.list}>
+      <ol class={styles.list} ref={list}>
         <For each={layers}>
           {(layer, i) => (
-            <li class={styles.item} data-l={i() + 1}>
+            <li class={styles.item} data-l={i() + 1} onClick={() => tap(i() + 1, false)}>
               <span class={styles.itemNo} aria-hidden="true">{i() + 1}</span>
               <h3>{layer.name}</h3>
               <p class={styles.note}>{layer.note}</p>

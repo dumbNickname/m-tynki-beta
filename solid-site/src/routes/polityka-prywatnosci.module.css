@@ -112,10 +112,6 @@
   max-width: 760px;
 }
 
-.contentText section {
-  scroll-margin-top: 6rem;
-}
-
 .contentText section + section {
   margin-top: 2.5rem;
 }

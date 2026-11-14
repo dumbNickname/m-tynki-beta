@@ -123,7 +123,7 @@ export default function Reviews() {
       <a class={styles.summary} href={site.googleReviewsListUrl} target="_blank" rel="noopener noreferrer">
         <strong class={styles.summaryScore}>{site.googleRating}</strong>
         <span class={styles.summaryMeta}>
-          <span class={styles.summaryStars} role="img" aria-label="5 na 5 gwiazdek">
+          <span class={styles.summaryStars} role="img" aria-label={`${site.googleRating} na 5 gwiazdek`}>
             <For each={[0, 1, 2, 3, 4]}>{() => <Star />}</For>
           </span>
           <span>

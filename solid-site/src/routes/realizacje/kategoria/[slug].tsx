@@ -4,6 +4,7 @@ import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import PageHeader from "~/components/PageHeader";
 import PostList from "~/components/PostList";
+import CallBand from "~/components/CallBand";
 import CategoryArt from "~/components/CategoryArt";
 import { realizacjeLabel } from "~/utils/plural";
 import posts from "~/data/posts.json";
@@ -64,6 +65,11 @@ export default function CategoryPage() {
           <PostList posts={filteredPosts()} active={params.slug ?? ""} />
         </div>
       </section>
+
+      <CallBand
+        title="Chcesz takie ściany u siebie?"
+        text="Zadzwoń, umówimy bezpłatną wycenę. Możesz też obejrzeć naszą aktualną budowę we Wrocławiu lub okolicy."
+      />
     </Layout>
   );
 }

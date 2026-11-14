@@ -236,8 +236,9 @@
 }
 
 .statsRow {
-  display: flex;
-  gap: 3rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
   margin-top: 2rem;
   padding-top: 2rem;
   border-top: 1px solid var(--color-border);

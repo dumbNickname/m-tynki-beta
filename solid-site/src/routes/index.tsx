@@ -299,7 +299,7 @@ export default function Home() {
                 Panuje przeświadczenie, że wszystkie roboty budowlane trwają długo, są robione niedokładnie, przez co trzeba przygotować się na dużą ilość poprawek. Jednak to nie tyczy się NAS! Działamy profesjonalnie, wiemy co nas irytuje w pracach budowlanych, dlatego pracujemy tak jakbyśmy sami chcieli zostać obsłużeni.
               </p>
               <p>
-                Liczy się dla nas satysfakcja i zadowolenie przebiegu współpracy z klientami, przez to zwracamy uwagę na najmniejsze szczegóły. Odpowiadamy na wszystkie pytania, aby nasi klienci byli świadomi interesujących ich kroków naszej pracy.
+                Liczy się dla nas satysfakcja i zadowolenie z przebiegu współpracy z klientami, przez to zwracamy uwagę na najmniejsze szczegóły. Odpowiadamy na wszystkie pytania, aby nasi klienci byli świadomi interesujących ich kroków naszej pracy.
               </p>
             </div>
           </div>

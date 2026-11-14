@@ -105,8 +105,9 @@
   background: none;
   border: none;
   cursor: pointer;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
+  margin-left: -4px;
   position: relative;
   z-index: 1100;
 }
@@ -120,11 +121,11 @@
   background: var(--color-dark);
   transition: var(--transition);
   position: absolute;
-  left: 7px;
+  left: 11px;
   border-radius: 1px;
 }
 
-.hamburger { top: 17px; }
+.hamburger { top: 21px; }
 .hamburger::before { content: ""; top: -7px; }
 .hamburger::after  { content: ""; top: 7px; }
 
@@ -138,8 +139,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: var(--color-primary);
   color: var(--color-white);
@@ -298,6 +299,7 @@
   justify-content: center;
   gap: 0.5rem;
   min-height: 48px;
+  padding: 0 0.85rem;
   border-radius: var(--radius-pill);
   color: #ffffff;
   font-weight: 600;

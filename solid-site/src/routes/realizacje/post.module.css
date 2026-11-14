@@ -34,14 +34,26 @@
 
 .breadcrumbs {
   display: flex;
-  gap: 0.5em;
-  font-size: 0.8rem;
+  align-items: center;
+  gap: 0.6em;
+  font-size: 0.85rem;
   margin-bottom: 1.25rem;
   color: rgba(255, 255, 255, 0.6);
 }
 
 .breadcrumbs a {
+  padding: 0.7rem 0;
+  margin: -0.7rem 0;
   color: rgba(255, 255, 255, 0.85);
+}
+
+/* Same chevron as the PageHeader breadcrumbs. */
+.sep {
+  width: 6px;
+  height: 6px;
+  border-top: 1.5px solid currentColor;
+  border-right: 1.5px solid currentColor;
+  transform: rotate(45deg);
 }
 
 .breadcrumbs a:hover {
@@ -233,7 +245,7 @@ html[data-theme="dark"] .heroImage {
   padding: 0.9rem 0.9rem 1rem;
   border-radius: var(--radius);
   background: var(--color-light-gray);
-  border-top: 6px solid #c8463a;
+  border-top: 6px solid var(--color-primary);
 }
 
 .calHead,
@@ -280,22 +292,40 @@ html[data-theme="dark"] .heroImage {
   font-size: 0.68rem;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
+  isolation: isolate;
 }
 
-/* A marker cross over each finished day. */
+/* Each worked day gets a green fill and a tick; the number stays readable. */
+.calDays li::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: rgba(var(--color-primary-rgb), 0.2);
+  transition: opacity 0.2s ease calc(0.3s + var(--i) * 45ms);
+}
+
 .calDays li::after {
   content: "";
   position: absolute;
-  inset: 5px;
-  background:
-    linear-gradient(45deg, transparent calc(50% - 0.8px), rgba(200, 70, 58, 0.6) calc(50% - 0.8px) calc(50% + 0.8px), transparent calc(50% + 0.8px)),
-    linear-gradient(-45deg, transparent calc(50% - 0.8px), rgba(200, 70, 58, 0.6) calc(50% - 0.8px) calc(50% + 0.8px), transparent calc(50% + 0.8px));
+  top: 3px;
+  right: 4px;
+  width: 3px;
+  height: 6px;
+  border-right: 1.5px solid var(--color-primary);
+  border-bottom: 1.5px solid var(--color-primary);
+  transform: rotate(45deg);
   transition: transform 0.25s cubic-bezier(0.3, 1.5, 0.5, 1) calc(0.3s + var(--i) * 45ms), opacity 0.15s ease calc(0.3s + var(--i) * 45ms);
+}
+
+:global(html.motion) .calendar:not(:global(.is-in)) .calDays li::before {
+  opacity: 0;
 }
 
 :global(html.motion) .calendar:not(:global(.is-in)) .calDays li::after {
   opacity: 0;
-  transform: scale(0.3);
+  transform: rotate(45deg) scale(0.3);
 }
 
 .details {

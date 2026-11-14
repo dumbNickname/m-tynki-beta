@@ -1,4 +1,5 @@
 import { For } from "solid-js";
+import { keepCodes } from "~/utils/nowrap";
 import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import PageHeader from "~/components/PageHeader";
@@ -23,7 +24,7 @@ const categoryLabels: Record<string, string> = {};
 navigation.categories.forEach((c) => { categoryLabels[c.slug] = c.label; });
 
 // Site photo beside the long text blocks: a fixed crop so it never outgrows the text.
-function Photo(props: { src: string; caption: string; width: number; height: number; wide?: boolean }) {
+function Photo(props: { src: string; caption: string; width: number; height: number; wide?: boolean; position?: string }) {
   return (
     <figure class={`${styles.photo} ${props.wide ? styles.photoWide : ""}`}>
       <div class={`${styles.photoFrame} reveal-wipe`}>
@@ -36,6 +37,7 @@ function Photo(props: { src: string; caption: string; width: number; height: num
           height={props.height}
           loading="lazy"
           decoding="async"
+          style={props.position ? { "object-position": props.position } : undefined}
         />
       </div>
       <figcaption>{props.caption}</figcaption>
@@ -202,7 +204,7 @@ export default function TynkiService() {
             <p>
               Jeśli chcą Państwo zapoznać się z tym jak wygląda Tynk ze Szlichtą Gładziolitu – zapraszamy na naszą aktualną budowę. Zawsze zapraszamy inwestorów, aby zapoznali się z jakością wykonywanych przez nas tynków. Dlatego też, w każdej sytuacji, prosimy o kontakt telefoniczny w celu umówienia się na wizytę. Na takiej wizycie opowiemy też więcej o wykonywanych Tynkach Gipsowych ze Szlichtą Gładziolitu, a także pokażemy, jak wygląda tynk bez szlichty gładziolitu oraz ze szlichtą gładziolitem.
             </p>
-            <div class="text-right">
+            <div>
               <a class="btn btn-primary" href={`tel:${site.phoneRaw}`}>
                 Umów się na wizytę!
               </a>
@@ -237,7 +239,7 @@ export default function TynkiService() {
 
             <h2>Jak przebiega tynkowanie maszynowe krok po kroku?</h2>
             <p>Realizację zaczynamy od oceny podłoża i zabezpieczenia budowy: okleiamy okna i drzwi, osłaniamy posadzki oraz instalacje. Następnie ustawiamy narożniki i listwy, przygotowujemy agregat i dobieramy konsystencję zaprawy do konkretnego pomieszczenia. Warstwę właściwą nakładamy maszynowo, ściągamy ją łatą do równego, a po wstępnym związaniu przystępujemy do wygładzania.</p>
-            <p>Kluczowy dla efektu końcowego jest etap wygładzania. Każdy narzut przecieramy trzema rodzajami łat gładzących, uzupełniamy drobne ubytki, a na końcu nakładamy szlichtę gładziolitu. Dzięki temu ściana po wyschnięciu jest gładka i równa, a w typowych pomieszczeniach można ją malować bez osobnej warstwy gładzi. Płaskość i pion sprawdzamy łatą 2 m i poziomicą, według normy PN-B-10110 dla tynków gipsowych maszynowych.</p>
+            <p>Kluczowy dla efektu końcowego jest etap wygładzania. Każdy narzut przecieramy trzema rodzajami łat gładzących, uzupełniamy drobne ubytki, a na końcu nakładamy szlichtę gładziolitu. Dzięki temu ściana po wyschnięciu jest gładka i równa, a w typowych pomieszczeniach można ją malować bez osobnej warstwy gładzi. Płaskość i pion sprawdzamy łatą 2 m i poziomicą, według normy <span class="nowrap">PN-B-10110</span> dla tynków gipsowych maszynowych.</p>
             <p>Cały proces prowadzimy tak, aby ograniczyć liczbę poprawek po naszym wyjściu z budowy. Zwracamy uwagę na naroża, ościeża okien i miejsca przy instalacjach, bo to tam najczęściej widać różnicę między tynkiem wykonanym pospiesznie a dopracowanym ręcznie.</p>
           </div>
           <div class={styles.aside}>
@@ -259,7 +261,7 @@ export default function TynkiService() {
             <p>Wybór technologii zależy od przeznaczenia pomieszczenia, oczekiwanego efektu i budżetu. Podczas wyceny doradzamy, które rozwiązanie będzie lepsze dla konkretnego wnętrza, i wskazujemy, gdzie tynk gipsowy ze szlichtą da najlepszy stosunek jakości do ceny.</p>
           </div>
           <div class={styles.aside}>
-            <Photo src="images/uploads/2026/04/swiezy-tynk-gipsowy-schniecie-scian.jpg" caption="Świeży tynk gipsowy w trakcie schnięcia." width={1200} height={1600} />
+            <Photo position="center top" src="images/uploads/2026/04/swiezy-tynk-gipsowy-schniecie-scian.jpg" caption="Świeży tynk gipsowy w trakcie schnięcia." width={1200} height={1600} />
           </div>
         </div>
       </section>
@@ -268,7 +270,7 @@ export default function TynkiService() {
         <div class={`container ${styles.split}`}>
           <div class={styles.prose}>
             <h2>Gładź — kiedy jest potrzebna?</h2>
-            <p>Tynk ze szlichtą to nadal tynk gipsowy. Odbiera się go według normy <strong>PN-B-10110 „Tynki gipsowe wykonywane mechanicznie”</strong> (lub warunków zapisanych w umowie): płaskość łatą 2 m, pion poziomicą, a wygląd z odległości ok. 2 m w rozproszonym świetle dziennym. Gładź to osobna, cienka warstwa wykończeniowa, która daje wyższą klasę gładkości.</p>
+            <p>Tynk ze szlichtą to nadal tynk gipsowy. Odbiera się go według normy <strong><span class="nowrap">PN-B-10110</span> „Tynki gipsowe wykonywane mechanicznie”</strong> (lub warunków zapisanych w umowie): płaskość łatą 2 m, pion poziomicą, a wygląd z odległości ok. 2 m w rozproszonym świetle dziennym. Gładź to osobna, cienka warstwa wykończeniowa, która daje wyższą klasę gładkości.</p>
             <p>Gładź doradzamy, gdy na ścianę będzie padać <strong>światło wzdłuż jej powierzchni</strong> — listwy LED, kinkiety, oprawy liniowe przy suficie, podświetlane wnęki — a także pod farby z połyskiem, ciemne kolory albo gdy zależy Ci na najwyższym standardzie. Takie światło wydobywa drobne ślady narzędzi na każdym tynku. Gładź wykonujemy jako osobny etap, przy malowaniu — można ją zrobić tylko w wybranych pomieszczeniach lub na pojedynczych ścianach. <strong>Powiedz nam o planowanym oświetleniu przed wyceną.</strong> Więcej o odbiorze tynku: <NavLink href="/malowanie-tynku-gipsowego#odbior">odbiór tynku przed malowaniem</NavLink>.</p>
             <h3>Gładź natryskowa</h3>
             <p>Gładź natryskowa to metoda wykończenia ścian, w której gotową masę nakłada się na powierzchnię za pomocą agregatu, a następnie rozprowadza i wygładza ręcznie. Natrysk pozwala równomiernie pokryć duże powierzchnie w krótkim czasie, a ręczne wygładzenie nadaje im ostateczną gładkość.</p>
@@ -326,7 +328,7 @@ export default function TynkiService() {
                     <path d={b.icon} />
                   </svg>
                   <h3>{b.title}</h3>
-                  <p>{b.description}</p>
+                  <p>{keepCodes(b.description)}</p>
                 </div>
               )}
             </For>

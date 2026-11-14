@@ -8,9 +8,10 @@ import PostCard from "~/components/PostCard";
 import posts from "~/data/posts.json";
 import site from "~/data/site.json";
 import navigation from "~/data/navigation.json";
-import { galleryAlts } from "~/utils/images";
+import { galleryAlts, toMedium } from "~/utils/images";
 import { formatDatePl } from "~/utils/date";
-import { opinieLabel } from "~/utils/plural";
+import { opinieLabel, zdjeciaLabel } from "~/utils/plural";
+import { parseArea } from "~/utils/area";
 import styles from "./post.module.css";
 import listStyles from "./index.module.css";
 
@@ -49,17 +50,18 @@ export default function PostPage() {
           <div class={`${styles.card} ${styles.ctaCard}`}>
             <p class={styles.ctaTitle}>Chcesz takie ściany u siebie?</p>
             <p class={styles.ctaText}>
-              Tynk gipsowy ze szlichtą — w typowych pomieszczeniach malujesz bez osobnej gładzi. {site.googleRating}★ w {site.googleReviewCount} {opinieLabel(site.googleReviewCount)} Google.
+              Tynk gipsowy ze szlichtą — w typowych pomieszczeniach malujesz bez osobnej gładzi. {site.googleRating}★ · {site.googleReviewCount} {opinieLabel(site.googleReviewCount)} w Google.
             </p>
             <a class="btn btn-primary" href={`tel:${site.phoneRaw}`}>Zadzwoń: {site.phone}</a>
             <NavLink class={styles.ctaLink} href="/tynki-ze-szlichta-pod-malowanie">Jak pracujemy →</NavLink>
           </div>
         );
         // "ok 700 mkw" → count up the number, print a proper m².
-        const area = () => {
-          const m = /^(ok\.?\s*)?(\d+)\s*(mkw|m2|m²)$/i.exec((p().area || "").trim());
-          return m ? { prefix: m[1] ? "ok. " : "", value: m[2] } : null;
-        };
+        const area = () => parseArea(p().area);
+        // PNG originals are heavy (up to 600 KB at 700 px): use their JPEG variant.
+        // JPEG originals are larger than 800 px, so wide screens get the original.
+        const isJpg = () => /\.jpe?g$/i.test(p().thumbnail);
+        const heroSrc = () => (isJpg() ? p().thumbnail : toMedium(p().thumbnail));
 
         return (
           <Layout>
@@ -67,7 +69,7 @@ export default function PostPage() {
               title={p().title}
               canonical={`/realizacje/${p().slug}`}
               description={p().metaDescription || p().excerpt}
-              ogImage={p().thumbnail}
+              ogImage={heroSrc()}
               ogType="article"
               datePublished={`${p().date}T00:00:00+00:00`}
               dateModified={`${p().date}T00:00:00+00:00`}
@@ -79,12 +81,19 @@ export default function PostPage() {
             />
 
             <section class={styles.hero}>
-              <img class={styles.heroImage} src={p().thumbnail} alt="" fetchpriority="high" />
+              <img
+                class={styles.heroImage}
+                src={heroSrc()}
+                srcset={isJpg() ? `${toMedium(p().thumbnail)} 800w, ${p().thumbnail} 1200w` : undefined}
+                sizes={isJpg() ? "100vw" : undefined}
+                alt={galleryAlts[p().thumbnail] || p().title}
+                fetchpriority="high"
+              />
               <div class={styles.heroShade} />
               <div class={`container ${styles.heroInner}`}>
                 <nav class={styles.breadcrumbs} aria-label="Ścieżka nawigacji">
                   <NavLink href="/">Strona Główna</NavLink>
-                  <span aria-hidden="true">/</span>
+                  <span class={styles.sep} aria-hidden="true" />
                   <NavLink href="/realizacje">Realizacje</NavLink>
                 </nav>
                 <div class={styles.tags}>
@@ -101,7 +110,7 @@ export default function PostPage() {
                   <li><time datetime={p().date}>{formatDatePl(p().date)}</time></li>
                   <Show when={p().area}><li>{area() ? `${area()!.prefix}${area()!.value} m²` : p().area}</li></Show>
                   <Show when={p().gallery.length}>
-                    <li><a href="#zdjecia">{p().gallery.length} zdjęć ↓</a></li>
+                    <li><a href="#zdjecia">{p().gallery.length} {zdjeciaLabel(p().gallery.length)} ↓</a></li>
                   </Show>
                 </ul>
               </div>
@@ -111,14 +120,14 @@ export default function PostPage() {
               <div class={`container ${styles.layout}`}>
                 <article class={styles.prose} innerHTML={withBase(p().description)} />
 
-                <aside class={styles.aside}>
+                <div class={styles.aside}>
                   <div class={styles.card}>
                     <h2 class={styles.cardTitle}>Szczegóły realizacji</h2>
                     <Show when={days()}>
                       <div class={`${styles.calendar} reveal`}>
                         <p class={styles.calHead}>
                           <span>Czas prac</span>
-                          <strong><span data-count>{days()}</span> dni</strong>
+                          <strong><span data-count>{days()}</span> {days() === 1 ? "dzień" : "dni"}</strong>
                         </p>
                         <ol class={styles.calDays} aria-hidden="true">
                           <For each={Array.from({ length: days() }, (_, i) => i + 1)}>
@@ -151,7 +160,7 @@ export default function PostPage() {
                     </dl>
                   </div>
                   <Show when={longText()}>{cta()}</Show>
-                </aside>
+                </div>
 
                 <Show when={!longText()}>{cta()}</Show>
               </div>
