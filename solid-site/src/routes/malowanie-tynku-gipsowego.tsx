@@ -1,12 +1,14 @@
-import { For } from "solid-js";
+import { createSignal, For } from "solid-js";
 import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import PageHeader from "~/components/PageHeader";
 import NavLink from "~/components/NavLink";
 import VideoClip from "~/components/VideoClip";
+import PaintRoller from "~/components/PaintRoller";
 import site from "~/data/site.json";
 import videos from "~/data/videos.json";
 import { opinieLabel } from "~/utils/plural";
+import { toThumb } from "~/utils/images";
 import flagship from "./tynki-ze-szlichta-pod-malowanie.module.css";
 import styles from "./malowanie-tynku-gipsowego.module.css";
 
@@ -60,7 +62,32 @@ const comparison = [
   { label: "Kiedy wybrać", standard: "oświetlenie wzdłuż ścian, farby z połyskiem, ciemne kolory, najwyższy standard", szlichta: "typowe pokoje, korytarze i sypialnie malowane jasną, matową farbą" },
 ];
 
+function Photo(props: { src: string; alt: string; caption: string; width: number; height: number; wide?: boolean }) {
+  return (
+    <figure class={`${flagship.photo} ${props.wide ? flagship.photoWide : ""}`}>
+      <div class={`${flagship.photoFrame} reveal-wipe`}>
+        <img
+          src={props.src}
+          srcset={`${toThumb(props.src)} 400w, ${props.src} ${props.width}w`}
+          sizes="(max-width: 1024px) 100vw, 380px"
+          width={props.width}
+          height={props.height}
+          alt={props.alt}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <figcaption>{props.caption}</figcaption>
+    </figure>
+  );
+}
+
 export default function MalowanieTynkuGipsowego() {
+  // Tick-off checklist for the handover walk-round (state stays in the page).
+  const [checked, setChecked] = createSignal<boolean[]>(checklist.map(() => false));
+  const toggle = (i: number) => setChecked((c) => c.map((v, j) => (j === i ? !v : v)));
+  const done = () => checked().filter(Boolean).length;
+
   return (
     <Layout>
       <SeoHead
@@ -86,6 +113,8 @@ export default function MalowanieTynkuGipsowego() {
           duration: video.duration,
         }}
       />
+
+      <PaintRoller />
 
       <PageHeader
         title="Malowanie tynku gipsowego — poradnik od tynkarzy"
@@ -131,7 +160,7 @@ export default function MalowanieTynkuGipsowego() {
       </section>
 
       <section class={`section ${flagship.contentSection}`}>
-        <div class="container">
+        <div class={`container ${flagship.split}`}>
           <div class={flagship.prose}>
             <h2 id="kiedy-malowac">Kiedy można malować tynk gipsowy?</h2>
             <p>
@@ -152,20 +181,19 @@ export default function MalowanieTynkuGipsowego() {
               <li><strong>Test folii.</strong> Przyklej taśmą na noc kawałek folii ok. 50×50 cm. Jeśli rano pod folią jest para wodna albo ciemniejsza plama — na malowanie jest za wcześnie.</li>
               <li><strong>Wilgotnościomierz.</strong> Najdokładniejsza metoda. Dopuszczalną wilgotność tynku przed malowaniem podaje karta techniczna konkretnego produktu — warto ją sprawdzić, zanim kupisz farbę.</li>
             </ul>
-
-            <figure class={styles.photo}>
-              <img
-                src="images/uploads/2026/04/swiezy-tynk-gipsowy-schniecie-scian.jpg"
-                srcset="images/thumbs/uploads/2026/04/swiezy-tynk-gipsowy-schniecie-scian.jpg 400w, images/uploads/2026/04/swiezy-tynk-gipsowy-schniecie-scian.jpg 1200w"
-                sizes="(max-width: 768px) 100vw, 800px"
-                width="1200"
-                height="1600"
-                alt="Świeży tynk gipsowy w trakcie schnięcia — jaśniejsze i ciemniejsze partie ściany i sufitu w pustym pomieszczeniu"
-                loading="lazy"
-              />
-              <figcaption>Tynk w trakcie schnięcia: ciemniejsze partie to miejsca, w których jest jeszcze wilgoć. Malujemy dopiero, gdy kolor wyrówna się na całej powierzchni.</figcaption>
-            </figure>
-
+          </div>
+          <aside class={flagship.aside}>
+            <Photo
+              src="images/uploads/2026/04/swiezy-tynk-gipsowy-schniecie-scian.jpg"
+              width={1200}
+              height={1600}
+              alt="Świeży tynk gipsowy w trakcie schnięcia — jaśniejsze i ciemniejsze partie ściany i sufitu w pustym pomieszczeniu"
+              caption="Tynk w trakcie schnięcia: ciemniejsze partie to miejsca, w których jest jeszcze wilgoć. Malujemy dopiero, gdy kolor wyrówna się na całej powierzchni."
+            />
+          </aside>
+        </div>
+        <div class={`container ${flagship.split} ${flagship.splitFlip} ${styles.splitNext}`}>
+          <div class={flagship.prose}>
             <h2 id="gruntowanie">Czy trzeba gruntować tynk gipsowy przed malowaniem?</h2>
             <p>
               Tak. Tynk gipsowy jest chłonny, a do tego nie wszędzie chłonie tak samo — inaczej przy narożnikach, inaczej na środku ściany. Bez gruntu farba wsiąka nierówno, powstają smugi i „łaty”, a na krycie trzeba zużyć więcej warstw.
@@ -187,20 +215,17 @@ export default function MalowanieTynkuGipsowego() {
               Standardowo: jedna warstwa podkładu i dwie warstwy farby nawierzchniowej. Przy intensywnych kolorach warto pierwszą warstwę zrobić w odcieniu zbliżonym do docelowego.
               Na dużych, pustych powierzchniach — w nowym domu przed montażem podłóg i mebli — szybciej i równiej wychodzi <NavLink href="/tynki-ze-szlichta-pod-malowanie#gladz-natryskowa">malowanie natryskowe</NavLink>.
             </p>
-
-            <figure class={styles.photo}>
-              <img
-                src="images/uploads/2026/04/salon-po-tynkowaniu-i-malowaniu-sufit-gk.jpg"
-                srcset="images/thumbs/uploads/2026/04/salon-po-tynkowaniu-i-malowaniu-sufit-gk.jpg 400w, images/uploads/2026/04/salon-po-tynkowaniu-i-malowaniu-sufit-gk.jpg 1600w"
-                sizes="(max-width: 768px) 100vw, 800px"
-                width="1600"
-                height="1200"
-                alt="Salon w nowym domu z gładkimi, pomalowanymi na biało ścianami i podwieszanym sufitem z płyt GK"
-                loading="lazy"
-              />
-              <figcaption>Ściany po malowaniu na biało i podwieszany fragment sufitu z płyt GK. Planujesz oświetlenie liniowe przy suficie lub wzdłuż ścian? Powiedz nam przed wyceną — w takich miejscach doradzamy gładź.</figcaption>
-            </figure>
           </div>
+          <aside class={flagship.aside}>
+            <Photo
+              src="images/uploads/2026/04/salon-po-tynkowaniu-i-malowaniu-sufit-gk.jpg"
+              width={1600}
+              height={1200}
+              wide
+              alt="Salon w nowym domu z gładkimi, pomalowanymi na biało ścianami i podwieszanym sufitem z płyt GK"
+              caption="Ściany po malowaniu na biało i podwieszany fragment sufitu z płyt GK. Planujesz oświetlenie liniowe przy suficie lub wzdłuż ścian? Powiedz nam przed wyceną — w takich miejscach doradzamy gładź."
+            />
+          </aside>
         </div>
       </section>
 
@@ -212,12 +237,29 @@ export default function MalowanieTynkuGipsowego() {
               Tynk najlepiej odebrać <strong>zanim</strong> wejdzie malarz — poprawki przed malowaniem są proste, po malowaniu już nie. Punktem odniesienia jest norma <strong>PN-B-10110 „Tynki gipsowe wykonywane mechanicznie”</strong>, chyba że w umowie ustalono inaczej. Polskie Normy są dobrowolne, ale w praktyce właśnie według nich odbiera się tynki. Tak sprawdzają nas inwestorzy (i tak sami sprawdzamy swoją pracę):
             </p>
           </div>
+          <p class={styles.checkProgress} aria-live="polite">
+            Odhaczaj punkty podczas odbioru: <strong>{done()} / {checklist.length}</strong>
+            {done() === checklist.length ? " — wszystko sprawdzone!" : ""}
+          </p>
           <ol class={styles.checklist}>
             <For each={checklist}>
-              {(item) => (
-                <li class={styles.checkItem}>
+              {(item, i) => (
+                <li class={`${styles.checkItem} ${checked()[i()] ? styles.checkDone : ""}`}>
+                  <button
+                    type="button"
+                    class={styles.checkBox}
+                    aria-pressed={checked()[i()]}
+                    aria-label={`Sprawdzone: ${item.title}`}
+                    onClick={() => toggle(i())}
+                  >
+                    <span class={styles.checkNo}>{i() + 1}</span>
+                    <svg class={styles.checkMark} viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M5 12.5l4.5 4.5L19 7.5" />
+                    </svg>
+                  </button>
                   <h3>{item.title}</h3>
                   <p>{item.text}</p>
+                  <span class={styles.okStamp} aria-hidden="true">OK</span>
                 </li>
               )}
             </For>
@@ -274,18 +316,22 @@ export default function MalowanieTynkuGipsowego() {
 
       <section class="section" id="faq">
         <div class="container">
-          <div class="text-center">
-            <h2>Najczęściej zadawane pytania</h2>
-          </div>
-          <div class={flagship.faqList}>
-            <For each={faqs}>
-              {(faq) => (
-                <details class={flagship.faqItem}>
-                  <summary class={flagship.faqQuestion}>{faq.question}</summary>
-                  <p class={flagship.faqAnswer}>{faq.answer}</p>
-                </details>
-              )}
-            </For>
+          <div class={flagship.faqLayout}>
+            <div class={flagship.faqIntro}>
+              <h2>Najczęściej zadawane pytania</h2>
+              <p>Schnięcie, grunt, farba i odbiór tynku. Masz inne pytanie o swoją budowę? Zadzwoń — chętnie odpowiemy.</p>
+              <a class="btn btn-primary" href={`tel:${site.phoneRaw}`}>{site.phone}</a>
+            </div>
+            <div class={flagship.faqList}>
+              <For each={faqs}>
+                {(faq) => (
+                  <details class={flagship.faqItem}>
+                    <summary class={flagship.faqQuestion}>{faq.question}</summary>
+                    <p class={flagship.faqAnswer}>{faq.answer}</p>
+                  </details>
+                )}
+              </For>
+            </div>
           </div>
         </div>
       </section>

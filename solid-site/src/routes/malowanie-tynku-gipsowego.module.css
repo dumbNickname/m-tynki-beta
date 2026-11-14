@@ -45,57 +45,125 @@
   margin-top: 0.5rem;
 }
 
-.photo {
-  margin: 2rem 0;
-}
-
-.photo img {
-  width: 100%;
-  height: auto;
-  max-height: 560px;
-  object-fit: cover;
-  border-radius: var(--radius);
-}
-
-.photo figcaption {
-  margin-top: 0.5rem;
-  font-size: var(--fs-small);
-  color: var(--color-text-light);
+.splitNext {
+  margin-top: 4rem;
 }
 
 .checklist {
   list-style: none;
-  counter-reset: check;
   max-width: 800px;
-  margin: 2rem auto 0;
+  margin: 1rem auto 0;
   padding: 0;
   display: grid;
   gap: 1rem;
 }
 
+.checkProgress {
+  max-width: 800px;
+  margin: 2rem auto 0;
+  color: var(--color-text-light);
+  font-size: var(--fs-small);
+}
+
+.checkProgress strong {
+  color: var(--color-primary);
+  font-variant-numeric: tabular-nums;
+}
+
 .checkItem {
-  counter-increment: check;
   position: relative;
-  padding: 1.25rem 1.5rem 1.25rem 4rem;
+  padding: 1.25rem 4.5rem 1.25rem 4.25rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   background: var(--color-white);
+  transition: border-color var(--transition), background-color var(--transition);
 }
 
-.checkItem::before {
-  content: counter(check);
+.checkBox {
   position: absolute;
-  left: 1.25rem;
-  top: 1.25rem;
-  width: 1.9rem;
-  height: 1.9rem;
+  left: 1.1rem;
+  top: 1.05rem;
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  padding: 0;
+  border: 2px solid var(--color-primary);
   border-radius: 50%;
-  background: var(--color-primary);
-  color: #fff;
+  background: var(--color-white);
+  color: var(--color-primary);
   font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  cursor: pointer;
+  transition: background-color var(--transition), transform 0.25s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+.checkBox:hover {
+  transform: scale(1.08);
+}
+
+.checkNo,
+.checkMark {
+  grid-area: 1 / 1;
+}
+
+.checkMark {
+  display: inline-block;
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 22;
+  stroke-dashoffset: 22;
+  transition: stroke-dashoffset 0.35s ease 0.05s;
+}
+
+.checkDone {
+  border-color: rgba(var(--color-primary-rgb), 0.45);
+  background: var(--color-primary-subtle);
+}
+
+.checkDone .checkBox {
+  background: var(--color-primary);
+}
+
+.checkDone .checkNo {
+  opacity: 0;
+}
+
+.checkDone .checkMark {
+  stroke-dashoffset: 0;
+}
+
+/* A little inspector's stamp lands on a ticked item. */
+.okStamp {
+  position: absolute;
+  right: 1.1rem;
+  top: 50%;
+  padding: 0.15rem 0.5rem;
+  border: 2.5px solid var(--color-primary);
+  border-radius: 6px;
+  color: var(--color-primary);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  opacity: 0;
+  transform: translateY(-50%) rotate(-12deg) scale(1.6);
+  transition: opacity 0.2s ease, transform 0.35s cubic-bezier(0.3, 0, 0.2, 1);
+}
+
+.checkDone .okStamp {
+  opacity: 0.9;
+  transform: translateY(-50%) rotate(-12deg) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .checkBox,
+  .checkMark,
+  .okStamp {
+    transition: none;
+  }
 }
 
 .checkItem h3 {
