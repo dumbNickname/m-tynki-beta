@@ -89,7 +89,13 @@
 
 .bento .item:last-child {
   grid-column: span var(--span4, 1);
-  aspect-ratio: var(--span4, 1);
+  aspect-ratio: var(--ar4, 1);
+}
+
+/* Portrait site photos keep their subject in the upper part when cropped wide. */
+.bento .item:last-child img,
+.bento .item:nth-child(12n + 5) img {
+  object-position: center 30%;
 }
 
 .bento .item img {
@@ -252,7 +258,7 @@
 
   .bento .item:last-child {
     grid-column: span var(--span3, 1);
-    aspect-ratio: var(--span3, 1);
+    aspect-ratio: var(--ar3, 1);
   }
 }
 
@@ -276,7 +282,7 @@
 
   .bento .item:last-child {
     grid-column: span var(--span2, 1);
-    aspect-ratio: var(--span2, 1);
+    aspect-ratio: var(--ar2, 1);
   }
 
   .lightboxContent {

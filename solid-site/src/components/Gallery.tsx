@@ -139,8 +139,14 @@ export default function Gallery(props: GalleryProps) {
     if (props.variant !== "bento" || isLarge(n - 1) || n % 12 === 5) return undefined;
     let cells = 0;
     for (let i = 0; i < n; i++) cells += i % 12 === 0 || i % 12 === 7 ? 4 : i % 12 === 4 ? 2 : 1;
-    const span = (cols: number) => String(1 + ((cols - (cells % cols)) % cols));
-    return { "--span4": span(4), "--span3": span(3), "--span2": span(2) };
+    const span = (cols: number) => 1 + ((cols - (cells % cols)) % cols);
+    const vars: Record<string, string> = {};
+    for (const cols of [4, 3, 2]) {
+      vars[`--span${cols}`] = String(span(cols));
+      // A tile spanning the whole row gets a taller crop than a plain strip.
+      vars[`--ar${cols}`] = String(Math.min(span(cols), 2));
+    }
+    return vars;
   };
 
   return (
