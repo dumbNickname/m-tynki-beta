@@ -15,6 +15,12 @@ Branch `experiment/cook-redesign`, previewed on beta only. Nothing here is on pr
 - **404 copy**: "Tej ściany jeszcze nie otynkowaliśmy" plus the plastering toy. Is it playful enough without being silly?
 - **Redrawn mascot in the photo placeholder**: a new drawing in the logo's style (green cap, big eyes, nose), winking with a thumbs up. The original logo artwork is unchanged. Is he OK with this version of his mascot?
 - **Realizacje durations**: shown as a calendar with that many days crossed off ("14 dni" → 14 squares). Are these calendar days or working days? The label just says "dni".
+- **Copy the reviewers flagged (owner's own text, not changed)**:
+  - homepage "Jak podchodzimy do pracy": "NAS!" in capitals and "aby nasi klienci byli świadomi interesujących ich kroków naszej pracy" reads awkwardly;
+  - flagship: Title Case in running text ("Tynk ze Szlichtą Gładziolitu", "Tynkach Gipsowych") and a mix of "Państwo" and "ty";
+  - "Zainteresowany?" headings are masculine-only ("Masz pytania?" / "Chcesz wycenę?" would fit everyone);
+  - 404 lead starting with a dash;
+  - "Wykonawca" is "Jarek" on some realizacje and "Ekipa M-TYNK" on others.
 
 ## Waiting for material
 
@@ -43,3 +49,8 @@ Branch `experiment/cook-redesign`, previewed on beta only. Nothing here is on pr
 - **Wall cross-section on mobile**: tap a layer to scroll to its description. Hover only works on desktop today.
 - **Realizacja pages**: when the owner sends real before/after pairs, reuse the slider with real photos instead of the illustration.
 - **Homepage**: a tiny "Dziś na budowie" line (town + stage), edited by hand in `site.json`. It only works if someone keeps it updated.
+- **One call button style**: phone CTAs come in several looks (header pill, white pill on green bands, FAQ pill, text link). A single `CallButton` component would make them instantly recognisable.
+- **Thin category pages**: "Zabudowy z płyt GK" has 1 job and "Malowanie ścian" 2. Fine for internal linking; worth more intro copy (or more jobs) later.
+- **Gallery mosaic** on realizacje uses the original as the 1200w source for the first photo; a 1200 px JPEG variant would save weight.
+- **Duplicate CSS preloads**: the client preloads CSS that is already inlined (3 small requests on the homepage). Removing it from the manifest breaks hydration; a proper fix needs a SolidStart-level change.
+- **Homepage title** is 74 characters (Google shows ~60). Kept on purpose as the "firma tynkarska Wrocław" target; a shorter variant: "Firma tynkarska Wrocław — tynki gipsowe ze szlichtą | M-TYNK".
