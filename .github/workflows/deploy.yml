@@ -22,6 +22,8 @@ concurrency:
 
 jobs:
   deploy:
+    # Experiment branches deploy to beta only, never to production.
+    if: github.repository == 'dumbNickname/m-tynki-beta' || github.ref == 'refs/heads/master'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
