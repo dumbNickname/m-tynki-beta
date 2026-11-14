@@ -1,13 +1,11 @@
 import { useParams } from "@solidjs/router";
-import { For, Show, createMemo } from "solid-js";
+import { createMemo } from "solid-js";
 import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import PageHeader from "~/components/PageHeader";
-import PostCard from "~/components/PostCard";
-import NavLink from "~/components/NavLink";
+import PostList from "~/components/PostList";
 import posts from "~/data/posts.json";
 import navigation from "~/data/navigation.json";
-import styles from "../index.module.css";
 
 const categoryLabels: Record<string, string> = {};
 navigation.categories.forEach((c) => { categoryLabels[c.slug] = c.label; });
@@ -49,34 +47,12 @@ export default function CategoryPage() {
           { label: "Realizacje", href: "/realizacje" },
           { label: categoryLabel() },
         ]}
+        lead={categoryDescriptions[params.slug ?? ""]}
       />
 
       <section class="section">
         <div class="container">
-          <nav class={styles.categoryNav} aria-label="Kategorie realizacji">
-            <For each={navigation.categories}>
-              {(cat) => (
-                <NavLink
-                  href={cat.href}
-                  class={`${styles.categoryLink} ${cat.slug === params.slug ? styles.categoryLinkActive : ""}`}
-                >
-                  {cat.label}
-                </NavLink>
-              )}
-            </For>
-          </nav>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container">
-          <Show when={filteredPosts().length > 0} fallback={<p>Brak realizacji w tej kategorii.</p>}>
-            <div class={styles.postsGrid}>
-              <For each={filteredPosts()}>
-                {(post, i) => <PostCard post={post} categoryLabels={categoryLabels} priority={i() === 0} />}
-              </For>
-            </div>
-          </Show>
+          <PostList posts={filteredPosts()} active={params.slug ?? ""} />
         </div>
       </section>
     </Layout>

@@ -4,30 +4,87 @@
   gap: 1.5rem;
 }
 
+.postsGridTwo {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.boards {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Filters as strips of masking tape stuck on the wall, a little crooked. */
 .categoryNav {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  justify-content: center;
+  gap: 0.85rem 0.75rem;
+  margin-bottom: 2.75rem;
 }
 
 .categoryLink {
-  display: inline-block;
-  padding: 0.5em 1.25em;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  padding: 0.55em 1.1em;
   font-size: var(--fs-small);
-  font-weight: 500;
-  color: var(--color-text);
-  background: var(--color-white);
-  transition: all var(--transition);
+  font-weight: 600;
+  color: #3a3426;
+  background: rgba(226, 207, 148, 0.55);
+  clip-path: polygon(1.5% 8%, 99% 0, 100% 88%, 0.5% 100%);
+  transform: rotate(-1deg);
+  transition: background-color var(--transition), color var(--transition), transform var(--transition);
 }
 
-.categoryLink:hover,
-.categoryLinkActive {
-  background: var(--color-primary);
-  color: var(--color-white);
-  border-color: var(--color-primary);
+.categoryLink:nth-child(2n) {
+  transform: rotate(1.2deg);
+  clip-path: polygon(0 0, 98.5% 10%, 99.5% 100%, 1% 92%);
+}
+
+.categoryLink:hover {
+  color: #17150f;
+  background: rgba(226, 207, 148, 0.9);
+  transform: rotate(0deg);
+}
+
+.categoryLinkActive,
+.categoryLinkActive:hover {
+  background: #2e6b3b;
+  color: #ffffff;
+}
+
+.categoryCount {
+  min-width: 1.6em;
+  padding: 0.1em 0.45em;
+  border-radius: var(--radius-pill);
+  background: rgba(23, 21, 15, 0.1);
+  font-size: 0.78em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.categoryLinkActive .categoryCount {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+:global([data-theme="dark"]) .categoryLink:not(.categoryLinkActive) {
+  color: #efe6cc;
+  background: rgba(226, 207, 148, 0.16);
+}
+
+:global([data-theme="dark"]) .categoryLink:not(.categoryLinkActive):hover {
+  background: rgba(226, 207, 148, 0.28);
+}
+
+:global([data-theme="dark"]) .categoryLinkActive {
+  background: #1f3d28;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .categoryLink,
+  .categoryLink:nth-child(2n) {
+    transform: none;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -37,7 +94,8 @@
 }
 
 @media (max-width: 768px) {
-  .postsGrid {
+  .postsGrid,
+  .postsGridTwo {
     grid-template-columns: 1fr;
   }
 }
