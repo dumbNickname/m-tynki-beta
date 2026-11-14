@@ -42,6 +42,19 @@ export default function PostPage() {
           { label: "Czas prac", value: days() ? "" : p().duration },
           { label: "Wykonawca", value: p().executor },
         ].filter((d) => d.value);
+        // Short descriptions take the call card under the text (no hole beside
+        // the details card); long ones keep it in the sticky side column.
+        const longText = () => p().description.replace(/<[^>]+>/g, "").length > 900;
+        const cta = () => (
+          <div class={`${styles.card} ${styles.ctaCard}`}>
+            <p class={styles.ctaTitle}>Chcesz takie ściany u siebie?</p>
+            <p class={styles.ctaText}>
+              Tynk gipsowy ze szlichtą — w typowych pomieszczeniach malujesz bez osobnej gładzi. {site.googleRating}★ w {site.googleReviewCount} {opinieLabel(site.googleReviewCount)} Google.
+            </p>
+            <a class="btn btn-primary" href={`tel:${site.phoneRaw}`}>Zadzwoń: {site.phone}</a>
+            <NavLink class={styles.ctaLink} href="/tynki-ze-szlichta-pod-malowanie">Jak pracujemy →</NavLink>
+          </div>
+        );
         // "ok 700 mkw" → count up the number, print a proper m².
         const area = () => {
           const m = /^(ok\.?\s*)?(\d+)\s*(mkw|m2|m²)$/i.exec((p().area || "").trim());
@@ -137,15 +150,10 @@ export default function PostPage() {
                       </For>
                     </dl>
                   </div>
-                  <div class={`${styles.card} ${styles.ctaCard}`}>
-                    <p class={styles.ctaTitle}>Chcesz takie ściany u siebie?</p>
-                    <p class={styles.ctaText}>
-                      Tynk gipsowy ze szlichtą — w typowych pomieszczeniach malujesz bez osobnej gładzi. {site.googleRating}★ w {site.googleReviewCount} {opinieLabel(site.googleReviewCount)} Google.
-                    </p>
-                    <a class="btn btn-primary" href={`tel:${site.phoneRaw}`}>Zadzwoń: {site.phone}</a>
-                    <NavLink class={styles.ctaLink} href="/tynki-ze-szlichta-pod-malowanie">Jak pracujemy →</NavLink>
-                  </div>
+                  <Show when={longText()}>{cta()}</Show>
                 </aside>
+
+                <Show when={!longText()}>{cta()}</Show>
               </div>
             </section>
 

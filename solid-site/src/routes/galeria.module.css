@@ -1,0 +1,10 @@
+/* Drives the spirit-level scroll indicator (SpiritLevel.module.css). */
+.gallerySection {
+  view-timeline: --level block;
+}
+
+.more {
+  margin: 2rem 0 0;
+  text-align: center;
+  color: var(--color-text-light);
+}

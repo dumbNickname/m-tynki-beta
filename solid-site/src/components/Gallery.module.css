@@ -58,6 +58,47 @@
   height: 100%;
 }
 
+/* Every 12 photos: a big 2×2 tile on the left, a wide one, another 2×2 on the right. */
+.bento {
+  grid-auto-flow: dense;
+  gap: 0.75rem;
+}
+
+.bento .item:nth-child(12n + 1),
+.bento .item:nth-child(12n + 8) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.bento .item:nth-child(12n + 8) {
+  grid-column: 3 / span 2;
+}
+
+.bento .item:nth-child(12n + 5) {
+  grid-column: span 2;
+}
+
+/* The grid sets the tile size; the photo just fills it. */
+.bento .item {
+  aspect-ratio: 1;
+}
+
+.bento .item:nth-child(12n + 5) {
+  aspect-ratio: auto;
+}
+
+.bento .item:last-child {
+  grid-column: span var(--span4, 1);
+  aspect-ratio: var(--span4, 1);
+}
+
+.bento .item img {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  aspect-ratio: auto;
+}
+
 .item:focus-visible {
   outline: var(--focus-outline);
   outline-offset: var(--focus-offset);
@@ -204,6 +245,15 @@
   .mosaic {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .bento .item:nth-child(12n + 8) {
+    grid-column: 2 / span 2;
+  }
+
+  .bento .item:last-child {
+    grid-column: span var(--span3, 1);
+    aspect-ratio: var(--span3, 1);
+  }
 }
 
 @media (max-width: 768px) {
@@ -211,8 +261,22 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .mosaic {
+  .mosaic,
+  .bento {
     gap: 0.6rem;
+  }
+
+  .bento .item:nth-child(12n + 8) {
+    grid-column: span 2;
+  }
+
+  .bento .item:nth-child(12n + 5) {
+    aspect-ratio: 2 / 1;
+  }
+
+  .bento .item:last-child {
+    grid-column: span var(--span2, 1);
+    aspect-ratio: var(--span2, 1);
   }
 
   .lightboxContent {

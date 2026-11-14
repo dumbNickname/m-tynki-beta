@@ -56,24 +56,39 @@ export default function Reviews() {
     rail.scrollBy({ left: dir * by, behavior: smooth ? "smooth" : "auto" });
   };
 
-  // Autoplay: one card every few seconds, looping. It stops for good on the
-  // first interaction with the rail, pauses on hover / off screen / hidden tab,
-  // and never starts under prefers-reduced-motion.
+  // Autoplay: one card every few seconds, looping. It stops for good when the
+  // visitor scrolls the rail themselves, pauses while the pointer rests on a
+  // card / the rail is off screen / the tab is hidden, and never starts under
+  // prefers-reduced-motion. The play button resumes it straight away.
+  const DELAY = 4000;
   const [canAutoplay, setCanAutoplay] = createSignal(false);
   const [playing, setPlaying] = createSignal(false);
   let hovered = false;
   let visible = false;
   let timer = 0;
 
-  const tick = () => {
-    if (!playing() || hovered || !visible || document.hidden) return;
+  const advance = () => {
     if (rail.scrollLeft + rail.clientWidth > rail.scrollWidth - 8) {
       rail.scrollTo({ left: 0, behavior: "smooth" });
     } else {
       step(1);
     }
   };
+  const schedule = () => {
+    clearInterval(timer);
+    timer = window.setInterval(() => {
+      if (playing() && !hovered && visible && !document.hidden) advance();
+    }, DELAY);
+  };
   const stop = () => setPlaying(false);
+  const togglePlay = () => {
+    if (playing()) return stop();
+    setPlaying(true);
+    advance();
+    schedule();
+  };
+  let touchX = 0;
+  let touchY = 0;
 
   onMount(() => {
     update();
@@ -87,8 +102,15 @@ export default function Reviews() {
     if (rail.scrollWidth <= rail.clientWidth + 8) return;
     setCanAutoplay(true);
     setPlaying(true);
-    timer = window.setInterval(tick, 5000);
-    const io = new IntersectionObserver(([e]) => (visible = e.isIntersecting), { threshold: 0.5 });
+    const io = new IntersectionObserver(
+      ([e]) => {
+        const was = visible;
+        visible = e.isIntersecting;
+        // Count the delay from the moment the reviews come into view.
+        if (visible && !was) schedule();
+      },
+      { threshold: 0.5 },
+    );
     io.observe(rail);
     onCleanup(() => {
       clearInterval(timer);
@@ -110,14 +132,20 @@ export default function Reviews() {
           </span>
         </span>
       </a>
-      <div
-        class={styles.railWrap}
-        onMouseEnter={() => (hovered = true)}
-        onMouseLeave={() => (hovered = false)}
-      >
+      <div class={styles.railWrap}>
         <div class={styles.rail} ref={rail} onScroll={update}
-          onPointerDown={stop}
-          onWheel={stop}
+          onMouseEnter={() => (hovered = true)}
+          onMouseLeave={() => (hovered = false)}
+          onPointerDown={(e) => e.pointerType === "mouse" && stop()}
+          onTouchStart={(e) => {
+            touchX = e.touches[0].clientX;
+            touchY = e.touches[0].clientY;
+          }}
+          onTouchMove={(e) => {
+            const dx = Math.abs(e.touches[0].clientX - touchX);
+            if (dx > 10 && dx > Math.abs(e.touches[0].clientY - touchY)) stop();
+          }}
+          onWheel={(e) => Math.abs(e.deltaX) > Math.abs(e.deltaY) && stop()}
           onKeyDown={stop}
           onFocusIn={stop}
           tabindex="0" role="region" aria-label="Opinie klientów">
@@ -140,7 +168,7 @@ export default function Reviews() {
             <button
               type="button"
               class={styles.railBtn}
-              onClick={() => setPlaying(!playing())}
+              onClick={togglePlay}
               aria-label={playing() ? "Zatrzymaj przewijanie opinii" : "Wznów przewijanie opinii"}
             >
               {playing() ? (

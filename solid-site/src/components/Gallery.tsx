@@ -6,8 +6,9 @@ interface GalleryProps {
   images: string[];
   altPrefix?: string;
   alts?: string[];
-  /** "mosaic": first image large (uses full-res source), 3-column layout. */
-  variant?: "grid" | "mosaic";
+  /** "mosaic": first image large (uses full-res source), 3-column layout.
+   *  "bento": 4 columns with a repeating rhythm of large and wide tiles. */
+  variant?: "grid" | "mosaic" | "bento";
 }
 
 function imageAlt(prefix: string, index: number, alts?: string[]): string {
@@ -126,17 +127,33 @@ export default function Gallery(props: GalleryProps) {
     closeLightbox();
   }
 
+  // Tiles drawn bigger than a thumbnail get the full-size source in srcset.
+  // Keep in sync with the nth-child pattern of .bento in Gallery.module.css.
+  const isLarge = (i: number) =>
+    (props.variant === "mosaic" && i === 0) || (props.variant === "bento" && (i % 12 === 0 || i % 12 === 7 || i % 12 === 4));
+
+  // Bento: stretch the last photo over whatever its row has left, per column
+  // count (4 / 3 / 2), so the grid never ends on a lone tile.
+  const lastSpans = () => {
+    const n = props.images.length;
+    if (props.variant !== "bento" || isLarge(n - 1) || n % 12 === 5) return undefined;
+    let cells = 0;
+    for (let i = 0; i < n; i++) cells += i % 12 === 0 || i % 12 === 7 ? 4 : i % 12 === 4 ? 2 : 1;
+    const span = (cols: number) => String(1 + ((cols - (cells % cols)) % cols));
+    return { "--span4": span(4), "--span3": span(3), "--span2": span(2) };
+  };
+
   return (
     <>
-      <div class={props.variant === "mosaic" ? `${styles.grid} ${styles.mosaic}` : styles.grid}>
+      <div class={`${styles.grid} ${props.variant === "mosaic" ? styles.mosaic : props.variant === "bento" ? styles.bento : ""}`}>
         <For each={props.images}>
           {(src, i) => (
-            <button class={styles.item} onClick={() => openLightbox(i())} type="button" aria-label={`Powiększ: ${imageAlt(prefix(), i(), props.alts)}`}>
+            <button class={styles.item} style={i() === props.images.length - 1 ? lastSpans() : undefined} onClick={() => openLightbox(i())} type="button" aria-label={`Powiększ: ${imageAlt(prefix(), i(), props.alts)}`}>
               <img
                 ref={(el) => (thumbs[i()] = el)}
                 src={toThumb(src)}
-                srcset={props.variant === "mosaic" && i() === 0 ? `${toThumb(src)} 400w, ${src} 1200w` : undefined}
-                sizes={props.variant === "mosaic" && i() === 0 ? "(max-width: 768px) 100vw, 800px" : undefined}
+                srcset={isLarge(i()) || (lastSpans() && i() === props.images.length - 1) ? `${toThumb(src)} 400w, ${src} 1200w` : undefined}
+                sizes={isLarge(i()) || (lastSpans() && i() === props.images.length - 1) ? "(max-width: 768px) 100vw, 640px" : undefined}
                 alt={imageAlt(prefix(), i(), props.alts)}
                 loading="lazy"
               />

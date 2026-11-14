@@ -115,11 +115,55 @@ html[data-theme="dark"] .heroImage {
 }
 
 /* ---------- Content + aside ---------- */
+/* Text and the call card share the left column, so short descriptions don't
+   leave a hole beside the (taller) details card. */
 .layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 340px;
-  gap: 4rem;
+  grid-template-areas:
+    "text aside"
+    "cta aside";
+  grid-template-rows: auto 1fr;
+  column-gap: 4rem;
+  row-gap: 2.5rem;
   align-items: start;
+}
+
+.layout > .prose {
+  grid-area: text;
+}
+
+.layout > .aside {
+  grid-area: aside;
+}
+
+.layout > .ctaCard {
+  grid-area: cta;
+  max-width: 720px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto 1fr;
+  column-gap: 2rem;
+  align-items: start;
+}
+
+.layout > .ctaCard .ctaTitle,
+.layout > .ctaCard .ctaText {
+  grid-column: 1;
+}
+
+.layout > .ctaCard .ctaText {
+  margin-bottom: 0;
+}
+
+.layout > .ctaCard :global(.btn),
+.layout > .ctaCard .ctaLink {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.layout > .ctaCard .ctaLink {
+  grid-row: 2;
 }
 
 .prose {
@@ -350,12 +394,13 @@ html[data-theme="dark"] .heroImage {
 @media (max-width: 1024px) {
   .layout {
     grid-template-columns: 1fr;
+    grid-template-areas: "text" "aside" "cta";
+    grid-template-rows: auto;
     gap: 2.5rem;
   }
 
   .aside {
     position: static;
-    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -375,5 +420,19 @@ html[data-theme="dark"] .heroImage {
 
   .aside {
     grid-template-columns: 1fr;
+  }
+
+  .layout > .ctaCard {
+    grid-template-columns: 1fr;
+  }
+
+  .layout > .ctaCard :global(.btn),
+  .layout > .ctaCard .ctaLink {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .layout > .ctaCard .ctaText {
+    margin-bottom: 1rem;
   }
 }
