@@ -4,6 +4,8 @@ import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import PageHeader from "~/components/PageHeader";
 import PostList from "~/components/PostList";
+import CategoryArt from "~/components/CategoryArt";
+import { realizacjeLabel } from "~/utils/plural";
 import posts from "~/data/posts.json";
 import navigation from "~/data/navigation.json";
 
@@ -48,6 +50,13 @@ export default function CategoryPage() {
           { label: categoryLabel() },
         ]}
         lead={categoryDescriptions[params.slug ?? ""]}
+        media={
+          <CategoryArt
+            slug={params.slug ?? ""}
+            count={filteredPosts().length}
+            countLabel={realizacjeLabel(filteredPosts().length)}
+          />
+        }
       />
 
       <section class="section">
