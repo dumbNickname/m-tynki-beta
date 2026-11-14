@@ -2,6 +2,7 @@ import { For, JSX, onCleanup, onMount } from "solid-js";
 import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import PageHeader from "~/components/PageHeader";
+import PhotoPending from "~/components/PhotoPending";
 import NavLink from "~/components/NavLink";
 import site from "~/data/site.json";
 import { opinieLabel } from "~/utils/plural";
@@ -200,10 +201,7 @@ export default function ONas() {
         breadcrumbs={[{ label: "Strona Główna", href: "/" }, { label: "O nas" }]}
         lead={<>Nazywam się {OWNER_NAME} i prowadzę firmę tynkarską M-TYNK. Tynkuję od 1999 roku — pracowałem w Polsce, na Litwie, w Niemczech i w Szwajcarii, a od około 12 lat mieszkam i pracuję we Wrocławiu.</>}
         media={
-          <picture>
-            <source srcset="images/owner-cutout.webp" type="image/webp" />
-            <img class={styles.owner} src="images/owner-cutout.png" alt={`${OWNER_NAME}, właściciel M-TYNK`} width="663" height="861" decoding="async" />
-          </picture>
+<PhotoPending name={OWNER_NAME} class={styles.owner} />
         }
       />
 

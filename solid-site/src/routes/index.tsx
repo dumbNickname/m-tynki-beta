@@ -4,6 +4,7 @@ import SeoHead from "~/components/SeoHead";
 import Reviews from "~/components/Reviews";
 import NavLink from "~/components/NavLink";
 import PlasterCompare from "~/components/PlasterCompare";
+import PhotoPending from "~/components/PhotoPending";
 import MascotBadge from "~/components/MascotBadge";
 import SocialFollow from "~/components/SocialFollow";
 import site from "~/data/site.json";
@@ -287,10 +288,7 @@ export default function Home() {
             </div>
             <div class={`${styles.aboutFullImage} reveal`}>
               <img class={styles.aboutWall} src="images/plaster-smooth.svg" alt="" width="1200" height="750" loading="lazy" decoding="async" />
-              <picture>
-                <source srcset="images/owner-cutout.webp" type="image/webp" />
-                <img class={styles.aboutOwner} src="images/owner-cutout.png" alt={`${site.owner.name}, właściciel M-TYNK`} width="663" height="861" loading="lazy" decoding="async" />
-              </picture>
+<PhotoPending name={site.owner.name} class={styles.aboutPending} />
             </div>
           </div>
           <div class={styles.approachGrid}>

@@ -1,9 +1,7 @@
 /* Owner cut-out standing on the bottom edge of the page header. */
 .owner {
-  display: block;
-  height: clamp(240px, 26vw, 360px);
-  width: auto;
-  filter: drop-shadow(0 18px 24px rgba(40, 32, 20, 0.18));
+  width: clamp(190px, 18vw, 240px);
+  margin: 2.5rem 1.5rem 2.75rem 0;
 }
 
 /* ---------- Career: passport + timeline ---------- */
@@ -431,7 +429,8 @@
 
 @media (max-width: 768px) {
   .owner {
-    height: 240px;
+    width: 190px;
+    margin: 0.75rem 0 2.25rem;
   }
 
   .timelineItem {
