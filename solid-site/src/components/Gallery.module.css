@@ -27,6 +27,24 @@
   }
 }
 
+/* Hover: the tile turns slightly on its side like a photo picked off the wall. */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .item {
+    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.45s ease;
+  }
+
+  .item:hover {
+    z-index: 1;
+    transform: perspective(700px) rotateY(-9deg) rotateX(2deg) scale(1.04);
+    box-shadow: 14px 18px 30px -16px rgba(20, 23, 28, 0.55);
+  }
+
+  .item:nth-child(even):hover {
+    transform: perspective(700px) rotateY(9deg) rotateX(2deg) scale(1.04);
+    box-shadow: -14px 18px 30px -16px rgba(20, 23, 28, 0.55);
+  }
+}
+
 .overlay {
   position: absolute;
   inset: 0;
@@ -56,53 +74,6 @@
 
 .mosaic .item img {
   height: 100%;
-}
-
-/* Every 12 photos: a big 2×2 tile on the left, a wide one, another 2×2 on the right. */
-.bento {
-  grid-auto-flow: dense;
-  gap: 0.75rem;
-}
-
-.bento .item:nth-child(12n + 1),
-.bento .item:nth-child(12n + 8) {
-  grid-column: span 2;
-  grid-row: span 2;
-}
-
-.bento .item:nth-child(12n + 8) {
-  grid-column: 3 / span 2;
-}
-
-.bento .item:nth-child(12n + 5) {
-  grid-column: span 2;
-}
-
-/* The grid sets the tile size; the photo just fills it. */
-.bento .item {
-  aspect-ratio: 1;
-}
-
-.bento .item:nth-child(12n + 5) {
-  aspect-ratio: auto;
-}
-
-.bento .item:last-child {
-  grid-column: span var(--span4, 1);
-  aspect-ratio: var(--ar4, 1);
-}
-
-/* Portrait site photos keep their subject in the upper part when cropped wide. */
-.bento .item:last-child img,
-.bento .item:nth-child(12n + 5) img {
-  object-position: center 30%;
-}
-
-.bento .item img {
-  position: absolute;
-  inset: 0;
-  height: 100%;
-  aspect-ratio: auto;
 }
 
 .item:focus-visible {
@@ -251,15 +222,6 @@
   .mosaic {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  .bento .item:nth-child(12n + 8) {
-    grid-column: 2 / span 2;
-  }
-
-  .bento .item:last-child {
-    grid-column: span var(--span3, 1);
-    aspect-ratio: var(--ar3, 1);
-  }
 }
 
 @media (max-width: 768px) {
@@ -267,22 +229,8 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .mosaic,
-  .bento {
+  .mosaic {
     gap: 0.6rem;
-  }
-
-  .bento .item:nth-child(12n + 8) {
-    grid-column: span 2;
-  }
-
-  .bento .item:nth-child(12n + 5) {
-    aspect-ratio: 2 / 1;
-  }
-
-  .bento .item:last-child {
-    grid-column: span var(--span2, 1);
-    aspect-ratio: var(--ar2, 1);
   }
 
   .lightboxContent {

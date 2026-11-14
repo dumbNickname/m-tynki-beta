@@ -2,7 +2,7 @@ import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import PageHeader from "~/components/PageHeader";
 import Gallery from "~/components/Gallery";
-import SpiritLevel from "~/components/SpiritLevel";
+import PaintRoller from "~/components/PaintRoller";
 import NavLink from "~/components/NavLink";
 import styles from "./galeria.module.css";
 import galleryImages from "~/data/gallery.json";
@@ -22,6 +22,8 @@ export default function Galeria() {
         ]}
       />
 
+      <PaintRoller />
+
       <PageHeader
         title="Galeria"
         breadcrumbs={[{ label: "Strona Główna", href: "/" }, { label: "Galeria" }]}
@@ -32,18 +34,16 @@ export default function Galeria() {
         }
       />
 
-      <section class={`section ${styles.gallerySection}`}>
+      <section class="section">
         <div class="container">
           <Gallery
             images={galleryImages}
             altPrefix="Tynki ze szlichtą pod malowanie M-TYNK Wrocław"
             alts={galleryImages.map((src) => galleryAlts[src])}
-            variant="bento"
           />
           <p class={styles.more}>
             Opisy prac, metraże i czas realizacji znajdziesz w <NavLink href="/realizacje">realizacjach</NavLink>.
           </p>
-          <SpiritLevel label={`${galleryImages.length} zdjęć`} />
         </div>
       </section>
     </Layout>

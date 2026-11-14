@@ -68,6 +68,9 @@ function countUp(el: HTMLElement) {
 function initParallax() {
   const img = document.querySelector<HTMLElement>("[data-parallax]");
   if (!img) return;
+  // Touch browsers scroll on the compositor; a JS-driven offset lags a frame
+  // behind and jitters (worst when the address bar collapses). Desktop only.
+  if (window.matchMedia("(hover: none), (pointer: coarse)").matches) return;
   let ticking = false;
   const update = () => {
     ticking = false;

@@ -2,7 +2,10 @@
 
 .hero {
   position: relative;
-  min-height: min(88dvh, 780px);
+  /* svh, not dvh: dvh changes whenever the mobile address bar slides in or out,
+     which resized the hero and shook the page on every change of direction. */
+  min-height: min(88vh, 780px);
+  min-height: min(88svh, 780px);
   display: flex;
   align-items: flex-end;
   overflow: hidden;
@@ -832,7 +835,8 @@ a.statItem:hover .statLabel {
 
 @media (max-width: 768px) {
   .hero {
-    min-height: min(92dvh, 720px);
+    min-height: min(92vh, 720px);
+    min-height: min(92svh, 720px);
   }
 
   /* Taller than the hero and anchored to the bottom, so the timber ceiling at
