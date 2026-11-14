@@ -5,8 +5,15 @@
 }
 
 .inner {
-  max-width: 720px;
   text-align: left;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 4rem;
+  align-items: center;
+  margin-bottom: 3.5rem;
 }
 
 .code {
@@ -44,7 +51,7 @@
   align-items: center;
   gap: 1.5rem;
   flex-wrap: wrap;
-  margin-bottom: 3rem;
+  margin-bottom: 0;
 }
 
 .callLink {
@@ -77,7 +84,7 @@
 
 .suggested ul {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   gap: 0.25rem 2rem;
 }
 
@@ -103,6 +110,17 @@
 .suggested li span {
   font-size: 0.82rem;
   color: var(--color-text-light);
+}
+
+@media (max-width: 1024px) {
+  .top {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .suggested ul {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media (max-width: 768px) {

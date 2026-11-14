@@ -1,6 +1,7 @@
 import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import NavLink from "~/components/NavLink";
+import BrickWall from "~/components/BrickWall";
 import site from "~/data/site.json";
 import styles from "./[...404].module.css";
 
@@ -15,20 +16,25 @@ export default function NotFound() {
 
       <section class={`section ${styles.notFound}`}>
         <div class={`container ${styles.inner}`}>
-          <span class={styles.code}>404</span>
-          <h1>Tej strony już tu nie ma</h1>
-          <p class={styles.lead}>
-            Mogła zostać przeniesiona albo nigdy nie istniała. Zerknij poniżej — pewnie znajdziesz to,
-            czego szukasz, albo zadzwoń, a doradzimy.
-          </p>
+          <div class={styles.top}>
+            <div>
+              <span class={styles.code}>404</span>
+              <h1>Tej ściany jeszcze nie otynkowaliśmy</h1>
+              <p class={styles.lead}>
+                Strony, której szukasz, tu nie ma — mogła zostać przeniesiona albo nigdy nie istniała.
+                Zanim pójdziesz dalej, możesz przynajmniej tę ścianę doprowadzić do porządku. Albo zadzwoń, a doradzimy.
+              </p>
 
-          <div class={styles.actions}>
-            <NavLink href="/" class="btn btn-primary">
-              Strona główna
-            </NavLink>
-            <a href={`tel:${site.phoneRaw}`} class={styles.callLink}>
-              Zadzwoń: {site.phone}
-            </a>
+              <div class={styles.actions}>
+                <NavLink href="/" class="btn btn-primary">
+                  Strona główna
+                </NavLink>
+                <a href={`tel:${site.phoneRaw}`} class={styles.callLink}>
+                  Zadzwoń: {site.phone}
+                </a>
+              </div>
+            </div>
+            <BrickWall />
           </div>
 
           <div class={styles.suggested}>
@@ -48,7 +54,7 @@ export default function NotFound() {
               </li>
               <li>
                 <NavLink href="/kontakt">Kontakt</NavLink>
-                <span>Adres, mapa, formularz</span>
+                <span>Telefon, e-mail i mapa dojazdu</span>
               </li>
             </ul>
           </div>
