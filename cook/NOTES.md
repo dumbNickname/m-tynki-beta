@@ -13,6 +13,7 @@ Branch `experiment/cook-redesign`, previewed on beta only. Nothing here is on pr
   - the intro line "My odpowiadamy za warstwy od gruntu do szlichty".
 - **Szlichta slider caption** on the homepage: keep it "poglądowa", subtle relief (his words: the real difference is subtle).
 - **404 copy**: "Tej ściany jeszcze nie otynkowaliśmy" plus the plastering toy. Is it playful enough without being silly?
+- **Redrawn mascot in the photo placeholder**: a new drawing in the logo's style (green cap, big eyes, nose), winking with a thumbs up. The original logo artwork is unchanged. Is he OK with this version of his mascot?
 - **Realizacje durations**: shown as a calendar with that many days crossed off ("14 dni" → 14 squares). Are these calendar days or working days? The label just says "dni".
 
 ## Waiting for material
@@ -30,13 +31,15 @@ Branch `experiment/cook-redesign`, previewed on beta only. Nothing here is on pr
   - The play button resumes it straight away.
   - Is 4 s right?
 - **Handover checklist** on the painting guide: ticks are not saved (no localStorage), so the privacy policy needs no change. Saving them would mean a one-line policy update. Worth it?
-- **Spirit level on /galeria**: it sticks to the bottom of the screen while you scroll the photos. Fun, or in the way on small phones?
 - **The `cook/` folder** stays out of the production merge.
+- **Paint roller**: now on the painting guide and the gallery. Enough, or also on long realizacje?
+- **Google Maps on /kontakt**: the embedded map is loaded from Google, which may set its own cookies. The privacy policy doesn't mention it, and the "W skrócie" cards are worded around that ("strona nie zapisuje cookies").
+  - Option A: one sentence in the policy about the Google map.
+  - Option B: a "Pokaż mapę" click-to-load placeholder (also faster).
+  - Owner's choice; B would still need a short line in the policy covering what happens after the click.
 
 ## Ideas not done yet
 
-- **Privacy policy**: a "W skrócie" block with three cards (no cookies, no tracking, no ads) and a sticky table of contents.
-- **Category pages** (`/realizacje/kategoria/*`): their own small header icon and intro illustration.
 - **Wall cross-section on mobile**: tap a layer to scroll to its description. Hover only works on desktop today.
 - **Realizacja pages**: when the owner sends real before/after pairs, reuse the slider with real photos instead of the illustration.
 - **Homepage**: a tiny "Dziś na budowie" line (town + stage), edited by hand in `site.json`. It only works if someone keeps it updated.
