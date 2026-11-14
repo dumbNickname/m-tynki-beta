@@ -31,13 +31,22 @@ export default function PostPage() {
         // Old WordPress excerpts are a truncated copy of the first paragraph — don't repeat them in the hero.
         const showLead = () => !p().description.replace(/<[^>]+>/g, "").startsWith(p().excerpt.slice(0, 40));
         const categories = () => p().categories.filter((c) => c !== "wszystkie");
+        // "14 dni" → 14: shown as a wall calendar with the days crossed off.
+        const days = () => {
+          const m = /^(\d+)\s*dni$/.exec((p().duration || "").trim());
+          return m ? Number(m[1]) : 0;
+        };
         const details = () => [
           { label: "Lokalizacja", value: p().location },
           { label: "Data", value: formatDatePl(p().date) },
-          { label: "Powierzchnia", value: p().area },
-          { label: "Czas prac", value: p().duration },
+          { label: "Czas prac", value: days() ? "" : p().duration },
           { label: "Wykonawca", value: p().executor },
         ].filter((d) => d.value);
+        // "ok 700 mkw" → count up the number, print a proper m².
+        const area = () => {
+          const m = /^(ok\.?\s*)?(\d+)\s*(mkw|m2|m²)$/i.exec((p().area || "").trim());
+          return m ? { prefix: m[1] ? "ok. " : "", value: m[2] } : null;
+        };
 
         return (
           <Layout>
@@ -77,7 +86,7 @@ export default function PostPage() {
                 <ul class={styles.chips}>
                   <li>{p().location}</li>
                   <li><time datetime={p().date}>{formatDatePl(p().date)}</time></li>
-                  <Show when={p().area}><li>{p().area}</li></Show>
+                  <Show when={p().area}><li>{area() ? `${area()!.prefix}${area()!.value} m²` : p().area}</li></Show>
                   <Show when={p().gallery.length}>
                     <li><a href="#zdjecia">{p().gallery.length} zdjęć ↓</a></li>
                   </Show>
@@ -92,6 +101,31 @@ export default function PostPage() {
                 <aside class={styles.aside}>
                   <div class={styles.card}>
                     <h2 class={styles.cardTitle}>Szczegóły realizacji</h2>
+                    <Show when={days()}>
+                      <div class={`${styles.calendar} reveal`}>
+                        <p class={styles.calHead}>
+                          <span>Czas prac</span>
+                          <strong><span data-count>{days()}</span> dni</strong>
+                        </p>
+                        <ol class={styles.calDays} aria-hidden="true">
+                          <For each={Array.from({ length: days() }, (_, i) => i + 1)}>
+                            {(d) => <li style={{ "--i": d }}>{d}</li>}
+                          </For>
+                        </ol>
+                      </div>
+                    </Show>
+                    <Show when={p().area}>
+                      <p class={styles.area}>
+                        <span>Powierzchnia</span>
+                        <Show when={area()} fallback={<strong>{p().area}</strong>}>
+                          {(a) => (
+                            <strong class="reveal">
+                              {a().prefix}<span data-count>{a().value}</span> m²
+                            </strong>
+                          )}
+                        </Show>
+                      </p>
+                    </Show>
                     <dl class={styles.details}>
                       <For each={details()}>
                         {(d) => (
