@@ -5,6 +5,7 @@ import PageHeader from "~/components/PageHeader";
 import PostCard from "~/components/PostCard";
 import NavLink from "~/components/NavLink";
 import VideoClip from "~/components/VideoClip";
+import WallSection from "~/components/WallSection";
 import videos from "~/data/videos.json";
 import site from "~/data/site.json";
 import { opinieLabel } from "~/utils/plural";
@@ -207,6 +208,19 @@ export default function TynkiService() {
               </a>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section class={`section ${styles.wallSection}`} id="przekroj-sciany">
+        <div class="container">
+          <div class={styles.wallIntro}>
+            <h2 class={styles.sectionTitle}>Z czego składa się ściana gotowa pod malowanie?</h2>
+            <div class={styles.divider} />
+            <p>
+              Od muru do farby — pięć warstw, z których każda ma swoje zadanie. My odpowiadamy za warstwy od gruntu do szlichty, a jeśli chcesz, także za malowanie.
+            </p>
+          </div>
+          <WallSection />
         </div>
       </section>
 

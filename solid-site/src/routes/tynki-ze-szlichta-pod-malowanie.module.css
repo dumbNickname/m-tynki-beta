@@ -320,6 +320,15 @@
   }
 }
 
+.wallSection {
+  padding-top: 0;
+}
+
+.wallIntro {
+  max-width: 720px;
+  margin-bottom: 2rem;
+}
+
 .contentSection {
   background: var(--color-light-gray);
 }
