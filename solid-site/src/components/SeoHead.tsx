@@ -196,7 +196,6 @@ export default function SeoHead(props: SeoHeadProps) {
       ...(props.ogType === "article"
         ? {
             headline: (props.title || site.title).slice(0, 110),
-            image: ogImageUrl(),
             author: { "@id": `${site.url}/#organization` },
             publisher: { "@id": `${site.url}/#organization` },
           }
