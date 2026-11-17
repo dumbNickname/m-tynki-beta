@@ -15,3 +15,19 @@ Format for all photos: JPG or HEIC straight from the phone, no filters, no colla
 Already have and keep: the hero photo, the van with the logo (intro), the mascot artwork (unchanged, owner's copyright) and the owner cut-out (fallback until #2 arrives).
 
 When the files arrive: put them in `solid-site/public/images/uploads/2026/`, run `python3 scripts/generate-thumbs.py`, and I'll wire them in.
+
+## Low-resolution photos to replace (realizacje posts)
+
+These are the main (hero / share) photos of older posts. They came from the old WordPress site as WhatsApp-compressed copies, so they are below the 1200 px width Google recommends for large previews (they still pass the 50,000 px minimum). Their galleries have nothing bigger either (975×731 PNGs or 576×1024 JPEGs). Ask the owner for the **phone originals of the same jobs**, not new photos of other jobs.
+
+| Page | Hero file (`solid-site/public/images/…`) | Now | Shows | Note |
+|------|------------------------------------------|-----|-------|------|
+| `/realizacje/tynki-ze-szlichta-pod-malowanie-wroclaw/` | `uploads/2023/08/wyr.png` | 700×700 | M-TYNK van in front of the house | Weakest one: shows the van, not the walls. Until an original arrives, a gallery photo of the walls (`uploads/2023/09/tynk-ze-szlichta-wygladzajaca-6.png`, 975×731) would be a better hero. Gallery: all 6 photos ~975×731. |
+| `/realizacje/tynkowanie-w-domu-jednorodzinnym/` | `uploads/2023/08/obrazek-wyr.png` | 700×700 | Plastered hallway and doorways | No gallery at all. Any extra photos of this job are welcome. |
+| `/realizacje/tynkowanie-scian-pod-malowanie/` | `uploads/2023/08/obrazek-wyr-1.png` | 700×700 | Bay-window room after plastering | Gallery: 2 photos ~727×970. |
+| `/realizacje/tynkowanie-scian-we-wroclawiu/` | `uploads/2023/08/wyr.jpg` | 576×1024 | White walls next to a large window | Gallery: 14 photos, all 576×1024. |
+| `/realizacje/tynk-wraz-z-zabudowa-gk-i-malowaniem/` | `uploads/2023/08/img-20230904-wa0012.jpg` | 1125×2000 | (hero is fine) | Gallery only: 5 PNGs ~974×731. |
+| `/realizacje/tynk-na-gladko-pod-malowanie/` | `uploads/2023/08/img-20230904-wa0019.jpg` | 1536×2048 | (hero is fine) | Gallery only: 8 photos 576×1024. |
+| `/tynki-ze-szlichta-pod-malowanie/` (flagship) | `uploads/2023/08/tynki-ze-szlichta-pod-malowanie.jpg` | 1125×2000 | | Nice to have; nearly 1200 already. |
+
+Target: JPEG straight from the phone, ≥1600 px on the long side. When an original arrives, keep the same file name if possible (or update `posts.json` → `thumbnail`/`gallery`), then run `python3 scripts/generate-thumbs.py` and `pnpm build` (the build regenerates `src/data/image-sizes.json`, so the structured data picks up the new size automatically). If the hero changes from PNG to JPEG, the post page and the sizes script switch to the original file on their own.
