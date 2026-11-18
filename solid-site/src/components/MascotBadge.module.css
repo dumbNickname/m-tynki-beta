@@ -49,7 +49,7 @@
 
 /* Moves only while hovered: endless ambient motion would need a pause control
    (WCAG 2.2.2). */
-@media (prefers-reduced-motion: no-preference) {
+@media (prefers-reduced-motion: no-preference) and (hover: hover) {
   .badge:hover .ring {
     animation: turn 12s linear infinite;
   }

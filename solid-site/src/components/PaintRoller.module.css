@@ -22,6 +22,9 @@
   box-shadow: inset 0 -1px 0 rgba(40, 32, 20, 0.12), 0 4px 10px -8px rgba(40, 32, 20, 0.5);
 }
 
+/* Not gated by prefers-reduced-motion: it only moves with the visitor's own
+   scrolling (a progress indicator), and the JS fallback skips browsers that
+   support scroll timelines, so gating would freeze it at 0. */
 @supports (animation-timeline: scroll()) {
   .bar {
     animation: roll linear both;

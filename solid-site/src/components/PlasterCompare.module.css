@@ -174,8 +174,12 @@
     animation: rake 4.5s ease-in-out both;
   }
 
-  .panel:hover .light {
-    animation: rake 7s ease-in-out infinite alternate;
+  /* Separate keyframe name so hovering restarts the light from 0 instead of
+     resuming the one-off sweep's timeline. Touch keeps :hover after a tap. */
+  @media (hover: hover) {
+    .panel:hover .light {
+      animation: rakeLoop 7s ease-in-out infinite alternate;
+    }
   }
 
   .sweeping .mascot img {
@@ -184,6 +188,11 @@
 }
 
 @keyframes rake {
+  from { transform: translateX(0); }
+  to { transform: translateX(430%); }
+}
+
+@keyframes rakeLoop {
   from { transform: translateX(0); }
   to { transform: translateX(430%); }
 }

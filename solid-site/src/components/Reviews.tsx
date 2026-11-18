@@ -112,9 +112,18 @@ export default function Reviews() {
       { threshold: 0.5 },
     );
     io.observe(rail);
+    // Turning on reduced motion mid-visit stops autoplay for good.
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const onReduce = () => {
+      if (!reduce.matches) return;
+      stop();
+      setCanAutoplay(false);
+    };
+    reduce.addEventListener("change", onReduce);
     onCleanup(() => {
       clearInterval(timer);
       io.disconnect();
+      reduce.removeEventListener("change", onReduce);
     });
   });
 
@@ -153,12 +162,14 @@ export default function Reviews() {
         </div>
         <div class={styles.railNav}>
           <button type="button" class={styles.railBtn} onClick={() => {
+            if (atStart()) return;
             stop();
             step(-1);
           }} aria-disabled={atStart()} aria-label="Poprzednie opinie">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 6 9 12 15 18" /></svg>
           </button>
           <button type="button" class={styles.railBtn} onClick={() => {
+            if (atEnd()) return;
             stop();
             step(1);
           }} aria-disabled={atEnd()} aria-label="Następne opinie">

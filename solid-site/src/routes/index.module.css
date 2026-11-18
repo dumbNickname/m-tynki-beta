@@ -748,6 +748,8 @@ a.statItem:hover .statLabel {
 /* ---------- CTA ---------- */
 
 .cta {
+  /* The green focus outline would vanish on this green surface. */
+  --focus-outline: 2px solid #ffffff;
   background: #2e6b3b;
   background-image: radial-gradient(60% 120% at 90% 0%, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 60%);
   color: #ffffff;

@@ -179,6 +179,7 @@
 
 .tableWrap {
   overflow-x: auto;
+  overscroll-behavior-x: contain;
   margin: 1.5rem 0;
 }
 

@@ -41,7 +41,10 @@ export default function WallSection() {
     if (!window.matchMedia("(hover: none)").matches) return;
     setActive(active() === n ? 0 : n);
     if (fromDiagram && active()) {
-      list.querySelector(`[data-l="${n}"]`)?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      list.querySelector(`[data-l="${n}"]`)?.scrollIntoView({
+        block: "nearest",
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+      });
     }
   };
   return (
