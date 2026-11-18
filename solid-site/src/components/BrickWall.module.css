@@ -131,7 +131,7 @@
   color: #ffffff;
   font-size: 0.8rem;
   font-weight: 600;
-  animation: nudge 1.8s ease-in-out infinite;
+  animation: nudge 1.6s ease-in-out 3;
   transition: opacity 0.3s ease;
 }
 
@@ -163,7 +163,8 @@
 }
 
 .wall:has(.range:focus-visible) {
-  box-shadow: 0 0 0 4px rgba(57, 125, 71, 0.45), 0 30px 50px -34px rgba(40, 32, 20, 0.7);
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-offset);
 }
 
 :global([data-theme="dark"]) .bricks,

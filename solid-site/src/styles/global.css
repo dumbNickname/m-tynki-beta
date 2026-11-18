@@ -90,7 +90,6 @@ html[data-theme="dark"] img {
 
 html {
   font-size: var(--fs-base);
-  scroll-behavior: smooth;
   scroll-padding-top: 5.5rem;
   -webkit-text-size-adjust: 100%;
 
@@ -306,22 +305,6 @@ strong {
 .btn-lg {
   padding: 1em 3em;
   font-size: 1rem;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
 
 /* Scroll reveals (src/utils/motion.ts). Hidden states only exist under

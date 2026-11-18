@@ -16,9 +16,18 @@
   box-shadow: var(--shadow-card-hover);
 }
 
-.card:focus-within {
+/* The stretched link covers the card, so the card draws the link's focus indicator. */
+.card:has(.link:focus-visible) {
   border-color: var(--color-primary);
-  box-shadow: var(--focus-ring);
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-offset);
+}
+
+@supports not selector(:has(*)) {
+  .card:focus-within {
+    outline: var(--focus-outline);
+    outline-offset: var(--focus-offset);
+  }
 }
 
 .flip {

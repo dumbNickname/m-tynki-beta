@@ -8,6 +8,7 @@ import styles from "./PlasterCompare.module.css";
 export default function PlasterCompare() {
   const [pos, setPos] = createSignal(50);
   const [sweeping, setSweeping] = createSignal(false);
+  const [lit, setLit] = createSignal(false);
   let root!: HTMLDivElement;
   let touched = false;
   let raf = 0;
@@ -37,6 +38,7 @@ export default function PlasterCompare() {
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
           io.disconnect();
+          setLit(true);
           sweep();
         }
       },
@@ -53,7 +55,8 @@ export default function PlasterCompare() {
     <figure class={styles.figure}>
       <div
         ref={root}
-        class={`${styles.panel} ${sweeping() ? styles.sweeping : ""}`}
+        class={styles.panel}
+        classList={{ [styles.sweeping]: sweeping(), [styles.lit]: lit() }}
         style={{ "--pos": `${pos()}%` }}
       >
         <img class={styles.surface} src="images/plaster-rough.svg" alt="" width="1200" height="750" loading="lazy" decoding="async" />

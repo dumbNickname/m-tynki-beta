@@ -83,11 +83,13 @@ export default function Gallery(props: GalleryProps) {
   function closeLightbox() {
     const index = lightboxIndex();
     const thumb = index !== null ? thumbs[index] : undefined;
-    // Focus goes back to the tile of the photo that was open.
-    const refocus = () => (thumb?.parentElement as HTMLElement | null)?.focus({ preventScroll: true });
-    if (!canAnimate() || !thumb || !isInViewport(thumb)) {
+    // close() hands focus back to the thumbnail that opened the dialog.
+    const hide = () => {
+      dialogRef.close();
       setLightboxIndex(null);
-      refocus();
+    };
+    if (!canAnimate() || !thumb || !isInViewport(thumb)) {
+      hide();
       return;
     }
     setMorphing(true);
@@ -98,7 +100,6 @@ export default function Gallery(props: GalleryProps) {
     t.finished.finally(() => {
       thumb.style.viewTransitionName = "";
       setMorphing(false);
-      refocus();
     });
   }
 
@@ -115,22 +116,6 @@ export default function Gallery(props: GalleryProps) {
   function handleKeydown(e: KeyboardEvent) {
     if (e.key === "ArrowLeft") prev();
     else if (e.key === "ArrowRight") next();
-    else if (e.key === "Escape") closeLightbox();
-    else if (e.key === "Tab") {
-      // Keep keyboard focus inside the open lightbox.
-      const items = [...lightboxRef.querySelectorAll<HTMLButtonElement>("button:not(:disabled)")];
-      if (!items.length) return;
-      const first = items[0];
-      const last = items[items.length - 1];
-      const active = document.activeElement;
-      if (e.shiftKey && (active === first || active === lightboxRef)) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && active === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    }
   }
 
   // Esc / back gesture: run our closing morph instead of the instant native close.
@@ -161,25 +146,27 @@ export default function Gallery(props: GalleryProps) {
         </For>
       </div>
 
-      <Show when={lightboxIndex() !== null}>
-        <div
-          ref={lightboxRef}
-          class={morphing() ? `${styles.lightbox} ${styles.morphing}` : styles.lightbox}
-          onClick={closeLightbox}
-          onKeyDown={handleKeydown}
-          tabindex="-1"
-          role="dialog"
-          aria-modal="true"
-          aria-label={`Podgląd zdjęcia ${lightboxIndex()! + 1} z ${props.images.length}`}
-        >
-          <div class={styles.lightboxContent} onClick={(e) => e.stopPropagation()}>
+      <dialog
+        ref={dialogRef}
+        class={morphing() ? `${styles.lightbox} ${styles.morphing}` : styles.lightbox}
+        aria-label={lightboxIndex() === null ? "Podgląd zdjęcia" : `Podgląd zdjęcia ${lightboxIndex()! + 1} z ${props.images.length}`}
+        onClick={(e) => e.target === e.currentTarget && closeLightbox()}
+        onKeyDown={handleKeydown}
+        onCancel={handleCancel}
+        onClose={() => {
+          setLightboxIndex(null);
+          setMorphing(false);
+        }}
+      >
+        <Show when={lightboxIndex() !== null}>
+          <div class={styles.lightboxContent}>
             <button class={styles.close} onClick={closeLightbox} aria-label="Zamknij">
               <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
                 <path d="M6 6l12 12M18 6 6 18" />
               </svg>
             </button>
             <span class={styles.counter} aria-hidden="true">{lightboxIndex()! + 1} / {props.images.length}</span>
-            <button class={styles.prev} onClick={prev} aria-label="Poprzednie" disabled={lightboxIndex() === 0}>‹</button>
+            <button class={styles.prev} onClick={prev} aria-label="Poprzednie" aria-disabled={lightboxIndex() === 0}>‹</button>
             <img
               src={props.images[lightboxIndex()!]}
               alt={imageAlt(prefix(), lightboxIndex()!, props.alts)}

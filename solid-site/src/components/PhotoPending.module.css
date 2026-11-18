@@ -73,14 +73,20 @@
   transform-origin: center;
 }
 
+/* One wink after load, then again while hovered; endless blinking would need a
+   pause control (WCAG 2.2.2). */
 @media (prefers-reduced-motion: no-preference) {
-  /* Every few seconds the open eye blinks too. */
   .eye {
-    animation: blink 5.5s infinite;
+    animation: blink 5.5s;
   }
 
   .peek {
-    animation: bob 5.5s ease-in-out infinite;
+    animation: bob 5.5s ease-in-out;
+  }
+
+  .card:hover .eye,
+  .card:hover .peek {
+    animation-iteration-count: infinite;
   }
 }
 

@@ -96,7 +96,8 @@
 }
 
 .panel:has(.range:focus-visible) .handle {
-  box-shadow: 0 0 0 4px rgba(57, 125, 71, 0.45), 0 6px 18px -6px rgba(20, 23, 28, 0.35);
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-offset);
 }
 
 .panel:hover .handle {
@@ -167,7 +168,13 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .light {
+  /* No endless motion without a pause control (WCAG 2.2.2): one sweep when the
+     panel comes into view, continuous only while the pointer rests on it. */
+  .lit .light {
+    animation: rake 4.5s ease-in-out both;
+  }
+
+  .panel:hover .light {
     animation: rake 7s ease-in-out infinite alternate;
   }
 

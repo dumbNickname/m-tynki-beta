@@ -47,17 +47,15 @@
   object-fit: contain;
 }
 
+/* Moves only while hovered: endless ambient motion would need a pause control
+   (WCAG 2.2.2). */
 @media (prefers-reduced-motion: no-preference) {
-  .ring {
-    animation: turn 48s linear infinite;
-  }
-
-  .figure {
-    animation: idle 4.5s ease-in-out infinite;
-  }
-
   .badge:hover .ring {
-    animation-duration: 12s;
+    animation: turn 12s linear infinite;
+  }
+
+  .badge:hover .figure {
+    animation: idle 4.5s ease-in-out infinite;
   }
 }
 

@@ -155,13 +155,13 @@ export default function Reviews() {
           <button type="button" class={styles.railBtn} onClick={() => {
             stop();
             step(-1);
-          }} disabled={atStart()} aria-label="Poprzednie opinie">
+          }} aria-disabled={atStart()} aria-label="Poprzednie opinie">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 6 9 12 15 18" /></svg>
           </button>
           <button type="button" class={styles.railBtn} onClick={() => {
             stop();
             step(1);
-          }} disabled={atEnd()} aria-label="Następne opinie">
+          }} aria-disabled={atEnd()} aria-label="Następne opinie">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18" /></svg>
           </button>
           {canAutoplay() && (
