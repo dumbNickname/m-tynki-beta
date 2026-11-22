@@ -3,8 +3,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: 1px solid var(--color-border);
   background: var(--color-light-gray);
@@ -31,4 +31,11 @@
   opacity: 0;
   transform: scale(0.5) rotate(-30deg);
   pointer-events: none;
+}
+
+@media (max-width: 1180px) {
+  .toggle {
+    width: 44px;
+    height: 44px;
+  }
 }

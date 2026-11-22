@@ -1,13 +1,16 @@
 import { For } from "solid-js";
+import { keepCodes } from "~/utils/nowrap";
 import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import PageHeader from "~/components/PageHeader";
 import PostCard from "~/components/PostCard";
 import NavLink from "~/components/NavLink";
 import VideoClip from "~/components/VideoClip";
+import WallSection from "~/components/WallSection";
 import videos from "~/data/videos.json";
 import site from "~/data/site.json";
 import { opinieLabel } from "~/utils/plural";
+import { galleryAlts, toThumb } from "~/utils/images";
 import posts from "~/data/posts.json";
 import navigation from "~/data/navigation.json";
 import styles from "./tynki-ze-szlichta-pod-malowanie.module.css";
@@ -20,13 +23,35 @@ const featuredPosts = posts.filter((p) => featuredSlugs.includes(p.slug));
 const categoryLabels: Record<string, string> = {};
 navigation.categories.forEach((c) => { categoryLabels[c.slug] = c.label; });
 
+// Site photo beside the long text blocks: a fixed crop so it never outgrows the text.
+function Photo(props: { src: string; caption: string; width: number; height: number; wide?: boolean; position?: string }) {
+  return (
+    <figure class={`${styles.photo} ${props.wide ? styles.photoWide : ""}`}>
+      <div class={`${styles.photoFrame} reveal-wipe`}>
+        <img
+          src={props.src}
+          srcset={`${toThumb(props.src)} 400w, ${props.src} ${props.width}w`}
+          sizes="(max-width: 768px) 46vw, 380px"
+          alt={galleryAlts[props.src] ?? props.caption}
+          width={props.width}
+          height={props.height}
+          loading="lazy"
+          decoding="async"
+          style={props.position ? { "object-position": props.position } : undefined}
+        />
+      </div>
+      <figcaption>{props.caption}</figcaption>
+    </figure>
+  );
+}
+
 const benefits = [
-  { icon: "⏱️", title: "Oszczędność czasu", description: "Tam, gdzie gładź nie jest potrzebna, odpada cały etap jej nakładania, schnięcia i szlifowania — to nawet kilka dni mniej." },
-  { icon: "✨", title: "Gładka powierzchnia tynku", description: "Szlichta z gładziolitem wygładza tynk na etapie tynkowania — ściana jest wyraźnie gładsza niż po zwykłym zatarciu. Płaskość odbieramy według normy dla tynków gipsowych (PN-B-10110)." },
-  { icon: "💰", title: "Oszczędność kosztów", description: "W typowych pomieszczeniach malowanych jasną, matową farbą zwykle nie trzeba płacić za osobną gładź — mniej materiału i robocizny." },
-  { icon: "🎨", title: "Pod malowanie", description: "Po wyschnięciu ścianę gruntuje się i maluje. Przy oświetleniu wzdłuż ścian, farbach z połyskiem lub ciemnych kolorach doradzamy gładź — robimy ją przy malowaniu." },
-  { icon: "🏗️", title: "Trwałość", description: "Tynk ze szlichtą tworzy jednolitą, mocną warstwę, odporną na pęknięcia i uszkodzenia mechaniczne." },
-  { icon: "🔧", title: "Uniwersalność", description: "Nadaje się do zastosowania na ścianach i sufitach, w budynkach mieszkalnych oraz użytkowych." },
+  { icon: "M12 21a8 8 0 1 0 0-16 8 8 0 0 0 0 16z M12 9v4l2.5 2 M9.5 2h5", title: "Oszczędność czasu", description: "Tam, gdzie gładź nie jest potrzebna, odpada cały etap jej nakładania, schnięcia i szlifowania — to nawet kilka dni mniej." },
+  { icon: "M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z M19 16l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z", title: "Gładka powierzchnia tynku", description: "Szlichta z gładziolitem wygładza tynk na etapie tynkowania — ściana jest wyraźnie gładsza niż po zwykłym zatarciu. Płaskość odbieramy według normy dla tynków gipsowych (PN-B-10110)." },
+  { icon: "M12 21a8 8 0 1 0 0-16 8 8 0 0 0 0 16z M14.5 9.5c-.5-.9-1.4-1.3-2.5-1.3-1.5 0-2.5.8-2.5 1.9 0 2.6 5 1.4 5 4 0 1.1-1 1.9-2.5 1.9-1.1 0-2.1-.5-2.6-1.4 M12 6.8v1.4 M12 15.8v1.4", title: "Oszczędność kosztów", description: "W typowych pomieszczeniach malowanych jasną, matową farbą zwykle nie trzeba płacić za osobną gładź — mniej materiału i robocizny." },
+  { icon: "M4 4h13v5H4z M17 6.5h3v5.5h-8v3 M10.5 15h3v6h-3z", title: "Pod malowanie", description: "Po wyschnięciu ścianę gruntuje się i maluje. Przy oświetleniu wzdłuż ścian, farbach z połyskiem lub ciemnych kolorach doradzamy gładź — robimy ją przy malowaniu." },
+  { icon: "M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z M8.5 12l2.5 2.5 4.5-5", title: "Trwałość", description: "Tynk ze szlichtą tworzy jednolitą, mocną warstwę, odporną na pęknięcia i uszkodzenia mechaniczne." },
+  { icon: "M4 4h7v7H4z M13 4h7v7h-7z M4 13h7v7H4z M13 13h7v7h-7z", title: "Uniwersalność", description: "Nadaje się do zastosowania na ścianach i sufitach, w budynkach mieszkalnych oraz użytkowych." },
 ];
 
 const faqs = [
@@ -139,11 +164,11 @@ export default function TynkiService() {
             </p>
           </div>
 
-          <div class={`${styles.imageWrap} ${styles.img1}`}>
+          <div class={`${styles.imageWrap} ${styles.img1} reveal-wipe`}>
             <img
               src="images/uploads/2023/08/tynki-ze-szlichta-pod-malowanie.jpg"
               srcset="images/thumbs/uploads/2023/08/tynki-ze-szlichta-pod-malowanie.jpg 400w, images/uploads/2023/08/tynki-ze-szlichta-pod-malowanie.jpg 1125w"
-              sizes="(max-width: 768px) 60vw, 500px"
+              sizes="(max-width: 768px) 92vw, 440px"
               alt="Tynki ze szlichtą pod malowanie Wrocław"
               width="1125"
               height="2000"
@@ -179,7 +204,7 @@ export default function TynkiService() {
             <p>
               Jeśli chcą Państwo zapoznać się z tym jak wygląda Tynk ze Szlichtą Gładziolitu – zapraszamy na naszą aktualną budowę. Zawsze zapraszamy inwestorów, aby zapoznali się z jakością wykonywanych przez nas tynków. Dlatego też, w każdej sytuacji, prosimy o kontakt telefoniczny w celu umówienia się na wizytę. Na takiej wizycie opowiemy też więcej o wykonywanych Tynkach Gipsowych ze Szlichtą Gładziolitu, a także pokażemy, jak wygląda tynk bez szlichty gładziolitu oraz ze szlichtą gładziolitem.
             </p>
-            <div class="text-right">
+            <div>
               <a class="btn btn-primary" href={`tel:${site.phoneRaw}`}>
                 Umów się na wizytę!
               </a>
@@ -188,8 +213,21 @@ export default function TynkiService() {
         </div>
       </section>
 
-      <section class={`section ${styles.contentSection}`} id="tynki-maszynowe">
+      <section class={`section ${styles.wallSection}`} id="przekroj-sciany">
         <div class="container">
+          <div class={styles.wallIntro}>
+            <h2 class={styles.sectionTitle}>Z czego składa się ściana gotowa pod malowanie?</h2>
+            <div class={styles.divider} />
+            <p>
+              Od muru do farby — pięć warstw, z których każda ma swoje zadanie. My odpowiadamy za warstwy od gruntu do szlichty, a jeśli chcesz, także za malowanie.
+            </p>
+          </div>
+          <WallSection />
+        </div>
+      </section>
+
+      <section class={`section ${styles.contentSection}`} id="tynki-maszynowe">
+        <div class={`container ${styles.split}`}>
           <div class={styles.prose}>
             <h2>Na czym polega tynkowanie maszynowe?</h2>
             <p>Tynk maszynowy nakładany jest na ścianę agregatem tynkarskim, który w sposób ciągły miesza suchą zaprawę z wodą i podaje gotową masę pod ciśnieniem prosto na powierzchnię. Dzięki temu zaprawa ma zawsze tę samą, powtarzalną konsystencję, a tynk dokładnie wypełnia podłoże i mocno się z nim wiąże. Maszyna zastępuje najbardziej pracochłonny etap ręcznego narzucania zaprawy, więc duże powierzchnie da się otynkować w znacznie krótszym czasie.</p>
@@ -201,14 +239,18 @@ export default function TynkiService() {
 
             <h2>Jak przebiega tynkowanie maszynowe krok po kroku?</h2>
             <p>Realizację zaczynamy od oceny podłoża i zabezpieczenia budowy: okleiamy okna i drzwi, osłaniamy posadzki oraz instalacje. Następnie ustawiamy narożniki i listwy, przygotowujemy agregat i dobieramy konsystencję zaprawy do konkretnego pomieszczenia. Warstwę właściwą nakładamy maszynowo, ściągamy ją łatą do równego, a po wstępnym związaniu przystępujemy do wygładzania.</p>
-            <p>Kluczowy dla efektu końcowego jest etap wygładzania. Każdy narzut przecieramy trzema rodzajami łat gładzących, uzupełniamy drobne ubytki, a na końcu nakładamy szlichtę gładziolitu. Dzięki temu ściana po wyschnięciu jest gładka i równa, a w typowych pomieszczeniach można ją malować bez osobnej warstwy gładzi. Płaskość i pion sprawdzamy łatą 2 m i poziomicą, według normy PN-B-10110 dla tynków gipsowych maszynowych.</p>
+            <p>Kluczowy dla efektu końcowego jest etap wygładzania. Każdy narzut przecieramy trzema rodzajami łat gładzących, uzupełniamy drobne ubytki, a na końcu nakładamy szlichtę gładziolitu. Dzięki temu ściana po wyschnięciu jest gładka i równa, a w typowych pomieszczeniach można ją malować bez osobnej warstwy gładzi. Płaskość i pion sprawdzamy łatą 2 m i poziomicą, według normy <span class="nowrap">PN-B-10110</span> dla tynków gipsowych maszynowych.</p>
             <p>Cały proces prowadzimy tak, aby ograniczyć liczbę poprawek po naszym wyjściu z budowy. Zwracamy uwagę na naroża, ościeża okien i miejsca przy instalacjach, bo to tam najczęściej widać różnicę między tynkiem wykonanym pospiesznie a dopracowanym ręcznie.</p>
+          </div>
+          <div class={styles.aside}>
+            <Photo src="images/uploads/2025/07/zabezpieczenie-instalacji-przed-tynkowaniem.jpg" caption="Przed tynkowaniem: instalacje zabezpieczone folią." width={1200} height={1600} />
+            <Photo src="images/uploads/2025/07/tynkowanie-maszynowe-agregatem-narzut.jpg" caption="Narzut tynku gipsowego agregatem." width={1200} height={1600} />
           </div>
         </div>
       </section>
 
       <section class={`section ${styles.contentSection}`} id="tynki-gipsowe">
-        <div class="container">
+        <div class={`container ${styles.split} ${styles.splitFlip}`}>
           <div class={styles.prose}>
             <h2>Dlaczego tynki gipsowe?</h2>
             <p>Tynk gipsowy daje gładką i równą powierzchnię ścian oraz sufitów, dobrze sprawdzającą się we wnętrzach mieszkalnych. Gips jest materiałem paroprzepuszczalnym, który pomaga regulować wilgotność powietrza w pomieszczeniach, a jednocześnie pozwala uzyskać estetyczne wykończenie bez grubych warstw dodatkowych mas.</p>
@@ -218,14 +260,17 @@ export default function TynkiService() {
             <p>Tynk gipsowy najlepiej sprawdza się w suchych pomieszczeniach mieszkalnych — pokojach, sypialniach, korytarzach — gdzie zależy nam na gładkiej powierzchni i komforcie wykończenia. Tynk cementowo-wapienny jest bardziej odporny na wilgoć i mechaniczne uszkodzenia, dlatego częściej stosuje się go w pomieszczeniach narażonych na zawilgocenie oraz na niektórych powierzchniach technicznych.</p>
             <p>Wybór technologii zależy od przeznaczenia pomieszczenia, oczekiwanego efektu i budżetu. Podczas wyceny doradzamy, które rozwiązanie będzie lepsze dla konkretnego wnętrza, i wskazujemy, gdzie tynk gipsowy ze szlichtą da najlepszy stosunek jakości do ceny.</p>
           </div>
+          <div class={styles.aside}>
+            <Photo position="center top" src="images/uploads/2026/04/swiezy-tynk-gipsowy-schniecie-scian.jpg" caption="Świeży tynk gipsowy w trakcie schnięcia." width={1200} height={1600} />
+          </div>
         </div>
       </section>
 
       <section class={`section ${styles.contentSection}`} id="gladz-natryskowa">
-        <div class="container">
+        <div class={`container ${styles.split}`}>
           <div class={styles.prose}>
             <h2>Gładź — kiedy jest potrzebna?</h2>
-            <p>Tynk ze szlichtą to nadal tynk gipsowy. Odbiera się go według normy <strong>PN-B-10110 „Tynki gipsowe wykonywane mechanicznie”</strong> (lub warunków zapisanych w umowie): płaskość łatą 2 m, pion poziomicą, a wygląd z odległości ok. 2 m w rozproszonym świetle dziennym. Gładź to osobna, cienka warstwa wykończeniowa, która daje wyższą klasę gładkości.</p>
+            <p>Tynk ze szlichtą to nadal tynk gipsowy. Odbiera się go według normy <strong><span class="nowrap">PN-B-10110</span> „Tynki gipsowe wykonywane mechanicznie”</strong> (lub warunków zapisanych w umowie): płaskość łatą 2 m, pion poziomicą, a wygląd z odległości ok. 2 m w rozproszonym świetle dziennym. Gładź to osobna, cienka warstwa wykończeniowa, która daje wyższą klasę gładkości.</p>
             <p>Gładź doradzamy, gdy na ścianę będzie padać <strong>światło wzdłuż jej powierzchni</strong> — listwy LED, kinkiety, oprawy liniowe przy suficie, podświetlane wnęki — a także pod farby z połyskiem, ciemne kolory albo gdy zależy Ci na najwyższym standardzie. Takie światło wydobywa drobne ślady narzędzi na każdym tynku. Gładź wykonujemy jako osobny etap, przy malowaniu — można ją zrobić tylko w wybranych pomieszczeniach lub na pojedynczych ścianach. <strong>Powiedz nam o planowanym oświetleniu przed wyceną.</strong> Więcej o odbiorze tynku: <NavLink href="/malowanie-tynku-gipsowego#odbior">odbiór tynku przed malowaniem</NavLink>.</p>
             <h3>Gładź natryskowa</h3>
             <p>Gładź natryskowa to metoda wykończenia ścian, w której gotową masę nakłada się na powierzchnię za pomocą agregatu, a następnie rozprowadza i wygładza ręcznie. Natrysk pozwala równomiernie pokryć duże powierzchnie w krótkim czasie, a ręczne wygładzenie nadaje im ostateczną gładkość.</p>
@@ -235,12 +280,28 @@ export default function TynkiService() {
             <p>Oprócz tynkowania wykonujemy również natryskowe malowanie ścian i sufitów na biało oraz w kolorze. Dzięki temu inwestor nie musi koordynować kilku ekip — tę samą powierzchnię, którą otynkowaliśmy i wygładziliśmy, możemy również pomalować. Malujemy farbami akrylowymi, lateksowymi, winylowymi i ceramicznymi, dobierając rodzaj farby do pomieszczenia.</p>
             <p>Malujesz sam albo z własnym malarzem? Zobacz nasz poradnik: <NavLink href="/malowanie-tynku-gipsowego">malowanie tynku gipsowego — kiedy, jaki grunt i jaka farba</NavLink>.</p>
           </div>
+          <div class={styles.aside}>
+            <Photo src="images/uploads/2026/04/salon-po-tynkowaniu-i-malowaniu-sufit-gk.jpg" caption="Salon po tynkowaniu i malowaniu na biało." width={1600} height={1200} wide />
+            <Photo src="images/uploads/2025/07/sciany-po-tynkowaniu-maszynowym.jpg" caption="Ściany po tynkowaniu, przed gruntowaniem." width={1200} height={1600} />
+          </div>
         </div>
       </section>
 
       <section class={`section ${styles.localSection}`} id="firma">
         <div class="container">
           <div class={styles.localCard}>
+            <div class={`${styles.localPhoto} reveal-wipe`}>
+              <img
+                src="images/uploads/2026/04/tynk-gipsowy-klatka-schodowa-antresola.jpg"
+                srcset="images/thumbs/uploads/2026/04/tynk-gipsowy-klatka-schodowa-antresola.jpg 400w, images/uploads/2026/04/tynk-gipsowy-klatka-schodowa-antresola.jpg 1200w"
+                sizes="(max-width: 768px) 92vw, 360px"
+                alt={galleryAlts["images/uploads/2026/04/tynk-gipsowy-klatka-schodowa-antresola.jpg"]}
+                width="1200"
+                height="1600"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
             <div>
               <h2>Kto wykonuje te prace</h2>
               <p>M-TYNK to firma tynkarska z Wrocławia z doświadczeniem w tynkowaniu od 1999 roku. Przez ten czas wykonaliśmy tynki w wielu domach jednorodzinnych, mieszkaniach i lokalach usługowych. Naszą specjalnością są tynki gipsowe ze szlichtą wygładzającą pod malowanie.</p>
@@ -262,10 +323,12 @@ export default function TynkiService() {
           <div class={styles.benefitsGrid}>
             <For each={benefits}>
               {(b) => (
-                <div class={styles.benefitCard}>
-                  <span class={styles.benefitIcon}>{b.icon}</span>
+                <div class={`${styles.benefitCard} reveal`}>
+                  <svg class={styles.benefitIcon} viewBox="0 0 24 24" aria-hidden="true">
+                    <path d={b.icon} />
+                  </svg>
                   <h3>{b.title}</h3>
-                  <p>{b.description}</p>
+                  <p>{keepCodes(b.description)}</p>
                 </div>
               )}
             </For>
@@ -275,18 +338,22 @@ export default function TynkiService() {
 
       <section class="section" id="faq">
         <div class="container">
-          <div class="text-center">
-            <h2>Najczęściej zadawane pytania</h2>
-          </div>
-          <div class={styles.faqList}>
-            <For each={faqs}>
-              {(faq) => (
-                <details class={styles.faqItem}>
-                  <summary class={styles.faqQuestion}>{faq.question}</summary>
-                  <p class={styles.faqAnswer}>{faq.answer}</p>
-                </details>
-              )}
-            </For>
+          <div class={styles.faqLayout}>
+            <div class={styles.faqIntro}>
+              <h2>Najczęściej zadawane pytania</h2>
+              <p>Krótko o cenach, schnięciu, gładzi i przygotowaniu budowy. Nie ma tu Twojego pytania? Zadzwoń — chętnie odpowiemy.</p>
+              <a class="btn btn-primary" href={`tel:${site.phoneRaw}`}>{site.phone}</a>
+            </div>
+            <div class={styles.faqList}>
+              <For each={faqs}>
+                {(faq) => (
+                  <details class={styles.faqItem}>
+                    <summary class={styles.faqQuestion}>{faq.question}</summary>
+                    <p class={styles.faqAnswer}>{faq.answer}</p>
+                  </details>
+                )}
+              </For>
+            </div>
           </div>
         </div>
       </section>

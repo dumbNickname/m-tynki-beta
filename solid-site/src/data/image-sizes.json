@@ -1,4 +1,16 @@
 {
+  "images/medium/uploads/2023/08/obrazek-wyr-1-png.jpg": {
+    "width": 700,
+    "height": 700
+  },
+  "images/medium/uploads/2023/08/obrazek-wyr-png.jpg": {
+    "width": 700,
+    "height": 700
+  },
+  "images/medium/uploads/2023/08/wyr-png.jpg": {
+    "width": 700,
+    "height": 700
+  },
   "images/og-default.jpg": {
     "width": 1200,
     "height": 630
@@ -15,14 +27,6 @@
     "width": 1536,
     "height": 2048
   },
-  "images/uploads/2023/08/obrazek-wyr-1.png": {
-    "width": 700,
-    "height": 700
-  },
-  "images/uploads/2023/08/obrazek-wyr.png": {
-    "width": 700,
-    "height": 700
-  },
   "images/uploads/2023/08/tynki-ze-szlichta-pod-malowanie.jpg": {
     "width": 1125,
     "height": 2000
@@ -30,10 +34,6 @@
   "images/uploads/2023/08/wyr.jpg": {
     "width": 576,
     "height": 1024
-  },
-  "images/uploads/2023/08/wyr.png": {
-    "width": 700,
-    "height": 700
   },
   "images/uploads/2025/07/tynkowanie-maszynowe-agregatem-narzut.jpg": {
     "width": 1200,

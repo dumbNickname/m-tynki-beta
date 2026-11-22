@@ -149,7 +149,7 @@ export default function Gallery(props: GalleryProps) {
       <dialog
         ref={dialogRef}
         class={morphing() ? `${styles.lightbox} ${styles.morphing}` : styles.lightbox}
-        aria-label="Podgląd zdjęcia"
+        aria-label={lightboxIndex() === null ? "Podgląd zdjęcia" : `Podgląd zdjęcia ${lightboxIndex()! + 1} z ${props.images.length}`}
         onClick={(e) => e.target === e.currentTarget && closeLightbox()}
         onKeyDown={handleKeydown}
         onCancel={handleCancel}
@@ -160,7 +160,12 @@ export default function Gallery(props: GalleryProps) {
       >
         <Show when={lightboxIndex() !== null}>
           <div class={styles.lightboxContent}>
-            <button class={styles.close} onClick={closeLightbox} aria-label="Zamknij">✕</button>
+            <button class={styles.close} onClick={closeLightbox} aria-label="Zamknij">
+              <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+                <path d="M6 6l12 12M18 6 6 18" />
+              </svg>
+            </button>
+            <span class={styles.counter} aria-hidden="true">{lightboxIndex()! + 1} / {props.images.length}</span>
             <button class={styles.prev} onClick={prev} aria-label="Poprzednie" aria-disabled={lightboxIndex() === 0}>‹</button>
             <img
               src={props.images[lightboxIndex()!]}

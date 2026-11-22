@@ -1,0 +1,153 @@
+@property --p {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+/* Sticky (not fixed) so it takes its own room and never covers the text. */
+.bar {
+  --rw: 62px; /* roller width */
+  --cx: 52px; /* middle of the roller cover, from the roller's left edge */
+  position: sticky;
+  top: 72px;
+  z-index: 990;
+  height: 30px;
+  overflow: hidden;
+  pointer-events: none;
+  container-type: inline-size;
+  background:
+    radial-gradient(circle at 20% 40%, rgba(255, 255, 255, 0.35) 0 1px, transparent 1.5px) 0 0 / 7px 7px,
+    radial-gradient(circle at 70% 70%, rgba(120, 100, 70, 0.12) 0 1px, transparent 1.5px) 0 0 / 5px 5px,
+    #d9d0c3;
+  box-shadow: inset 0 -1px 0 rgba(40, 32, 20, 0.12), 0 4px 10px -8px rgba(40, 32, 20, 0.5);
+}
+
+/* Not gated by prefers-reduced-motion: it only moves with the visitor's own
+   scrolling (a progress indicator), and the JS fallback skips browsers that
+   support scroll timelines, so gating would freeze it at 0. */
+@supports (animation-timeline: scroll()) {
+  .bar {
+    animation: roll linear both;
+    animation-timeline: scroll(root);
+  }
+}
+
+@keyframes roll {
+  to {
+    --p: 1;
+  }
+}
+
+/* Fresh white paint with a wet, slightly darker edge right at the roller. */
+.paint {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 100cqw;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0) calc(100% - 40px), rgba(214, 222, 214, 0.9) calc(100% - 4px), rgba(214, 222, 214, 0) 100%),
+    repeating-linear-gradient(180deg, rgba(0, 0, 0, 0.018) 0 2px, rgba(0, 0, 0, 0) 2px 5px),
+    #fbfaf6;
+  transform: translateX(calc(var(--p) * (100cqw - var(--rw)) + var(--cx) - 100cqw));
+}
+
+.hint {
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(60, 50, 36, 0.6);
+  white-space: nowrap;
+  opacity: calc(1 - var(--p) * 12);
+}
+
+.roller {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: var(--rw);
+  height: 28px;
+  transform: translateX(calc(var(--p) * (100cqw - var(--rw))));
+  filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.25));
+}
+
+.frame {
+  fill: none;
+  stroke: #7d848c;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+}
+
+.handle {
+  fill: #2e6b3b;
+}
+
+.cover {
+  fill: #f4f2ec;
+  stroke: #c9c3b6;
+  stroke-width: 1;
+}
+
+/* Nap streaks scroll along the cover so it looks like it is turning. */
+.nap {
+  fill: none;
+  stroke: rgba(150, 140, 120, 0.45);
+  stroke-width: 8;
+  stroke-dasharray: 1.2 2.6;
+  stroke-dashoffset: calc(var(--p) * -1200);
+}
+
+:global([data-theme="dark"]) .bar {
+  background:
+    radial-gradient(circle at 20% 40%, rgba(255, 255, 255, 0.06) 0 1px, transparent 1.5px) 0 0 / 7px 7px,
+    #2a2723;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+}
+
+:global([data-theme="dark"]) .paint {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0) calc(100% - 40px), rgba(120, 130, 120, 0.6) calc(100% - 4px), rgba(120, 130, 120, 0) 100%),
+    #4a4c4a;
+}
+
+:global([data-theme="dark"]) .hint {
+  color: rgba(230, 220, 200, 0.55);
+}
+
+:global([data-theme="dark"]) .handle {
+  fill: #6cc47d;
+}
+
+@media (max-width: 1180px) {
+  .bar {
+    top: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bar {
+    --rw: 57.6px;
+    --cx: 48.3px;
+    top: 56px;
+    height: 26px;
+  }
+
+  .roller {
+    top: 0;
+    height: 26px;
+  }
+
+  .hint {
+    font-size: 0.64rem;
+    right: 0.75rem;
+  }
+}
+
+@media print {
+  .bar {
+    display: none;
+  }
+}

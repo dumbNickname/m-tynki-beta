@@ -194,7 +194,11 @@ export default function SeoHead(props: SeoHeadProps) {
       name: pageTitle(),
       isPartOf: { "@id": `${site.url}/#website` },
       ...(props.ogType === "article"
-        ? { author: { "@id": `${site.url}/#organization` }, publisher: { "@id": `${site.url}/#organization` } }
+        ? {
+            headline: (props.title || site.title).slice(0, 110),
+            author: { "@id": `${site.url}/#organization` },
+            publisher: { "@id": `${site.url}/#organization` },
+          }
         : props.aboutOwner
           ? { about: { "@id": `${site.url}/#owner` }, mainEntity: { "@id": `${site.url}/#owner` } }
           : { about: { "@id": `${site.url}/#organization` } }),

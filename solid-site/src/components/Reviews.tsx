@@ -1,18 +1,34 @@
-import { For, createSignal, onCleanup, onMount } from "solid-js";
+import { createSignal, For, onCleanup, onMount } from "solid-js";
 import reviews from "~/data/reviews.json";
 import site from "~/data/site.json";
 import { opinieLabel } from "~/utils/plural";
 import styles from "./Reviews.module.css";
 
+function Star() {
+  return (
+    <svg class={styles.star} viewBox="0 0 20 20" aria-hidden="true">
+      <path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z" />
+    </svg>
+  );
+}
+
+// Long reviews are clamped to keep the rail even; the full text is always in the HTML.
+const CLAMP_CHARS = 380;
+
 function ReviewCard(props: { review: typeof reviews[0] }) {
+  const [open, setOpen] = createSignal(false);
+  const long = props.review.text.length > CLAMP_CHARS;
   return (
     <div class={styles.card}>
       <div class={styles.stars} role="img" aria-label={`${props.review.stars} na 5 gwiazdek`}>
-        <For each={Array(props.review.stars).fill(0)}>
-          {() => <span class={styles.star} aria-hidden="true">&#9733;</span>}
-        </For>
+        <For each={Array(props.review.stars).fill(0)}>{() => <Star />}</For>
       </div>
-      <p class={styles.text}>{props.review.text}</p>
+      <p class={`${styles.text} ${long && !open() ? styles.clamped : ""}`}>{props.review.text}</p>
+      {long && (
+        <button type="button" class={styles.more} aria-expanded={open()} onClick={() => setOpen(!open())}>
+          {open() ? "Zwiń" : "Pokaż całą opinię"}
+        </button>
+      )}
       <div class={styles.author}>
         <div class={styles.avatar}>{props.review.name.charAt(0).toUpperCase()}</div>
         <div class={styles.info}>
@@ -25,84 +41,155 @@ function ReviewCard(props: { review: typeof reviews[0] }) {
 }
 
 export default function Reviews() {
-  const third = Math.ceil(reviews.length / 3);
-  const col1 = reviews.slice(0, third);
-  const col2 = reviews.slice(third, third * 2);
-  const col3 = reviews.slice(third * 2);
+  let rail!: HTMLDivElement;
+  const [atStart, setAtStart] = createSignal(true);
+  const [atEnd, setAtEnd] = createSignal(false);
 
-  // Prerendered in the playing layout (so most visitors see no jump on hydration); CSS
-  // only animates it without reduced motion. Paused, each column is a scrollable list.
-  // `userStarted` lets someone with reduced motion still opt in via the button.
-  const [playing, setPlaying] = createSignal(true);
-  const [userStarted, setUserStarted] = createSignal(false);
-  onMount(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const sync = () => {
-      if (reduce.matches) {
-        setPlaying(false);
-        setUserStarted(false);
-      }
-    };
-    sync();
-    reduce.addEventListener("change", sync);
-    onCleanup(() => reduce.removeEventListener("change", sync));
-  });
-
-  const togglePlaying = () => {
-    const next = !playing();
-    setPlaying(next);
-    setUserStarted(next);
+  const update = () => {
+    setAtStart(rail.scrollLeft < 8);
+    setAtEnd(rail.scrollLeft + rail.clientWidth > rail.scrollWidth - 8);
+  };
+  const step = (dir: number) => {
+    const card = rail.firstElementChild as HTMLElement | null;
+    const by = card ? card.offsetWidth + 20 : rail.clientWidth * 0.8;
+    const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    rail.scrollBy({ left: dir * by, behavior: smooth ? "smooth" : "auto" });
   };
 
-  const columns = [
-    { items: col1, class: styles.marqueeUp },
-    { items: col2, class: styles.marqueeDown, colClass: styles.marqueeColSecond },
-    { items: col3, class: styles.marqueeUp, colClass: styles.marqueeColThird },
-  ];
+  // Autoplay: one card every few seconds, looping. It stops for good when the
+  // visitor scrolls the rail themselves, pauses while the pointer rests on a
+  // card / the rail is off screen / the tab is hidden, and never starts under
+  // prefers-reduced-motion. The play button resumes it straight away.
+  const DELAY = 4000;
+  const [canAutoplay, setCanAutoplay] = createSignal(false);
+  const [playing, setPlaying] = createSignal(false);
+  let hovered = false;
+  let visible = false;
+  let timer = 0;
+
+  const advance = () => {
+    if (rail.scrollLeft + rail.clientWidth > rail.scrollWidth - 8) {
+      rail.scrollTo({ left: 0, behavior: "smooth" });
+    } else {
+      step(1);
+    }
+  };
+  const schedule = () => {
+    clearInterval(timer);
+    timer = window.setInterval(() => {
+      if (playing() && !hovered && visible && !document.hidden) advance();
+    }, DELAY);
+  };
+  const stop = () => setPlaying(false);
+  const togglePlay = () => {
+    if (playing()) return stop();
+    setPlaying(true);
+    advance();
+    schedule();
+  };
+  let touchX = 0;
+  let touchY = 0;
+
+  onMount(() => {
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(rail);
+    onCleanup(() => ro.disconnect());
+  });
+
+  onMount(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (rail.scrollWidth <= rail.clientWidth + 8) return;
+    setCanAutoplay(true);
+    setPlaying(true);
+    const io = new IntersectionObserver(
+      ([e]) => {
+        const was = visible;
+        visible = e.isIntersecting;
+        // Count the delay from the moment the reviews come into view.
+        if (visible && !was) schedule();
+      },
+      { threshold: 0.5 },
+    );
+    io.observe(rail);
+    // Turning on reduced motion mid-visit stops autoplay for good.
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const onReduce = () => {
+      if (!reduce.matches) return;
+      stop();
+      setCanAutoplay(false);
+    };
+    reduce.addEventListener("change", onReduce);
+    onCleanup(() => {
+      clearInterval(timer);
+      io.disconnect();
+      reduce.removeEventListener("change", onReduce);
+    });
+  });
 
   return (
     <div>
-      <div class={styles.topRow}>
-        <a class={styles.summary} href={site.googleReviewsListUrl} target="_blank" rel="noopener noreferrer">
-          <img src="images/google-favicon.ico" alt="" width="20" height="20" loading="lazy" />
-          <strong class={styles.summaryScore}>{site.googleRating}</strong>
-          <span class={styles.summaryStars} aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <span>{site.googleReviewCount} {opinieLabel(site.googleReviewCount)} w Google</span>
-        </a>
-        <button type="button" class={styles.playToggle} onClick={togglePlaying}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            {playing() ? <path d="M6 5h4v14H6zM14 5h4v14h-4z" /> : <path d="M7 4.5v15l12-7.5z" />}
-          </svg>
-          {playing() ? "Zatrzymaj przewijanie opinii" : "Przewijaj opinie automatycznie"}
-        </button>
-      </div>
-      <div
-        class={styles.marqueeWrapper}
-        classList={{ [styles.playing]: playing(), [styles.userStarted]: userStarted() }}
-      >
-        <For each={columns}>
-          {(col, i) => (
-            <div
-              class={col.colClass ? `${styles.marqueeCol} ${col.colClass}` : styles.marqueeCol}
-              role={playing() ? undefined : "region"}
-              aria-label={playing() ? undefined : `Opinie klientów, kolumna ${i() + 1}`}
-              tabindex={playing() ? undefined : 0}
+      <a class={styles.summary} href={site.googleReviewsListUrl} target="_blank" rel="noopener noreferrer">
+        <strong class={styles.summaryScore}>{site.googleRating}</strong>
+        <span class={styles.summaryMeta}>
+          <span class={styles.summaryStars} role="img" aria-label={`${site.googleRating} na 5 gwiazdek`}>
+            <For each={[0, 1, 2, 3, 4]}>{() => <Star />}</For>
+          </span>
+          <span>
+            <img src="images/google-favicon.ico" alt="" width="16" height="16" loading="lazy" />
+            {site.googleReviewCount} {opinieLabel(site.googleReviewCount)} w Google
+          </span>
+        </span>
+      </a>
+      <div class={styles.railWrap}>
+        <div class={styles.rail} ref={rail} onScroll={update}
+          onMouseEnter={() => (hovered = true)}
+          onMouseLeave={() => (hovered = false)}
+          onPointerDown={(e) => e.pointerType === "mouse" && stop()}
+          onTouchStart={(e) => {
+            touchX = e.touches[0].clientX;
+            touchY = e.touches[0].clientY;
+          }}
+          onTouchMove={(e) => {
+            const dx = Math.abs(e.touches[0].clientX - touchX);
+            if (dx > 10 && dx > Math.abs(e.touches[0].clientY - touchY)) stop();
+          }}
+          onWheel={(e) => Math.abs(e.deltaX) > Math.abs(e.deltaY) && stop()}
+          onKeyDown={stop}
+          onFocusIn={stop}
+          tabindex="0" role="region" aria-label="Opinie klientów">
+          <For each={reviews}>{(review) => <ReviewCard review={review} />}</For>
+        </div>
+        <div class={styles.railNav}>
+          <button type="button" class={styles.railBtn} onClick={() => {
+            if (atStart()) return;
+            stop();
+            step(-1);
+          }} aria-disabled={atStart()} aria-label="Poprzednie opinie">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 6 9 12 15 18" /></svg>
+          </button>
+          <button type="button" class={styles.railBtn} onClick={() => {
+            if (atEnd()) return;
+            stop();
+            step(1);
+          }} aria-disabled={atEnd()} aria-label="Następne opinie">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18" /></svg>
+          </button>
+          {canAutoplay() && (
+            <button
+              type="button"
+              class={styles.railBtn}
+              onClick={togglePlay}
+              aria-label={playing() ? "Zatrzymaj przewijanie opinii" : "Wznów przewijanie opinii"}
             >
-              <div class={`${styles.marqueeTrack} ${col.class}`}>
-                <For each={col.items}>
-                  {(review) => <ReviewCard review={review} />}
-                </For>
-                <div class={styles.marqueeClone} aria-hidden="true">
-                  <For each={col.items}>
-                    {(review) => <ReviewCard review={review} />}
-                  </For>
-                </div>
-              </div>
-            </div>
+              {playing() ? (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" /><rect x="14" y="5" width="4" height="14" rx="1" /></svg>
+              ) : (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z" /></svg>
+              )}
+            </button>
           )}
-        </For>
-        <div class={styles.marqueeFadeTop} />
-        <div class={styles.marqueeFadeBottom} />
+        </div>
       </div>
       <p class={styles.disclaimer}>
         Wybrane opinie z naszego profilu w Google, przepisane bez zmian. Nazwiska autorów skróciliśmy do inicjału.

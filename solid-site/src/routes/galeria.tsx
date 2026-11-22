@@ -2,6 +2,9 @@ import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import PageHeader from "~/components/PageHeader";
 import Gallery from "~/components/Gallery";
+import PaintRoller from "~/components/PaintRoller";
+import NavLink from "~/components/NavLink";
+import styles from "./galeria.module.css";
 import galleryImages from "~/data/gallery.json";
 import { galleryAlts } from "~/utils/images";
 
@@ -19,15 +22,28 @@ export default function Galeria() {
         ]}
       />
 
+      <PaintRoller />
+
       <PageHeader
         title="Galeria"
         breadcrumbs={[{ label: "Strona Główna", href: "/" }, { label: "Galeria" }]}
+        lead={
+          <>
+            {galleryImages.length} zdjęć ścian i sufitów z naszych budów: tynki gipsowe ze szlichtą wygładzającą, gotowe pod malowanie — w typowych pomieszczeniach bez osobnej warstwy gładzi. Kliknij zdjęcie, aby je powiększyć.
+          </>
+        }
       />
 
       <section class="section">
         <div class="container">
-          <p>Poniżej przedstawiamy galerię zdjęć z naszych realizacji tynków gipsowych ze szlichtą wygładzającą pod malowanie. Każde zdjęcie pokazuje efekt naszej pracy — gładkie ściany przygotowane pod malowanie, w typowych pomieszczeniach bez osobnej warstwy gładzi.</p>
-          <Gallery images={galleryImages} altPrefix="Tynki ze szlichtą pod malowanie M-TYNK Wrocław" alts={galleryImages.map((src) => galleryAlts[src])} />
+          <Gallery
+            images={galleryImages}
+            altPrefix="Tynki ze szlichtą pod malowanie M-TYNK Wrocław"
+            alts={galleryImages.map((src) => galleryAlts[src])}
+          />
+          <p class={styles.more}>
+            Opisy prac, metraże i czas realizacji znajdziesz w <NavLink href="/realizacje">realizacjach</NavLink>.
+          </p>
         </div>
       </section>
     </Layout>

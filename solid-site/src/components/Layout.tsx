@@ -11,6 +11,7 @@ interface LayoutProps {
 export default function Layout(props: LayoutProps) {
   return (
     <div class="site">
+      <a class="skip-link" href="#content">Przejdź do treści</a>
       <Header />
       <main id="content">{props.children}</main>
       <Footer />

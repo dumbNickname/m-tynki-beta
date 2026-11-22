@@ -1,9 +1,14 @@
 import { createSignal, For, onCleanup, onMount } from "solid-js";
 import navigation from "~/data/navigation.json";
 import site from "~/data/site.json";
+import { FacebookIcon, InstagramIcon } from "./SocialFollow";
 import NavLink from "./NavLink";
 import ThemeToggle from "./ThemeToggle";
 import styles from "./Header.module.css";
+
+// The logo already links home, so the desktop bar skips "Strona Główna" to
+// leave room for the other links at laptop widths.
+const desktopNav = navigation.main.filter((item) => item.href !== "/");
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = createSignal(false);
@@ -52,31 +57,26 @@ export default function Header() {
                 <img src={site.logoDark} alt={site.name} width="240" height="50" />
               </picture>
             </NavLink>
+            <nav class={styles.navBar} aria-label="Menu główne">
+              <ul>
+                <For each={desktopNav}>
+                  {(item) => (
+                    <li>
+                      <NavLink href={item.href}>{item.label}</NavLink>
+                    </li>
+                  )}
+                </For>
+              </ul>
+            </nav>
             <div class={styles.topRight}>
-              <a class={styles.phoneLink} href={`tel:${site.phoneRaw}`}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                {site.phone}
-              </a>
               <ThemeToggle />
-              <a class="btn btn-primary btn-sm" href={`tel:${site.phoneRaw}`}>
-                Bezpłatna wycena
+              <a class={`btn btn-primary btn-sm ${styles.callBtn}`} href={`tel:${site.phoneRaw}`} aria-label={`Zadzwoń po bezpłatną wycenę: ${site.phone}`}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                {site.phone}
               </a>
             </div>
           </div>
         </div>
-        <nav class={styles.navBar} aria-label="Menu główne">
-          <div class={`container ${styles.navInner}`}>
-            <ul>
-              <For each={navigation.main}>
-                {(item) => (
-                  <li>
-                    <NavLink href={item.href}>{item.label}</NavLink>
-                  </li>
-                )}
-              </For>
-            </ul>
-          </div>
-        </nav>
       </div>
 
       <div class={styles.mobile}>
@@ -149,6 +149,14 @@ export default function Header() {
           <a class="btn btn-primary" href={`tel:${site.phoneRaw}`}>
             {site.phone}
           </a>
+          <div class={styles.flyoutSocial}>
+            <a class={styles.socialFb} href={site.facebookUrl} target="_blank" rel="nofollow noopener noreferrer">
+              <FacebookIcon /> Facebook
+            </a>
+            <a class={styles.socialIg} href={site.instagramUrl} target="_blank" rel="nofollow noopener noreferrer">
+              <InstagramIcon /> Instagram
+            </a>
+          </div>
         </div>
       </dialog>
     </header>

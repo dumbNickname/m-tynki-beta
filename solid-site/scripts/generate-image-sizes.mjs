@@ -51,8 +51,18 @@ const paths = new Set(["images/og-default.jpg"]);
 for (const file of walk(resolve(root, "src/routes"))) {
   for (const m of readFileSync(file, "utf-8").matchAll(/ogImage="([^"]+)"/g)) paths.add(m[1]);
 }
+// Mirror of toVariant() in src/utils/images.ts.
+function toMedium(src) {
+  const match = src.match(/\.([^./]+)$/);
+  const ext = match ? match[1].toLowerCase() : "";
+  const base = match ? src.slice(0, -match[0].length) : src;
+  const name = (ext === "jpg" || ext === "" ? base : `${base}-${ext}`) + ".jpg";
+  return "images/medium/" + (name.startsWith("images/") ? name.slice("images/".length) : name);
+}
+
+// Post pages use the original JPEG, or the 800px medium JPEG for other formats.
 for (const post of JSON.parse(readFileSync(resolve(root, "src/data/posts.json"), "utf-8"))) {
-  paths.add(post.thumbnail);
+  paths.add(/\.jpe?g$/i.test(post.thumbnail) ? post.thumbnail : toMedium(post.thumbnail));
 }
 
 const sizes = {};

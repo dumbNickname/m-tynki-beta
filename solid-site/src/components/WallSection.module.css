@@ -1,0 +1,304 @@
+.wrap {
+  margin: 0;
+}
+
+/* The bands overlap a little (negative margin) so each one fills the uneven
+   edge of the layer before it; --spread pushes them apart. */
+.diagram {
+  --spread: 28px;
+  --h: 340px;
+  position: relative;
+  display: flex;
+  height: var(--h);
+  padding-right: calc(4 * 28px + 4.5rem);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(90% 120% at 100% 50%, rgba(var(--color-primary-rgb), 0.1), transparent 70%),
+    var(--color-light-gray);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+:global(html.motion) .diagram:not(:global(.is-in)) {
+  --spread: 0px;
+}
+
+/* Keep the fade-up of .reveal, then let the layers slide apart. */
+:global(html.motion) .diagram:global(.is-in) .band {
+  transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.35s, opacity var(--transition);
+}
+
+.band {
+  position: relative;
+  flex: 0 0 auto;
+  height: 100%;
+  margin-left: -16px;
+  transform: translateX(calc((var(--n) - 1) * var(--spread)));
+  transition: opacity var(--transition);
+}
+
+.band[data-l="1"] {
+  --n: 1;
+  z-index: 5;
+  width: 32%;
+  margin-left: 0;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.12), rgba(255, 255, 255, 0.04) 60%, rgba(0, 0, 0, 0.06)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96'%3E%3Crect width='96' height='96' fill='%23cfc4b4'/%3E%3Cg fill='%23b4573a'%3E%3Crect x='0' y='0' width='58' height='42'/%3E%3Crect x='64' y='0' width='32' height='42' fill='%23a94f33'/%3E%3Crect x='0' y='48' width='26' height='42' fill='%23bd6142'/%3E%3Crect x='32' y='48' width='58' height='42' fill='%23a94f33'/%3E%3Crect x='96' y='48' width='0' height='42'/%3E%3C/g%3E%3C/svg%3E") 0 0 / 96px 96px;
+  clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 6%, calc(100% - 12px) 13%, calc(100% - 3px) 22%, calc(100% - 14px) 31%, calc(100% - 6px) 40%, 100% 48%, calc(100% - 10px) 57%, calc(100% - 2px) 66%, calc(100% - 13px) 75%, calc(100% - 5px) 84%, calc(100% - 11px) 92%, 100% 100%, 0 100%);
+}
+
+.band[data-l="2"] {
+  --n: 2;
+  z-index: 4;
+  width: calc(5% + 16px);
+  background: repeating-linear-gradient(135deg, #7fa7c9 0 3px, #9dbdd8 3px 7px);
+  clip-path: polygon(0 0, calc(100% - 3px) 0, 100% 7%, calc(100% - 9px) 14%, calc(100% - 2px) 24%, calc(100% - 10px) 33%, calc(100% - 3px) 42%, 100% 50%, calc(100% - 8px) 59%, calc(100% - 2px) 68%, calc(100% - 10px) 77%, calc(100% - 4px) 85%, calc(100% - 8px) 93%, 100% 100%, 0 100%);
+}
+
+.band[data-l="3"] {
+  --n: 3;
+  z-index: 3;
+  width: calc(28% + 16px);
+  background:
+    radial-gradient(circle at 30% 40%, rgba(120, 100, 70, 0.22) 0 1.2px, transparent 1.8px) 0 0 / 9px 9px,
+    radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.5) 0 1px, transparent 1.6px) 0 0 / 6px 6px,
+    linear-gradient(90deg, #d6ccbd, #e3dbcf);
+  clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 10%, calc(100% - 5px) 20%, calc(100% - 1px) 30%, calc(100% - 6px) 40%, calc(100% - 1px) 50%, calc(100% - 5px) 60%, 100% 70%, calc(100% - 5px) 80%, calc(100% - 1px) 90%, calc(100% - 4px) 100%, 0 100%);
+}
+
+.band[data-l="4"] {
+  --n: 4;
+  z-index: 2;
+  width: calc(10% + 16px);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.55) 0 0.8px, transparent 1.3px) 0 0 / 5px 5px,
+    linear-gradient(90deg, #ebe5da, #f6f2eb);
+}
+
+.band[data-l="5"] {
+  --n: 5;
+  z-index: 1;
+  width: calc(6% + 16px);
+  background: linear-gradient(90deg, #f4f1ea 0 calc(8px + 30%), #cfe3d3 calc(8px + 30%));
+  box-shadow: 6px 0 18px -10px rgba(20, 23, 28, 0.45);
+  border-radius: 0 4px 4px 0;
+}
+
+.badge {
+  position: absolute;
+  top: 1rem;
+  left: calc(50% + 8px);
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: #14171c;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  box-shadow: 0 4px 10px -4px rgba(0, 0, 0, 0.5);
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+.band[data-l="1"] .badge {
+  left: 50%;
+}
+
+.room {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.25rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+}
+
+.list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin: 1.75rem 0 0;
+  padding: 0;
+}
+
+.item {
+  position: relative;
+  padding: 1.1rem 1.1rem 1.2rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-white);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.itemNo {
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-bottom: 0.6rem;
+  border-radius: 50%;
+  background: #14171c;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.item h3 {
+  margin: 0 0 0.2rem;
+  font-size: 1.02rem;
+  line-height: 1.3;
+}
+
+.item p {
+  margin: 0;
+  font-size: var(--fs-small);
+  line-height: 1.55;
+}
+
+.item .note {
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* Point at a layer or its description and the pair lights up. */
+.wrap:has(.item:hover) .band,
+.wrap:has(.band:hover) .band {
+  opacity: 0.55;
+}
+
+.wrap:has([data-l="1"]:hover) [data-l="1"],
+.wrap:has([data-l="2"]:hover) [data-l="2"],
+.wrap:has([data-l="3"]:hover) [data-l="3"],
+.wrap:has([data-l="4"]:hover) [data-l="4"],
+.wrap:has([data-l="5"]:hover) [data-l="5"] {
+  opacity: 1;
+}
+
+.wrap:has([data-l="1"]:hover) .item[data-l="1"],
+.wrap:has([data-l="2"]:hover) .item[data-l="2"],
+.wrap:has([data-l="3"]:hover) .item[data-l="3"],
+.wrap:has([data-l="4"]:hover) .item[data-l="4"],
+.wrap:has([data-l="5"]:hover) .item[data-l="5"] {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-primary);
+}
+
+.wrap:has([data-l="1"]:hover) .band[data-l="1"] .badge,
+.wrap:has([data-l="2"]:hover) .band[data-l="2"] .badge,
+.wrap:has([data-l="3"]:hover) .band[data-l="3"] .badge,
+.wrap:has([data-l="4"]:hover) .band[data-l="4"] .badge,
+.wrap:has([data-l="5"]:hover) .band[data-l="5"] .badge {
+  background: var(--color-primary-dark);
+  transform: translateX(-50%) scale(1.15);
+}
+
+/* Same pairing on touch screens, driven by a tap (data-active). */
+@media (hover: none) {
+  .wrap[data-active] .band {
+    opacity: 0.55;
+  }
+
+  .wrap[data-active="1"] [data-l="1"],
+  .wrap[data-active="2"] [data-l="2"],
+  .wrap[data-active="3"] [data-l="3"],
+  .wrap[data-active="4"] [data-l="4"],
+  .wrap[data-active="5"] [data-l="5"] {
+    opacity: 1;
+  }
+
+  .wrap[data-active="1"] .item[data-l="1"],
+  .wrap[data-active="2"] .item[data-l="2"],
+  .wrap[data-active="3"] .item[data-l="3"],
+  .wrap[data-active="4"] .item[data-l="4"],
+  .wrap[data-active="5"] .item[data-l="5"] {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-primary);
+  }
+
+  .wrap[data-active="1"] .band[data-l="1"] .badge,
+  .wrap[data-active="2"] .band[data-l="2"] .badge,
+  .wrap[data-active="3"] .band[data-l="3"] .badge,
+  .wrap[data-active="4"] .band[data-l="4"] .badge,
+  .wrap[data-active="5"] .band[data-l="5"] .badge {
+    background: var(--color-primary-dark);
+    transform: translateX(-50%) scale(1.15);
+  }
+}
+
+.caption {
+  margin-top: 1rem;
+  color: var(--color-text-light);
+  font-size: var(--fs-small);
+}
+
+:global([data-theme="dark"]) .band {
+  filter: brightness(0.82);
+}
+
+:global([data-theme="dark"]) .badge,
+:global([data-theme="dark"]) .itemNo {
+  background: #ebeef1;
+  color: #14171c;
+}
+
+@media (max-width: 1024px) {
+  .list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .diagram {
+    --spread: 12px;
+    --h: 220px;
+    padding-right: calc(4 * 12px + 2.5rem);
+  }
+
+  .band {
+    margin-left: -12px;
+  }
+
+  .band[data-l="2"] {
+    width: calc(8% + 12px);
+  }
+
+  /* Centred on the part of the band the next one doesn't cover, and staggered
+     so the narrow bands' badges don't touch. */
+  .badge {
+    top: 0.6rem;
+    left: calc(50% - 6px);
+    width: 1.6rem;
+    height: 1.6rem;
+    font-size: 0.75rem;
+  }
+
+  .band:nth-child(even) .badge {
+    top: 2.6rem;
+  }
+
+  .room {
+    right: 0.6rem;
+    bottom: 0.6rem;
+    writing-mode: vertical-rl;
+  }
+
+  .list {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .band,
+  .badge,
+  .item {
+    transition: none !important;
+  }
+}

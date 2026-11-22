@@ -1,15 +1,9 @@
-import { For } from "solid-js";
 import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import PageHeader from "~/components/PageHeader";
-import PostCard from "~/components/PostCard";
-import NavLink from "~/components/NavLink";
+import PostList from "~/components/PostList";
+import CallBand from "~/components/CallBand";
 import posts from "~/data/posts.json";
-import navigation from "~/data/navigation.json";
-import styles from "./index.module.css";
-
-const categoryLabels: Record<string, string> = {};
-navigation.categories.forEach((c) => { categoryLabels[c.slug] = c.label; });
 
 export default function Realizacje() {
   return (
@@ -28,35 +22,19 @@ export default function Realizacje() {
       <PageHeader
         title="Realizacje"
         breadcrumbs={[{ label: "Strona Główna", href: "/" }, { label: "Realizacje" }]}
+        lead="Zapoznaj się z naszymi realizacjami tynków gipsowych ze szlichtą wygładzającą pod malowanie. Każdy projekt to przykład naszego doświadczenia i dbałości o najwyższą jakość wykończenia ścian we Wrocławiu i okolicach."
       />
 
       <section class="section">
         <div class="container">
-          <p>Zapoznaj się z naszymi realizacjami tynków gipsowych ze szlichtą wygładzającą pod malowanie. Każdy projekt to przykład naszego doświadczenia i dbałości o najwyższą jakość wykończenia ścian we Wrocławiu i okolicach.</p>
-          <nav class={styles.categoryNav} aria-label="Kategorie realizacji">
-            <For each={navigation.categories}>
-              {(cat) => (
-                <NavLink
-                  href={cat.href}
-                  class={styles.categoryLink}
-                >
-                  {cat.label}
-                </NavLink>
-              )}
-            </For>
-          </nav>
+          <PostList posts={posts} active="wszystkie" />
         </div>
       </section>
 
-      <section class="section">
-        <div class="container">
-          <div class={styles.postsGrid}>
-            <For each={posts}>
-              {(post, i) => <PostCard post={post} categoryLabels={categoryLabels} priority={i() === 0} />}
-            </For>
-          </div>
-        </div>
-      </section>
+      <CallBand
+        title="Chcesz takie ściany u siebie?"
+        text="Zadzwoń, umówimy bezpłatną wycenę. Możesz też obejrzeć naszą aktualną budowę we Wrocławiu lub okolicy."
+      />
     </Layout>
   );
 }

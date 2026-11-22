@@ -1,0 +1,54 @@
+.band {
+  /* The green focus outline would vanish on this green surface. */
+  --focus-outline: 2px solid #ffffff;
+  background: #2e6b3b;
+  background-image: radial-gradient(60% 120% at 90% 0%, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 60%);
+  color: #ffffff;
+}
+
+:global([data-theme="dark"]) .band {
+  background-color: #1f3d28;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3rem;
+  align-items: center;
+}
+
+.band h2 {
+  color: #ffffff;
+}
+
+.band p {
+  margin-bottom: 0;
+  max-width: 60ch;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.btn {
+  background: #ffffff;
+  color: #2e6b3b;
+  font-size: 1.125rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  color: #1f4d2a;
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}

@@ -41,5 +41,7 @@
   "mascot": "images/mtynk-ludzik-gladziolit-300x300-1.png",
   "mascotWebp": "images/mtynk-ludzik-gladziolit-300x300-1.webp",
   "mascotDark": "images/mtynk-ludzik-gladziolit-300x300-1-dark.png",
-  "mascotDarkWebp": "images/mtynk-ludzik-gladziolit-300x300-1-dark.webp"
+  "mascotDarkWebp": "images/mtynk-ludzik-gladziolit-300x300-1-dark.webp",
+  "mascotFigure": "images/mtynk-mascot-figure.png",
+  "mascotFigureWebp": "images/mtynk-mascot-figure.webp"
 }

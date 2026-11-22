@@ -90,6 +90,7 @@ html[data-theme="dark"] img {
 
 html {
   font-size: var(--fs-base);
+  scroll-padding-top: 5.5rem;
   -webkit-text-size-adjust: 100%;
 
   @media (prefers-reduced-motion: no-preference) {
@@ -126,6 +127,40 @@ a {
 
 a:hover {
   color: var(--color-primary-dark);
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 1000;
+  padding: 0.7rem 1.1rem;
+  border-radius: 8px;
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateY(-160%);
+}
+
+.skip-link:focus-visible {
+  transform: none;
+}
+
+[data-theme="dark"] .skip-link {
+  color: #10140f;
+}
+
+/* Sections focused by in-page links: no ring around the whole block. */
+main:focus,
+section[tabindex="-1"]:focus,
+[id][tabindex="-1"]:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.nowrap {
+  white-space: nowrap;
 }
 
 .sr-only {
@@ -270,6 +305,43 @@ strong {
 .btn-lg {
   padding: 1em 3em;
   font-size: 1rem;
+}
+
+/* Scroll reveals (src/utils/motion.ts). Hidden states only exist under
+   html.motion, which JS sets after marking on-screen items as revealed, so
+   crawlers, no-JS and reduced-motion visitors always get the finished page. */
+html.motion .reveal {
+  transition:
+    opacity 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay, 0ms),
+    transform 0.65s cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay, 0ms);
+}
+
+html.motion .reveal:not(.is-in) {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+/* Image reveal drawn like a trowel stroke: a left-to-right wipe while the
+   photo settles from a slight zoom. The wrapper's background stays visible. */
+html.motion .reveal-wipe img {
+  clip-path: inset(0 0 0 0);
+  transition:
+    clip-path 0.6s cubic-bezier(0.7, 0, 0.2, 1) var(--reveal-delay, 0ms),
+    transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay, 0ms);
+}
+
+html.motion .reveal-wipe:not(.is-in) img {
+  clip-path: inset(0 100% 0 0);
+  transform: scale(1.12);
+}
+
+@media print {
+  html.motion .reveal,
+  html.motion .reveal-wipe img {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
 }
 
 @media (max-width: 1024px) {

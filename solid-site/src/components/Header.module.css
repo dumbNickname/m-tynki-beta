@@ -14,15 +14,16 @@
   display: none;
 }
 
-.topBar {
-  border-bottom: 1px solid var(--color-border);
-}
-
 .topInner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
+  gap: 1.5rem;
+  height: 72px;
+}
+
+.logo {
+  flex-shrink: 0;
 }
 
 .logo img {
@@ -48,68 +49,45 @@
   gap: 1.25rem;
 }
 
-.phoneLink {
+.callBtn {
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
-  color: var(--color-dark);
-  font-weight: 600;
-  font-size: var(--fs-small);
-  transition: color var(--transition);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
-.phoneLink svg {
-  color: var(--color-primary);
+.callBtn svg {
   display: inline-block;
   flex-shrink: 0;
 }
 
-.phoneLink:hover {
-  color: var(--color-primary);
-}
-
 .navBar {
-  background: var(--color-white);
-}
-
-.navInner {
+  flex: 1;
   display: flex;
   justify-content: center;
+  min-width: 0;
 }
 
 .navBar ul {
   display: flex;
   align-items: center;
-  gap: 0;
+  gap: 0.125rem;
 }
 
 .navBar li a {
   display: block;
   color: var(--color-text);
   font-weight: 500;
-  font-size: 0.8125rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 0.875rem 1.125rem;
-  position: relative;
-  transition: color var(--transition);
+  font-size: 0.9375rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  transition: color var(--transition), background-color var(--transition);
 }
 
-.navBar li a::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: var(--color-primary);
-  transition: width var(--transition), left var(--transition);
-}
-
-.navBar li a:hover::after,
-.navBar li a.active::after {
-  width: 100%;
-  left: 0;
+.navBar li a:hover {
+  background: var(--color-primary-subtle);
 }
 
 .navBar li a:hover {
@@ -127,8 +105,9 @@
   background: none;
   border: none;
   cursor: pointer;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
+  margin-left: -4px;
   position: relative;
   z-index: 1100;
 }
@@ -142,11 +121,11 @@
   background: var(--color-dark);
   transition: var(--transition);
   position: absolute;
-  left: 7px;
+  left: 11px;
   border-radius: 1px;
 }
 
-.hamburger { top: 17px; }
+.hamburger { top: 21px; }
 .hamburger::before { content: ""; top: -7px; }
 .hamburger::after  { content: ""; top: 7px; }
 
@@ -160,8 +139,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: var(--color-primary);
   color: var(--color-white);
@@ -307,7 +286,56 @@
   text-align: center;
 }
 
-@media (max-width: 1024px) {
+.flyoutSocial {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.flyoutSocial a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  padding: 0 0.85rem;
+  border-radius: var(--radius-pill);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.flyoutSocial a:hover {
+  color: #ffffff;
+  filter: brightness(1.08);
+}
+
+.flyoutSocial svg {
+  width: 20px;
+  height: 20px;
+}
+
+.socialFb {
+  background: #1877f2;
+}
+
+.socialIg {
+  background: linear-gradient(135deg, #f09433 0%, #dc2743 50%, #bc1888 100%);
+}
+
+@media (max-width: 1360px) {
+  .logo img {
+    height: 34px;
+  }
+
+  .navBar li a {
+    padding: 0.5rem 0.6rem;
+  }
+}
+
+/* Switch to the compact header well before the desktop bar runs out of room:
+   system fonts differ in width per OS (Segoe vs SF vs Liberation). */
+@media (max-width: 1180px) {
   .desktop {
     display: none;
   }
