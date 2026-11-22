@@ -1,5 +1,6 @@
 {
   "name": "mtynk-wroclaw",
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
     "dev": "vinxi dev",
