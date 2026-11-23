@@ -12,11 +12,11 @@ import { galleryAlts, toMedium } from "~/utils/images";
 import { formatDatePl } from "~/utils/date";
 import { opinieLabel, zdjeciaLabel } from "~/utils/plural";
 import { parseArea } from "~/utils/area";
+import { basePath } from "~/utils/base";
 import styles from "./post.module.css";
 import listStyles from "./index.module.css";
 
-const base = import.meta.env.SERVER_BASE_URL || "";
-const withBase = (html: string) => html.replace(/href="\/(?!\/)/g, `href="${base}/`);
+const withBase = (html: string) => html.replace(/href="\/(?!\/)/g, `href="${basePath}/`);
 
 const categoryLabels: Record<string, string> = {};
 navigation.categories.forEach((c) => { categoryLabels[c.slug] = c.label; });

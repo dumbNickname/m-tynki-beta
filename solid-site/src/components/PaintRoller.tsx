@@ -1,4 +1,4 @@
-import { onCleanup, onMount } from "solid-js";
+import { onSettled } from "solid-js";
 import styles from "./PaintRoller.module.css";
 
 // Reading progress for the painting guide: a strip of raw plaster under the
@@ -7,7 +7,7 @@ import styles from "./PaintRoller.module.css";
 export default function PaintRoller() {
   let bar!: HTMLDivElement;
 
-  onMount(() => {
+  onSettled(() => {
     if (CSS.supports("animation-timeline: scroll()")) return;
     let frame = 0;
     const update = () => {
@@ -21,11 +21,11 @@ export default function PaintRoller() {
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
-    onCleanup(() => {
+    return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       cancelAnimationFrame(frame);
-    });
+    };
   });
 
   return (

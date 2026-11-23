@@ -1,4 +1,4 @@
-import { createSignal, onMount, Show } from "solid-js";
+import { createSignal, onSettled, Show } from "solid-js";
 import styles from "./CookieBanner.module.css";
 
 const COOKIE_KEY = "mtynk_cookies_accepted";
@@ -6,7 +6,7 @@ const COOKIE_KEY = "mtynk_cookies_accepted";
 export default function CookieBanner() {
   const [visible, setVisible] = createSignal(false);
 
-  onMount(() => {
+  onSettled(() => {
     if (!localStorage.getItem(COOKIE_KEY)) {
       setVisible(true);
     }

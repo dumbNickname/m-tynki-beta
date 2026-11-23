@@ -1,4 +1,4 @@
-import { createSignal, onMount, onCleanup } from "solid-js";
+import { createSignal, onSettled } from "solid-js";
 import styles from "./ScrollToTop.module.css";
 
 export default function ScrollToTop() {
@@ -9,9 +9,9 @@ export default function ScrollToTop() {
     setVisible(window.scrollY > window.innerHeight * 1.5);
   };
 
-  onMount(() => {
+  onSettled(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
-    onCleanup(() => window.removeEventListener("scroll", handleScroll));
+    return () => window.removeEventListener("scroll", handleScroll);
   });
 
   const scrollToTop = () => {

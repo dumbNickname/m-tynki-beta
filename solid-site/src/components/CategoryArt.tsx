@@ -1,4 +1,4 @@
-import { JSX } from "solid-js";
+import type { JSX } from "@solidjs/web";
 import styles from "./CategoryArt.module.css";
 
 // Small header illustration per realizacje category: a wall swatch with the

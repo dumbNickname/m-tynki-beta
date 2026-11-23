@@ -3,9 +3,12 @@ packages:
 
 trustPolicy: no-downgrade
 trustPolicyIgnoreAfter: 40160
-minimumReleaseAge: 20160
+minimumReleaseAge: 7200
 strictDepBuilds: true
 
 onlyBuiltDependencies:
   - esbuild
   - '@parcel/watcher'
+
+allowBuilds:
+  esbuild: true

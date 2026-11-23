@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /**
  * Post-build: inlines render-blocking <link rel="stylesheet"> tags as <style> blocks
- * and removes CSS entries from window.manifest to prevent client re-fetching.
+ * so pages paint without waiting for a stylesheet request.
  *
- * Run after `vinxi build`: node scripts/inline-css.mjs
+ * Run after `vite build`: node scripts/inline-css.mjs
  */
 
 import { readFileSync, writeFileSync, readdirSync, statSync } from "node:fs";
@@ -11,7 +11,7 @@ import { resolve, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const outputDir = resolve(__dirname, "..", ".output", "public");
+const outputDir = resolve(__dirname, "..", "dist", "client");
 const basePath = (process.env.BASE_PATH || "").replace(/^\/|\/$/g, "");
 
 function findHtmlFiles(dir) {
@@ -20,7 +20,7 @@ function findHtmlFiles(dir) {
     for (const entry of readdirSync(d)) {
       const full = join(d, entry);
       if (statSync(full).isDirectory()) {
-        if (entry === "_build") continue;
+        if (entry === "assets") continue;
         walk(full);
       } else if (entry.endsWith(".html")) {
         results.push(full);

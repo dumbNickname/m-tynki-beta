@@ -1,4 +1,4 @@
-import { createSignal, For, onCleanup, onMount } from "solid-js";
+import { createSignal, For, onSettled } from "solid-js";
 import navigation from "~/data/navigation.json";
 import site from "~/data/site.json";
 import { FacebookIcon, InstagramIcon } from "./SocialFollow";
@@ -34,12 +34,12 @@ export default function Header() {
     if (!inside) closeMenu();
   }
 
-  onMount(() => {
+  onSettled(() => {
     // The drawer only exists in the mobile layout; don't leave it open past the breakpoint.
     const desktop = window.matchMedia("(min-width: 1025px)");
     const onChange = () => desktop.matches && menuRef.open && closeMenu();
     desktop.addEventListener("change", onChange);
-    onCleanup(() => desktop.removeEventListener("change", onChange));
+    return () => desktop.removeEventListener("change", onChange);
   });
 
   return (
@@ -86,7 +86,7 @@ export default function Header() {
             class={styles.menuToggle}
             onClick={openMenu}
             aria-label="Otwórz menu"
-            aria-expanded={menuOpen()}
+            aria-expanded={menuOpen() ? "true" : "false"}
             aria-controls="mobile-menu"
           >
             <span class={styles.hamburger} />

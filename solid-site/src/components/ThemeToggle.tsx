@@ -1,4 +1,4 @@
-import { createSignal, onMount } from "solid-js";
+import { createSignal, onSettled } from "solid-js";
 import styles from "./ThemeToggle.module.css";
 
 type Scheme = "light" | "dark";
@@ -41,7 +41,7 @@ function startListening() {
 }
 
 export default function ThemeToggle() {
-  onMount(() => {
+  onSettled(() => {
     apply(readStored());
     startListening();
   });

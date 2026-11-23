@@ -1,6 +1,7 @@
 import { Title, Meta, Link } from "@solidjs/meta";
 import site from "~/data/site.json";
 import imageSizes from "~/data/image-sizes.json";
+import { basePath } from "~/utils/base";
 import { withTrailingSlash } from "~/utils/url";
 
 const DEFAULT_OG_IMAGE = "images/og-default.jpg";
@@ -59,6 +60,11 @@ export default function SeoHead(props: SeoHeadProps) {
     if (!props.title) return site.title;
     return props.rawTitle ? props.title : `${props.title} - ${site.name}`;
   };
+  // The beta site (served under a base path) must never be indexed.
+  const robots = () =>
+    basePath ? "noindex, nofollow"
+    : props.noindex ? "noindex, follow"
+    : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
   const canonicalPath = () => props.canonical ? withTrailingSlash(props.canonical) : undefined;
   const ogImage = () => props.ogImage || DEFAULT_OG_IMAGE;
   const ogImageUrl = () => `${site.url}/${ogImage()}`;
@@ -288,7 +294,7 @@ export default function SeoHead(props: SeoHeadProps) {
   return (
     <>
       <Title>{pageTitle()}</Title>
-      <Meta name="robots" content={props.noindex ? "noindex, follow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
+      <Meta name="robots" content={robots()} />
       {props.description && <Meta name="description" content={props.description} />}
       <Meta property="og:locale" content="pl_PL" />
       <Meta property="og:type" content={props.ogType || "website"} />
@@ -310,8 +316,8 @@ export default function SeoHead(props: SeoHeadProps) {
       {props.description && <Meta name="twitter:description" content={props.description} />}
       <Meta name="twitter:image" content={ogImageUrl()} />
       {props.dateModified && <Meta property="article:modified_time" content={props.dateModified} />}
-      {canonicalPath() && <Link rel="alternate" hreflang="pl" href={`${site.url}${canonicalPath()}`} />}
-      {canonicalPath() && <Link rel="alternate" hreflang="x-default" href={`${site.url}${canonicalPath()}`} />}
+      {canonicalPath() && <Link key="hreflang-pl" rel="alternate" hreflang="pl" href={`${site.url}${canonicalPath()}`} />}
+      {canonicalPath() && <Link key="hreflang-x-default" rel="alternate" hreflang="x-default" href={`${site.url}${canonicalPath()}`} />}
       {!props.noindex && <script type="application/ld+json" innerHTML={jsonLd()} />}
     </>
   );

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Post-build: generates static HTML redirect stubs for legacy URLs into
- * .output/public/<old-path>/index.html.
+ * dist/client/<old-path>/index.html.
  *
  * Why: GitHub Pages is a static host and cannot emit server-side 301s.
  * The old WordPress site exposed each portfolio post at a top-level slug
@@ -27,7 +27,7 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, "..");
-const outputDir = resolve(root, ".output", "public");
+const outputDir = resolve(root, "dist", "client");
 const base = (process.env.BASE_PATH || "").replace(/\/$/, "");
 
 const posts = JSON.parse(readFileSync(resolve(root, "src/data/posts.json"), "utf-8"));

@@ -1,11 +1,6 @@
-// @refresh reload
-import { mount, StartClient } from "@solidjs/start/client";
-import { initMotion } from "./utils/motion";
-
-mount(() => <StartClient />, document.getElementById("app")!);
-initMotion();
-
-const base = (import.meta.env.SERVER_BASE_URL || "") as string;
+// Runs in the browser before hydration (start.clientSetup in vite.config.ts).
+// Every page is its own prerendered document, so internal links do full page
+// loads instead of client-side routing.
 
 document.addEventListener("click", (e) => {
   const anchor = (e.target as Element).closest?.("a");

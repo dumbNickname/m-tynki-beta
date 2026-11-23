@@ -166,13 +166,13 @@ export default function Gallery(props: GalleryProps) {
               </svg>
             </button>
             <span class={styles.counter} aria-hidden="true">{lightboxIndex()! + 1} / {props.images.length}</span>
-            <button class={styles.prev} onClick={prev} aria-label="Poprzednie" aria-disabled={lightboxIndex() === 0}>‹</button>
+            <button class={styles.prev} onClick={prev} aria-label="Poprzednie" aria-disabled={lightboxIndex() === 0 ? "true" : "false"}>‹</button>
             <img
               src={props.images[lightboxIndex()!]}
               alt={imageAlt(prefix(), lightboxIndex()!, props.alts)}
               style={{ "view-transition-name": VT_NAME }}
             />
-            <button class={styles.next} onClick={next} aria-label="Następne" aria-disabled={lightboxIndex() === props.images.length - 1}>›</button>
+            <button class={styles.next} onClick={next} aria-label="Następne" aria-disabled={lightboxIndex() === props.images.length - 1 ? "true" : "false"}>›</button>
           </div>
         </Show>
       </dialog>

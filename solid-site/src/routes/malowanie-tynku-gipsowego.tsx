@@ -251,7 +251,7 @@ export default function MalowanieTynkuGipsowego() {
                   <button
                     type="button"
                     class={styles.checkBox}
-                    aria-pressed={checked()[i()]}
+                    aria-pressed={checked()[i()] ? "true" : "false"}
                     aria-label={`Sprawdzone: ${item.title}`}
                     onClick={() => toggle(i())}
                   >

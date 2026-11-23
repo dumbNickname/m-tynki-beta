@@ -56,7 +56,7 @@ jobs:
 
       - name: Remove CNAME for beta
         if: github.repository == 'dumbNickname/m-tynki-beta'
-        run: rm -f solid-site/.output/public/CNAME
+        run: rm -f solid-site/dist/client/CNAME
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -64,7 +64,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: solid-site/.output/public
+          path: solid-site/dist/client
 
       - name: Deploy to GitHub Pages
         id: deployment
@@ -80,7 +80,7 @@ jobs:
           set -euo pipefail
           KEY="eecbb864c73e9364035d0dfb10ad23cc"
           HOST="wroclawtynki.pl"
-          SITEMAP="solid-site/.output/public/sitemap.xml"
+          SITEMAP="solid-site/dist/client/sitemap.xml"
           # Extract <loc> URLs from sitemap.xml into a JSON array.
           urls=$(grep -oP '(?<=<loc>)[^<]+' "$SITEMAP" | jq -R . | jq -s .)
           payload=$(jq -n \

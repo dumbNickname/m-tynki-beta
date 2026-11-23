@@ -1,4 +1,4 @@
-import { createSignal, For, onCleanup, onMount } from "solid-js";
+import { createSignal, For, onSettled } from "solid-js";
 import reviews from "~/data/reviews.json";
 import site from "~/data/site.json";
 import { opinieLabel } from "~/utils/plural";
@@ -25,7 +25,7 @@ function ReviewCard(props: { review: typeof reviews[0] }) {
       </div>
       <p class={`${styles.text} ${long && !open() ? styles.clamped : ""}`}>{props.review.text}</p>
       {long && (
-        <button type="button" class={styles.more} aria-expanded={open()} onClick={() => setOpen(!open())}>
+        <button type="button" class={styles.more} aria-expanded={open() ? "true" : "false"} onClick={() => setOpen(!open())}>
           {open() ? "Zwiń" : "Pokaż całą opinię"}
         </button>
       )}
@@ -90,14 +90,14 @@ export default function Reviews() {
   let touchX = 0;
   let touchY = 0;
 
-  onMount(() => {
+  onSettled(() => {
     update();
     const ro = new ResizeObserver(update);
     ro.observe(rail);
-    onCleanup(() => ro.disconnect());
+    return () => ro.disconnect();
   });
 
-  onMount(() => {
+  onSettled(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (rail.scrollWidth <= rail.clientWidth + 8) return;
     setCanAutoplay(true);
@@ -120,11 +120,11 @@ export default function Reviews() {
       setCanAutoplay(false);
     };
     reduce.addEventListener("change", onReduce);
-    onCleanup(() => {
+    return () => {
       clearInterval(timer);
       io.disconnect();
       reduce.removeEventListener("change", onReduce);
-    });
+    };
   });
 
   return (
@@ -165,14 +165,14 @@ export default function Reviews() {
             if (atStart()) return;
             stop();
             step(-1);
-          }} aria-disabled={atStart()} aria-label="Poprzednie opinie">
+          }} aria-disabled={atStart() ? "true" : "false"} aria-label="Poprzednie opinie">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 6 9 12 15 18" /></svg>
           </button>
           <button type="button" class={styles.railBtn} onClick={() => {
             if (atEnd()) return;
             stop();
             step(1);
-          }} aria-disabled={atEnd()} aria-label="Następne opinie">
+          }} aria-disabled={atEnd() ? "true" : "false"} aria-label="Następne opinie">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18" /></svg>
           </button>
           {canAutoplay() && (

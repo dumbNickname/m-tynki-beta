@@ -1,25 +1,29 @@
 {
   "name": "mtynk-wroclaw",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vinxi dev",
-    "build": "node scripts/check-internal-links.mjs && node scripts/generate-seo.mjs && node scripts/generate-image-sizes.mjs && vinxi build && node scripts/inline-css.mjs && node scripts/copy-404.mjs && node scripts/generate-redirects.mjs",
-    "preview": "vinxi start",
+    "dev": "vite",
+    "build": "node scripts/check-internal-links.mjs && node scripts/generate-seo.mjs && node scripts/generate-image-sizes.mjs && vite build && node scripts/inline-css.mjs && node scripts/generate-redirects.mjs",
+    "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "check:links": "node scripts/check-internal-links.mjs"
   },
   "dependencies": {
-    "@solidjs/meta": "^0.29.4",
-    "@solidjs/router": "^0.15.3",
-    "@solidjs/start": "^1.1.0",
-    "solid-js": "^1.9.5",
-    "vinxi": "^0.5.3"
+    "@solidjs/meta": "^2.0.0",
+    "@solidjs/router": "^2.0.0",
+    "@solidjs/web": "^2.0.0",
+    "solid-js": "^2.0.0"
   },
   "devDependencies": {
-    "typescript": "^5.7.3"
+    "@solidjs/vite-plugin": "^3.0.0",
+    "@types/node": "^22.0.0",
+    "filesystem-routing": "^0.5.0",
+    "prerender-crawler": "^0.3.0",
+    "typescript": "^5.9.0",
+    "vite": "^8.3.0"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   }
 }

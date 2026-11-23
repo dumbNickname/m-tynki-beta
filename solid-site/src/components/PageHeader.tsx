@@ -1,4 +1,5 @@
-import { children, For, JSX } from "solid-js";
+import { children, For } from "solid-js";
+import type { JSX } from "@solidjs/web";
 import NavLink from "./NavLink";
 import styles from "./PageHeader.module.css";
 

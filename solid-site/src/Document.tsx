@@ -1,0 +1,29 @@
+import type { ParentProps } from "solid-js";
+import { HydrationScript } from "@solidjs/web";
+import { basePath } from "./utils/base";
+
+// Runs before first paint: applies the stored theme override (or the OS scheme) to avoid a flash.
+const themeInit = `(function(){var t=null;try{t=localStorage.getItem("mtynk_theme")}catch(e){}if(t!=="dark"&&t!=="light")t=null;if(t)document.querySelector('meta[name="color-scheme"]').content=t;document.documentElement.setAttribute("data-theme",t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"))})()`;
+
+export default function Document(props: ParentProps) {
+  return (
+    <html lang="pl-PL">
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#397d47" />
+        <base href={`${basePath}/`} />
+        <link rel="icon" href="favicon.ico" sizes="any" />
+        <link rel="icon" href="images/mtynk-ludzik-gladziolit-300x300-1-150x150.png" sizes="32x32" />
+        <link rel="icon" href="images/mtynk-ludzik-gladziolit-300x300-1.png" sizes="192x192" />
+        <link rel="apple-touch-icon" href="images/mtynk-ludzik-gladziolit-300x300-1.png" />
+        <meta name="color-scheme" content="light dark" />
+        <script innerHTML={themeInit} />
+        <HydrationScript />
+      </head>
+      <body>
+        <div id="app">{props.children}</div>
+      </body>
+    </html>
+  );
+}

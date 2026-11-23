@@ -1,4 +1,4 @@
-import { createSignal, onCleanup, onMount } from "solid-js";
+import { createSignal, onSettled } from "solid-js";
 import site from "~/data/site.json";
 import styles from "./PlasterCompare.module.css";
 
@@ -31,7 +31,7 @@ export default function PlasterCompare() {
     raf = requestAnimationFrame(tick);
   }
 
-  onMount(() => {
+  onSettled(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (!("IntersectionObserver" in window)) return;
     const io = new IntersectionObserver(
@@ -45,18 +45,17 @@ export default function PlasterCompare() {
       { threshold: 0.55 },
     );
     io.observe(root);
-    onCleanup(() => {
+    return () => {
       io.disconnect();
       cancelAnimationFrame(raf);
-    });
+    };
   });
 
   return (
     <figure class={styles.figure}>
       <div
         ref={root}
-        class={styles.panel}
-        classList={{ [styles.sweeping]: sweeping(), [styles.lit]: lit() }}
+        class={[styles.panel, { [styles.sweeping]: sweeping(), [styles.lit]: lit() }]}
         style={{ "--pos": `${pos()}%` }}
       >
         <img class={styles.surface} src="images/plaster-rough.svg" alt="" width="1200" height="750" loading="lazy" decoding="async" />

@@ -1,7 +1,6 @@
-import { JSX } from "solid-js";
+import type { JSX } from "@solidjs/web";
+import { basePath } from "~/utils/base";
 import { withTrailingSlash } from "~/utils/url";
-
-const base = import.meta.env.SERVER_BASE_URL || "";
 
 interface NavLinkProps extends JSX.AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
@@ -12,7 +11,7 @@ export default function NavLink(props: NavLinkProps) {
     const h = props.href;
     if (h.startsWith("http") || h.startsWith("mailto:") || h.startsWith("tel:")) return h;
     if (h.startsWith("#")) return h;
-    return base + withTrailingSlash(h);
+    return basePath + withTrailingSlash(h);
   };
 
   return (

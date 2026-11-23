@@ -1,4 +1,5 @@
-import { For, JSX, onCleanup, onMount } from "solid-js";
+import { For, onSettled } from "solid-js";
+import type { JSX } from "@solidjs/web";
 import Layout from "~/components/Layout";
 import SeoHead from "~/components/SeoHead";
 import PageHeader from "~/components/PageHeader";
@@ -13,7 +14,7 @@ const OWNER_NAME = site.owner.name;
 type Flag = "pl" | "lt" | "de" | "ch" | "mtynk";
 type Stamp = { flag: Flag; top: string; place: string; foot: string; tilt: number };
 
-const stages: { label: string; title: string; content: JSX.Element; flags: Flag[]; stamps: Stamp[] }[] = [
+const stages: { label: string; title: string; content: () => JSX.Element; flags: Flag[]; stamps: Stamp[] }[] = [
   {
     label: "1999",
     title: "Początki: Podlasie i Litwa",
@@ -22,7 +23,7 @@ const stages: { label: string; title: string; content: JSX.Element; flags: Flag[
       { flag: "pl", top: "Polska", place: "Podlasie", foot: "1999", tilt: -7 },
       { flag: "lt", top: "Lietuva", place: "Litwa", foot: "za granicą", tilt: 5 },
     ],
-    content: (
+    content: () => (
       <p>Moja przygoda z tynkowaniem zaczęła się w 1999 roku na Podlasiu. Tam zdobywałem pierwsze doświadczenia, a z czasem praca zaprowadziła mnie również na Litwę.</p>
     ),
   },
@@ -31,7 +32,7 @@ const stages: { label: string; title: string; content: JSX.Element; flags: Flag[
     title: "Warszawa: budowy deweloperskie",
     flags: ["pl"],
     stamps: [{ flag: "pl", top: "Polska", place: "Warszawa", foot: "2005–2010", tilt: 3 }],
-    content: (
+    content: () => (
       <p>Po powrocie do Polski przeniosłem się do Warszawy. W latach 2005–2010 pracowałem głównie na budowach deweloperskich, gdzie zdobywałem kolejne doświadczenia i doskonaliłem swój warsztat.</p>
     ),
   },
@@ -40,7 +41,7 @@ const stages: { label: string; title: string; content: JSX.Element; flags: Flag[
     title: "Niemcy: pierwsze spotkanie ze szlichtą",
     flags: ["de"],
     stamps: [{ flag: "de", top: "Deutschland", place: "Niemcy", foot: "ok. 3 lata", tilt: -4 }],
-    content: (
+    content: () => (
       <>
         <p>Kolejnym ważnym etapem były Niemcy, gdzie przez około trzy lata pracowałem dla niemieckiej firmy. Wyjechałem przede wszystkim po to, żeby poznać nowe technologie i metody tynkowania.</p>
         <p>To właśnie tam po raz pierwszy zetknąłem się z <NavLink href="/tynki-ze-szlichta-pod-malowanie">tynkowaniem ze szlichtą</NavLink>. Wcześniej nie spotkałem się w Polsce z takim rozwiązaniem, dlatego tym bardziej zaskoczył mnie efekt końcowy: naprawdę gładkie, estetyczne ściany, bardzo dobrze przygotowane pod malowanie. To doświadczenie w dużej mierze ukształtowało moje podejście do jakości pracy.</p>
@@ -52,7 +53,7 @@ const stages: { label: string; title: string; content: JSX.Element; flags: Flag[
     title: "Szwajcaria: kolejne standardy",
     flags: ["ch"],
     stamps: [{ flag: "ch", top: "Schweiz", place: "Szwajcaria", foot: "ok. 2 lata", tilt: 6 }],
-    content: (
+    content: () => (
       <p>Następnie przez około dwa lata pracowałem w Szwajcarii, gdzie poznałem kolejne standardy i rozwiązania stosowane w branży.</p>
     ),
   },
@@ -61,7 +62,7 @@ const stages: { label: string; title: string; content: JSX.Element; flags: Flag[
     title: "Wrocław: tu zostałem",
     flags: ["pl"],
     stamps: [{ flag: "pl", top: "Polska", place: "Wrocław", foot: "tu zostałem", tilt: -3 }],
-    content: (
+    content: () => (
       <p>Po powrocie do Polski trafiłem w okolice Wrocławia. Przypadkiem natrafiłem na ogłoszenie o pracę, które spodobało mi się na tyle, że postanowiłem zostać. Z czasem przeprowadziłem się tu na stałe i dziś Wrocław jest moim domem już od około 12 lat.</p>
     ),
   },
@@ -70,7 +71,7 @@ const stages: { label: string; title: string; content: JSX.Element; flags: Flag[
     title: "Własna firma: M-TYNK",
     flags: ["mtynk"],
     stamps: [{ flag: "mtynk", top: "Wrocław", place: "M-TYNK", foot: "IX 2019", tilt: -9 }],
-    content: (
+    content: () => (
       <p>We wrześniu 2019 roku założyłem we Wrocławiu własną działalność — firmę tynkarską M-TYNK. Od początku stawiam na metodę, którą poznałem w Niemczech: tynki gipsowe ze szlichtą wygładzającą, po których ściany są gotowe pod malowanie.</p>
     ),
   },
@@ -143,7 +144,7 @@ export default function ONas() {
   // Scroll story: the stage crossing ~60% of the screen height becomes active,
   // its stamp lands in the passport and the rail fills up to it. Without JS or
   // with reduced motion every stamp is already in place and the rail is full.
-  onMount(() => {
+  onSettled(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const items = Array.from(rail.children) as HTMLElement[];
@@ -175,10 +176,10 @@ export default function ONas() {
     update();
     career.classList.add(styles.live);
     window.addEventListener("scroll", onScroll, { passive: true });
-    onCleanup(() => {
+    return () => {
       window.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(frame);
-    });
+    };
   });
 
   return (
@@ -248,7 +249,7 @@ export default function ONas() {
                     </span>
                     <span class={styles.timelineLabel}>{stage.label}</span>
                     <h3>{stage.title}</h3>
-                    {stage.content}
+                    {stage.content()}
                     <div class={styles.inlineStamps}>
                       <For each={stage.stamps}>{(stamp) => <StampMark stamp={stamp} stage={i()} />}</For>
                     </div>

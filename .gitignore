@@ -2,8 +2,7 @@
 node_modules/
 
 # Build output
-solid-site/.vinxi/
-solid-site/.output/
+solid-site/dist/
 
 # OS files
 .DS_Store
